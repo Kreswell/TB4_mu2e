@@ -1497,6 +1497,11 @@ namespace TB_mu2e
                 hName += DateTime.Now.Second.ToString("00");
             }
         }
+
+        private void zg1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

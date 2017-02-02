@@ -92,6 +92,7 @@
             this.lblConsole_disp = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabFEB1 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
             this.ShowSpect = new System.Windows.Forms.Button();
             this.ShowIV = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -146,7 +147,6 @@
             this.lblWCmessage = new System.Windows.Forms.Label();
             this.btnWC = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label9 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabRUN.SuspendLayout();
@@ -768,6 +768,7 @@
             this.zg1.ScrollMinY2 = 0D;
             this.zg1.Size = new System.Drawing.Size(630, 342);
             this.zg1.TabIndex = 1;
+            this.zg1.Load += new System.EventHandler(this.zg1_Load);
             // 
             // tabConsole
             // 
@@ -888,6 +889,15 @@
             this.tabFEB1.TabIndex = 3;
             this.tabFEB1.Text = "FEB";
             this.tabFEB1.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(389, 99);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(53, 20);
+            this.label9.TabIndex = 65;
+            this.label9.Text = "label9";
             // 
             // ShowSpect
             // 
@@ -1525,15 +1535,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(389, 99);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 20);
-            this.label9.TabIndex = 65;
-            this.label9.Text = "label9";
             // 
             // frmMain
             // 
