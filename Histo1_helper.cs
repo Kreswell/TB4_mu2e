@@ -151,16 +151,16 @@ namespace TB_mu2e
             string hName = "";
             string dirName = "c://data//";
 
-            hName += "Hist_FEB" + this.board.ToString();
-            hName += "_ch" + this.chan.ToString();
-            hName += "_" + this.created_time.Year.ToString("0000");
-            hName += this.created_time.Month.ToString("00");
-            hName += this.created_time.Day.ToString("00");
-            hName += "_" + this.created_time.Hour.ToString("00");
-            hName += this.created_time.Minute.ToString("00");
-            hName += this.created_time.Second.ToString("00");
+            //hName += "Hist_FEB" + this.board.ToString();
+            //hName += "_ch" + this.chan.ToString();
+            //hName += "_" + this.created_time.Year.ToString("0000");
+            //hName += this.created_time.Month.ToString("00");
+            //hName += this.created_time.Day.ToString("00");
+            //hName += "_" + this.created_time.Hour.ToString("00");
+            //hName += this.created_time.Minute.ToString("00");
+            //hName += this.created_time.Second.ToString("00");
 
-            hName = dirName + hName + ".hist";
+            //hName = dirName + hName + ".hist";
 
             try
             {
