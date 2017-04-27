@@ -1922,6 +1922,7 @@
             this.txtBiasRB0.Name = "txtBiasRB0";
             this.txtBiasRB0.Size = new System.Drawing.Size(76, 27);
             this.txtBiasRB0.TabIndex = 16;
+            this.txtBiasRB0.TextChanged += new System.EventHandler(this.txtBiasRB0_TextChanged);
             // 
             // btnJ15
             // 

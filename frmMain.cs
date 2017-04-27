@@ -400,18 +400,18 @@ namespace TB_mu2e
                     channel.button = btnJ11;
                     break;
             }
-            channel.rBias = rBias;
-            channel.rLed = rLed;
-            channel.rTrim0 = rTrim0;
-            channel.rTrim1 = rTrim1;
-            channel.rTrim2 = rTrim2;
-            channel.rTrim3 = rTrim3;
             rBias.fpga_index = fpga_num;
             rLed.fpga_index = fpga_num;
             rTrim0.fpga_index = fpga_num;
             rTrim1.fpga_index = fpga_num;
             rTrim2.fpga_index = fpga_num;
             rTrim3.fpga_index = fpga_num;
+            channel.Bias0.register = rBias;
+            channel.Led0.register = rLed;
+            channel.Trim0.register = rTrim0;
+            channel.Trim1.register = rTrim1;
+            channel.Trim2.register = rTrim2;
+            channel.Trim3.register = rTrim3;
             ActiveHdmiChannel = channel;
         }
 
@@ -2012,27 +2012,27 @@ namespace TB_mu2e
             { MessageBox.Show("No FEB active"); return; }
 
             string name = tabControl.SelectedTab.Text;
-            r = ActiveHdmiChannel.rBias;
+            r = ActiveHdmiChannel.Bias0.register;
             Mu2e_Register.ReadReg(ref r, ref myFEB.client);
             v = r.val*0.02;
             txtBiasSet0.Text = v.ToString("0.000");
-            r = ActiveHdmiChannel.rLed;
+            r = ActiveHdmiChannel.Led0.register;
             Mu2e_Register.ReadReg(ref r, ref myFEB.client);
             v = r.val * 0.003;
             txtLEDSet0.Text = v.ToString("0.000");
-            r = ActiveHdmiChannel.rTrim0;
+            r = ActiveHdmiChannel.Trim0.register;
             Mu2e_Register.ReadReg(ref r, ref myFEB.client);
             v = ((double)r.val - 2048) * 0.002;
             txtTrimSet0.Text = v.ToString("0.000");
-            r = ActiveHdmiChannel.rTrim1;
+            r = ActiveHdmiChannel.Trim1.register;
             Mu2e_Register.ReadReg(ref r, ref myFEB.client);
             v = ((double)r.val - 2048) * 0.002;
             txtTrimSet1.Text = v.ToString("0.000");
-            r = ActiveHdmiChannel.rTrim2;
+            r = ActiveHdmiChannel.Trim2.register;
             Mu2e_Register.ReadReg(ref r, ref myFEB.client);
             v = ((double)r.val - 2048) * 0.002;
             txtTrimSet2.Text = v.ToString("0.000");
-            r = ActiveHdmiChannel.rTrim3;
+            r = ActiveHdmiChannel.Trim3.register;
             Mu2e_Register.ReadReg(ref r, ref myFEB.client);
             v = ((double)r.val - 2048) * 0.002;
             txtTrimSet3.Text = v.ToString("0.000");
@@ -2064,27 +2064,27 @@ namespace TB_mu2e
                 rBias.fpga_index = fpga_num;
                 v = Convert.ToDouble(txtBiasSet0.Text);
                 vInt = (UInt32)v * 50;
-                r = ActiveHdmiChannel.rBias;
+                r = ActiveHdmiChannel.Bias0.register;
                 Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
                 v = Convert.ToDouble(txtLEDSet0.Text);
                 vInt = (UInt32)v * 300;
-                r = ActiveHdmiChannel.rLed;
+                r = ActiveHdmiChannel.Led0.register;
                 Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
                 v = Convert.ToDouble(txtTrimSet0.Text) * 500 + 2048;
                 vInt = (UInt32)v;
-                r = ActiveHdmiChannel.rTrim0;
+                r = ActiveHdmiChannel.Trim0.register;
                 Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
                 v = Convert.ToDouble(txtTrimSet1.Text) * 500 + 2048;
                 vInt = (UInt32)v;
-                r = ActiveHdmiChannel.rTrim1;
+                r = ActiveHdmiChannel.Trim1.register;
                 Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
                 v = Convert.ToDouble(txtTrimSet2.Text) * 500 + 2048;
                 vInt = (UInt32)v;
-                r = ActiveHdmiChannel.rTrim2;
+                r = ActiveHdmiChannel.Trim2.register;
                 Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
                 v = Convert.ToDouble(txtTrimSet3.Text) * 500 + 2048;
                 vInt = (UInt32)v;
-                r = ActiveHdmiChannel.rTrim3;
+                r = ActiveHdmiChannel.Trim3.register;
                 Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
             }
             Application.DoEvents();
@@ -2110,27 +2110,27 @@ namespace TB_mu2e
             UInt32 vInt;
             v = 75;
             vInt = (UInt32)v * 50;
-            r = ActiveHdmiChannel.rBias;
+            r = ActiveHdmiChannel.Bias0.register;
             Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
             v = 14;
             vInt = (UInt32)v * 300;
-            r = ActiveHdmiChannel.rLed;
+            r = ActiveHdmiChannel.Led0.register;
             Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
             v = 4 * 500 + 2048;
             vInt = (UInt32)v;
-            r = ActiveHdmiChannel.rTrim0;
+            r = ActiveHdmiChannel.Trim0.register;
             Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
             v = 4 * 500 + 2048;
             vInt = (UInt32)v;
-            r = ActiveHdmiChannel.rTrim1;
+            r = ActiveHdmiChannel.Trim1.register;
             Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
             v = 4 * 500 + 2048;
             vInt = (UInt32)v;
-            r = ActiveHdmiChannel.rTrim2;
+            r = ActiveHdmiChannel.Trim2.register;
             Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
             v = 4 * 500 + 2048;
             vInt = (UInt32)v;
-            r = ActiveHdmiChannel.rTrim3;
+            r = ActiveHdmiChannel.Trim3.register;
             Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
 
             //Check voltage readbacks. If all six too small print error message.
@@ -2353,6 +2353,11 @@ namespace TB_mu2e
         }
 
         private void btnFEB1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBiasRB0_TextChanged(object sender, EventArgs e)
         {
 
         }
