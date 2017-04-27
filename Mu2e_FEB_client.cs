@@ -45,7 +45,7 @@ namespace TB_mu2e
         public int max_timeout;
         public int timeout;
         public List<Mu2e_Register> arrReg;
-        public int _FEBserialNum;
+        public string _FEBserialNum;
 
         // events 
         //public delegate void cOpening();
@@ -59,7 +59,7 @@ namespace TB_mu2e
         public bool ClientOpen { get { return _ClientOpen; } }
         public bool ClientBusy { get { return _ClientBusy; } set { _ClientBusy = value; } }
         public int TNETsocketNum { get { return _TNETsocketNum; } set { _TNETsocketNum = value; } }
-        public int FEBserialNum { get { return _FEBserialNum; } set { _FEBserialNum = value; } }
+        public string FEBserialNum { get { return _FEBserialNum; } set { _FEBserialNum = value; } }
 
 
         public void Open()
