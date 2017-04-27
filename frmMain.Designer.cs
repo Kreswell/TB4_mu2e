@@ -1545,6 +1545,7 @@
             this.btnFEB1.Tag = "FEB1";
             this.btnFEB1.Text = "unkown";
             this.btnFEB1.UseVisualStyleBackColor = true;
+            this.btnFEB1.Click += new System.EventHandler(this.btnFEB1_Click);
             // 
             // tabWC
             // 
@@ -1730,7 +1731,7 @@
             // 
             // btnJ26
             // 
-            this.btnJ26.BackColor = System.Drawing.Color.Red;
+            this.btnJ26.BackColor = System.Drawing.Color.Silver;
             this.btnJ26.Location = new System.Drawing.Point(6, 566);
             this.btnJ26.Name = "btnJ26";
             this.btnJ26.Size = new System.Drawing.Size(75, 30);
@@ -1751,7 +1752,7 @@
             // 
             // btnJ25
             // 
-            this.btnJ25.BackColor = System.Drawing.Color.Red;
+            this.btnJ25.BackColor = System.Drawing.Color.Silver;
             this.btnJ25.Location = new System.Drawing.Point(6, 530);
             this.btnJ25.Name = "btnJ25";
             this.btnJ25.Size = new System.Drawing.Size(75, 30);
@@ -1772,7 +1773,7 @@
             // 
             // btnJ24
             // 
-            this.btnJ24.BackColor = System.Drawing.Color.Red;
+            this.btnJ24.BackColor = System.Drawing.Color.Silver;
             this.btnJ24.Location = new System.Drawing.Point(6, 494);
             this.btnJ24.Name = "btnJ24";
             this.btnJ24.Size = new System.Drawing.Size(75, 30);
@@ -1793,7 +1794,7 @@
             // 
             // btnJ23
             // 
-            this.btnJ23.BackColor = System.Drawing.Color.Red;
+            this.btnJ23.BackColor = System.Drawing.Color.Silver;
             this.btnJ23.Location = new System.Drawing.Point(6, 458);
             this.btnJ23.Name = "btnJ23";
             this.btnJ23.Size = new System.Drawing.Size(75, 30);
@@ -1804,7 +1805,7 @@
             // 
             // btnJ22
             // 
-            this.btnJ22.BackColor = System.Drawing.Color.Red;
+            this.btnJ22.BackColor = System.Drawing.Color.Silver;
             this.btnJ22.Location = new System.Drawing.Point(6, 422);
             this.btnJ22.Name = "btnJ22";
             this.btnJ22.Size = new System.Drawing.Size(75, 30);
@@ -1815,7 +1816,7 @@
             // 
             // btnJ21
             // 
-            this.btnJ21.BackColor = System.Drawing.Color.Red;
+            this.btnJ21.BackColor = System.Drawing.Color.Silver;
             this.btnJ21.Location = new System.Drawing.Point(6, 386);
             this.btnJ21.Name = "btnJ21";
             this.btnJ21.Size = new System.Drawing.Size(75, 30);
@@ -1833,7 +1834,7 @@
             // 
             // btnJ20
             // 
-            this.btnJ20.BackColor = System.Drawing.Color.Red;
+            this.btnJ20.BackColor = System.Drawing.Color.Silver;
             this.btnJ20.Location = new System.Drawing.Point(6, 350);
             this.btnJ20.Name = "btnJ20";
             this.btnJ20.Size = new System.Drawing.Size(75, 30);
@@ -1851,7 +1852,7 @@
             // 
             // btnJ19
             // 
-            this.btnJ19.BackColor = System.Drawing.Color.Red;
+            this.btnJ19.BackColor = System.Drawing.Color.Silver;
             this.btnJ19.Location = new System.Drawing.Point(6, 314);
             this.btnJ19.Name = "btnJ19";
             this.btnJ19.Size = new System.Drawing.Size(75, 30);
@@ -1869,7 +1870,7 @@
             // 
             // btnJ18
             // 
-            this.btnJ18.BackColor = System.Drawing.Color.Red;
+            this.btnJ18.BackColor = System.Drawing.Color.Silver;
             this.btnJ18.Location = new System.Drawing.Point(6, 278);
             this.btnJ18.Name = "btnJ18";
             this.btnJ18.Size = new System.Drawing.Size(75, 30);
@@ -1888,7 +1889,7 @@
             // 
             // btnJ17
             // 
-            this.btnJ17.BackColor = System.Drawing.Color.Red;
+            this.btnJ17.BackColor = System.Drawing.Color.Silver;
             this.btnJ17.Location = new System.Drawing.Point(6, 242);
             this.btnJ17.Name = "btnJ17";
             this.btnJ17.Size = new System.Drawing.Size(75, 30);
@@ -1906,7 +1907,7 @@
             // 
             // btnJ16
             // 
-            this.btnJ16.BackColor = System.Drawing.Color.Red;
+            this.btnJ16.BackColor = System.Drawing.Color.Silver;
             this.btnJ16.Location = new System.Drawing.Point(6, 206);
             this.btnJ16.Name = "btnJ16";
             this.btnJ16.Size = new System.Drawing.Size(75, 30);
@@ -1924,7 +1925,7 @@
             // 
             // btnJ15
             // 
-            this.btnJ15.BackColor = System.Drawing.Color.Red;
+            this.btnJ15.BackColor = System.Drawing.Color.Silver;
             this.btnJ15.Location = new System.Drawing.Point(6, 170);
             this.btnJ15.Name = "btnJ15";
             this.btnJ15.Size = new System.Drawing.Size(75, 30);
@@ -1935,7 +1936,7 @@
             // 
             // btnJ14
             // 
-            this.btnJ14.BackColor = System.Drawing.Color.Red;
+            this.btnJ14.BackColor = System.Drawing.Color.Silver;
             this.btnJ14.Location = new System.Drawing.Point(6, 134);
             this.btnJ14.Name = "btnJ14";
             this.btnJ14.Size = new System.Drawing.Size(75, 30);
@@ -1955,7 +1956,7 @@
             // 
             // btnJ13
             // 
-            this.btnJ13.BackColor = System.Drawing.Color.Red;
+            this.btnJ13.BackColor = System.Drawing.Color.Silver;
             this.btnJ13.Location = new System.Drawing.Point(6, 98);
             this.btnJ13.Name = "btnJ13";
             this.btnJ13.Size = new System.Drawing.Size(75, 30);
@@ -1975,7 +1976,7 @@
             // 
             // btnJ12
             // 
-            this.btnJ12.BackColor = System.Drawing.Color.Red;
+            this.btnJ12.BackColor = System.Drawing.Color.Silver;
             this.btnJ12.Location = new System.Drawing.Point(6, 62);
             this.btnJ12.Name = "btnJ12";
             this.btnJ12.Size = new System.Drawing.Size(75, 30);
@@ -1995,7 +1996,8 @@
             // 
             // btnJ11
             // 
-            this.btnJ11.BackColor = System.Drawing.Color.Red;
+            this.btnJ11.BackColor = System.Drawing.Color.Silver;
+            this.btnJ11.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnJ11.Location = new System.Drawing.Point(6, 26);
             this.btnJ11.Name = "btnJ11";
             this.btnJ11.Size = new System.Drawing.Size(75, 30);
