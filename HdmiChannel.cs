@@ -12,12 +12,12 @@ namespace TB_mu2e
         private System.Windows.Forms.Button _button;
         private uint _channel;
         private uint fpga_num;
-        public DacProperties Bias0;
-        public DacProperties Led0;
-        public DacProperties Trim0;
-        public DacProperties Trim1;
-        public DacProperties Trim2;
-        public DacProperties Trim3;
+        public BiasProperties Bias0;
+        public LedProperties Led0;
+        public TrimProperties Trim0;
+        public TrimProperties Trim1;
+        public TrimProperties Trim2;
+        public TrimProperties Trim3;
 
         private bool _isTested = false;
 
@@ -26,31 +26,61 @@ namespace TB_mu2e
 
         public bool isTested { get { return _isTested; } set { _isTested = value; } }
 
-        public void doTest(DacProperties dac, double vHi, double vMed, double vLo)
-        {
-
-        }
-
-        private void FitData(double[] xdata, double[] ydata, out double slope, out double intercept)
-        {
-            Tuple<double, double> fitParams = MathNet.Numerics.Fit.Line(xdata, ydata);
-            slope = fitParams.Item1;
-            intercept = fitParams.Item2;
-        }
-
         public HdmiChannel() { }
 
     }
 
-    class DacProperties
+    abstract class DacProperties
     {
         private Mu2e_Register _register;
         private double _voltage;
-        private double[,] voltageData;
+        public double[] voltageDataFEB = new double[3];
+        public double[] voltageDataScope = new double[3];
+        private double _slope;
+        private double _intercept;
 
         public Mu2e_Register register { get { return _register; } set { _register = value; } }
         public double voltage { get { return _voltage; } set { _voltage = value; } }
+        public double slope { get { return _slope; } set { _slope = value; } }
+        public double intercept { get { return _intercept; } set { _intercept = value; } }
 
+        public abstract UInt32 convertVoltage(double vIn);
 
+        public void FitData()
+        {
+            Tuple<double, double> fitParams = MathNet.Numerics.Fit.Line(voltageDataFEB, voltageDataScope);
+            _slope = fitParams.Item1;
+            _intercept = fitParams.Item2;
+        }
+    }
+
+    class BiasProperties : DacProperties
+    {
+        public override UInt32 convertVoltage(double vIn)
+        {
+            UInt32 vOut;
+            vOut = (UInt32)vIn * 50;
+            return vOut;
+        }
+    }
+
+    class LedProperties : DacProperties
+    {
+        public override UInt32 convertVoltage(double vIn)
+        {
+            UInt32 vOut;
+            vOut = (UInt32)vIn * 300;
+            return vOut;
+        }
+    }
+
+    class TrimProperties : DacProperties
+    {
+        public override UInt32 convertVoltage(double vIn)
+        {
+            UInt32 vOut;
+            vOut = (UInt32)vIn * 500 + 2048;
+            return vOut;
+        }
     }
 }

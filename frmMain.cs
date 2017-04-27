@@ -37,6 +37,8 @@ namespace TB_mu2e
         private HdmiChannel HdmiChannel13;
         private HdmiChannel HdmiChannel14;
         private HdmiChannel HdmiChannel15;
+        private List<HdmiChannel> HdmiChannelList = new List<HdmiChannel>();
+
 
         ushort fpga_num = 0;
         Mu2e_Register rBias;
@@ -75,12 +77,6 @@ namespace TB_mu2e
         double vScopeTrim1;
         double vScopeTrim2;
         double vScopeTrim3;
-
-        //List<double[,]> biasData = new List<double[,]>();
-        //List<double[,]> trim0Data = new List<double[,]>();
-        //List<double[,]> trim1Data = new List<double[,]>();
-        //List<double[,]> trim2Data = new List<double[,]>();
-        //List<double[,]> trim3Data = new List<double[,]>();
 
         List<Button> chan_list = new List<Button>();
 
@@ -121,6 +117,23 @@ namespace TB_mu2e
             chan_list.Add(btnJ24);
             chan_list.Add(btnJ25);
             chan_list.Add(btnJ26);
+
+            HdmiChannelList.Add(HdmiChannel0);
+            HdmiChannelList.Add(HdmiChannel1);
+            HdmiChannelList.Add(HdmiChannel2);
+            HdmiChannelList.Add(HdmiChannel3);
+            HdmiChannelList.Add(HdmiChannel4);
+            HdmiChannelList.Add(HdmiChannel5);
+            HdmiChannelList.Add(HdmiChannel6);
+            HdmiChannelList.Add(HdmiChannel7);
+            HdmiChannelList.Add(HdmiChannel8);
+            HdmiChannelList.Add(HdmiChannel9);
+            HdmiChannelList.Add(HdmiChannel10);
+            HdmiChannelList.Add(HdmiChannel11);
+            HdmiChannelList.Add(HdmiChannel12);
+            HdmiChannelList.Add(HdmiChannel13);
+            HdmiChannelList.Add(HdmiChannel14);
+            HdmiChannelList.Add(HdmiChannel15);
 
             #region Registers
 
@@ -429,6 +442,32 @@ namespace TB_mu2e
                     else { item.BackColor = Color.LightGreen; }
                 }
             }
+        }
+
+        private void doTest(DacProperties dac, double vScope, double vHi, double vMed, double vLow)
+        {
+            UInt32 vSet;
+            Mu2e_Register r = dac.register;
+
+            vSet = dac.convertVoltage(vHi);
+            Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+            Application.DoEvents();
+            dac.voltageDataFEB[0] = vHi;
+            dac.voltageDataScope[0] = vScope;
+
+            vSet = dac.convertVoltage(vMed);
+            Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+            Application.DoEvents();
+            dac.voltageDataFEB[1] = vMed;
+            dac.voltageDataScope[1] = vScope;
+
+            vSet = dac.convertVoltage(vLow);
+            Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+            Application.DoEvents();
+            dac.voltageDataFEB[2] = vLow;
+            dac.voltageDataScope[2] = vScope;
+
+            dac.FitData();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -811,7 +850,6 @@ namespace TB_mu2e
 
         private void btnScan_Click(object sender, EventArgs e)
         {
-
             //zedFEB1.GraphPane.CurveList.Clear();
             Mu2e_FEB_client FEB = new Mu2e_FEB_client();
             switch (_ActiveFEB)
@@ -2139,7 +2177,12 @@ namespace TB_mu2e
                 DialogResult result = MessageBox.Show("Test cable appears to not be connected.\nAre you sure you are connected to the correct channel?", "", MessageBoxButtons.OK);
             }
 
-
+            doTest(ActiveHdmiChannel.Bias0, vScopeBias, 75, 35, 10);
+            doTest(ActiveHdmiChannel.Led0, vScopeLED, 14, 7, 0);
+            doTest(ActiveHdmiChannel.Trim0, vScopeTrim0, 4, 0, -4);
+            doTest(ActiveHdmiChannel.Trim1, vScopeTrim1, 4, 0, -4);
+            doTest(ActiveHdmiChannel.Trim2, vScopeTrim2, 4, 0, -4);
+            doTest(ActiveHdmiChannel.Trim3, vScopeTrim3, 4, 0, -4);
         }
 
         private void txtSN_TextChanged(object sender, EventArgs e)
@@ -2261,15 +2304,52 @@ namespace TB_mu2e
 
         private void btnDacSave_Click(object sender, EventArgs e)
         {
-            string hName = "";
-            string dirName = "c://data//";
+            bool DoSave = true;
 
-            hName += "FEB_";
-            hName += txtSN.Text;
-            hName = dirName + hName + ".hist";
-            StreamWriter sw = new StreamWriter(hName);
-            sw.Write("-- created_time "); sw.WriteLine(DateTime.Now);
-            sw.Write("-- board "); sw.WriteLine(txtSN.Text);
+            foreach (var chan in HdmiChannelList)
+            {
+                if (!chan.isTested)
+                {
+                    DialogResult result = MessageBox.Show("Channel "+chan.button.Text+" appears to be untested. Save anyway?", "", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No) { DoSave = false; }
+                }
+            }
+            if (DoSave)
+            {
+                string hName = "";
+                string dirName = "c://data//";
+
+                hName += "FEB_";
+                hName += txtSN.Text;
+                hName += "vScan";
+                hName = dirName + hName + ".txt";
+                StreamWriter sw = new StreamWriter(hName);
+                sw.Write("-- created_time "); sw.WriteLine(DateTime.Now);
+                sw.Write("-- board "); sw.WriteLine(txtSN.Text);
+                sw.WriteLine("Format: ");
+                sw.WriteLine("-------------------------------");
+                sw.WriteLine("HDMI channel");
+                sw.WriteLine("Bias voltage: slope, intercept");
+                sw.WriteLine("Trim0 voltage: slope, intercept");
+                sw.WriteLine("Trim1 voltage: slope, intercept");
+                sw.WriteLine("Trim2 voltage: slope, intercept");
+                sw.WriteLine("Trim3 voltage: slope, intercept");
+                sw.WriteLine("-------------------------------");
+
+                foreach (var chan in HdmiChannelList)
+                {
+                    if (chan.isTested)
+                    {
+                        sw.WriteLine(chan.channel);
+                        sw.WriteLine(chan.Bias0.slope + ", " + chan.Bias0.intercept);
+                        sw.WriteLine(chan.Trim0.slope + ", " + chan.Trim0.intercept);
+                        sw.WriteLine(chan.Trim1.slope + ", " + chan.Trim1.intercept);
+                        sw.WriteLine(chan.Trim2.slope + ", " + chan.Trim2.intercept);
+                        sw.WriteLine(chan.Trim3.slope + ", " + chan.Trim3.intercept);
+                    }
+                }
+                sw.Close();
+            }
         }
 
         private void btnConnectScope_Click(object sender, EventArgs e)
