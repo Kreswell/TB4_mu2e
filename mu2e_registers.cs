@@ -656,9 +656,6 @@ namespace TB_mu2e
                 { reg = r; return true; }
             }
             { return false; }
-            {
-
-            }
         }
 
         public static void ReadReg(ref Mu2e_Register reg, ref TcpClient myClient)
