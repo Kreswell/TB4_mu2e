@@ -1,4 +1,6 @@
-﻿namespace TB_mu2e
+﻿using System;
+
+namespace TB_mu2e
 {
     partial class frmMain
     {
@@ -2171,6 +2173,16 @@
             this.DAC_Voltages.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
+        }
+
+        private void txtBiasRB0_TextChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnFEB1_Click(object sender, EventArgs e)
+        {
 
         }
 
