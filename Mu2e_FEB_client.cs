@@ -45,7 +45,6 @@ namespace TB_mu2e
         public int max_timeout;
         public int timeout;
         public List<Mu2e_Register> arrReg;
-        public int _FEBserialNum;
 
         // events 
         //public delegate void cOpening();
@@ -59,7 +58,6 @@ namespace TB_mu2e
         public bool ClientOpen { get { return _ClientOpen; } }
         public bool ClientBusy { get { return _ClientBusy; } set { _ClientBusy = value; } }
         public int TNETsocketNum { get { return _TNETsocketNum; } set { _TNETsocketNum = value; } }
-        public int FEBserialNum { get { return _FEBserialNum; } set { _FEBserialNum = value; } }
 
 
         public void Open()
@@ -377,107 +375,6 @@ namespace TB_mu2e
             }
             catch { return false; }
         }
-
-        public uint[] ReadHisto(int channel)
-        {
-            uint[] Histo = new uint[512];
-            if (_ClientOpen)
-            {
-                if (channel < 8)
-                {
-                    SendStr("wr 14 0");
-                    SendStr("rdm 16 400");
-                    System.Threading.Thread.Sleep(100);
-                }
-                else if (8 <= channel && channel < 16)
-                {
-                    SendStr("wr 15 0");
-                    SendStr("rdm 17 400");
-                    System.Threading.Thread.Sleep(100);
-                }
-                else { }
-                string HistoStr = "";
-                string[] delimiters = new string[] { " ", "\r\n " };
-                int rt = 0;
-                ReadStr(out HistoStr, out rt);
-                string[] SplitHistoStr = HistoStr.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-                for (int i = 0; i < SplitHistoStr.Length/2; i++)
-                {
-                    string UpperStr = "0";
-                    string UpperStrShifted = "0";
-                    string LowerStr = "0";
-                    UpperStr = SplitHistoStr[2 * i];
-                    UpperStrShifted = UpperStr + "0000";
-                    LowerStr = SplitHistoStr[(2 * i) + 1];
-                    uint UpperBits = uint.Parse(UpperStr, System.Globalization.NumberStyles.HexNumber);
-                    uint LowerBits = uint.Parse(LowerStr, System.Globalization.NumberStyles.HexNumber);
-
-                    Histo[i] = UpperBits + LowerBits;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < 512; i++)
-                {
-                    Histo[i] = 0;
-                }
-            }
-            return Histo;
-        }
-
-        //public bool ReadHisto(int channel, out uint[] Histo)
-        //{
-        //    uint[] HistoVals = new uint[512];
-        //    try
-        //    {
-        //        if (_ClientOpen)
-        //        {
-        //            if (channel < 8)
-        //            {
-        //                SendStr("wr 14 0");
-        //                SendStr("rdm 16 400");
-        //            }
-        //            else if (8 <= channel && channel < 16)
-        //            {
-        //                SendStr("wr 15 0");
-        //                SendStr("rdm 17 400");
-        //            }
-        //            else { }
-        //            string HistoStr = "";
-        //            int rt = 0;
-        //            ReadStr(out HistoStr, out rt);
-        //            string[] SplitHistoStr = HistoStr.Split(null);
-        //            for (int i = 0; i < 512; i++)
-        //            {
-        //                string UpperStr = SplitHistoStr[2 * i] + "0000";
-        //                uint UpperBits = uint.Parse(UpperStr, System.Globalization.NumberStyles.HexNumber);
-        //                uint LowerBits = uint.Parse(SplitHistoStr[(2 * i) + 1], System.Globalization.NumberStyles.HexNumber);
-        //                HistoVals[i] = UpperBits + LowerBits;
-        //            }
-        //            Histo = HistoVals;
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            for (int i = 0; i < 512; i++)
-        //            {
-        //                HistoVals[i] = 0;
-        //            }
-        //            Histo = HistoVals;
-        //            return false;
-        //        }
-        //    }
-        //    catch
-        //    {
-        //        for (int i = 0; i < 512; i++)
-        //        {
-        //            HistoVals[i] = 0;
-        //        }
-        //        Histo = HistoVals;
-        //        return false;
-        //    }
-        //    //return Histo;
-        //}
 
         public string SendRead(string lin)
         {

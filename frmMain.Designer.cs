@@ -115,14 +115,14 @@
             this.btnRegWRITE = new System.Windows.Forms.Button();
             this.btnRegREAD = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.udInterval = new System.Windows.Forms.NumericUpDown();
             this.btnErase = new System.Windows.Forms.Button();
-            this.lblInc = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnScan = new System.Windows.Forms.Button();
             this.udChan = new System.Windows.Forms.NumericUpDown();
+            this.lblInc = new System.Windows.Forms.Label();
+            this.udInterval = new System.Windows.Forms.NumericUpDown();
             this.btnSaveHistos = new System.Windows.Forms.Button();
             this.lblStop = new System.Windows.Forms.Label();
+            this.btnScan = new System.Windows.Forms.Button();
             this.udStop = new System.Windows.Forms.NumericUpDown();
             this.lblStart = new System.Windows.Forms.Label();
             this.udStart = new System.Windows.Forms.NumericUpDown();
@@ -146,55 +146,6 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblWCmessage = new System.Windows.Forms.Label();
             this.btnWC = new System.Windows.Forms.Button();
-            this.tabFEBtest = new System.Windows.Forms.TabPage();
-            this.btnConnectScope = new System.Windows.Forms.Button();
-            this.btnSnSave = new System.Windows.Forms.Button();
-            this.txtSN = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.DAC_Voltages = new System.Windows.Forms.GroupBox();
-            this.btnDacSave = new System.Windows.Forms.Button();
-            this.btnJ26 = new System.Windows.Forms.Button();
-            this.btnDacScan = new System.Windows.Forms.Button();
-            this.btnJ25 = new System.Windows.Forms.Button();
-            this.btnDacUpdate = new System.Windows.Forms.Button();
-            this.btnJ24 = new System.Windows.Forms.Button();
-            this.btnDacWrite = new System.Windows.Forms.Button();
-            this.btnJ23 = new System.Windows.Forms.Button();
-            this.btnJ22 = new System.Windows.Forms.Button();
-            this.btnJ21 = new System.Windows.Forms.Button();
-            this.txtTrimRB3 = new System.Windows.Forms.TextBox();
-            this.btnJ20 = new System.Windows.Forms.Button();
-            this.txtTrimRB2 = new System.Windows.Forms.TextBox();
-            this.btnJ19 = new System.Windows.Forms.Button();
-            this.txtTrimRB1 = new System.Windows.Forms.TextBox();
-            this.btnJ18 = new System.Windows.Forms.Button();
-            this.txtTrimRB0 = new System.Windows.Forms.TextBox();
-            this.btnJ17 = new System.Windows.Forms.Button();
-            this.txtLEDRB0 = new System.Windows.Forms.TextBox();
-            this.btnJ16 = new System.Windows.Forms.Button();
-            this.txtBiasRB0 = new System.Windows.Forms.TextBox();
-            this.btnJ15 = new System.Windows.Forms.Button();
-            this.btnJ14 = new System.Windows.Forms.Button();
-            this.label23 = new System.Windows.Forms.Label();
-            this.btnJ13 = new System.Windows.Forms.Button();
-            this.label22 = new System.Windows.Forms.Label();
-            this.btnJ12 = new System.Windows.Forms.Button();
-            this.label21 = new System.Windows.Forms.Label();
-            this.btnJ11 = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtTrimSet3 = new System.Windows.Forms.TextBox();
-            this.txtTrimSet2 = new System.Windows.Forms.TextBox();
-            this.txtTrimSet1 = new System.Windows.Forms.TextBox();
-            this.txtTrimSet0 = new System.Windows.Forms.TextBox();
-            this.txtLEDSet0 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtBiasSet0 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -211,8 +162,8 @@
             this.groupBoxREG1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.udFPGA)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.udInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udChan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.udInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udStop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udStart)).BeginInit();
             this.panel1.SuspendLayout();
@@ -220,8 +171,6 @@
             this.groupBoxConn.SuspendLayout();
             this.tabWC.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.tabFEBtest.SuspendLayout();
-            this.DAC_Voltages.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -276,8 +225,7 @@
             this.tabControl.Controls.Add(this.tabConsole);
             this.tabControl.Controls.Add(this.tabFEB1);
             this.tabControl.Controls.Add(this.tabWC);
-            this.tabControl.Controls.Add(this.tabFEBtest);
-            this.tabControl.Location = new System.Drawing.Point(1, 12);
+            this.tabControl.Location = new System.Drawing.Point(1, 7);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1263, 701);
@@ -950,7 +898,6 @@
             this.label9.Size = new System.Drawing.Size(53, 20);
             this.label9.TabIndex = 65;
             this.label9.Text = "label9";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // ShowSpect
             // 
@@ -998,8 +945,8 @@
             // 
             // zedFEB1
             // 
-            this.zedFEB1.Location = new System.Drawing.Point(653, 3);
-            this.zedFEB1.Margin = new System.Windows.Forms.Padding(11, 10, 11, 10);
+            this.zedFEB1.Location = new System.Drawing.Point(653, 4);
+            this.zedFEB1.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.zedFEB1.Name = "zedFEB1";
             this.zedFEB1.ScrollGrace = 0D;
             this.zedFEB1.ScrollMaxX = 0D;
@@ -1008,9 +955,8 @@
             this.zedFEB1.ScrollMinX = 0D;
             this.zedFEB1.ScrollMinY = 0D;
             this.zedFEB1.ScrollMinY2 = 0D;
-            this.zedFEB1.Size = new System.Drawing.Size(602, 448);
+            this.zedFEB1.Size = new System.Drawing.Size(594, 436);
             this.zedFEB1.TabIndex = 60;
-            this.zedFEB1.Load += new System.EventHandler(this.zedFEB1_Load);
             // 
             // groupBoxSpillStat
             // 
@@ -1134,7 +1080,6 @@
             this.groupBoxREG1.TabIndex = 6;
             this.groupBoxREG1.TabStop = false;
             this.groupBoxREG1.Text = "REGISTERS";
-            this.groupBoxREG1.Enter += new System.EventHandler(this.groupBoxREG1_Enter);
             // 
             // lblFPGA
             // 
@@ -1169,7 +1114,6 @@
             this.udFPGA.Size = new System.Drawing.Size(46, 27);
             this.udFPGA.TabIndex = 13;
             this.udFPGA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.udFPGA.ValueChanged += new System.EventHandler(this.udFPGA_ValueChanged);
             // 
             // btnRegMON
             // 
@@ -1208,26 +1152,69 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.udInterval);
             this.panel2.Controls.Add(this.btnErase);
-            this.panel2.Controls.Add(this.lblInc);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.btnScan);
             this.panel2.Controls.Add(this.udChan);
+            this.panel2.Controls.Add(this.lblInc);
+            this.panel2.Controls.Add(this.udInterval);
             this.panel2.Controls.Add(this.btnSaveHistos);
             this.panel2.Controls.Add(this.lblStop);
+            this.panel2.Controls.Add(this.btnScan);
             this.panel2.Controls.Add(this.udStop);
             this.panel2.Controls.Add(this.lblStart);
             this.panel2.Controls.Add(this.udStart);
-            this.panel2.Location = new System.Drawing.Point(970, 456);
+            this.panel2.Location = new System.Drawing.Point(992, 446);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(282, 148);
+            this.panel2.Size = new System.Drawing.Size(255, 123);
             this.panel2.TabIndex = 59;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // btnErase
+            // 
+            this.btnErase.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnErase.Location = new System.Drawing.Point(144, 79);
+            this.btnErase.Name = "btnErase";
+            this.btnErase.Size = new System.Drawing.Size(95, 33);
+            this.btnErase.TabIndex = 58;
+            this.btnErase.Text = "ERASE";
+            this.btnErase.UseVisualStyleBackColor = true;
+            this.btnErase.Click += new System.EventHandler(this.btnErase_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 83);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 20);
+            this.label1.TabIndex = 57;
+            this.label1.Text = "Chan";
+            // 
+            // udChan
+            // 
+            this.udChan.Location = new System.Drawing.Point(82, 82);
+            this.udChan.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.udChan.Name = "udChan";
+            this.udChan.Size = new System.Drawing.Size(57, 27);
+            this.udChan.TabIndex = 56;
+            this.udChan.ValueChanged += new System.EventHandler(this.udChan_ValueChanged);
+            // 
+            // lblInc
+            // 
+            this.lblInc.AutoSize = true;
+            this.lblInc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInc.Location = new System.Drawing.Point(0, 56);
+            this.lblInc.Name = "lblInc";
+            this.lblInc.Size = new System.Drawing.Size(86, 20);
+            this.lblInc.TabIndex = 53;
+            this.lblInc.Text = "Time (ms)";
             // 
             // udInterval
             // 
-            this.udInterval.Location = new System.Drawing.Point(118, 110);
+            this.udInterval.Location = new System.Drawing.Point(82, 55);
             this.udInterval.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1241,68 +1228,11 @@
             0,
             0,
             0});
-            this.udInterval.ValueChanged += new System.EventHandler(this.udInterval_ValueChanged);
-            // 
-            // btnErase
-            // 
-            this.btnErase.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnErase.Location = new System.Drawing.Point(181, 74);
-            this.btnErase.Name = "btnErase";
-            this.btnErase.Size = new System.Drawing.Size(95, 33);
-            this.btnErase.TabIndex = 58;
-            this.btnErase.Text = "ERASE";
-            this.btnErase.UseVisualStyleBackColor = true;
-            this.btnErase.Click += new System.EventHandler(this.btnErase_Click);
-            // 
-            // lblInc
-            // 
-            this.lblInc.AutoSize = true;
-            this.lblInc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInc.Location = new System.Drawing.Point(3, 112);
-            this.lblInc.Name = "lblInc";
-            this.lblInc.Size = new System.Drawing.Size(86, 20);
-            this.lblInc.TabIndex = 53;
-            this.lblInc.Text = "Time (ms)";
-            this.lblInc.Click += new System.EventHandler(this.lblInc_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(5, 80);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 20);
-            this.label1.TabIndex = 57;
-            this.label1.Text = "Chan";
-            // 
-            // btnScan
-            // 
-            this.btnScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScan.Location = new System.Drawing.Point(181, 3);
-            this.btnScan.Name = "btnScan";
-            this.btnScan.Size = new System.Drawing.Size(95, 33);
-            this.btnScan.TabIndex = 54;
-            this.btnScan.Text = "SCAN";
-            this.btnScan.UseVisualStyleBackColor = true;
-            this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
-            // 
-            // udChan
-            // 
-            this.udChan.Location = new System.Drawing.Point(119, 76);
-            this.udChan.Maximum = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            this.udChan.Name = "udChan";
-            this.udChan.Size = new System.Drawing.Size(57, 27);
-            this.udChan.TabIndex = 56;
-            this.udChan.ValueChanged += new System.EventHandler(this.udChan_ValueChanged);
             // 
             // btnSaveHistos
             // 
             this.btnSaveHistos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveHistos.Location = new System.Drawing.Point(181, 39);
+            this.btnSaveHistos.Location = new System.Drawing.Point(145, 42);
             this.btnSaveHistos.Name = "btnSaveHistos";
             this.btnSaveHistos.Size = new System.Drawing.Size(95, 33);
             this.btnSaveHistos.TabIndex = 55;
@@ -1314,17 +1244,33 @@
             // 
             this.lblStop.AutoSize = true;
             this.lblStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStop.Location = new System.Drawing.Point(5, 44);
+            this.lblStop.Location = new System.Drawing.Point(2, 29);
             this.lblStop.Name = "lblStop";
             this.lblStop.Size = new System.Drawing.Size(43, 20);
             this.lblStop.TabIndex = 51;
             this.lblStop.Text = "Stop";
             // 
+            // btnScan
+            // 
+            this.btnScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScan.Location = new System.Drawing.Point(144, 3);
+            this.btnScan.Name = "btnScan";
+            this.btnScan.Size = new System.Drawing.Size(95, 33);
+            this.btnScan.TabIndex = 54;
+            this.btnScan.Text = "SCAN";
+            this.btnScan.UseVisualStyleBackColor = true;
+            this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
+            // 
             // udStop
             // 
-            this.udStop.Location = new System.Drawing.Point(119, 42);
+            this.udStop.Location = new System.Drawing.Point(82, 29);
             this.udStop.Maximum = new decimal(new int[] {
             4096,
+            0,
+            0,
+            0});
+            this.udStop.Minimum = new decimal(new int[] {
+            2048,
             0,
             0,
             0});
@@ -1332,7 +1278,7 @@
             this.udStop.Size = new System.Drawing.Size(57, 27);
             this.udStop.TabIndex = 50;
             this.udStop.Value = new decimal(new int[] {
-            512,
+            2100,
             0,
             0,
             0});
@@ -1341,7 +1287,7 @@
             // 
             this.lblStart.AutoSize = true;
             this.lblStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStart.Location = new System.Drawing.Point(5, 14);
+            this.lblStart.Location = new System.Drawing.Point(2, 3);
             this.lblStart.Name = "lblStart";
             this.lblStart.Size = new System.Drawing.Size(45, 20);
             this.lblStart.TabIndex = 49;
@@ -1349,7 +1295,7 @@
             // 
             // udStart
             // 
-            this.udStart.Location = new System.Drawing.Point(119, 9);
+            this.udStart.Location = new System.Drawing.Point(82, 3);
             this.udStart.Maximum = new decimal(new int[] {
             4095,
             0,
@@ -1364,11 +1310,10 @@
             this.udStart.Size = new System.Drawing.Size(56, 27);
             this.udStart.TabIndex = 48;
             this.udStart.Value = new decimal(new int[] {
-            1,
+            2020,
             0,
             0,
             0});
-            this.udStart.ValueChanged += new System.EventHandler(this.udStart_ValueChanged);
             // 
             // panel1
             // 
@@ -1438,7 +1383,6 @@
             this.txtV.Size = new System.Drawing.Size(55, 24);
             this.txtV.TabIndex = 61;
             this.txtV.Text = "0.000";
-            this.txtV.TextChanged += new System.EventHandler(this.txtV_TextChanged);
             // 
             // btnBiasREAD
             // 
@@ -1586,512 +1530,6 @@
             this.btnWC.Text = "WC";
             this.btnWC.UseVisualStyleBackColor = true;
             // 
-            // tabFEBtest
-            // 
-            this.tabFEBtest.Controls.Add(this.btnConnectScope);
-            this.tabFEBtest.Controls.Add(this.btnSnSave);
-            this.tabFEBtest.Controls.Add(this.txtSN);
-            this.tabFEBtest.Controls.Add(this.label26);
-            this.tabFEBtest.Controls.Add(this.button3);
-            this.tabFEBtest.Controls.Add(this.textBox14);
-            this.tabFEBtest.Controls.Add(this.label25);
-            this.tabFEBtest.Controls.Add(this.DAC_Voltages);
-            this.tabFEBtest.Location = new System.Drawing.Point(4, 32);
-            this.tabFEBtest.Name = "tabFEBtest";
-            this.tabFEBtest.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFEBtest.Size = new System.Drawing.Size(1255, 665);
-            this.tabFEBtest.TabIndex = 8;
-            this.tabFEBtest.Text = "FEB Test";
-            this.tabFEBtest.UseVisualStyleBackColor = true;
-            // 
-            // btnConnectScope
-            // 
-            this.btnConnectScope.Location = new System.Drawing.Point(368, 90);
-            this.btnConnectScope.Name = "btnConnectScope";
-            this.btnConnectScope.Size = new System.Drawing.Size(183, 37);
-            this.btnConnectScope.TabIndex = 9;
-            this.btnConnectScope.Text = "CONNECT SCOPE";
-            this.btnConnectScope.UseVisualStyleBackColor = true;
-            this.btnConnectScope.Click += new System.EventHandler(this.btnConnectScope_Click);
-            // 
-            // btnSnSave
-            // 
-            this.btnSnSave.Location = new System.Drawing.Point(440, 53);
-            this.btnSnSave.Name = "btnSnSave";
-            this.btnSnSave.Size = new System.Drawing.Size(111, 31);
-            this.btnSnSave.TabIndex = 8;
-            this.btnSnSave.Text = "SAVE";
-            this.btnSnSave.UseVisualStyleBackColor = true;
-            this.btnSnSave.Click += new System.EventHandler(this.btnSnSave_Click);
-            // 
-            // txtSN
-            // 
-            this.txtSN.Location = new System.Drawing.Point(219, 55);
-            this.txtSN.Name = "txtSN";
-            this.txtSN.Size = new System.Drawing.Size(215, 27);
-            this.txtSN.TabIndex = 5;
-            this.txtSN.TextChanged += new System.EventHandler(this.txtSN_TextChanged);
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.label26.Location = new System.Drawing.Point(101, 51);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(112, 31);
-            this.label26.TabIndex = 4;
-            this.label26.Text = "FEB SN";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(440, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(111, 31);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "CONNECT";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // textBox14
-            // 
-            this.textBox14.Location = new System.Drawing.Point(219, 10);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(215, 27);
-            this.textBox14.TabIndex = 2;
-            this.textBox14.Text = "dcrc3.fnal.gov";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.label25.Location = new System.Drawing.Point(6, 6);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(206, 31);
-            this.label25.TabIndex = 1;
-            this.label25.Text = "FEB ADDRESS";
-            // 
-            // DAC_Voltages
-            // 
-            this.DAC_Voltages.Controls.Add(this.btnDacSave);
-            this.DAC_Voltages.Controls.Add(this.btnJ26);
-            this.DAC_Voltages.Controls.Add(this.btnDacScan);
-            this.DAC_Voltages.Controls.Add(this.btnJ25);
-            this.DAC_Voltages.Controls.Add(this.btnDacUpdate);
-            this.DAC_Voltages.Controls.Add(this.btnJ24);
-            this.DAC_Voltages.Controls.Add(this.btnDacWrite);
-            this.DAC_Voltages.Controls.Add(this.btnJ23);
-            this.DAC_Voltages.Controls.Add(this.btnJ22);
-            this.DAC_Voltages.Controls.Add(this.btnJ21);
-            this.DAC_Voltages.Controls.Add(this.txtTrimRB3);
-            this.DAC_Voltages.Controls.Add(this.btnJ20);
-            this.DAC_Voltages.Controls.Add(this.txtTrimRB2);
-            this.DAC_Voltages.Controls.Add(this.btnJ19);
-            this.DAC_Voltages.Controls.Add(this.txtTrimRB1);
-            this.DAC_Voltages.Controls.Add(this.btnJ18);
-            this.DAC_Voltages.Controls.Add(this.txtTrimRB0);
-            this.DAC_Voltages.Controls.Add(this.btnJ17);
-            this.DAC_Voltages.Controls.Add(this.txtLEDRB0);
-            this.DAC_Voltages.Controls.Add(this.btnJ16);
-            this.DAC_Voltages.Controls.Add(this.txtBiasRB0);
-            this.DAC_Voltages.Controls.Add(this.btnJ15);
-            this.DAC_Voltages.Controls.Add(this.btnJ14);
-            this.DAC_Voltages.Controls.Add(this.label23);
-            this.DAC_Voltages.Controls.Add(this.btnJ13);
-            this.DAC_Voltages.Controls.Add(this.label22);
-            this.DAC_Voltages.Controls.Add(this.btnJ12);
-            this.DAC_Voltages.Controls.Add(this.label21);
-            this.DAC_Voltages.Controls.Add(this.btnJ11);
-            this.DAC_Voltages.Controls.Add(this.label16);
-            this.DAC_Voltages.Controls.Add(this.label15);
-            this.DAC_Voltages.Controls.Add(this.label14);
-            this.DAC_Voltages.Controls.Add(this.txtTrimSet3);
-            this.DAC_Voltages.Controls.Add(this.txtTrimSet2);
-            this.DAC_Voltages.Controls.Add(this.txtTrimSet1);
-            this.DAC_Voltages.Controls.Add(this.txtTrimSet0);
-            this.DAC_Voltages.Controls.Add(this.txtLEDSet0);
-            this.DAC_Voltages.Controls.Add(this.label13);
-            this.DAC_Voltages.Controls.Add(this.label12);
-            this.DAC_Voltages.Controls.Add(this.txtBiasSet0);
-            this.DAC_Voltages.Location = new System.Drawing.Point(557, 6);
-            this.DAC_Voltages.Name = "DAC_Voltages";
-            this.DAC_Voltages.Size = new System.Drawing.Size(390, 606);
-            this.DAC_Voltages.TabIndex = 0;
-            this.DAC_Voltages.TabStop = false;
-            this.DAC_Voltages.Text = "DAC Voltages";
-            // 
-            // btnDacSave
-            // 
-            this.btnDacSave.Location = new System.Drawing.Point(200, 458);
-            this.btnDacSave.Name = "btnDacSave";
-            this.btnDacSave.Size = new System.Drawing.Size(148, 43);
-            this.btnDacSave.TabIndex = 78;
-            this.btnDacSave.Text = "SAVE";
-            this.btnDacSave.UseVisualStyleBackColor = true;
-            this.btnDacSave.Click += new System.EventHandler(this.btnDacSave_Click);
-            // 
-            // btnJ26
-            // 
-            this.btnJ26.BackColor = System.Drawing.Color.Red;
-            this.btnJ26.Location = new System.Drawing.Point(6, 566);
-            this.btnJ26.Name = "btnJ26";
-            this.btnJ26.Size = new System.Drawing.Size(75, 30);
-            this.btnJ26.TabIndex = 15;
-            this.btnJ26.Text = "J26";
-            this.btnJ26.UseVisualStyleBackColor = false;
-            this.btnJ26.Click += new System.EventHandler(this.btnJ26_Click);
-            // 
-            // btnDacScan
-            // 
-            this.btnDacScan.Location = new System.Drawing.Point(234, 314);
-            this.btnDacScan.Name = "btnDacScan";
-            this.btnDacScan.Size = new System.Drawing.Size(93, 29);
-            this.btnDacScan.TabIndex = 77;
-            this.btnDacScan.Text = "SCAN";
-            this.btnDacScan.UseVisualStyleBackColor = true;
-            this.btnDacScan.Click += new System.EventHandler(this.btnDacScan_Click);
-            // 
-            // btnJ25
-            // 
-            this.btnJ25.BackColor = System.Drawing.Color.Red;
-            this.btnJ25.Location = new System.Drawing.Point(6, 530);
-            this.btnJ25.Name = "btnJ25";
-            this.btnJ25.Size = new System.Drawing.Size(75, 30);
-            this.btnJ25.TabIndex = 14;
-            this.btnJ25.Text = "J25";
-            this.btnJ25.UseVisualStyleBackColor = false;
-            this.btnJ25.Click += new System.EventHandler(this.btnJ25_Click);
-            // 
-            // btnDacUpdate
-            // 
-            this.btnDacUpdate.Location = new System.Drawing.Point(234, 244);
-            this.btnDacUpdate.Name = "btnDacUpdate";
-            this.btnDacUpdate.Size = new System.Drawing.Size(93, 29);
-            this.btnDacUpdate.TabIndex = 70;
-            this.btnDacUpdate.Text = "UPDATE";
-            this.btnDacUpdate.UseVisualStyleBackColor = true;
-            this.btnDacUpdate.Click += new System.EventHandler(this.btnDacUpdate_Click);
-            // 
-            // btnJ24
-            // 
-            this.btnJ24.BackColor = System.Drawing.Color.Red;
-            this.btnJ24.Location = new System.Drawing.Point(6, 494);
-            this.btnJ24.Name = "btnJ24";
-            this.btnJ24.Size = new System.Drawing.Size(75, 30);
-            this.btnJ24.TabIndex = 13;
-            this.btnJ24.Text = "J24";
-            this.btnJ24.UseVisualStyleBackColor = false;
-            this.btnJ24.Click += new System.EventHandler(this.btnJ24_Click);
-            // 
-            // btnDacWrite
-            // 
-            this.btnDacWrite.Location = new System.Drawing.Point(234, 279);
-            this.btnDacWrite.Name = "btnDacWrite";
-            this.btnDacWrite.Size = new System.Drawing.Size(93, 29);
-            this.btnDacWrite.TabIndex = 69;
-            this.btnDacWrite.Text = "WRITE";
-            this.btnDacWrite.UseVisualStyleBackColor = true;
-            this.btnDacWrite.Click += new System.EventHandler(this.btnDacWrite_Click);
-            // 
-            // btnJ23
-            // 
-            this.btnJ23.BackColor = System.Drawing.Color.Red;
-            this.btnJ23.Location = new System.Drawing.Point(6, 458);
-            this.btnJ23.Name = "btnJ23";
-            this.btnJ23.Size = new System.Drawing.Size(75, 30);
-            this.btnJ23.TabIndex = 12;
-            this.btnJ23.Text = "J23";
-            this.btnJ23.UseVisualStyleBackColor = false;
-            this.btnJ23.Click += new System.EventHandler(this.btnJ23_Click);
-            // 
-            // btnJ22
-            // 
-            this.btnJ22.BackColor = System.Drawing.Color.Red;
-            this.btnJ22.Location = new System.Drawing.Point(6, 422);
-            this.btnJ22.Name = "btnJ22";
-            this.btnJ22.Size = new System.Drawing.Size(75, 30);
-            this.btnJ22.TabIndex = 11;
-            this.btnJ22.Text = "J22";
-            this.btnJ22.UseVisualStyleBackColor = false;
-            this.btnJ22.Click += new System.EventHandler(this.btnJ22_Click);
-            // 
-            // btnJ21
-            // 
-            this.btnJ21.BackColor = System.Drawing.Color.Red;
-            this.btnJ21.Location = new System.Drawing.Point(6, 386);
-            this.btnJ21.Name = "btnJ21";
-            this.btnJ21.Size = new System.Drawing.Size(75, 30);
-            this.btnJ21.TabIndex = 10;
-            this.btnJ21.Text = "J21";
-            this.btnJ21.UseVisualStyleBackColor = false;
-            this.btnJ21.Click += new System.EventHandler(this.btnJ21_Click);
-            // 
-            // txtTrimRB3
-            // 
-            this.txtTrimRB3.Location = new System.Drawing.Point(286, 211);
-            this.txtTrimRB3.Name = "txtTrimRB3";
-            this.txtTrimRB3.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimRB3.TabIndex = 21;
-            // 
-            // btnJ20
-            // 
-            this.btnJ20.BackColor = System.Drawing.Color.Red;
-            this.btnJ20.Location = new System.Drawing.Point(6, 350);
-            this.btnJ20.Name = "btnJ20";
-            this.btnJ20.Size = new System.Drawing.Size(75, 30);
-            this.btnJ20.TabIndex = 9;
-            this.btnJ20.Text = "J20";
-            this.btnJ20.UseVisualStyleBackColor = false;
-            this.btnJ20.Click += new System.EventHandler(this.btnJ20_Click);
-            // 
-            // txtTrimRB2
-            // 
-            this.txtTrimRB2.Location = new System.Drawing.Point(286, 178);
-            this.txtTrimRB2.Name = "txtTrimRB2";
-            this.txtTrimRB2.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimRB2.TabIndex = 20;
-            // 
-            // btnJ19
-            // 
-            this.btnJ19.BackColor = System.Drawing.Color.Red;
-            this.btnJ19.Location = new System.Drawing.Point(6, 314);
-            this.btnJ19.Name = "btnJ19";
-            this.btnJ19.Size = new System.Drawing.Size(75, 30);
-            this.btnJ19.TabIndex = 8;
-            this.btnJ19.Text = "J19";
-            this.btnJ19.UseVisualStyleBackColor = false;
-            this.btnJ19.Click += new System.EventHandler(this.btnJ19_Click);
-            // 
-            // txtTrimRB1
-            // 
-            this.txtTrimRB1.Location = new System.Drawing.Point(286, 145);
-            this.txtTrimRB1.Name = "txtTrimRB1";
-            this.txtTrimRB1.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimRB1.TabIndex = 19;
-            // 
-            // btnJ18
-            // 
-            this.btnJ18.BackColor = System.Drawing.Color.Red;
-            this.btnJ18.Location = new System.Drawing.Point(6, 278);
-            this.btnJ18.Name = "btnJ18";
-            this.btnJ18.Size = new System.Drawing.Size(75, 30);
-            this.btnJ18.TabIndex = 7;
-            this.btnJ18.Text = "J18";
-            this.btnJ18.UseVisualStyleBackColor = false;
-            this.btnJ18.Click += new System.EventHandler(this.btnJ18_Click);
-            // 
-            // txtTrimRB0
-            // 
-            this.txtTrimRB0.Location = new System.Drawing.Point(286, 112);
-            this.txtTrimRB0.Name = "txtTrimRB0";
-            this.txtTrimRB0.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimRB0.TabIndex = 18;
-            this.txtTrimRB0.TextChanged += new System.EventHandler(this.txtTrimRB0_TextChanged);
-            // 
-            // btnJ17
-            // 
-            this.btnJ17.BackColor = System.Drawing.Color.Red;
-            this.btnJ17.Location = new System.Drawing.Point(6, 242);
-            this.btnJ17.Name = "btnJ17";
-            this.btnJ17.Size = new System.Drawing.Size(75, 30);
-            this.btnJ17.TabIndex = 6;
-            this.btnJ17.Text = "J17";
-            this.btnJ17.UseVisualStyleBackColor = false;
-            this.btnJ17.Click += new System.EventHandler(this.btnJ17_Click);
-            // 
-            // txtLEDRB0
-            // 
-            this.txtLEDRB0.Location = new System.Drawing.Point(286, 79);
-            this.txtLEDRB0.Name = "txtLEDRB0";
-            this.txtLEDRB0.Size = new System.Drawing.Size(76, 27);
-            this.txtLEDRB0.TabIndex = 17;
-            // 
-            // btnJ16
-            // 
-            this.btnJ16.BackColor = System.Drawing.Color.Red;
-            this.btnJ16.Location = new System.Drawing.Point(6, 206);
-            this.btnJ16.Name = "btnJ16";
-            this.btnJ16.Size = new System.Drawing.Size(75, 30);
-            this.btnJ16.TabIndex = 5;
-            this.btnJ16.Text = "J16";
-            this.btnJ16.UseVisualStyleBackColor = false;
-            this.btnJ16.Click += new System.EventHandler(this.btnJ16_Click);
-            // 
-            // txtBiasRB0
-            // 
-            this.txtBiasRB0.Location = new System.Drawing.Point(286, 46);
-            this.txtBiasRB0.Name = "txtBiasRB0";
-            this.txtBiasRB0.Size = new System.Drawing.Size(76, 27);
-            this.txtBiasRB0.TabIndex = 16;
-            // 
-            // btnJ15
-            // 
-            this.btnJ15.BackColor = System.Drawing.Color.Red;
-            this.btnJ15.Location = new System.Drawing.Point(6, 170);
-            this.btnJ15.Name = "btnJ15";
-            this.btnJ15.Size = new System.Drawing.Size(75, 30);
-            this.btnJ15.TabIndex = 4;
-            this.btnJ15.Text = "J15";
-            this.btnJ15.UseVisualStyleBackColor = false;
-            this.btnJ15.Click += new System.EventHandler(this.btnJ15_Click);
-            // 
-            // btnJ14
-            // 
-            this.btnJ14.BackColor = System.Drawing.Color.Red;
-            this.btnJ14.Location = new System.Drawing.Point(6, 134);
-            this.btnJ14.Name = "btnJ14";
-            this.btnJ14.Size = new System.Drawing.Size(75, 30);
-            this.btnJ14.TabIndex = 3;
-            this.btnJ14.Text = "J14";
-            this.btnJ14.UseVisualStyleBackColor = false;
-            this.btnJ14.Click += new System.EventHandler(this.btnJ14_Click);
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(282, 23);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(102, 20);
-            this.label23.TabIndex = 15;
-            this.label23.Text = "READBACK";
-            // 
-            // btnJ13
-            // 
-            this.btnJ13.BackColor = System.Drawing.Color.Red;
-            this.btnJ13.Location = new System.Drawing.Point(6, 98);
-            this.btnJ13.Name = "btnJ13";
-            this.btnJ13.Size = new System.Drawing.Size(75, 30);
-            this.btnJ13.TabIndex = 2;
-            this.btnJ13.Text = "J13";
-            this.btnJ13.UseVisualStyleBackColor = false;
-            this.btnJ13.Click += new System.EventHandler(this.btnJ13_Click);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(196, 23);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(80, 20);
-            this.label22.TabIndex = 14;
-            this.label22.Text = "SETTING";
-            // 
-            // btnJ12
-            // 
-            this.btnJ12.BackColor = System.Drawing.Color.Red;
-            this.btnJ12.Location = new System.Drawing.Point(6, 62);
-            this.btnJ12.Name = "btnJ12";
-            this.btnJ12.Size = new System.Drawing.Size(75, 30);
-            this.btnJ12.TabIndex = 1;
-            this.btnJ12.Text = "J12";
-            this.btnJ12.UseVisualStyleBackColor = false;
-            this.btnJ12.Click += new System.EventHandler(this.btnJ12_Click);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(137, 214);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(57, 20);
-            this.label21.TabIndex = 13;
-            this.label21.Text = "Trim 3";
-            // 
-            // btnJ11
-            // 
-            this.btnJ11.BackColor = System.Drawing.Color.Red;
-            this.btnJ11.Location = new System.Drawing.Point(6, 26);
-            this.btnJ11.Name = "btnJ11";
-            this.btnJ11.Size = new System.Drawing.Size(75, 30);
-            this.btnJ11.TabIndex = 0;
-            this.btnJ11.Text = "J11";
-            this.btnJ11.UseVisualStyleBackColor = false;
-            this.btnJ11.Click += new System.EventHandler(this.btnJ11_Click);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(137, 178);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(57, 20);
-            this.label16.TabIndex = 12;
-            this.label16.Text = "Trim 2";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(137, 148);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(57, 20);
-            this.label15.TabIndex = 11;
-            this.label15.Text = "Trim 1";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(137, 115);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(57, 20);
-            this.label14.TabIndex = 10;
-            this.label14.Text = "Trim 0";
-            // 
-            // txtTrimSet3
-            // 
-            this.txtTrimSet3.Location = new System.Drawing.Point(200, 211);
-            this.txtTrimSet3.Name = "txtTrimSet3";
-            this.txtTrimSet3.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimSet3.TabIndex = 9;
-            // 
-            // txtTrimSet2
-            // 
-            this.txtTrimSet2.Location = new System.Drawing.Point(200, 178);
-            this.txtTrimSet2.Name = "txtTrimSet2";
-            this.txtTrimSet2.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimSet2.TabIndex = 8;
-            // 
-            // txtTrimSet1
-            // 
-            this.txtTrimSet1.Location = new System.Drawing.Point(200, 145);
-            this.txtTrimSet1.Name = "txtTrimSet1";
-            this.txtTrimSet1.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimSet1.TabIndex = 7;
-            // 
-            // txtTrimSet0
-            // 
-            this.txtTrimSet0.Location = new System.Drawing.Point(200, 112);
-            this.txtTrimSet0.Name = "txtTrimSet0";
-            this.txtTrimSet0.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimSet0.TabIndex = 6;
-            // 
-            // txtLEDSet0
-            // 
-            this.txtLEDSet0.Location = new System.Drawing.Point(200, 79);
-            this.txtLEDSet0.Name = "txtLEDSet0";
-            this.txtLEDSet0.Size = new System.Drawing.Size(76, 27);
-            this.txtLEDSet0.TabIndex = 5;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(151, 82);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(43, 20);
-            this.label13.TabIndex = 4;
-            this.label13.Text = "LED";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(151, 49);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(43, 20);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "Bias";
-            // 
-            // txtBiasSet0
-            // 
-            this.txtBiasSet0.Location = new System.Drawing.Point(200, 46);
-            this.txtBiasSet0.Name = "txtBiasSet0";
-            this.txtBiasSet0.Size = new System.Drawing.Size(76, 27);
-            this.txtBiasSet0.TabIndex = 1;
-            this.txtBiasSet0.TextChanged += new System.EventHandler(this.txtBiasSet1_TextChanged);
-            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -2136,8 +1574,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.udFPGA)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.udInterval)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.udChan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.udInterval)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.udStop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.udStart)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -2149,10 +1587,6 @@
             this.tabWC.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            this.tabFEBtest.ResumeLayout(false);
-            this.tabFEBtest.PerformLayout();
-            this.DAC_Voltages.ResumeLayout(false);
-            this.DAC_Voltages.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2278,54 +1712,5 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnDebugLogging;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TabPage tabFEBtest;
-        private System.Windows.Forms.GroupBox DAC_Voltages;
-        private System.Windows.Forms.TextBox txtTrimRB3;
-        private System.Windows.Forms.TextBox txtTrimRB2;
-        private System.Windows.Forms.TextBox txtTrimRB1;
-        private System.Windows.Forms.TextBox txtTrimRB0;
-        private System.Windows.Forms.TextBox txtLEDRB0;
-        private System.Windows.Forms.TextBox txtBiasRB0;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox txtTrimSet3;
-        private System.Windows.Forms.TextBox txtTrimSet2;
-        private System.Windows.Forms.TextBox txtTrimSet1;
-        private System.Windows.Forms.TextBox txtTrimSet0;
-        private System.Windows.Forms.TextBox txtLEDSet0;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtBiasSet0;
-        private System.Windows.Forms.TextBox txtSN;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Button btnDacUpdate;
-        private System.Windows.Forms.Button btnDacWrite;
-        private System.Windows.Forms.Button btnDacScan;
-        private System.Windows.Forms.Button btnSnSave;
-        private System.Windows.Forms.Button btnJ26;
-        private System.Windows.Forms.Button btnJ25;
-        private System.Windows.Forms.Button btnJ24;
-        private System.Windows.Forms.Button btnJ23;
-        private System.Windows.Forms.Button btnJ22;
-        private System.Windows.Forms.Button btnJ21;
-        private System.Windows.Forms.Button btnJ20;
-        private System.Windows.Forms.Button btnJ19;
-        private System.Windows.Forms.Button btnJ18;
-        private System.Windows.Forms.Button btnJ17;
-        private System.Windows.Forms.Button btnJ16;
-        private System.Windows.Forms.Button btnJ15;
-        private System.Windows.Forms.Button btnJ14;
-        private System.Windows.Forms.Button btnJ13;
-        private System.Windows.Forms.Button btnJ12;
-        private System.Windows.Forms.Button btnJ11;
-        private System.Windows.Forms.Button btnDacSave;
-        private System.Windows.Forms.Button btnConnectScope;
     }
 }
