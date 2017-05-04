@@ -118,23 +118,6 @@ namespace TB_mu2e
             chan_list.Add(btnJ25);
             chan_list.Add(btnJ26);
 
-            HdmiChannelList.Add(HdmiChannel0);
-            HdmiChannelList.Add(HdmiChannel1);
-            HdmiChannelList.Add(HdmiChannel2);
-            HdmiChannelList.Add(HdmiChannel3);
-            HdmiChannelList.Add(HdmiChannel4);
-            HdmiChannelList.Add(HdmiChannel5);
-            HdmiChannelList.Add(HdmiChannel6);
-            HdmiChannelList.Add(HdmiChannel7);
-            HdmiChannelList.Add(HdmiChannel8);
-            HdmiChannelList.Add(HdmiChannel9);
-            HdmiChannelList.Add(HdmiChannel10);
-            HdmiChannelList.Add(HdmiChannel11);
-            HdmiChannelList.Add(HdmiChannel12);
-            HdmiChannelList.Add(HdmiChannel13);
-            HdmiChannelList.Add(HdmiChannel14);
-            HdmiChannelList.Add(HdmiChannel15);
-
             #region Registers
 
             rnames[0] = "CSR";
@@ -2049,32 +2032,37 @@ namespace TB_mu2e
             else
             { MessageBox.Show("No FEB active"); return; }
 
-            string name = tabControl.SelectedTab.Text;
-            r = ActiveHdmiChannel.Bias0.register;
-            Mu2e_Register.ReadReg(ref r, ref myFEB.client);
-            v = r.val*0.02;
-            txtBiasSet0.Text = v.ToString("0.000");
-            r = ActiveHdmiChannel.Led0.register;
-            Mu2e_Register.ReadReg(ref r, ref myFEB.client);
-            v = r.val * 0.003;
-            txtLEDSet0.Text = v.ToString("0.000");
-            r = ActiveHdmiChannel.Trim0.register;
-            Mu2e_Register.ReadReg(ref r, ref myFEB.client);
-            v = ((double)r.val - 2048) * 0.002;
-            txtTrimSet0.Text = v.ToString("0.000");
-            r = ActiveHdmiChannel.Trim1.register;
-            Mu2e_Register.ReadReg(ref r, ref myFEB.client);
-            v = ((double)r.val - 2048) * 0.002;
-            txtTrimSet1.Text = v.ToString("0.000");
-            r = ActiveHdmiChannel.Trim2.register;
-            Mu2e_Register.ReadReg(ref r, ref myFEB.client);
-            v = ((double)r.val - 2048) * 0.002;
-            txtTrimSet2.Text = v.ToString("0.000");
-            r = ActiveHdmiChannel.Trim3.register;
-            Mu2e_Register.ReadReg(ref r, ref myFEB.client);
-            v = ((double)r.val - 2048) * 0.002;
-            txtTrimSet3.Text = v.ToString("0.000");
-            Application.DoEvents();
+            //string name = tabControl.SelectedTab.Text;
+
+            if (ActiveHdmiChannel != null)
+            {
+                r = ActiveHdmiChannel.Bias0.register;
+                Mu2e_Register.ReadReg(ref r, ref myFEB.client);
+                v = r.val * 0.02;
+                txtBiasSet0.Text = v.ToString("0.000");
+                r = ActiveHdmiChannel.Led0.register;
+                Mu2e_Register.ReadReg(ref r, ref myFEB.client);
+                v = r.val * 0.003;
+                txtLEDSet0.Text = v.ToString("0.000");
+                r = ActiveHdmiChannel.Trim0.register;
+                Mu2e_Register.ReadReg(ref r, ref myFEB.client);
+                v = ((double)r.val - 2048) * 0.002;
+                txtTrimSet0.Text = v.ToString("0.000");
+                r = ActiveHdmiChannel.Trim1.register;
+                Mu2e_Register.ReadReg(ref r, ref myFEB.client);
+                v = ((double)r.val - 2048) * 0.002;
+                txtTrimSet1.Text = v.ToString("0.000");
+                r = ActiveHdmiChannel.Trim2.register;
+                Mu2e_Register.ReadReg(ref r, ref myFEB.client);
+                v = ((double)r.val - 2048) * 0.002;
+                txtTrimSet2.Text = v.ToString("0.000");
+                r = ActiveHdmiChannel.Trim3.register;
+                Mu2e_Register.ReadReg(ref r, ref myFEB.client);
+                v = ((double)r.val - 2048) * 0.002;
+                txtTrimSet3.Text = v.ToString("0.000");
+                Application.DoEvents();
+            }
+            else { MessageBox.Show("No HDMI channel selected"); return; }
         }
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
@@ -2208,97 +2196,289 @@ namespace TB_mu2e
 
         private void btnJ11_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel0 == null)
+            {
+                HdmiChannel0 = new HdmiChannel();
+                HdmiChannel0.Bias0 = new BiasProperties();
+                HdmiChannel0.Led0 = new LedProperties();
+                HdmiChannel0.Trim0 = new TrimProperties();
+                HdmiChannel0.Trim1 = new TrimProperties();
+                HdmiChannel0.Trim2 = new TrimProperties();
+                HdmiChannel0.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel0, 0);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel0))
+            { HdmiChannelList.Add(HdmiChannel0); }
             setButtonColor();
         }
 
         private void btnJ12_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel1 == null)
+            {
+                HdmiChannel1 = new HdmiChannel();
+                HdmiChannel1.Bias0 = new BiasProperties();
+                HdmiChannel1.Led0 = new LedProperties();
+                HdmiChannel1.Trim0 = new TrimProperties();
+                HdmiChannel1.Trim1 = new TrimProperties();
+                HdmiChannel1.Trim2 = new TrimProperties();
+                HdmiChannel1.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel1,1);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel1))
+            { HdmiChannelList.Add(HdmiChannel1); }
             setButtonColor();
         }
 
         private void btnJ13_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel2 == null)
+            {
+                HdmiChannel2 = new HdmiChannel();
+                HdmiChannel2.Bias0 = new BiasProperties();
+                HdmiChannel2.Led0 = new LedProperties();
+                HdmiChannel2.Trim0 = new TrimProperties();
+                HdmiChannel2.Trim1 = new TrimProperties();
+                HdmiChannel2.Trim2 = new TrimProperties();
+                HdmiChannel2.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel2, 2);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel2))
+            { HdmiChannelList.Add(HdmiChannel2); }
             setButtonColor();
         }
 
         private void btnJ14_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel3 == null)
+            {
+                HdmiChannel3 = new HdmiChannel();
+                HdmiChannel3.Bias0 = new BiasProperties();
+                HdmiChannel3.Led0 = new LedProperties();
+                HdmiChannel3.Trim0 = new TrimProperties();
+                HdmiChannel3.Trim1 = new TrimProperties();
+                HdmiChannel3.Trim2 = new TrimProperties();
+                HdmiChannel3.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel3, 3);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel3))
+            { HdmiChannelList.Add(HdmiChannel3); }
             setButtonColor();
         }
 
         private void btnJ15_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel4 == null)
+            {
+                HdmiChannel4 = new HdmiChannel();
+                HdmiChannel4.Bias0 = new BiasProperties();
+                HdmiChannel4.Led0 = new LedProperties();
+                HdmiChannel4.Trim0 = new TrimProperties();
+                HdmiChannel4.Trim1 = new TrimProperties();
+                HdmiChannel4.Trim2 = new TrimProperties();
+                HdmiChannel4.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel4, 4);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel4))
+            { HdmiChannelList.Add(HdmiChannel4); }
             setButtonColor();
         }
 
         private void btnJ16_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel5 == null)
+            {
+                HdmiChannel5 = new HdmiChannel();
+                HdmiChannel5.Bias0 = new BiasProperties();
+                HdmiChannel5.Led0 = new LedProperties();
+                HdmiChannel5.Trim0 = new TrimProperties();
+                HdmiChannel5.Trim1 = new TrimProperties();
+                HdmiChannel5.Trim2 = new TrimProperties();
+                HdmiChannel5.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel5, 5);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel5))
+            { HdmiChannelList.Add(HdmiChannel5); }
             setButtonColor();
         }
 
         private void btnJ17_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel6 == null)
+            {
+                HdmiChannel6 = new HdmiChannel();
+                HdmiChannel6.Bias0 = new BiasProperties();
+                HdmiChannel6.Led0 = new LedProperties();
+                HdmiChannel6.Trim0 = new TrimProperties();
+                HdmiChannel6.Trim1 = new TrimProperties();
+                HdmiChannel6.Trim2 = new TrimProperties();
+                HdmiChannel6.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel6, 6);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel6))
+            { HdmiChannelList.Add(HdmiChannel6); }
             setButtonColor();
         }
 
         private void btnJ18_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel7 == null)
+            {
+                HdmiChannel7 = new HdmiChannel();
+                HdmiChannel7.Bias0 = new BiasProperties();
+                HdmiChannel7.Led0 = new LedProperties();
+                HdmiChannel7.Trim0 = new TrimProperties();
+                HdmiChannel7.Trim1 = new TrimProperties();
+                HdmiChannel7.Trim2 = new TrimProperties();
+                HdmiChannel7.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel7, 7);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel7))
+            { HdmiChannelList.Add(HdmiChannel7); }
             setButtonColor();
         }
 
         private void btnJ19_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel8 == null)
+            {
+                HdmiChannel8 = new HdmiChannel();
+                HdmiChannel8.Bias0 = new BiasProperties();
+                HdmiChannel8.Led0 = new LedProperties();
+                HdmiChannel8.Trim0 = new TrimProperties();
+                HdmiChannel8.Trim1 = new TrimProperties();
+                HdmiChannel8.Trim2 = new TrimProperties();
+                HdmiChannel8.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel8, 8);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel8))
+            { HdmiChannelList.Add(HdmiChannel8); }
             setButtonColor();
         }
 
         private void btnJ20_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel9 == null)
+            {
+                HdmiChannel9 = new HdmiChannel();
+                HdmiChannel9.Bias0 = new BiasProperties();
+                HdmiChannel9.Led0 = new LedProperties();
+                HdmiChannel9.Trim0 = new TrimProperties();
+                HdmiChannel9.Trim1 = new TrimProperties();
+                HdmiChannel9.Trim2 = new TrimProperties();
+                HdmiChannel9.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel9, 9);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel9))
+            { HdmiChannelList.Add(HdmiChannel9); }
             setButtonColor();
         }
 
         private void btnJ21_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel10 == null)
+            {
+                HdmiChannel10 = new HdmiChannel();
+                HdmiChannel10.Bias0 = new BiasProperties();
+                HdmiChannel10.Led0 = new LedProperties();
+                HdmiChannel10.Trim0 = new TrimProperties();
+                HdmiChannel10.Trim1 = new TrimProperties();
+                HdmiChannel10.Trim2 = new TrimProperties();
+                HdmiChannel10.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel10, 10);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel10))
+            { HdmiChannelList.Add(HdmiChannel10); }
             setButtonColor();
         }
 
         private void btnJ22_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel11 == null)
+            {
+                HdmiChannel11 = new HdmiChannel();
+                HdmiChannel11.Bias0 = new BiasProperties();
+                HdmiChannel11.Led0 = new LedProperties();
+                HdmiChannel11.Trim0 = new TrimProperties();
+                HdmiChannel11.Trim1 = new TrimProperties();
+                HdmiChannel11.Trim2 = new TrimProperties();
+                HdmiChannel11.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel11, 11);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel11))
+            { HdmiChannelList.Add(HdmiChannel11); }
             setButtonColor();
         }
 
         private void btnJ23_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel12 == null)
+            {
+                HdmiChannel12 = new HdmiChannel();
+                HdmiChannel12.Bias0 = new BiasProperties();
+                HdmiChannel12.Led0 = new LedProperties();
+                HdmiChannel12.Trim0 = new TrimProperties();
+                HdmiChannel12.Trim1 = new TrimProperties();
+                HdmiChannel12.Trim2 = new TrimProperties();
+                HdmiChannel12.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel12, 12);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel12))
+            { HdmiChannelList.Add(HdmiChannel12); }
             setButtonColor();
         }
 
         private void btnJ24_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel13 == null)
+            {
+                HdmiChannel13 = new HdmiChannel();
+                HdmiChannel13.Bias0 = new BiasProperties();
+                HdmiChannel13.Led0 = new LedProperties();
+                HdmiChannel13.Trim0 = new TrimProperties();
+                HdmiChannel13.Trim1 = new TrimProperties();
+                HdmiChannel13.Trim2 = new TrimProperties();
+                HdmiChannel13.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel13, 13);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel13))
+            { HdmiChannelList.Add(HdmiChannel13); }
             setButtonColor();
         }
 
         private void btnJ25_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel14 == null)
+            {
+                HdmiChannel14 = new HdmiChannel();
+                HdmiChannel14.Bias0 = new BiasProperties();
+                HdmiChannel14.Led0 = new LedProperties();
+                HdmiChannel14.Trim0 = new TrimProperties();
+                HdmiChannel14.Trim1 = new TrimProperties();
+                HdmiChannel14.Trim2 = new TrimProperties();
+                HdmiChannel14.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel14, 14);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel14))
+            { HdmiChannelList.Add(HdmiChannel14); }
             setButtonColor();
         }
 
         private void btnJ26_Click(object sender, EventArgs e)
         {
+            if (HdmiChannel15 == null)
+            {
+                HdmiChannel15 = new HdmiChannel();
+                HdmiChannel15.Bias0 = new BiasProperties();
+                HdmiChannel15.Led0 = new LedProperties();
+                HdmiChannel15.Trim0 = new TrimProperties();
+                HdmiChannel15.Trim1 = new TrimProperties();
+                HdmiChannel15.Trim2 = new TrimProperties();
+                HdmiChannel15.Trim3 = new TrimProperties();
+            }
             setHdmiChannel(HdmiChannel15, 15);
+            if (!HdmiChannelList.Exists(x => x == HdmiChannel15))
+            { HdmiChannelList.Add(HdmiChannel15); }
             setButtonColor();
         }
 
