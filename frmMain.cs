@@ -1598,7 +1598,7 @@ namespace TB_mu2e
         {
             bool in_spill;
 
-            if (tabControl.SelectedIndex == 0)
+            if (/*tabControl.SelectedIndex == 0*/ true)
             {
                 //Console.WriteLine("timer");
                 try
@@ -2060,6 +2060,14 @@ namespace TB_mu2e
                 Mu2e_Register.ReadReg(ref r, ref myFEB.client);
                 v = ((double)r.val - 2048) * 0.002;
                 txtTrimSet3.Text = v.ToString("0.000");
+
+                txtBiasRB0.Text = vScopeBias.ToString("0.00");
+                txtLEDRB0.Text = vScopeLED.ToString("0.00");
+                txtTrimRB0.Text = vScopeTrim0.ToString("0.00");
+                txtTrimRB1.Text = vScopeTrim1.ToString("0.00");
+                txtTrimRB2.Text = vScopeTrim2.ToString("0.00");
+                txtTrimRB3.Text = vScopeTrim3.ToString("0.00");
+
                 Application.DoEvents();
             }
             else { MessageBox.Show("No HDMI channel selected"); return; }
