@@ -25,6 +25,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Timers;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Ivi.Visa;
 using NationalInstruments.Visa;
@@ -33,6 +35,7 @@ namespace mu2e.FEB_Test_Jig
 {
     class TekScope
     {
+       
         /// <summary>
         /// likely not needed. This is asserted when the write command is completed. This is exposed publicly only for testing.
         /// </summary>
@@ -49,6 +52,7 @@ namespace mu2e.FEB_Test_Jig
         /// returns the voltage measurement after a call to GetVoltage(channelNumber)
         /// </summary>
         public event EventHandler<VoltageChangedEventsArgs> OnVoltageChanged;
+        public delegate void VoltageChangedDeligate(object o, VoltageChangedEventsArgs args);
         /// <summary>
         /// Is returned as a VoltageChangedEventArg.voltage when GetVoltage(channelNumber) is called when no scope is attached
         /// <para>This can be used for testing with out scopes attached</para>
@@ -60,6 +64,7 @@ namespace mu2e.FEB_Test_Jig
         public bool inTestMode = true;
         
         private MessageBasedSession mbSession;
+        private VisaAsyncCallback writeAsyncCallback, readAsyncCallback; // prevent GC from destroying my callback
         private IVisaAsyncResult asyncHandle = null;
 
         // +++ properties 
@@ -67,6 +72,18 @@ namespace mu2e.FEB_Test_Jig
         public string scopeName { 
             get { return _scopeName; } 
             set { _scopeName = value.Trim(); }
+        }
+
+        private string _ResourceString = "";
+        public string ResourceString { get
+            {
+                return _ResourceString;
+            }
+       /*     set 
+            {
+                _ResourceString = value;
+            }
+            */
         }
 
         private bool _isConnected = false;
@@ -101,6 +118,44 @@ namespace mu2e.FEB_Test_Jig
                 }
             }
         }
+        
+        private int _autoGetVoltageChannel = 1;
+        private int currentChannelNumber = 1;
+
+        private int autoVoltageChannel {
+            get { return _autoGetVoltageChannel; }
+            set
+            { if (value > 4 || value < 1)
+                    _autoGetVoltageChannel = 1;
+                else
+                    _autoGetVoltageChannel = value;
+            }
+        }
+
+  /*      private bool _autoGetVoltage = false;
+        public bool autoGetVoltage {
+            get
+            {
+                return _autoGetVoltage;
+            }
+            set
+            {
+                _autoGetVoltage = value;
+                if (_autoGetVoltage)
+                {
+                    if (_isConnected)
+                    {
+                        autoVoltageChannel = 1;
+                        GetVoltage(autoVoltageChannel);
+                    }
+                    else
+                    {
+                        _autoGetVoltage = false;
+                    }
+                }
+            }
+        }*/
+
         // --- properties
 
         // +++ Constructors
@@ -119,14 +174,15 @@ namespace mu2e.FEB_Test_Jig
         /// <para>Otherwise, isConnected may be tested for connection state.</para>
         /// </summary>
         /// <param name="scopeName">A nickname for this scope instance</param>
-        /// <param name="lastResourceString">Optional. If blank, a dialog will allow the user to select a scope from the available scope resources. 
+        /// <param name="ResourceString">VISA ID for the scope resource. Optional. If blank, a dialog will allow the user to select a scope from the available scope resources. 
         /// <para>if used, this is a tektronix scope resource string identifying a specific scope that is known to be connected.</para>
         /// </param>
-        public TekScope(string scopeName, string lastResourceString = null)
+        public TekScope(string scopeName, string ResourceString = null)
         {
             _isConnected = false;
-            OpenScope(scopeName, lastResourceString);
+            bool retval = OpenScope(scopeName, ResourceString);
         }
+
         // --- Constructors
 
         public void Dispose()
@@ -147,36 +203,55 @@ namespace mu2e.FEB_Test_Jig
 
             using (SelectResource sr = new SelectResource( scopeName ))
             {
-                if (lastResourceString != null)
+                if (String.IsNullOrWhiteSpace(lastResourceString) || ! (open = tryOpenVISA(lastResourceString)))
                 {
-                    sr.ResourceName = lastResourceString;
-                }
-                DialogResult result = sr.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    lastResourceString = sr.ResourceName;
-                    Cursor.Current = Cursors.WaitCursor;
-                    try
+                    DialogResult result = sr.ShowDialog();
+                    _ResourceString = "";
+                    if (result == DialogResult.OK)
                     {
-                        using (var rmSession = new ResourceManager())
+                       if (! (open = tryOpenVISA(sr.ResourceName)))
                         {
-                            mbSession = (MessageBasedSession)rmSession.Open(sr.ResourceName);
-                            // Use SynchronizeCallbacks to specify that the object marshals callbacks across threads appropriately.
-                            mbSession.SynchronizeCallbacks = true;
-                            _isConnected = true;
-                        }
-                    }
-                    catch (Exception exp)
-                    {
-                        MessageBox.Show(exp.Message);
-                    }
-                    finally
-                    {
-                        Cursor.Current = Cursors.Default;
+                            MessageBox.Show(scopeName + " could not be opened when resource string " + lastResourceString + " or " + sr.ResourceName);
+                        } 
                     }
                 }
             }
             return open;
+        }
+
+        private bool tryOpenVISA(string resourceString)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            bool result = false;
+            try
+            {
+                using (var rmSession = new ResourceManager())
+                {
+                    mbSession = (MessageBasedSession)rmSession.Open(resourceString);
+                    // Use SynchronizeCallbacks to specify that the object marshals callbacks across threads appropriately.
+                    if (mbSession != null)
+                    {
+                        mbSession.SynchronizeCallbacks = true;
+                        _isConnected = true;
+                        _ResourceString = resourceString;
+                        result = true;
+                    }
+                    else
+                    {
+                        _isConnected = false;
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+          //      MessageBox.Show(exp.Message);
+                _ResourceString = "";
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+            return result;
         }
 
         void mbSession_ServiceRequest(object sender, VisaEventArgs e)
@@ -190,28 +265,53 @@ namespace mu2e.FEB_Test_Jig
         /// </summary>
         public void closeScope()
         {
-            if (!inTestMode)
+            if (!inTestMode && mbSession != null)
             {
                 _isConnected = false;
                 mbSession.Dispose();
             }
         }
 
-
-        internal void write(string command)
+      /*  static internal string WriteReadSync(string command, TekScope thisScope)
         {
+            string textToWrite = thisScope.ReplaceCommonEscapeSequences(command);
             try
             {
-               
-                string textToWrite = ReplaceCommonEscapeSequences(command);
-                asyncHandle = mbSession.RawIO.BeginWrite(
-                    textToWrite,
-                    new VisaAsyncCallback(OnWriteComplete),
-                    (object)textToWrite.Length);
+                thisScope.mbSession.RawIO.Write(textToWrite);
+                return thisScope.mbSession.RawIO.ReadString();
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.Message);
+                MessageBox.Show(thisScope.scopeName + ".write exception: " + exp.Message + " " + exp.InnerException
+                                + " For values: texToWrite=<" + textToWrite + ">,"
+                                + " writeAsyncCallback = <" + thisScope.writeAsyncCallback.ToString() + ">,"
+                                + " textToWrite.Length = <" + (object)textToWrite.Length + ">");
+            }
+        }
+       */
+
+        static internal void writeAsync(string command, TekScope thisScope)
+        {
+            string textToWrite = thisScope.ReplaceCommonEscapeSequences(command);
+
+            try
+            {
+                thisScope.asyncHandle = thisScope.mbSession.RawIO.BeginWrite(textToWrite,
+                                                          thisScope.writeAsyncCallback = new VisaAsyncCallback(thisScope.OnWriteComplete),
+                                                          (object)textToWrite.Length);
+             /*  long bytesWritten =  thisScope.mbSession.RawIO.EndWrite(thisScope.asyncHandle);
+
+                if (textToWrite.Length != bytesWritten)
+                    MessageBox.Show(thisScope.scopeName + " WriteAsync did not write the correct number of bytes. " 
+                        + "Bytes to write = " + textToWrite.Length.ToString() 
+                        + " vs. bytes written = " + bytesWritten.ToString());*/
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(thisScope.scopeName + ".write exception: " + exp.Message + " " + exp.InnerException 
+                                + " For values: texToWrite=<" + textToWrite + ">,"
+                                + " writeAsyncCallback = <" + thisScope.writeAsyncCallback.ToString() + ">," 
+                                + " textToWrite.Length = <" + (object)textToWrite.Length + ">");
             }
         }
 
@@ -241,7 +341,7 @@ namespace mu2e.FEB_Test_Jig
             {
                 asyncHandle = mbSession.RawIO.BeginRead(
                     1024,
-                    new VisaAsyncCallback(OnReadComplete),
+                    readAsyncCallback = new VisaAsyncCallback(OnReadComplete),
                     null);
             }
             catch (Exception exp)
@@ -295,13 +395,24 @@ namespace mu2e.FEB_Test_Jig
         }
 
         /// <summary>
-        /// Requests a voltage measurement from the channel.
+        /// Requests a voltage measurement from the next channel. mulitple calls will loop through all channels
         /// <para>The voltage measurement is returned on onVoltageChanged event</para>
         /// <para>If inTestMode=true then onVoltageChanged is asserted with VoltageChangedEventArgs.Voltage = voltageDefaultValue</para>
+
         /// </summary>
-        /// <param name="channelNumber">the integer number 1-4, of the scope channel to read</param>
-        internal void GetVoltage(int channelNumber = 1)
+        internal void GetVoltage()
         {
+            GetVoltage(autoVoltageChannel++);
+        }
+            /// <summary>
+            /// Requests a voltage measurement from the channel.
+            /// <para>The voltage measurement is returned on onVoltageChanged event</para>
+            /// <para>If inTestMode=true then onVoltageChanged is asserted with VoltageChangedEventArgs.Voltage = voltageDefaultValue</para>
+            /// </summary>
+            /// <param name="channelNumber">the integer number 1-4, of the scope channel to read</param>
+            internal void GetVoltage(int channelNumber)
+        {
+            currentChannelNumber = channelNumber;
             if (inTestMode)
             {
                 VoltageChangedEventsArgs VoltArgs = new VoltageChangedEventsArgs();
@@ -314,7 +425,8 @@ namespace mu2e.FEB_Test_Jig
             if (channelNumber < 1 || channelNumber > 4 )
                 throw new Exception(scopeName + ": GetVoltage. channel number " + channelNumber + " is out of bounds. Must be 1-4" );
 
-            write("MEASUrement:MEAS" + channelNumber + ":VALue?");
+
+            writeAsync("MEASUrement:MEAS" + channelNumber + ":VALue?", this);
             WriteComplete += readVoltage;
             
             //TODO: enter message queue required to read voltage.
@@ -335,13 +447,23 @@ namespace mu2e.FEB_Test_Jig
                 ReadComplete -= parseVoltage;
                 //expected result = :MEASUREMENT:MEAS1:VALUE 3.5414E0\n
                 string rawResponse = RemoveCommonEscapeSequences(e.text);
-                string[] response = rawResponse.Split(':');
-                string channel = response[2].Replace("MEAS","").Trim();
-                VoltArgs.channel = int.Parse(channel);
-                string[] value = response[3].Split(' ');
-                string voltage = value[1].Trim();
-                VoltArgs.Voltage = double.Parse(voltage);
-                VoltArgs.isValid = !(voltage == "9.9E37"); // 9.9E37 is the scope return value for invalid measurement.
+
+               
+                if (double.TryParse(rawResponse, out VoltArgs.Voltage))
+                { //tekScope version 3.41 only returns the voltage value
+                    VoltArgs.channel = currentChannelNumber;
+                    VoltArgs.isValid = VoltArgs.Voltage != 9.9E37d;
+                }
+                else
+                { //tekScope version 3.27 returns a voltage string including the channel read
+                    string[] response = rawResponse.Split(':');
+                    string channel = response[2].Replace("MEAS", "").Trim();
+                    VoltArgs.channel = int.Parse(channel);
+                    string[] value = response[3].Split(' ');
+                    string voltage = value[1].Trim();
+                    VoltArgs.Voltage = double.Parse(voltage);
+                    VoltArgs.isValid = !(voltage == "9.9E37"); // 9.9E37 is the scope return value for invalid measurement.
+                }
             }
             catch(Exception arg)
             {
@@ -349,6 +471,12 @@ namespace mu2e.FEB_Test_Jig
             }
             if (OnVoltageChanged != null)
                     OnVoltageChanged(this, VoltArgs);
+
+          /*  if (autoGetVoltage)
+            {
+
+               // GetVoltage(autoVoltageChannel++);
+            }*/
         }
 
         private string RemoveCommonEscapeSequences(string s)
@@ -396,4 +524,5 @@ namespace mu2e.FEB_Test_Jig
         /// </summary>
         public double Voltage = TekScope.voltageDefaultValue; //voltage value
     }
+
 }
