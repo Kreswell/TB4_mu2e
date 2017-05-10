@@ -27,7 +27,8 @@
     <ProductName>mu2e_tb</ProductName>
     <PublisherName>Fermilab</PublisherName>
     <SuiteName>mu2e</SuiteName>
-    <ApplicationRevision>6</ApplicationRevision>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
