@@ -420,9 +420,9 @@ namespace TB_mu2e
             {
                 if (item != ActiveHdmiChannel.button)
                 {
-                    if (ActiveHdmiChannel.isTested == false)
-                    { item.BackColor = Color.Silver; }
-                    else { item.BackColor = Color.LightGreen; }
+                    if (item.BackColor == Color.Green || item.BackColor == Color.LightGreen)
+                    { item.BackColor = Color.LightGreen; }
+                    else { item.BackColor = Color.Silver; }
                 }
             }
         }
@@ -2160,17 +2160,24 @@ namespace TB_mu2e
             Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
 
             //Check voltage readbacks. If all six too small print error message.
+            bool doScan = true;
             if (vScopeBias < 50 && vScopeLED < 10 && vScopeTrim0 < 1 && vScopeTrim1 < 1 && vScopeTrim2 <1 && vScopeTrim3 < 1)
             {
-                DialogResult result = MessageBox.Show("Test cable appears to not be connected.\nAre you sure you are connected to the correct channel?", "", MessageBoxButtons.OK);
+                DialogResult result = MessageBox.Show("Test cable appears to not be connected.\nAre you sure you are connected to the correct channel?\nRun anyway?", "", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.Cancel) { doScan = false; }
             }
 
-            doTest(ActiveHdmiChannel.Bias0, vScopeBias, 75, 35, 10);
-            doTest(ActiveHdmiChannel.Led0, vScopeLED, 14, 7, 0);
-            doTest(ActiveHdmiChannel.Trim0, vScopeTrim0, 4, 0, -4);
-            doTest(ActiveHdmiChannel.Trim1, vScopeTrim1, 4, 0, -4);
-            doTest(ActiveHdmiChannel.Trim2, vScopeTrim2, 4, 0, -4);
-            doTest(ActiveHdmiChannel.Trim3, vScopeTrim3, 4, 0, -4);
+            if (doScan)
+            {
+                doTest(ActiveHdmiChannel.Bias0, vScopeBias, 75, 35, 10);
+                doTest(ActiveHdmiChannel.Led0, vScopeLED, 14, 7, 0);
+                doTest(ActiveHdmiChannel.Trim0, vScopeTrim0, 4, 0, -4);
+                doTest(ActiveHdmiChannel.Trim1, vScopeTrim1, 4, 0, -4);
+                doTest(ActiveHdmiChannel.Trim2, vScopeTrim2, 4, 0, -4);
+                doTest(ActiveHdmiChannel.Trim3, vScopeTrim3, 4, 0, -4);
+                ActiveHdmiChannel.isTested = true;
+                setButtonColor();
+            }
         }
 
         private void txtSN_TextChanged(object sender, EventArgs e)
@@ -2499,33 +2506,21 @@ namespace TB_mu2e
                 string hName = "";
                 string dirName = "c://data//";
 
-                hName += "FEB_";
+                hName += "FEBdsf_";
                 hName += txtSN.Text;
                 hName += "vScan";
-                hName = dirName + hName + ".txt";
+                hName = dirName + hName + ".dsf";
                 StreamWriter sw = new StreamWriter(hName);
-                sw.Write("-- created_time "); sw.WriteLine(DateTime.Now);
-                sw.Write("-- board "); sw.WriteLine(txtSN.Text);
-                sw.WriteLine("Format: ");
-                sw.WriteLine("-------------------------------");
-                sw.WriteLine("HDMI channel");
-                sw.WriteLine("Bias voltage: slope, intercept");
-                sw.WriteLine("Trim0 voltage: slope, intercept");
-                sw.WriteLine("Trim1 voltage: slope, intercept");
-                sw.WriteLine("Trim2 voltage: slope, intercept");
-                sw.WriteLine("Trim3 voltage: slope, intercept");
-                sw.WriteLine("-------------------------------");
 
                 foreach (var chan in HdmiChannelList)
                 {
                     if (chan.isTested)
                     {
-                        sw.WriteLine(chan.channel);
-                        sw.WriteLine(chan.Bias0.slope + ", " + chan.Bias0.intercept);
-                        sw.WriteLine(chan.Trim0.slope + ", " + chan.Trim0.intercept);
-                        sw.WriteLine(chan.Trim1.slope + ", " + chan.Trim1.intercept);
-                        sw.WriteLine(chan.Trim2.slope + ", " + chan.Trim2.intercept);
-                        sw.WriteLine(chan.Trim3.slope + ", " + chan.Trim3.intercept);
+                        sw.WriteLine("dsf " + chan.Bias0.slope + ", " + chan.Bias0.intercept);
+                        sw.WriteLine("dsf " + chan.Trim0.slope + ", " + chan.Trim0.intercept);
+                        sw.WriteLine("dsf " + chan.Trim1.slope + ", " + chan.Trim1.intercept);
+                        sw.WriteLine("dsf " + chan.Trim2.slope + ", " + chan.Trim2.intercept);
+                        sw.WriteLine("dsf " + chan.Trim3.slope + ", " + chan.Trim3.intercept);
                     }
                 }
                 sw.Close();
