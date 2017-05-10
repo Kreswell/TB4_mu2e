@@ -2607,15 +2607,6 @@ namespace TB_mu2e
 
         }
 
-        private void btnFEB1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBiasRB0_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 
 
