@@ -11,22 +11,38 @@ namespace TB_mu2e
     {
         private System.Windows.Forms.Button _button;
         private uint _channel;
-        private uint fpga_num;
-        public BiasProperties Bias0;
-        public LedProperties Led0;
-        public TrimProperties Trim0;
-        public TrimProperties Trim1;
-        public TrimProperties Trim2;
-        public TrimProperties Trim3;
+        private uint _fpga_num;
+        private BiasProperties _Bias0;
+        private LedProperties _Led0;
+        private TrimProperties _Trim0;
+        private TrimProperties _Trim1;
+        private TrimProperties _Trim2;
+        private TrimProperties _Trim3;
 
-        private bool _isTested = false;
+        private bool _isTested;
 
         public System.Windows.Forms.Button button { get { return _button; } set { _button = value; } }
         public uint channel { get { return _channel; } set { _channel = value; } }
+        public uint fpga_num { get { return _fpga_num; } set { _fpga_num = value; } }
+        public BiasProperties Bias0 { get { return _Bias0; } set { _Bias0 = value; } }
+        public LedProperties Led0 { get { return _Led0; } set { _Led0 = value; } }
+        public TrimProperties Trim0 { get { return _Trim0; } set { _Trim0 = value; } }
+        public TrimProperties Trim1 { get { return _Trim1; } set { _Trim1 = value; } }
+        public TrimProperties Trim2 { get { return _Trim2; } set { _Trim2 = value; } }
+        public TrimProperties Trim3 { get { return _Trim3; } set { _Trim3 = value; } }
 
         public bool isTested { get { return _isTested; } set { _isTested = value; } }
 
-        public HdmiChannel() { }
+        public HdmiChannel()
+        {
+            bool _isTested = false;
+            //BiasProperties _Bias0 = new BiasProperties();
+            //LedProperties _Led0 = new LedProperties();
+            //TrimProperties _Trim0 = new TrimProperties();
+            //TrimProperties _Trim1 = new TrimProperties();
+            //TrimProperties _Trim2 = new TrimProperties();
+            //TrimProperties _Trim3 = new TrimProperties();
+    }
 
     }
 
