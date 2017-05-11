@@ -68,8 +68,8 @@ namespace TB_mu2e
 
         Mu2e_FEB_client myFEB = PP.FEB1;
 
-        TekScope ScopeBias;
-        TekScope ScopeTrim;
+        static TekScope ScopeBias;
+        static TekScope ScopeTrim;
 
         double vScopeBias;
         double vScopeLED;
@@ -79,6 +79,8 @@ namespace TB_mu2e
         double vScopeTrim3;
 
         List<Button> chan_list = new List<Button>();
+        private bool ScopeBiasVoltageUpdated = false;
+        private bool ScopeTrimVoltageUpdated = false;
 
         public void AddConsoleMessage(string mess)
         {
@@ -2061,9 +2063,29 @@ namespace TB_mu2e
                 v = ((double)r.val - 2048) * 0.002;
                 txtTrimSet3.Text = v.ToString("0.000");
 
-                ScopeBias.OnVoltageChanged += ScopeBiasVoltageChanged;
-                ScopeTrim.OnVoltageChanged += ScopeTrimVoltageChanged;
-
+                //   ScopeBias.OnVoltageChanged += ScopeBiasVoltageChanged;
+                //   ScopeTrim.OnVoltageChanged += ScopeTrimVoltageChanged;
+              /*  connectScopes();
+                for (int i = 1; i < 3; i++) {
+                    ScopeBias.GetVoltage(i);
+                    int t = 0;
+                    while(! ScopeBiasVoltageUpdated && t++ < 99999) { };
+                    ScopeBiasVoltageUpdated = false;
+                }
+                for (int i = 1; i < 5; i++)
+                {
+                    ScopeTrim.GetVoltage(i);
+                    int t = 0;
+                    while (!ScopeTrimVoltageUpdated && t++ < 99999) { };
+                    if (ScopeTrimVoltageUpdated)
+                    {
+                        
+                    }
+                    ScopeTrimVoltageUpdated = false;
+                }
+                ScopeBias.closeScope();
+                ScopeTrim.closeScope();
+                **/
                 Application.DoEvents();
             }
             else { MessageBox.Show("No HDMI channel selected"); return; }
@@ -2531,15 +2553,55 @@ namespace TB_mu2e
             }
         }
 
+        private void ScopeBiasConnectionChanged(object sender, ConnectedStateEventArgs e)
+        {
+
+        }
+
+        private void ScopeTrimConnectionChanged(object sender, ConnectedStateEventArgs e)
+        {
+
+        }
+
+        private void txtTrimRB0_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
         private void btnConnectScope_Click(object sender, EventArgs e)
         {
-            ScopeBias = new TekScope("Bias Scope");
-            ScopeTrim = new TekScope("Trim Scope");
-            ScopeBias.OnConnectedStateChanged += ScopeBiasConnectionChanged;
-            ScopeBias.OnVoltageChanged += ScopeBiasVoltageChanged;
-            ScopeTrim.OnConnectedStateChanged += ScopeTrimConnectionChanged;
-            ScopeTrim.OnVoltageChanged += ScopeTrimVoltageChanged;
+            connectScopes();
+        }
 
+        private void connectScopes() { 
+            ScopeBias = new TekScope("Bias Scope", Properties.Settings.Default.ScopeBiasResourceString);
+            if (ScopeBias.isConnected == false)
+            {
+                MessageBox.Show("Bias Scope could not be connected with " + Properties.Settings.Default.ScopeBiasResourceString);
+            }
+            else
+            {
+                Properties.Settings.Default.ScopeBiasResourceString = ScopeBias.ResourceString;
+                Properties.Settings.Default.Save();
+                ScopeBias.OnConnectedStateChanged += ScopeBiasConnectionChanged;
+                ScopeBias.OnVoltageChanged += ScopeBiasVoltageChanged;
+                //timerScopeBias.Enabled = true;
+            }
+
+            ScopeTrim = new TekScope("Trim Scope", Properties.Settings.Default.ScopeTrimResourceString);
+            if (ScopeTrim.isConnected == false)
+            {
+                MessageBox.Show("Trim Scope could not be connected with " + Properties.Settings.Default.ScopeTrimResourceString);
+            }
+            else
+            {
+                Properties.Settings.Default.ScopeTrimResourceString = ScopeTrim.ResourceString;
+                Properties.Settings.Default.Save();
+                ScopeTrim.OnConnectedStateChanged += ScopeTrimConnectionChanged;
+                ScopeTrim.OnVoltageChanged += ScopeTrimVoltageChanged;
+                //timerScopeTrim.Enabled = true;
+            }
         }
 
         private void ScopeTrimVoltageChanged(object sender, VoltageChangedEventsArgs e)
@@ -2571,6 +2633,8 @@ namespace TB_mu2e
             }
             //else
             // tbVolts.Text = "x.xx";
+            //timerScopeTrim.Enabled = true;
+            ScopeTrimVoltageUpdated = true;
         }
 
         private void ScopeBiasVoltageChanged(object sender, VoltageChangedEventsArgs e)
@@ -2591,24 +2655,34 @@ namespace TB_mu2e
                         break;
                 }
                 //tbVolts.Text = e.Voltage.ToString("0.00") + "V";
-            } 
+            }
             //else
-               // tbVolts.Text = "x.xx";
-        }
-
-        private void ScopeBiasConnectionChanged(object sender, ConnectedStateEventArgs e)
-        {
+            // tbVolts.Text = "x.xx";
+            //timerScopeBias.Enabled = true;
+            ScopeBiasVoltageUpdated = true;
 
         }
 
-        private void ScopeTrimConnectionChanged(object sender, ConnectedStateEventArgs e)
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            if (ScopeBias != null)
+                ScopeBias.closeScope();
+            if (ScopeTrim != null)
+                ScopeTrim.closeScope();
         }
 
-        private void txtTrimRB0_TextChanged(object sender, EventArgs e)
+        private void timerScopeTrim_Tick(object sender, EventArgs e)
         {
+            timerScopeTrim.Enabled = false; //renabled in the voltageChagned call back
+            if (ScopeTrim != null && ScopeTrim.isConnected == true)
+                ScopeTrim.GetVoltage();
+        }
 
+        private void timerScopeBias_Tick(object sender, EventArgs e)
+        {
+            timerScopeBias.Enabled = false; //renabled in the voltageChagned call back
+            if (ScopeBias != null && ScopeBias.isConnected == true)
+                ScopeBias.GetVoltage();
         }
 
     }

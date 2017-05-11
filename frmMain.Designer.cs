@@ -2108,12 +2108,12 @@ namespace TB_mu2e
             // timerScopeBias
             // 
             this.timerScopeBias.Interval = 55;
-            //this.timerScopeBias.Tick += new System.EventHandler(this.timerScopeBias_Tick);
+            this.timerScopeBias.Tick += new System.EventHandler(this.timerScopeBias_Tick);
             // 
             // timerScopeTrim
             // 
             this.timerScopeTrim.Interval = 50;
-            //this.timerScopeTrim.Tick += new System.EventHandler(this.timerScopeTrim_Tick);
+            this.timerScopeTrim.Tick += new System.EventHandler(this.timerScopeTrim_Tick);
             // 
             // frmMain
             // 
@@ -2129,7 +2129,6 @@ namespace TB_mu2e
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "main";
-            //this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.tabControl.ResumeLayout(false);
