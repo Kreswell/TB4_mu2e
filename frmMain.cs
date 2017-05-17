@@ -1600,7 +1600,8 @@ namespace TB_mu2e
         {
             bool in_spill;
 
-            if (/*tabControl.SelectedIndex == 0*/ true)
+            //if (/*tabControl.SelectedIndex == 0*/ true)
+            if(PP.myRun != null) //HACK: Kres, I found this error where myRun = null and threw lots of errors. you might want to ensure this is what you intend. The line you had is above. Stephen
             {
                 //Console.WriteLine("timer");
                 try
@@ -2571,10 +2572,6 @@ namespace TB_mu2e
 
         private void btnConnectScope_Click(object sender, EventArgs e)
         {
-            connectScopes();
-        }
-
-        private void connectScopes() { 
             ScopeBias = new TekScope("Bias Scope", Properties.Settings.Default.ScopeBiasResourceString);
             if (ScopeBias.isConnected == false)
             {
@@ -2586,7 +2583,7 @@ namespace TB_mu2e
                 Properties.Settings.Default.Save();
                 ScopeBias.OnConnectedStateChanged += ScopeBiasConnectionChanged;
                 ScopeBias.OnVoltageChanged += ScopeBiasVoltageChanged;
-                //timerScopeBias.Enabled = true;
+                timerScopeBias.Enabled = true;
             }
 
             ScopeTrim = new TekScope("Trim Scope", Properties.Settings.Default.ScopeTrimResourceString);
@@ -2600,7 +2597,7 @@ namespace TB_mu2e
                 Properties.Settings.Default.Save();
                 ScopeTrim.OnConnectedStateChanged += ScopeTrimConnectionChanged;
                 ScopeTrim.OnVoltageChanged += ScopeTrimVoltageChanged;
-                //timerScopeTrim.Enabled = true;
+                timerScopeTrim.Enabled = true;
             }
         }
 
@@ -2633,7 +2630,7 @@ namespace TB_mu2e
             }
             //else
             // tbVolts.Text = "x.xx";
-            //timerScopeTrim.Enabled = true;
+            timerScopeTrim.Enabled = true;
             ScopeTrimVoltageUpdated = true;
         }
 
@@ -2658,7 +2655,7 @@ namespace TB_mu2e
             }
             //else
             // tbVolts.Text = "x.xx";
-            //timerScopeBias.Enabled = true;
+            timerScopeBias.Enabled = true;
             ScopeBiasVoltageUpdated = true;
 
         }
@@ -2675,15 +2672,18 @@ namespace TB_mu2e
         {
             timerScopeTrim.Enabled = false; //renabled in the voltageChagned call back
             if (ScopeTrim != null && ScopeTrim.isConnected == true)
-                ScopeTrim.GetVoltage();
+                 ScopeTrim.GetVoltage();
         }
 
         private void timerScopeBias_Tick(object sender, EventArgs e)
         {
             timerScopeBias.Enabled = false; //renabled in the voltageChagned call back
-            if (ScopeBias != null && ScopeBias.isConnected == true)
-                ScopeBias.GetVoltage();
-        }
+            if (ScopeBias != null && ScopeBias.isConnected == true) { 
+                VoltageChangedEventsArgs voltArgs = ScopeBias.GetVoltage();
+                Console.WriteLine("Here is an example where calling GetVoltage directly returns the reqested voltage."
+                                  + " Channel " + voltArgs.channel + " = " + voltArgs.Voltage);
+                }
+            }
 
     }
 

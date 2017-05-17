@@ -36,14 +36,8 @@ namespace mu2e.FEB_Test_Jig
     class TekScope
     {
 
-        /// <summary>
-        /// likely not needed. This is asserted when the write command is completed. This is exposed publicly only for testing.
-        /// </summary>
-        public event EventHandler WriteComplete;
-        /// <summary>
-        /// likely not needed. This is asserted when the read command is completed. This is exposed publicly only for testing.
-        /// </summary>
-        public event EventHandler<readArgs> ReadComplete;
+
+
         /// <summary>
         /// is asserted when the scope connection changes
         /// </summary>
@@ -64,8 +58,6 @@ namespace mu2e.FEB_Test_Jig
         public bool inTestMode = false;
 
         private MessageBasedSession mbSession;
-        private VisaAsyncCallback writeAsyncCallback, readAsyncCallback; // prevent GC from destroying my callback
-        private IVisaAsyncResult asyncHandle = null;
 
         // +++ properties 
         private string _scopeName = "Default scope name";
@@ -82,11 +74,6 @@ namespace mu2e.FEB_Test_Jig
             {
                 return _ResourceString;
             }
-            /*     set 
-                 {
-                     _ResourceString = value;
-                 }
-                 */
         }
 
         private bool _isConnected = false;
@@ -124,6 +111,7 @@ namespace mu2e.FEB_Test_Jig
 
         private int _autoGetVoltageChannel = 1;
         private int currentChannelNumber = 1;
+        private bool busy;
 
         private int autoVoltageChannel
         {
@@ -136,30 +124,6 @@ namespace mu2e.FEB_Test_Jig
                     _autoGetVoltageChannel = value;
             }
         }
-
-        /*      private bool _autoGetVoltage = false;
-              public bool autoGetVoltage {
-                  get
-                  {
-                      return _autoGetVoltage;
-                  }
-                  set
-                  {
-                      _autoGetVoltage = value;
-                      if (_autoGetVoltage)
-                      {
-                          if (_isConnected)
-                          {
-                              autoVoltageChannel = 1;
-                              GetVoltage(autoVoltageChannel);
-                          }
-                          else
-                          {
-                              _autoGetVoltage = false;
-                          }
-                      }
-                  }
-              }*/
 
         // --- properties
 
@@ -249,7 +213,6 @@ namespace mu2e.FEB_Test_Jig
             }
             catch (Exception exp)
             {
-                //      MessageBox.Show(exp.Message);
                 _ResourceString = "";
             }
             finally
@@ -259,10 +222,6 @@ namespace mu2e.FEB_Test_Jig
             return result;
         }
 
-        void mbSession_ServiceRequest(object sender, VisaEventArgs e)
-        {
-            throw new NotImplementedException("arrived at service request");
-        }
 
         /// <summary>
         /// Close this scope instance. 
@@ -277,192 +236,82 @@ namespace mu2e.FEB_Test_Jig
             }
         }
 
-        /*  static internal string WriteReadSync(string command, TekScope thisScope)
-          {
-              string textToWrite = thisScope.ReplaceCommonEscapeSequences(command);
-              try
-              {
-                  thisScope.mbSession.RawIO.Write(textToWrite);
-                  return thisScope.mbSession.RawIO.ReadString();
-              }
-              catch (Exception exp)
-              {
-                  MessageBox.Show(thisScope.scopeName + ".write exception: " + exp.Message + " " + exp.InnerException
-                                  + " For values: texToWrite=<" + textToWrite + ">,"
-                                  + " writeAsyncCallback = <" + thisScope.writeAsyncCallback.ToString() + ">,"
-                                  + " textToWrite.Length = <" + (object)textToWrite.Length + ">");
-              }
-          }
-         */
-
-        static internal void writeAsync(string command, TekScope thisScope)
-        {
-            string textToWrite = thisScope.ReplaceCommonEscapeSequences(command);
-
-            try
-            {
-                //thisScope.asyncHandle = 
-                 thisScope.mbSession.RawIO.BeginWrite(textToWrite,
-                                                          thisScope.writeAsyncCallback = new VisaAsyncCallback(thisScope.OnWriteComplete),
-                                                          (object)textToWrite.Length);
-                /*  long bytesWritten =  thisScope.mbSession.RawIO.EndWrite(thisScope.asyncHandle);
-
-                   if (textToWrite.Length != bytesWritten)
-                       MessageBox.Show(thisScope.scopeName + " WriteAsync did not write the correct number of bytes. " 
-                           + "Bytes to write = " + textToWrite.Length.ToString() 
-                           + " vs. bytes written = " + bytesWritten.ToString());*/
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show(thisScope.scopeName + ".writeAsync exception: " + exp.Message + " " + exp.InnerException
-                                + " For values: texToWrite=<" + textToWrite + ">,"
-                                + " writeAsyncCallback = <" + thisScope.writeAsyncCallback.ToString() + ">,"
-                                + " textToWrite.Length = <" + (object)textToWrite.Length + ">");
-            }
-        }
-
-        private void OnWriteComplete(IVisaAsyncResult result)
-        {
-            try
-            {
-
-                mbSession.RawIO.EndWrite(result);
-
-                if (WriteComplete != null)
-                {
-                    WriteComplete(this, default(EventArgs));
-                }
-            }
-
-            catch (Exception exp)
-            {
-                //  throw new Exception(scopeName + ": OnWriteComplete failed. " + exp.Message);
-            }
-        }
-
-
-        internal void read()
-        {
-            try
-            {
-                asyncHandle = mbSession.RawIO.BeginRead(
-                    1024,
-                    readAsyncCallback = new VisaAsyncCallback(OnReadComplete),
-                    null);
-            }
-            catch (Exception exp)
-            {
-                throw new Exception(scopeName + ": Read failed. " + exp.Message);
-            }
-        }
-
-        private void OnReadComplete(IVisaAsyncResult result)
-        {
-            try
-            {
-                string responseString = mbSession.RawIO.EndReadString(result);
-                if (ReadComplete != null)
-                {
-                    readArgs e = new readArgs();
-                    e.text = InsertCommonEscapeSequences(responseString);
-                    ReadComplete(this, e);
-                }
-
-            }
-            catch (Exception exp)
-            {
-                if (ReadComplete != null)
-                {
-                    readArgs e = new readArgs();
-                    e.text = InsertCommonEscapeSequences(scopeName + ": OnReadComplete failed. " + exp.Message);
-                    ReadComplete(this, e);
-                }
-                else
-                {
-                    //throw new Exception(scopeName + ": OnReadComplete failed. " + exp.Message);
-                }
-            }
-        }
-
-
-        internal bool AbortCommand()
-        {
-            bool success = false;
-            try
-            {
-                mbSession.RawIO.AbortAsyncOperation(asyncHandle);
-                success = true;
-            }
-            catch (Exception exp)
-            {
-                throw new Exception(scopeName + ": Abort command failed. " + exp.Message);
-            }
-            return success;
-        }
-
         /// <summary>
         /// Requests a voltage measurement from the next channel. mulitple calls will loop through all channels
         /// <para>The voltage measurement is returned on onVoltageChanged event</para>
         /// <para>If inTestMode=true then onVoltageChanged is asserted with VoltageChangedEventArgs.Voltage = voltageDefaultValue</para>
-
         /// </summary>
-        internal void GetVoltage()
+        /// <returns>VoltageChangedEventsArgs containing voltage value, isValid, and channel number</returns>
+        internal VoltageChangedEventsArgs GetVoltage()
         {
-            GetVoltage(autoVoltageChannel++);
+            return GetVoltage(autoVoltageChannel++);
         }
+
         /// <summary>
-        /// Requests a voltage measurement from the channel.
+        /// Requests a voltage measurement from the specified channel.
         /// <para>The voltage measurement is returned on onVoltageChanged event</para>
         /// <para>If inTestMode=true then onVoltageChanged is asserted with VoltageChangedEventArgs.Voltage = voltageDefaultValue</para>
         /// </summary>
-        /// <param name="channelNumber">the integer number 1-4, of the scope channel to read</param>
-        internal void GetVoltage(int channelNumber)
+        /// <param name="channelNumber">the integer number 1-4, of the scope channel to read</param> 
+        /// <returns>VoltageChangedEventsArgs containing voltage value, isValid, and channel number</returns>
+        internal VoltageChangedEventsArgs GetVoltage(int channelNumber)
         {
-            currentChannelNumber = channelNumber;
-            if (inTestMode)
+            //make sure we are thread safe crudely
+            int t = 0;
+            while (busy)
             {
-                VoltageChangedEventsArgs VoltArgs = new VoltageChangedEventsArgs();
-                if (OnVoltageChanged != null)
-                    VoltArgs.channel = channelNumber;
-                OnVoltageChanged(this, VoltArgs);
-                return;
+                if (t++ > 9999)
+                {
+                    throw new Exception(scopeName + ": GetVoltage. channel number " + channelNumber + " timed out while waiting for access to the scope");
+                }
             }
+            busy = true;
 
+            //set the default return value
+            currentChannelNumber = channelNumber;
+            VoltageChangedEventsArgs VoltArgs = new VoltageChangedEventsArgs();
+            VoltArgs.channel = channelNumber;
+
+            // verify channel number is valid
             if (channelNumber < 1 || channelNumber > 4)
                 throw new Exception(scopeName + ": GetVoltage. channel number " + channelNumber + " is out of bounds. Must be 1-4");
 
+            //check for test mode
+            if (inTestMode)
+            {
+                OnVoltageChanged?.Invoke(this, VoltArgs);
+                return VoltArgs; // skip out of the rest.
+            }
 
-            writeAsync("MEASUrement:MEAS" + channelNumber + ":VALue?", this);
-            WriteComplete += readVoltage;
-
-            //TODO: enter message queue required to read voltage.
-        }
-
-        private void readVoltage(object sender, EventArgs e)
-        {
-            WriteComplete -= readVoltage;
-            ReadComplete += parseVoltage;
-            read();
-        }
-
-        private void parseVoltage(object sender, readArgs e)
-        {
-            VoltageChangedEventsArgs VoltArgs = new VoltageChangedEventsArgs();
+            //Request the voltage from the scope
+            string scopeMsg = "";
             try
             {
-                ReadComplete -= parseVoltage;
-                //expected result = :MEASUREMENT:MEAS1:VALUE 3.5414E0\n
-                string rawResponse = RemoveCommonEscapeSequences(e.text);
+                mbSession.RawIO.Write(ReplaceCommonEscapeSequences("MEASUrement:MEAS" + channelNumber + ":VALue?"));
 
-
-                if (double.TryParse(rawResponse, out VoltArgs.Voltage))
+                t = 0;
+                while ((scopeMsg = mbSession.RawIO.ReadString()) == "")
+                {
+                    if (t++ > 9999)
+                        throw new Exception(scopeName + ": GetVoltage. channel number " + channelNumber + " read request timed out");
+                }
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(scopeName + ".GetVoltage exception: " + exp.Message + " " + exp.InnerException);
+            }
+        
+            // parse the scope message
+            try
+            {
+                if (double.TryParse(scopeMsg, out VoltArgs.Voltage))
                 { //tekScope version 3.41 only returns the voltage value
                     VoltArgs.channel = currentChannelNumber;
                     VoltArgs.isValid = VoltArgs.Voltage != 9.9E37d;
                 }
                 else
                 { //tekScope version 3.27 returns a voltage string including the channel read
-                    string[] response = rawResponse.Split(':');
+                    string[] response = scopeMsg.Split(':');
                     string channel = response[2].Replace("MEAS", "").Trim();
                     VoltArgs.channel = int.Parse(channel);
                     string[] value = response[3].Split(' ');
@@ -475,27 +324,23 @@ namespace mu2e.FEB_Test_Jig
             {
                 VoltArgs.isValid = false;
             }
-            if (OnVoltageChanged != null)
-                OnVoltageChanged(this, VoltArgs);
+            OnVoltageChanged?.Invoke(this, VoltArgs);
 
-            /*  if (autoGetVoltage)
-              {
-
-                 // GetVoltage(autoVoltageChannel++);
-              }*/
+            busy = false; 
+            return VoltArgs;
         }
 
-        private string RemoveCommonEscapeSequences(string s)
+        private static string RemoveCommonEscapeSequences(string s)
         {
             return (s != null) ? s.Replace("\\n", "").Replace("\n", "").Replace("\\r", "").Replace("\r", "") : s;
         }
 
-        private string ReplaceCommonEscapeSequences(string s)
+        private static string ReplaceCommonEscapeSequences(string s)
         {
             return (s != null) ? s.Replace("\\n", "\n").Replace("\\r", "\r") : s;
         }
 
-        private string InsertCommonEscapeSequences(string s)
+        private static string InsertCommonEscapeSequences(string s)
         {
             return (s != null) ? s.Replace("\n", "\\n").Replace("\r", "\\r") : s;
         }
