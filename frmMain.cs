@@ -1600,7 +1600,7 @@ namespace TB_mu2e
         {
             bool in_spill;
 
-            if (/*tabControl.SelectedIndex == 0*/ true)
+            if (/*tabControl.SelectedIndex == 0*/ PP.myRun != null)
             {
                 //Console.WriteLine("timer");
                 try
