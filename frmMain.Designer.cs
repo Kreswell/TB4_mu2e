@@ -161,7 +161,6 @@ namespace TB_mu2e
             this.btnJ26 = new System.Windows.Forms.Button();
             this.btnDacScan = new System.Windows.Forms.Button();
             this.btnJ25 = new System.Windows.Forms.Button();
-            this.btnDacUpdate = new System.Windows.Forms.Button();
             this.btnJ24 = new System.Windows.Forms.Button();
             this.btnDacWrite = new System.Windows.Forms.Button();
             this.btnJ23 = new System.Windows.Forms.Button();
@@ -237,40 +236,40 @@ namespace TB_mu2e
             this.lblFEB2,
             this.lblWC,
             this.lblMessage});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 706);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 703);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1264, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1264, 25);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(42, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(52, 20);
             this.toolStripStatusLabel2.Text = "Status:";
             // 
             // lblFEB1
             // 
             this.lblFEB1.Name = "lblFEB1";
-            this.lblFEB1.Size = new System.Drawing.Size(32, 17);
+            this.lblFEB1.Size = new System.Drawing.Size(41, 20);
             this.lblFEB1.Text = "FEB1";
             // 
             // lblFEB2
             // 
             this.lblFEB2.Name = "lblFEB2";
-            this.lblFEB2.Size = new System.Drawing.Size(32, 17);
+            this.lblFEB2.Size = new System.Drawing.Size(41, 20);
             this.lblFEB2.Text = "FEB2";
             // 
             // lblWC
             // 
             this.lblWC.Name = "lblWC";
-            this.lblWC.Size = new System.Drawing.Size(26, 17);
+            this.lblWC.Size = new System.Drawing.Size(32, 20);
             this.lblWC.Text = "WC";
             // 
             // lblMessage
             // 
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(74, 17);
+            this.lblMessage.Size = new System.Drawing.Size(94, 20);
             this.lblMessage.Text = "last message";
             // 
             // tabControl
@@ -295,10 +294,10 @@ namespace TB_mu2e
             this.tabRUN.Controls.Add(this.groupBoxEvDisplay);
             this.tabRUN.Controls.Add(this.groupBox1);
             this.tabRUN.Controls.Add(this.zg1);
-            this.tabRUN.Location = new System.Drawing.Point(4, 29);
+            this.tabRUN.Location = new System.Drawing.Point(4, 32);
             this.tabRUN.Name = "tabRUN";
             this.tabRUN.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRUN.Size = new System.Drawing.Size(1255, 668);
+            this.tabRUN.Size = new System.Drawing.Size(1255, 665);
             this.tabRUN.TabIndex = 0;
             this.tabRUN.Text = "RUN";
             this.tabRUN.UseVisualStyleBackColor = true;
@@ -311,7 +310,7 @@ namespace TB_mu2e
             this.lblRunLog.Location = new System.Drawing.Point(3, 459);
             this.lblRunLog.MinimumSize = new System.Drawing.Size(1240, 180);
             this.lblRunLog.Name = "lblRunLog";
-            this.lblRunLog.Size = new System.Drawing.Size(1240, 180);
+            this.lblRunLog.Size = new System.Drawing.Size(1240, 221);
             this.lblRunLog.TabIndex = 3;
             this.lblRunLog.Text = "run log text goes here\r\n1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n10\r\n11\r\n12";
             // 
@@ -322,7 +321,7 @@ namespace TB_mu2e
             this.lblEventCount.Location = new System.Drawing.Point(7, 434);
             this.lblEventCount.MaximumSize = new System.Drawing.Size(620, 20);
             this.lblEventCount.Name = "lblEventCount";
-            this.lblEventCount.Size = new System.Drawing.Size(104, 17);
+            this.lblEventCount.Size = new System.Drawing.Size(125, 20);
             this.lblEventCount.TabIndex = 39;
             this.lblEventCount.Text = "Spill xxx, yyy ev";
             // 
@@ -355,7 +354,7 @@ namespace TB_mu2e
             // 
             this.txtEvent.Location = new System.Drawing.Point(517, 40);
             this.txtEvent.Name = "txtEvent";
-            this.txtEvent.Size = new System.Drawing.Size(44, 23);
+            this.txtEvent.Size = new System.Drawing.Size(44, 27);
             this.txtEvent.TabIndex = 38;
             // 
             // btnNextDisp
@@ -397,7 +396,7 @@ namespace TB_mu2e
             0,
             -2147483648});
             this.ud_VertMin.Name = "ud_VertMin";
-            this.ud_VertMin.Size = new System.Drawing.Size(66, 23);
+            this.ud_VertMin.Size = new System.Drawing.Size(66, 27);
             this.ud_VertMin.TabIndex = 35;
             this.ud_VertMin.Value = new decimal(new int[] {
             500,
@@ -419,7 +418,7 @@ namespace TB_mu2e
             0,
             0});
             this.ud_VertMax.Name = "ud_VertMax";
-            this.ud_VertMax.Size = new System.Drawing.Size(66, 23);
+            this.ud_VertMax.Size = new System.Drawing.Size(66, 27);
             this.ud_VertMax.TabIndex = 34;
             this.ud_VertMax.Value = new decimal(new int[] {
             500,
@@ -475,7 +474,7 @@ namespace TB_mu2e
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(397, 94);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(118, 17);
+            this.label5.Size = new System.Drawing.Size(141, 20);
             this.label5.TabIndex = 34;
             this.label5.Text = "Fake Spill Len (s)";
             // 
@@ -493,7 +492,7 @@ namespace TB_mu2e
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(66, 23);
+            this.numericUpDown1.Size = new System.Drawing.Size(66, 27);
             this.numericUpDown1.TabIndex = 33;
             this.numericUpDown1.Value = new decimal(new int[] {
             2,
@@ -528,7 +527,7 @@ namespace TB_mu2e
             this.chkWC.AutoSize = true;
             this.chkWC.Location = new System.Drawing.Point(440, 34);
             this.chkWC.Name = "chkWC";
-            this.chkWC.Size = new System.Drawing.Size(49, 21);
+            this.chkWC.Size = new System.Drawing.Size(59, 24);
             this.chkWC.TabIndex = 30;
             this.chkWC.Text = "WC";
             this.chkWC.UseVisualStyleBackColor = true;
@@ -538,7 +537,7 @@ namespace TB_mu2e
             this.chkFEB2.AutoSize = true;
             this.chkFEB2.Location = new System.Drawing.Point(365, 34);
             this.chkFEB2.Name = "chkFEB2";
-            this.chkFEB2.Size = new System.Drawing.Size(61, 21);
+            this.chkFEB2.Size = new System.Drawing.Size(73, 24);
             this.chkFEB2.TabIndex = 29;
             this.chkFEB2.Text = "FEB2";
             this.chkFEB2.UseVisualStyleBackColor = true;
@@ -550,7 +549,7 @@ namespace TB_mu2e
             this.chkFEB1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkFEB1.Location = new System.Drawing.Point(290, 34);
             this.chkFEB1.Name = "chkFEB1";
-            this.chkFEB1.Size = new System.Drawing.Size(61, 21);
+            this.chkFEB1.Size = new System.Drawing.Size(73, 24);
             this.chkFEB1.TabIndex = 28;
             this.chkFEB1.Text = "FEB1";
             this.chkFEB1.UseVisualStyleBackColor = true;
@@ -562,7 +561,7 @@ namespace TB_mu2e
             this.chkFakeIt.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkFakeIt.Location = new System.Drawing.Point(290, 92);
             this.chkFakeIt.Name = "chkFakeIt";
-            this.chkFakeIt.Size = new System.Drawing.Size(65, 21);
+            this.chkFakeIt.Size = new System.Drawing.Size(76, 24);
             this.chkFakeIt.TabIndex = 27;
             this.chkFakeIt.Text = "FakeIt";
             this.chkFakeIt.UseVisualStyleBackColor = true;
@@ -573,7 +572,7 @@ namespace TB_mu2e
             this.lblWC_TotTrig.AutoSize = true;
             this.lblWC_TotTrig.Location = new System.Drawing.Point(540, 305);
             this.lblWC_TotTrig.Name = "lblWC_TotTrig";
-            this.lblWC_TotTrig.Size = new System.Drawing.Size(54, 17);
+            this.lblWC_TotTrig.Size = new System.Drawing.Size(62, 20);
             this.lblWC_TotTrig.TabIndex = 26;
             this.lblWC_TotTrig.Text = "label14";
             // 
@@ -582,7 +581,7 @@ namespace TB_mu2e
             this.lblFEB2_TotTrig.AutoSize = true;
             this.lblFEB2_TotTrig.Location = new System.Drawing.Point(483, 305);
             this.lblFEB2_TotTrig.Name = "lblFEB2_TotTrig";
-            this.lblFEB2_TotTrig.Size = new System.Drawing.Size(54, 17);
+            this.lblFEB2_TotTrig.Size = new System.Drawing.Size(62, 20);
             this.lblFEB2_TotTrig.TabIndex = 25;
             this.lblFEB2_TotTrig.Text = "label14";
             // 
@@ -591,7 +590,7 @@ namespace TB_mu2e
             this.lblFEB1_TotTrig.AutoSize = true;
             this.lblFEB1_TotTrig.Location = new System.Drawing.Point(426, 305);
             this.lblFEB1_TotTrig.Name = "lblFEB1_TotTrig";
-            this.lblFEB1_TotTrig.Size = new System.Drawing.Size(54, 17);
+            this.lblFEB1_TotTrig.Size = new System.Drawing.Size(62, 20);
             this.lblFEB1_TotTrig.TabIndex = 24;
             this.lblFEB1_TotTrig.Text = "label14";
             // 
@@ -600,7 +599,7 @@ namespace TB_mu2e
             this.lblWCSpill.AutoSize = true;
             this.lblWCSpill.Location = new System.Drawing.Point(540, 276);
             this.lblWCSpill.Name = "lblWCSpill";
-            this.lblWCSpill.Size = new System.Drawing.Size(54, 17);
+            this.lblWCSpill.Size = new System.Drawing.Size(62, 20);
             this.lblWCSpill.TabIndex = 23;
             this.lblWCSpill.Text = "label14";
             // 
@@ -609,7 +608,7 @@ namespace TB_mu2e
             this.lblFEB2Spill.AutoSize = true;
             this.lblFEB2Spill.Location = new System.Drawing.Point(483, 276);
             this.lblFEB2Spill.Name = "lblFEB2Spill";
-            this.lblFEB2Spill.Size = new System.Drawing.Size(54, 17);
+            this.lblFEB2Spill.Size = new System.Drawing.Size(62, 20);
             this.lblFEB2Spill.TabIndex = 22;
             this.lblFEB2Spill.Text = "label14";
             // 
@@ -618,7 +617,7 @@ namespace TB_mu2e
             this.lblSpillTime.AutoSize = true;
             this.lblSpillTime.Location = new System.Drawing.Point(426, 368);
             this.lblSpillTime.Name = "lblSpillTime";
-            this.lblSpillTime.Size = new System.Drawing.Size(79, 17);
+            this.lblSpillTime.Size = new System.Drawing.Size(95, 20);
             this.lblSpillTime.TabIndex = 21;
             this.lblSpillTime.Text = "lblSpillTime";
             // 
@@ -627,7 +626,7 @@ namespace TB_mu2e
             this.lblWCTrigNum.AutoSize = true;
             this.lblWCTrigNum.Location = new System.Drawing.Point(540, 334);
             this.lblWCTrigNum.Name = "lblWCTrigNum";
-            this.lblWCTrigNum.Size = new System.Drawing.Size(46, 17);
+            this.lblWCTrigNum.Size = new System.Drawing.Size(53, 20);
             this.lblWCTrigNum.TabIndex = 20;
             this.lblWCTrigNum.Text = "label2";
             // 
@@ -636,7 +635,7 @@ namespace TB_mu2e
             this.lblFEB2TrigNum.AutoSize = true;
             this.lblFEB2TrigNum.Location = new System.Drawing.Point(483, 334);
             this.lblFEB2TrigNum.Name = "lblFEB2TrigNum";
-            this.lblFEB2TrigNum.Size = new System.Drawing.Size(46, 17);
+            this.lblFEB2TrigNum.Size = new System.Drawing.Size(53, 20);
             this.lblFEB2TrigNum.TabIndex = 19;
             this.lblFEB2TrigNum.Text = "label2";
             // 
@@ -645,7 +644,7 @@ namespace TB_mu2e
             this.lblFEB1TrigNum.AutoSize = true;
             this.lblFEB1TrigNum.Location = new System.Drawing.Point(426, 334);
             this.lblFEB1TrigNum.Name = "lblFEB1TrigNum";
-            this.lblFEB1TrigNum.Size = new System.Drawing.Size(46, 17);
+            this.lblFEB1TrigNum.Size = new System.Drawing.Size(53, 20);
             this.lblFEB1TrigNum.TabIndex = 18;
             this.lblFEB1TrigNum.Text = "label2";
             // 
@@ -654,7 +653,7 @@ namespace TB_mu2e
             this.lblFEB1Spill.AutoSize = true;
             this.lblFEB1Spill.Location = new System.Drawing.Point(426, 276);
             this.lblFEB1Spill.Name = "lblFEB1Spill";
-            this.lblFEB1Spill.Size = new System.Drawing.Size(54, 17);
+            this.lblFEB1Spill.Size = new System.Drawing.Size(62, 20);
             this.lblFEB1Spill.TabIndex = 17;
             this.lblFEB1Spill.Text = "label14";
             // 
@@ -664,7 +663,7 @@ namespace TB_mu2e
             this.lblRunPrep.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.26415F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRunPrep.Location = new System.Drawing.Point(286, 119);
             this.lblRunPrep.Name = "lblRunPrep";
-            this.lblRunPrep.Size = new System.Drawing.Size(74, 25);
+            this.lblRunPrep.Size = new System.Drawing.Size(85, 29);
             this.lblRunPrep.TabIndex = 16;
             this.lblRunPrep.Text = "Status";
             // 
@@ -673,7 +672,7 @@ namespace TB_mu2e
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(287, 334);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(94, 17);
+            this.label6.Size = new System.Drawing.Size(113, 20);
             this.label6.TabIndex = 15;
             this.label6.Text = "Last Spill Trig";
             // 
@@ -682,7 +681,7 @@ namespace TB_mu2e
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(287, 305);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 17);
+            this.label7.Size = new System.Drawing.Size(120, 20);
             this.label7.TabIndex = 14;
             this.label7.Text = "Total Num Trig";
             // 
@@ -691,7 +690,7 @@ namespace TB_mu2e
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(287, 276);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(110, 17);
+            this.label8.Size = new System.Drawing.Size(132, 20);
             this.label8.TabIndex = 13;
             this.label8.Text = "Total Num Spills";
             // 
@@ -700,7 +699,7 @@ namespace TB_mu2e
             this.lblRunTime.AutoSize = true;
             this.lblRunTime.Location = new System.Drawing.Point(426, 214);
             this.lblRunTime.Name = "lblRunTime";
-            this.lblRunTime.Size = new System.Drawing.Size(0, 17);
+            this.lblRunTime.Size = new System.Drawing.Size(0, 20);
             this.lblRunTime.TabIndex = 12;
             // 
             // label4
@@ -708,7 +707,7 @@ namespace TB_mu2e
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(286, 214);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 17);
+            this.label4.Size = new System.Drawing.Size(93, 20);
             this.label4.TabIndex = 11;
             this.label4.Text = "Time in run";
             // 
@@ -717,7 +716,7 @@ namespace TB_mu2e
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(286, 185);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 17);
+            this.label3.Size = new System.Drawing.Size(94, 20);
             this.label3.TabIndex = 10;
             this.label3.Text = "Spill Status";
             // 
@@ -726,7 +725,7 @@ namespace TB_mu2e
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(286, 156);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 17);
+            this.label2.Size = new System.Drawing.Size(88, 20);
             this.label2.TabIndex = 9;
             this.label2.Text = "Run Name";
             // 
@@ -735,7 +734,7 @@ namespace TB_mu2e
             this.lblSpillWC.AutoSize = true;
             this.lblSpillWC.Location = new System.Drawing.Point(540, 185);
             this.lblSpillWC.Name = "lblSpillWC";
-            this.lblSpillWC.Size = new System.Drawing.Size(46, 17);
+            this.lblSpillWC.Size = new System.Drawing.Size(53, 20);
             this.lblSpillWC.TabIndex = 8;
             this.lblSpillWC.Text = "label2";
             // 
@@ -744,7 +743,7 @@ namespace TB_mu2e
             this.lblSpillFEB2.AutoSize = true;
             this.lblSpillFEB2.Location = new System.Drawing.Point(483, 185);
             this.lblSpillFEB2.Name = "lblSpillFEB2";
-            this.lblSpillFEB2.Size = new System.Drawing.Size(46, 17);
+            this.lblSpillFEB2.Size = new System.Drawing.Size(53, 20);
             this.lblSpillFEB2.TabIndex = 7;
             this.lblSpillFEB2.Text = "label2";
             // 
@@ -753,7 +752,7 @@ namespace TB_mu2e
             this.lblSpillFEB1.AutoSize = true;
             this.lblSpillFEB1.Location = new System.Drawing.Point(426, 185);
             this.lblSpillFEB1.Name = "lblSpillFEB1";
-            this.lblSpillFEB1.Size = new System.Drawing.Size(46, 17);
+            this.lblSpillFEB1.Size = new System.Drawing.Size(53, 20);
             this.lblSpillFEB1.TabIndex = 6;
             this.lblSpillFEB1.Text = "label2";
             // 
@@ -762,7 +761,7 @@ namespace TB_mu2e
             this.lblRunName.AutoSize = true;
             this.lblRunName.Location = new System.Drawing.Point(426, 156);
             this.lblRunName.Name = "lblRunName";
-            this.lblRunName.Size = new System.Drawing.Size(85, 17);
+            this.lblRunName.Size = new System.Drawing.Size(100, 20);
             this.lblRunName.TabIndex = 5;
             this.lblRunName.Text = "lblRunName";
             // 
@@ -832,9 +831,9 @@ namespace TB_mu2e
             this.tabConsole.Controls.Add(this.dbgFEB2);
             this.tabConsole.Controls.Add(this.dbgFEB1);
             this.tabConsole.Controls.Add(this.groupBox3);
-            this.tabConsole.Location = new System.Drawing.Point(4, 29);
+            this.tabConsole.Location = new System.Drawing.Point(4, 32);
             this.tabConsole.Name = "tabConsole";
-            this.tabConsole.Size = new System.Drawing.Size(1255, 668);
+            this.tabConsole.Size = new System.Drawing.Size(1255, 665);
             this.tabConsole.TabIndex = 7;
             this.tabConsole.Text = "Debug Console";
             this.tabConsole.UseVisualStyleBackColor = true;
@@ -911,7 +910,7 @@ namespace TB_mu2e
             this.lblConsole_disp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.150944F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblConsole_disp.Location = new System.Drawing.Point(0, 20);
             this.lblConsole_disp.Name = "lblConsole_disp";
-            this.lblConsole_disp.Size = new System.Drawing.Size(114, 13);
+            this.lblConsole_disp.Size = new System.Drawing.Size(151, 17);
             this.lblConsole_disp.TabIndex = 1;
             this.lblConsole_disp.Text = "console text goes here";
             // 
@@ -939,9 +938,9 @@ namespace TB_mu2e
             this.tabFEB1.Controls.Add(this.panel1);
             this.tabFEB1.Controls.Add(this.groupBox7);
             this.tabFEB1.Controls.Add(this.groupBoxConn);
-            this.tabFEB1.Location = new System.Drawing.Point(4, 29);
+            this.tabFEB1.Location = new System.Drawing.Point(4, 32);
             this.tabFEB1.Name = "tabFEB1";
-            this.tabFEB1.Size = new System.Drawing.Size(1255, 668);
+            this.tabFEB1.Size = new System.Drawing.Size(1255, 665);
             this.tabFEB1.TabIndex = 3;
             this.tabFEB1.Text = "FEB";
             this.tabFEB1.UseVisualStyleBackColor = true;
@@ -951,7 +950,7 @@ namespace TB_mu2e
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(389, 99);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(46, 17);
+            this.label9.Size = new System.Drawing.Size(53, 20);
             this.label9.TabIndex = 65;
             this.label9.Text = "label9";
             this.label9.Click += new System.EventHandler(this.label9_Click);
@@ -1039,7 +1038,7 @@ namespace TB_mu2e
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(49, 100);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(59, 17);
+            this.label11.Size = new System.Drawing.Size(71, 20);
             this.label11.TabIndex = 16;
             this.label11.Text = "UPTIME";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1073,7 +1072,7 @@ namespace TB_mu2e
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(21, 40);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(85, 17);
+            this.label17.Size = new System.Drawing.Size(102, 20);
             this.label17.TabIndex = 3;
             this.label17.Text = "SPILL STAT";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1095,7 +1094,7 @@ namespace TB_mu2e
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(11, 60);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(94, 17);
+            this.label18.Size = new System.Drawing.Size(112, 20);
             this.label18.TabIndex = 2;
             this.label18.Text = "TRIG COUNT";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1106,7 +1105,7 @@ namespace TB_mu2e
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(-1, 80);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(105, 17);
+            this.label19.Size = new System.Drawing.Size(127, 20);
             this.label19.TabIndex = 1;
             this.label19.Text = "WORD COUNT";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1117,7 +1116,7 @@ namespace TB_mu2e
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(6, 20);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(98, 17);
+            this.label20.Size = new System.Drawing.Size(119, 20);
             this.label20.TabIndex = 0;
             this.label20.Text = "SPILL COUNT";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1145,7 +1144,7 @@ namespace TB_mu2e
             this.lblFPGA.AutoSize = true;
             this.lblFPGA.Location = new System.Drawing.Point(4, 380);
             this.lblFPGA.Name = "lblFPGA";
-            this.lblFPGA.Size = new System.Drawing.Size(45, 17);
+            this.lblFPGA.Size = new System.Drawing.Size(54, 20);
             this.lblFPGA.TabIndex = 63;
             this.lblFPGA.Text = "FPGA";
             // 
@@ -1170,7 +1169,7 @@ namespace TB_mu2e
             0,
             0});
             this.udFPGA.Name = "udFPGA";
-            this.udFPGA.Size = new System.Drawing.Size(46, 23);
+            this.udFPGA.Size = new System.Drawing.Size(46, 27);
             this.udFPGA.TabIndex = 13;
             this.udFPGA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.udFPGA.ValueChanged += new System.EventHandler(this.udFPGA_ValueChanged);
@@ -1238,7 +1237,7 @@ namespace TB_mu2e
             0,
             0});
             this.udInterval.Name = "udInterval";
-            this.udInterval.Size = new System.Drawing.Size(57, 23);
+            this.udInterval.Size = new System.Drawing.Size(57, 27);
             this.udInterval.TabIndex = 52;
             this.udInterval.Value = new decimal(new int[] {
             10,
@@ -1264,7 +1263,7 @@ namespace TB_mu2e
             this.lblInc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInc.Location = new System.Drawing.Point(3, 112);
             this.lblInc.Name = "lblInc";
-            this.lblInc.Size = new System.Drawing.Size(68, 16);
+            this.lblInc.Size = new System.Drawing.Size(86, 20);
             this.lblInc.TabIndex = 53;
             this.lblInc.Text = "Time (ms)";
             this.lblInc.Click += new System.EventHandler(this.lblInc_Click);
@@ -1275,7 +1274,7 @@ namespace TB_mu2e
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(5, 80);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 16);
+            this.label1.Size = new System.Drawing.Size(48, 20);
             this.label1.TabIndex = 57;
             this.label1.Text = "Chan";
             // 
@@ -1299,7 +1298,7 @@ namespace TB_mu2e
             0,
             0});
             this.udChan.Name = "udChan";
-            this.udChan.Size = new System.Drawing.Size(57, 23);
+            this.udChan.Size = new System.Drawing.Size(57, 27);
             this.udChan.TabIndex = 56;
             this.udChan.ValueChanged += new System.EventHandler(this.udChan_ValueChanged);
             // 
@@ -1320,7 +1319,7 @@ namespace TB_mu2e
             this.lblStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStop.Location = new System.Drawing.Point(5, 44);
             this.lblStop.Name = "lblStop";
-            this.lblStop.Size = new System.Drawing.Size(36, 16);
+            this.lblStop.Size = new System.Drawing.Size(43, 20);
             this.lblStop.TabIndex = 51;
             this.lblStop.Text = "Stop";
             // 
@@ -1333,7 +1332,7 @@ namespace TB_mu2e
             0,
             0});
             this.udStop.Name = "udStop";
-            this.udStop.Size = new System.Drawing.Size(57, 23);
+            this.udStop.Size = new System.Drawing.Size(57, 27);
             this.udStop.TabIndex = 50;
             this.udStop.Value = new decimal(new int[] {
             512,
@@ -1347,7 +1346,7 @@ namespace TB_mu2e
             this.lblStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStart.Location = new System.Drawing.Point(5, 14);
             this.lblStart.Name = "lblStart";
-            this.lblStart.Size = new System.Drawing.Size(35, 16);
+            this.lblStart.Size = new System.Drawing.Size(45, 20);
             this.lblStart.TabIndex = 49;
             this.lblStart.Text = "Start";
             // 
@@ -1365,7 +1364,7 @@ namespace TB_mu2e
             0,
             0});
             this.udStart.Name = "udStart";
-            this.udStart.Size = new System.Drawing.Size(56, 23);
+            this.udStart.Size = new System.Drawing.Size(56, 27);
             this.udStart.TabIndex = 48;
             this.udStart.Value = new decimal(new int[] {
             1,
@@ -1390,7 +1389,7 @@ namespace TB_mu2e
             this.chkIntegral.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkIntegral.Location = new System.Drawing.Point(3, 36);
             this.chkIntegral.Name = "chkIntegral";
-            this.chkIntegral.Size = new System.Drawing.Size(123, 20);
+            this.chkIntegral.Size = new System.Drawing.Size(148, 24);
             this.chkIntegral.TabIndex = 57;
             this.chkIntegral.Text = "Integral Spect";
             this.chkIntegral.UseVisualStyleBackColor = true;
@@ -1402,7 +1401,7 @@ namespace TB_mu2e
             this.chkLogY.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkLogY.Location = new System.Drawing.Point(3, 4);
             this.chkLogY.Name = "chkLogY";
-            this.chkLogY.Size = new System.Drawing.Size(63, 20);
+            this.chkLogY.Size = new System.Drawing.Size(73, 24);
             this.chkLogY.TabIndex = 55;
             this.chkLogY.Text = "LogY";
             this.chkLogY.UseVisualStyleBackColor = true;
@@ -1430,7 +1429,7 @@ namespace TB_mu2e
             this.txtI.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.830189F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtI.Location = new System.Drawing.Point(50, 56);
             this.txtI.Name = "txtI";
-            this.txtI.Size = new System.Drawing.Size(55, 21);
+            this.txtI.Size = new System.Drawing.Size(55, 24);
             this.txtI.TabIndex = 62;
             this.txtI.Text = "0.000";
             // 
@@ -1439,7 +1438,7 @@ namespace TB_mu2e
             this.txtV.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.830189F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtV.Location = new System.Drawing.Point(50, 29);
             this.txtV.Name = "txtV";
-            this.txtV.Size = new System.Drawing.Size(55, 21);
+            this.txtV.Size = new System.Drawing.Size(55, 24);
             this.txtV.TabIndex = 61;
             this.txtV.Text = "0.000";
             this.txtV.TextChanged += new System.EventHandler(this.txtV_TextChanged);
@@ -1483,7 +1482,7 @@ namespace TB_mu2e
             this.lblI.AutoSize = true;
             this.lblI.Location = new System.Drawing.Point(7, 58);
             this.lblI.Name = "lblI";
-            this.lblI.Size = new System.Drawing.Size(19, 17);
+            this.lblI.Size = new System.Drawing.Size(23, 20);
             this.lblI.TabIndex = 5;
             this.lblI.Text = "I=";
             // 
@@ -1492,7 +1491,7 @@ namespace TB_mu2e
             this.lblV.AutoSize = true;
             this.lblV.Location = new System.Drawing.Point(7, 29);
             this.lblV.Name = "lblV";
-            this.lblV.Size = new System.Drawing.Size(25, 17);
+            this.lblV.Size = new System.Drawing.Size(30, 20);
             this.lblV.TabIndex = 4;
             this.lblV.Text = "V=";
             // 
@@ -1526,7 +1525,7 @@ namespace TB_mu2e
             this.lblActive.AutoSize = true;
             this.lblActive.Location = new System.Drawing.Point(210, 23);
             this.lblActive.Name = "lblActive";
-            this.lblActive.Size = new System.Drawing.Size(79, 17);
+            this.lblActive.Size = new System.Drawing.Size(95, 20);
             this.lblActive.TabIndex = 63;
             this.lblActive.Text = "Display for:";
             // 
@@ -1554,9 +1553,9 @@ namespace TB_mu2e
             // tabWC
             // 
             this.tabWC.Controls.Add(this.groupBox6);
-            this.tabWC.Location = new System.Drawing.Point(4, 29);
+            this.tabWC.Location = new System.Drawing.Point(4, 32);
             this.tabWC.Name = "tabWC";
-            this.tabWC.Size = new System.Drawing.Size(1255, 668);
+            this.tabWC.Size = new System.Drawing.Size(1255, 665);
             this.tabWC.TabIndex = 6;
             this.tabWC.Text = "WC";
             this.tabWC.UseVisualStyleBackColor = true;
@@ -1577,7 +1576,7 @@ namespace TB_mu2e
             this.lblWCmessage.AutoSize = true;
             this.lblWCmessage.Location = new System.Drawing.Point(-1, 87);
             this.lblWCmessage.Name = "lblWCmessage";
-            this.lblWCmessage.Size = new System.Drawing.Size(46, 34);
+            this.lblWCmessage.Size = new System.Drawing.Size(53, 40);
             this.lblWCmessage.TabIndex = 2;
             this.lblWCmessage.Text = "label1\r\nlabel2";
             // 
@@ -1601,10 +1600,10 @@ namespace TB_mu2e
             this.tabFEBtest.Controls.Add(this.textBox14);
             this.tabFEBtest.Controls.Add(this.label25);
             this.tabFEBtest.Controls.Add(this.DAC_Voltages);
-            this.tabFEBtest.Location = new System.Drawing.Point(4, 29);
+            this.tabFEBtest.Location = new System.Drawing.Point(4, 32);
             this.tabFEBtest.Name = "tabFEBtest";
             this.tabFEBtest.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFEBtest.Size = new System.Drawing.Size(1255, 668);
+            this.tabFEBtest.Size = new System.Drawing.Size(1255, 665);
             this.tabFEBtest.TabIndex = 8;
             this.tabFEBtest.Text = "FEB Test";
             this.tabFEBtest.UseVisualStyleBackColor = true;
@@ -1633,7 +1632,7 @@ namespace TB_mu2e
             // 
             this.txtSN.Location = new System.Drawing.Point(219, 55);
             this.txtSN.Name = "txtSN";
-            this.txtSN.Size = new System.Drawing.Size(215, 23);
+            this.txtSN.Size = new System.Drawing.Size(215, 27);
             this.txtSN.TabIndex = 5;
             this.txtSN.TextChanged += new System.EventHandler(this.txtSN_TextChanged);
             // 
@@ -1643,7 +1642,7 @@ namespace TB_mu2e
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.label26.Location = new System.Drawing.Point(101, 51);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(92, 26);
+            this.label26.Size = new System.Drawing.Size(112, 31);
             this.label26.TabIndex = 4;
             this.label26.Text = "FEB SN";
             // 
@@ -1660,7 +1659,7 @@ namespace TB_mu2e
             // 
             this.textBox14.Location = new System.Drawing.Point(219, 10);
             this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(215, 23);
+            this.textBox14.Size = new System.Drawing.Size(215, 27);
             this.textBox14.TabIndex = 2;
             this.textBox14.Text = "dcrc3.fnal.gov";
             // 
@@ -1670,7 +1669,7 @@ namespace TB_mu2e
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.label25.Location = new System.Drawing.Point(6, 6);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(169, 26);
+            this.label25.Size = new System.Drawing.Size(206, 31);
             this.label25.TabIndex = 1;
             this.label25.Text = "FEB ADDRESS";
             // 
@@ -1680,7 +1679,6 @@ namespace TB_mu2e
             this.DAC_Voltages.Controls.Add(this.btnJ26);
             this.DAC_Voltages.Controls.Add(this.btnDacScan);
             this.DAC_Voltages.Controls.Add(this.btnJ25);
-            this.DAC_Voltages.Controls.Add(this.btnDacUpdate);
             this.DAC_Voltages.Controls.Add(this.btnJ24);
             this.DAC_Voltages.Controls.Add(this.btnDacWrite);
             this.DAC_Voltages.Controls.Add(this.btnJ23);
@@ -1765,16 +1763,6 @@ namespace TB_mu2e
             this.btnJ25.UseVisualStyleBackColor = false;
             this.btnJ25.Click += new System.EventHandler(this.btnJ25_Click);
             // 
-            // btnDacUpdate
-            // 
-            this.btnDacUpdate.Location = new System.Drawing.Point(234, 244);
-            this.btnDacUpdate.Name = "btnDacUpdate";
-            this.btnDacUpdate.Size = new System.Drawing.Size(93, 29);
-            this.btnDacUpdate.TabIndex = 70;
-            this.btnDacUpdate.Text = "UPDATE";
-            this.btnDacUpdate.UseVisualStyleBackColor = true;
-            this.btnDacUpdate.Click += new System.EventHandler(this.btnDacUpdate_Click);
-            // 
             // btnJ24
             // 
             this.btnJ24.BackColor = System.Drawing.Color.Silver;
@@ -1833,7 +1821,7 @@ namespace TB_mu2e
             // 
             this.txtTrimRB3.Location = new System.Drawing.Point(286, 211);
             this.txtTrimRB3.Name = "txtTrimRB3";
-            this.txtTrimRB3.Size = new System.Drawing.Size(76, 23);
+            this.txtTrimRB3.Size = new System.Drawing.Size(76, 27);
             this.txtTrimRB3.TabIndex = 21;
             // 
             // btnJ20
@@ -1851,7 +1839,7 @@ namespace TB_mu2e
             // 
             this.txtTrimRB2.Location = new System.Drawing.Point(286, 178);
             this.txtTrimRB2.Name = "txtTrimRB2";
-            this.txtTrimRB2.Size = new System.Drawing.Size(76, 23);
+            this.txtTrimRB2.Size = new System.Drawing.Size(76, 27);
             this.txtTrimRB2.TabIndex = 20;
             // 
             // btnJ19
@@ -1869,7 +1857,7 @@ namespace TB_mu2e
             // 
             this.txtTrimRB1.Location = new System.Drawing.Point(286, 145);
             this.txtTrimRB1.Name = "txtTrimRB1";
-            this.txtTrimRB1.Size = new System.Drawing.Size(76, 23);
+            this.txtTrimRB1.Size = new System.Drawing.Size(76, 27);
             this.txtTrimRB1.TabIndex = 19;
             // 
             // btnJ18
@@ -1887,7 +1875,7 @@ namespace TB_mu2e
             // 
             this.txtTrimRB0.Location = new System.Drawing.Point(286, 112);
             this.txtTrimRB0.Name = "txtTrimRB0";
-            this.txtTrimRB0.Size = new System.Drawing.Size(76, 23);
+            this.txtTrimRB0.Size = new System.Drawing.Size(76, 27);
             this.txtTrimRB0.TabIndex = 18;
             this.txtTrimRB0.TextChanged += new System.EventHandler(this.txtTrimRB0_TextChanged);
             // 
@@ -1906,7 +1894,7 @@ namespace TB_mu2e
             // 
             this.txtLEDRB0.Location = new System.Drawing.Point(286, 79);
             this.txtLEDRB0.Name = "txtLEDRB0";
-            this.txtLEDRB0.Size = new System.Drawing.Size(76, 23);
+            this.txtLEDRB0.Size = new System.Drawing.Size(76, 27);
             this.txtLEDRB0.TabIndex = 17;
             // 
             // btnJ16
@@ -1924,7 +1912,7 @@ namespace TB_mu2e
             // 
             this.txtBiasRB0.Location = new System.Drawing.Point(286, 46);
             this.txtBiasRB0.Name = "txtBiasRB0";
-            this.txtBiasRB0.Size = new System.Drawing.Size(76, 23);
+            this.txtBiasRB0.Size = new System.Drawing.Size(76, 27);
             this.txtBiasRB0.TabIndex = 16;
             this.txtBiasRB0.TextChanged += new System.EventHandler(this.txtBiasRB0_TextChanged);
             // 
@@ -1955,7 +1943,7 @@ namespace TB_mu2e
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(282, 23);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(82, 17);
+            this.label23.Size = new System.Drawing.Size(102, 20);
             this.label23.TabIndex = 15;
             this.label23.Text = "READBACK";
             // 
@@ -1975,7 +1963,7 @@ namespace TB_mu2e
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(196, 23);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(68, 17);
+            this.label22.Size = new System.Drawing.Size(80, 20);
             this.label22.TabIndex = 14;
             this.label22.Text = "SETTING";
             // 
@@ -1995,7 +1983,7 @@ namespace TB_mu2e
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(137, 214);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(48, 17);
+            this.label21.Size = new System.Drawing.Size(57, 20);
             this.label21.TabIndex = 13;
             this.label21.Text = "Trim 3";
             // 
@@ -2016,7 +2004,7 @@ namespace TB_mu2e
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(137, 178);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(48, 17);
+            this.label16.Size = new System.Drawing.Size(57, 20);
             this.label16.TabIndex = 12;
             this.label16.Text = "Trim 2";
             // 
@@ -2025,7 +2013,7 @@ namespace TB_mu2e
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(137, 148);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(48, 17);
+            this.label15.Size = new System.Drawing.Size(57, 20);
             this.label15.TabIndex = 11;
             this.label15.Text = "Trim 1";
             // 
@@ -2034,7 +2022,7 @@ namespace TB_mu2e
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(137, 115);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(48, 17);
+            this.label14.Size = new System.Drawing.Size(57, 20);
             this.label14.TabIndex = 10;
             this.label14.Text = "Trim 0";
             // 
@@ -2042,35 +2030,35 @@ namespace TB_mu2e
             // 
             this.txtTrimSet3.Location = new System.Drawing.Point(200, 211);
             this.txtTrimSet3.Name = "txtTrimSet3";
-            this.txtTrimSet3.Size = new System.Drawing.Size(76, 23);
+            this.txtTrimSet3.Size = new System.Drawing.Size(76, 27);
             this.txtTrimSet3.TabIndex = 9;
             // 
             // txtTrimSet2
             // 
             this.txtTrimSet2.Location = new System.Drawing.Point(200, 178);
             this.txtTrimSet2.Name = "txtTrimSet2";
-            this.txtTrimSet2.Size = new System.Drawing.Size(76, 23);
+            this.txtTrimSet2.Size = new System.Drawing.Size(76, 27);
             this.txtTrimSet2.TabIndex = 8;
             // 
             // txtTrimSet1
             // 
             this.txtTrimSet1.Location = new System.Drawing.Point(200, 145);
             this.txtTrimSet1.Name = "txtTrimSet1";
-            this.txtTrimSet1.Size = new System.Drawing.Size(76, 23);
+            this.txtTrimSet1.Size = new System.Drawing.Size(76, 27);
             this.txtTrimSet1.TabIndex = 7;
             // 
             // txtTrimSet0
             // 
             this.txtTrimSet0.Location = new System.Drawing.Point(200, 112);
             this.txtTrimSet0.Name = "txtTrimSet0";
-            this.txtTrimSet0.Size = new System.Drawing.Size(76, 23);
+            this.txtTrimSet0.Size = new System.Drawing.Size(76, 27);
             this.txtTrimSet0.TabIndex = 6;
             // 
             // txtLEDSet0
             // 
             this.txtLEDSet0.Location = new System.Drawing.Point(200, 79);
             this.txtLEDSet0.Name = "txtLEDSet0";
-            this.txtLEDSet0.Size = new System.Drawing.Size(76, 23);
+            this.txtLEDSet0.Size = new System.Drawing.Size(76, 27);
             this.txtLEDSet0.TabIndex = 5;
             // 
             // label13
@@ -2078,7 +2066,7 @@ namespace TB_mu2e
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(151, 82);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 17);
+            this.label13.Size = new System.Drawing.Size(43, 20);
             this.label13.TabIndex = 4;
             this.label13.Text = "LED";
             // 
@@ -2087,7 +2075,7 @@ namespace TB_mu2e
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(151, 49);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(35, 17);
+            this.label12.Size = new System.Drawing.Size(43, 20);
             this.label12.TabIndex = 3;
             this.label12.Text = "Bias";
             // 
@@ -2095,7 +2083,7 @@ namespace TB_mu2e
             // 
             this.txtBiasSet0.Location = new System.Drawing.Point(200, 46);
             this.txtBiasSet0.Name = "txtBiasSet0";
-            this.txtBiasSet0.Size = new System.Drawing.Size(76, 23);
+            this.txtBiasSet0.Size = new System.Drawing.Size(76, 27);
             this.txtBiasSet0.TabIndex = 1;
             this.txtBiasSet0.TextChanged += new System.EventHandler(this.txtBiasSet1_TextChanged);
             // 
@@ -2117,7 +2105,7 @@ namespace TB_mu2e
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 728);
             this.Controls.Add(this.tabControl);
@@ -2332,7 +2320,6 @@ namespace TB_mu2e
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Button btnDacUpdate;
         private System.Windows.Forms.Button btnDacWrite;
         private System.Windows.Forms.Button btnDacScan;
         private System.Windows.Forms.Button btnSnSave;

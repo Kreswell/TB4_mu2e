@@ -436,23 +436,31 @@ namespace TB_mu2e
 
             vSet = dac.convertVoltage(vHi);
             Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+            updateVoltage();
             Application.DoEvents();
             dac.voltageDataFEB[0] = vHi;
             dac.voltageDataScope[0] = vScope;
 
             vSet = dac.convertVoltage(vMed);
             Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+            updateVoltage();
             Application.DoEvents();
             dac.voltageDataFEB[1] = vMed;
             dac.voltageDataScope[1] = vScope;
 
             vSet = dac.convertVoltage(vLow);
             Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+            updateVoltage();
             Application.DoEvents();
             dac.voltageDataFEB[2] = vLow;
             dac.voltageDataScope[2] = vScope;
 
             dac.FitData();
+
+            vSet = dac.convertVoltage(0);
+            Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -2024,15 +2032,18 @@ namespace TB_mu2e
 
         private void btnDacUpdate_Click(object sender, EventArgs e)
         {
+            updateVoltage();
+            Application.DoEvents();
+        }
+
+        private void updateVoltage()
+        { 
             Mu2e_FEB_client myFEB = null;
             Mu2e_Register r;
             double v;
-            if (_ActiveFEB == 1)
-            { myFEB = PP.FEB1; }
-            else if (_ActiveFEB == 2)
-            { myFEB = PP.FEB2; }
-            else
-            { MessageBox.Show("No FEB active"); return; }
+            if (_ActiveFEB == 1) { myFEB = PP.FEB1; }
+            else if (_ActiveFEB == 2) { myFEB = PP.FEB2; }
+            else { MessageBox.Show("No FEB active"); return; }
 
             //string name = tabControl.SelectedTab.Text;
 
@@ -2062,33 +2073,32 @@ namespace TB_mu2e
                 Mu2e_Register.ReadReg(ref r, ref myFEB.client);
                 v = ((double)r.val - 2048) * 0.002;
                 txtTrimSet3.Text = v.ToString("0.000");
-
-                //   ScopeBias.OnVoltageChanged += ScopeBiasVoltageChanged;
-                //   ScopeTrim.OnVoltageChanged += ScopeTrimVoltageChanged;
-              /*  connectScopes();
-                for (int i = 1; i < 3; i++) {
-                    ScopeBias.GetVoltage(i);
-                    int t = 0;
-                    while(! ScopeBiasVoltageUpdated && t++ < 99999) { };
-                    ScopeBiasVoltageUpdated = false;
-                }
-                for (int i = 1; i < 5; i++)
-                {
-                    ScopeTrim.GetVoltage(i);
-                    int t = 0;
-                    while (!ScopeTrimVoltageUpdated && t++ < 99999) { };
-                    if (ScopeTrimVoltageUpdated)
-                    {
-                        
-                    }
-                    ScopeTrimVoltageUpdated = false;
-                }
-                ScopeBias.closeScope();
-                ScopeTrim.closeScope();
-                **/
-                Application.DoEvents();
             }
             else { MessageBox.Show("No HDMI channel selected"); return; }
+
+            //   ScopeBias.OnVoltageChanged += ScopeBiasVoltageChanged;
+            //   ScopeTrim.OnVoltageChanged += ScopeTrimVoltageChanged;
+            /*  connectScopes();
+              for (int i = 1; i < 3; i++) {
+                  ScopeBias.GetVoltage(i);
+                  int t = 0;
+                  while(! ScopeBiasVoltageUpdated && t++ < 99999) { };
+                  ScopeBiasVoltageUpdated = false;
+              }
+              for (int i = 1; i < 5; i++)
+              {
+                  ScopeTrim.GetVoltage(i);
+                  int t = 0;
+                  while (!ScopeTrimVoltageUpdated && t++ < 99999) { };
+                  if (ScopeTrimVoltageUpdated)
+                  {
+
+                  }
+                  ScopeTrimVoltageUpdated = false;
+              }
+              ScopeBias.closeScope();
+              ScopeTrim.closeScope();
+              **/
         }
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
@@ -2139,6 +2149,7 @@ namespace TB_mu2e
                 r = ActiveHdmiChannel.Trim3.register;
                 Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
             }
+            updateVoltage();
             Application.DoEvents();
         }
 
@@ -2184,13 +2195,40 @@ namespace TB_mu2e
             vInt = (UInt32)v;
             r = ActiveHdmiChannel.Trim3.register;
             Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+            updateVoltage();
+            Application.DoEvents();
 
             //Check voltage readbacks. If all six too small print error message.
             bool doScan = true;
             if (vScopeBias < 50 && vScopeLED < 10 && vScopeTrim0 < 1 && vScopeTrim1 < 1 && vScopeTrim2 <1 && vScopeTrim3 < 1)
             {
                 DialogResult result = MessageBox.Show("Test cable appears to not be connected.\nAre you sure you are connected to the correct channel?\nRun anyway?", "", MessageBoxButtons.OKCancel);
-                if (result == DialogResult.Cancel) { doScan = false; }
+                if (result == DialogResult.Cancel)
+                {
+                    doScan = false;
+                    v = 0;
+                    vInt = (UInt32)v * 50;
+                    r = ActiveHdmiChannel.Bias0.register;
+                    Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+                    vInt = (UInt32)v * 300;
+                    r = ActiveHdmiChannel.Led0.register;
+                    Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+                    v = 2048;
+                    vInt = (UInt32)v;
+                    r = ActiveHdmiChannel.Trim0.register;
+                    Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+                    vInt = (UInt32)v;
+                    r = ActiveHdmiChannel.Trim1.register;
+                    Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+                    vInt = (UInt32)v;
+                    r = ActiveHdmiChannel.Trim2.register;
+                    Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+                    vInt = (UInt32)v;
+                    r = ActiveHdmiChannel.Trim3.register;
+                    Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+                    updateVoltage();
+                    Application.DoEvents();
+                }
             }
 
             if (doScan)
@@ -2243,6 +2281,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel0))
             { HdmiChannelList.Add(HdmiChannel0); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ12_Click(object sender, EventArgs e)
@@ -2261,6 +2301,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel1))
             { HdmiChannelList.Add(HdmiChannel1); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ13_Click(object sender, EventArgs e)
@@ -2279,6 +2321,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel2))
             { HdmiChannelList.Add(HdmiChannel2); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ14_Click(object sender, EventArgs e)
@@ -2297,6 +2341,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel3))
             { HdmiChannelList.Add(HdmiChannel3); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ15_Click(object sender, EventArgs e)
@@ -2315,6 +2361,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel4))
             { HdmiChannelList.Add(HdmiChannel4); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ16_Click(object sender, EventArgs e)
@@ -2333,6 +2381,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel5))
             { HdmiChannelList.Add(HdmiChannel5); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ17_Click(object sender, EventArgs e)
@@ -2351,6 +2401,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel6))
             { HdmiChannelList.Add(HdmiChannel6); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ18_Click(object sender, EventArgs e)
@@ -2369,6 +2421,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel7))
             { HdmiChannelList.Add(HdmiChannel7); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ19_Click(object sender, EventArgs e)
@@ -2387,6 +2441,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel8))
             { HdmiChannelList.Add(HdmiChannel8); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ20_Click(object sender, EventArgs e)
@@ -2405,6 +2461,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel9))
             { HdmiChannelList.Add(HdmiChannel9); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ21_Click(object sender, EventArgs e)
@@ -2423,6 +2481,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel10))
             { HdmiChannelList.Add(HdmiChannel10); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ22_Click(object sender, EventArgs e)
@@ -2441,6 +2501,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel11))
             { HdmiChannelList.Add(HdmiChannel11); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ23_Click(object sender, EventArgs e)
@@ -2459,6 +2521,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel12))
             { HdmiChannelList.Add(HdmiChannel12); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ24_Click(object sender, EventArgs e)
@@ -2477,6 +2541,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel13))
             { HdmiChannelList.Add(HdmiChannel13); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ25_Click(object sender, EventArgs e)
@@ -2495,6 +2561,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel14))
             { HdmiChannelList.Add(HdmiChannel14); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ26_Click(object sender, EventArgs e)
@@ -2513,6 +2581,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel15))
             { HdmiChannelList.Add(HdmiChannel15); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnDacSave_Click(object sender, EventArgs e)
