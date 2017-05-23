@@ -161,7 +161,6 @@ namespace TB_mu2e
             this.btnJ26 = new System.Windows.Forms.Button();
             this.btnDacScan = new System.Windows.Forms.Button();
             this.btnJ25 = new System.Windows.Forms.Button();
-            this.btnDacUpdate = new System.Windows.Forms.Button();
             this.btnJ24 = new System.Windows.Forms.Button();
             this.btnDacWrite = new System.Windows.Forms.Button();
             this.btnJ23 = new System.Windows.Forms.Button();
@@ -1680,7 +1679,6 @@ namespace TB_mu2e
             this.DAC_Voltages.Controls.Add(this.btnJ26);
             this.DAC_Voltages.Controls.Add(this.btnDacScan);
             this.DAC_Voltages.Controls.Add(this.btnJ25);
-            this.DAC_Voltages.Controls.Add(this.btnDacUpdate);
             this.DAC_Voltages.Controls.Add(this.btnJ24);
             this.DAC_Voltages.Controls.Add(this.btnDacWrite);
             this.DAC_Voltages.Controls.Add(this.btnJ23);
@@ -1764,16 +1762,6 @@ namespace TB_mu2e
             this.btnJ25.Text = "J25";
             this.btnJ25.UseVisualStyleBackColor = false;
             this.btnJ25.Click += new System.EventHandler(this.btnJ25_Click);
-            // 
-            // btnDacUpdate
-            // 
-            this.btnDacUpdate.Location = new System.Drawing.Point(234, 244);
-            this.btnDacUpdate.Name = "btnDacUpdate";
-            this.btnDacUpdate.Size = new System.Drawing.Size(93, 29);
-            this.btnDacUpdate.TabIndex = 70;
-            this.btnDacUpdate.Text = "UPDATE";
-            this.btnDacUpdate.UseVisualStyleBackColor = true;
-            this.btnDacUpdate.Click += new System.EventHandler(this.btnDacUpdate_Click);
             // 
             // btnJ24
             // 
@@ -2044,6 +2032,7 @@ namespace TB_mu2e
             this.txtTrimSet3.Name = "txtTrimSet3";
             this.txtTrimSet3.Size = new System.Drawing.Size(76, 23);
             this.txtTrimSet3.TabIndex = 9;
+            this.txtTrimSet3.TextChanged += new System.EventHandler(this.txtTrimSet3_TextChanged);
             // 
             // txtTrimSet2
             // 
@@ -2332,7 +2321,6 @@ namespace TB_mu2e
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Button btnDacUpdate;
         private System.Windows.Forms.Button btnDacWrite;
         private System.Windows.Forms.Button btnDacScan;
         private System.Windows.Forms.Button btnSnSave;
