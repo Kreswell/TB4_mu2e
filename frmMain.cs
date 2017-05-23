@@ -429,109 +429,31 @@ namespace TB_mu2e
             }
         }
 
-        private void doTest(DacProperties dac, double vScope, double vHi, double vMed, double vLow)
-        {
-            UInt32 vSet;
-            Mu2e_Register r = dac.register;
-
-            vSet = dac.convertVoltage(vHi);
-            Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
-            updateVoltage();
-            Application.DoEvents();
-            dac.voltageDataFEB[0] = vHi;
-            dac.voltageDataScope[0] = vScope;
-
-            vSet = dac.convertVoltage(vMed);
-            Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
-            updateVoltage();
-            Application.DoEvents();
-            dac.voltageDataFEB[1] = vMed;
-            dac.voltageDataScope[1] = vScope;
-
-            vSet = dac.convertVoltage(vLow);
-            Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
-            updateVoltage();
-            Application.DoEvents();
-            dac.voltageDataFEB[2] = vLow;
-            dac.voltageDataScope[2] = vScope;
-
-            dac.FitData();
-
-            vSet = dac.convertVoltage(0);
-            Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
-            updateVoltage();
-            Application.DoEvents();
-        }
-
-
-        //private void doTest(DacProperties dac, double vHi, double vMed, double vLow)
+        //private void doTest(DacProperties dac, double vScope, double vHi, double vMed, double vLow)
         //{
         //    UInt32 vSet;
         //    Mu2e_Register r = dac.register;
-        //    double vScope = 0;
-        //    if (dac == ActiveHdmiChannel.Bias0)
-        //    {
-        //        //vScope = vScopeBias;
-        //    }
-        //    else if (dac == ActiveHdmiChannel.Led0)
-        //    {
-        //        //vScope = vScopeLED;
-
-        //    }
-        //    else if (dac == ActiveHdmiChannel.Trim0)
-        //    {
-        //        //vScope = vScopeTrim0;
-        //    }
-        //    else if (dac == ActiveHdmiChannel.Trim0)
-        //    {
-        //        //vScope = vScopeTrim1;
-        //    }
-        //    else if (dac == ActiveHdmiChannel.Trim0)
-        //    {
-        //        //vScope = vScopeTrim2;
-        //    }
-        //    else if (dac == ActiveHdmiChannel.Trim0)
-        //    {
-        //        //vScope = vScopeTrim3;
-        //    }
-        //    else { }
 
         //    vSet = dac.convertVoltage(vHi);
         //    Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
         //    updateVoltage();
+        //    Application.DoEvents();
         //    dac.voltageDataFEB[0] = vHi;
-        //    for (int t = 0; t < 500; t++)
-        //    {
-        //        System.Threading.Thread.Sleep(1);
-        //        Application.DoEvents();
-        //    }
-        //    //dac.voltageDataScope[0] = vScope;
-
+        //    dac.voltageDataScope[0] = vScope;
 
         //    vSet = dac.convertVoltage(vMed);
         //    Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
         //    updateVoltage();
+        //    Application.DoEvents();
         //    dac.voltageDataFEB[1] = vMed;
-
-        //    for (int t = 0; t < 500; t++)
-        //    {
-        //        System.Threading.Thread.Sleep(1);
-        //        Application.DoEvents();
-        //    }
-        //    //dac.voltageDataScope[1] = vScope;
-
+        //    dac.voltageDataScope[1] = vScope;
 
         //    vSet = dac.convertVoltage(vLow);
         //    Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
         //    updateVoltage();
+        //    Application.DoEvents();
         //    dac.voltageDataFEB[2] = vLow;
-        //    for (int t = 0; t < 1000; t++)
-        //    {
-        //        System.Threading.Thread.Sleep(1);
-        //        Application.DoEvents();
-        //    }
-        //    //dac.voltageDataScope[2] = vScope;
-
+        //    dac.voltageDataScope[2] = vScope;
 
         //    dac.FitData();
 
@@ -540,6 +462,83 @@ namespace TB_mu2e
         //    updateVoltage();
         //    Application.DoEvents();
         //}
+
+
+        private void doTest(DacProperties dac, double vHi, double vMed, double vLow)
+        {
+            UInt32 vSet;
+            Mu2e_Register r = dac.register;
+            TextBox ReadbackBox = null;
+            if (dac == ActiveHdmiChannel.Bias0)
+            {
+                ReadbackBox = txtBiasRB0;
+            }
+            else if (dac == ActiveHdmiChannel.Led0)
+            {
+                ReadbackBox = txtLEDRB0;
+            }
+            else if (dac == ActiveHdmiChannel.Trim0)
+            {
+                ReadbackBox = txtTrimRB0;
+            }
+            else if (dac == ActiveHdmiChannel.Trim0)
+            {
+                ReadbackBox = txtTrimRB1;
+            }
+            else if (dac == ActiveHdmiChannel.Trim0)
+            {
+                ReadbackBox = txtTrimRB2;
+            }
+            else if (dac == ActiveHdmiChannel.Trim0)
+            {
+                ReadbackBox = txtTrimRB3;
+            }
+            else { }
+
+            vSet = dac.convertVoltage(vHi);
+            Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+            updateVoltage();
+            dac.voltageDataFEB[0] = vHi;
+            for (int t = 0; t < 500; t++)
+            {
+                System.Threading.Thread.Sleep(1);
+                Application.DoEvents();
+            }
+            dac.voltageDataScope[0] = double.Parse(ReadbackBox.Text);
+
+
+            vSet = dac.convertVoltage(vMed);
+            Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+            updateVoltage();
+            dac.voltageDataFEB[1] = vMed;
+
+            for (int t = 0; t < 500; t++)
+            {
+                System.Threading.Thread.Sleep(1);
+                Application.DoEvents();
+            }
+            dac.voltageDataScope[1] = double.Parse(ReadbackBox.Text);
+
+
+            vSet = dac.convertVoltage(vLow);
+            Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+            updateVoltage();
+            dac.voltageDataFEB[2] = vLow;
+            for (int t = 0; t < 1000; t++)
+            {
+                System.Threading.Thread.Sleep(1);
+                Application.DoEvents();
+            }
+            dac.voltageDataScope[2] = double.Parse(ReadbackBox.Text);
+
+
+            dac.FitData();
+
+            vSet = dac.convertVoltage(0);
+            Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+            updateVoltage();
+            Application.DoEvents();
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -2314,18 +2313,18 @@ namespace TB_mu2e
 
             if (doScan)
             {
-                //doTest(ActiveHdmiChannel.Bias0, 65, 35, 10);
-                //doTest(ActiveHdmiChannel.Led0, 12, 6, 0);
-                //doTest(ActiveHdmiChannel.Trim0, 4, 0, -4);
-                //doTest(ActiveHdmiChannel.Trim1, 4, 0, -4);
-                //doTest(ActiveHdmiChannel.Trim2, 4, 0, -4);
-                //doTest(ActiveHdmiChannel.Trim3, 4, 0, -4);
-                doTest(ActiveHdmiChannel.Bias0, vScopeBias, 75, 35, 10);
-                doTest(ActiveHdmiChannel.Led0, vScopeLED, 14, 7, 0);
-                doTest(ActiveHdmiChannel.Trim0, vScopeTrim0, 4, 0, -4);
-                doTest(ActiveHdmiChannel.Trim1, vScopeTrim1, 4, 0, -4);
-                doTest(ActiveHdmiChannel.Trim2, vScopeTrim2, 4, 0, -4);
-                doTest(ActiveHdmiChannel.Trim3, vScopeTrim3, 4, 0, -4);
+                doTest(ActiveHdmiChannel.Bias0, 65, 35, 10);
+                doTest(ActiveHdmiChannel.Led0, 12, 6, 0);
+                doTest(ActiveHdmiChannel.Trim0, 4, 0, -4);
+                doTest(ActiveHdmiChannel.Trim1, 4, 0, -4);
+                doTest(ActiveHdmiChannel.Trim2, 4, 0, -4);
+                doTest(ActiveHdmiChannel.Trim3, 4, 0, -4);
+                //doTest(ActiveHdmiChannel.Bias0, vScopeBias, 75, 35, 10);
+                //doTest(ActiveHdmiChannel.Led0, vScopeLED, 14, 7, 0);
+                //doTest(ActiveHdmiChannel.Trim0, vScopeTrim0, 4, 0, -4);
+                //doTest(ActiveHdmiChannel.Trim1, vScopeTrim1, 4, 0, -4);
+                //doTest(ActiveHdmiChannel.Trim2, vScopeTrim2, 4, 0, -4);
+                //doTest(ActiveHdmiChannel.Trim3, vScopeTrim3, 4, 0, -4);
                 ActiveHdmiChannel.isTested = true;
                 setButtonColor();
             }
