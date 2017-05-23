@@ -65,8 +65,8 @@ namespace TB_mu2e
         public void FitData()
         {
             Tuple<double, double> fitParams = MathNet.Numerics.Fit.Line(voltageDataFEB, voltageDataScope);
-            Int16 slopeInt = (Int16)(fitParams.Item1*32768);
-            Int16 interceptInt = (Int16)(fitParams.Item2*32768);
+            Int16 slopeInt = (Int16)(fitParams.Item2*32768);
+            Int16 interceptInt = (Int16)(fitParams.Item1*32768);
             _slope = slopeInt.ToString("X");
             _intercept = interceptInt.ToString("X");
         }

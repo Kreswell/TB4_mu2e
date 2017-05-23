@@ -468,7 +468,7 @@ namespace TB_mu2e
         {
             UInt32 vSet;
             Mu2e_Register r = dac.register;
-            TextBox ReadbackBox = null;
+            TextBox ReadbackBox = txtBiasRB0;
             if (dac == ActiveHdmiChannel.Bias0)
             {
                 ReadbackBox = txtBiasRB0;
@@ -481,15 +481,15 @@ namespace TB_mu2e
             {
                 ReadbackBox = txtTrimRB0;
             }
-            else if (dac == ActiveHdmiChannel.Trim0)
+            else if (dac == ActiveHdmiChannel.Trim1)
             {
                 ReadbackBox = txtTrimRB1;
             }
-            else if (dac == ActiveHdmiChannel.Trim0)
+            else if (dac == ActiveHdmiChannel.Trim2)
             {
                 ReadbackBox = txtTrimRB2;
             }
-            else if (dac == ActiveHdmiChannel.Trim0)
+            else if (dac == ActiveHdmiChannel.Trim3)
             {
                 ReadbackBox = txtTrimRB3;
             }
@@ -499,12 +499,15 @@ namespace TB_mu2e
             Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
             updateVoltage();
             dac.voltageDataFEB[0] = vHi;
-            for (int t = 0; t < 500; t++)
+            for (int t = 0; t < 1000; t++)
             {
                 System.Threading.Thread.Sleep(1);
                 Application.DoEvents();
             }
-            dac.voltageDataScope[0] = double.Parse(ReadbackBox.Text);
+            if (ReadbackBox.Text != "")
+            {
+                dac.voltageDataScope[0] = double.Parse(ReadbackBox.Text);
+            }
 
 
             vSet = dac.convertVoltage(vMed);
@@ -512,13 +515,15 @@ namespace TB_mu2e
             updateVoltage();
             dac.voltageDataFEB[1] = vMed;
 
-            for (int t = 0; t < 500; t++)
+            for (int t = 0; t < 1000; t++)
             {
                 System.Threading.Thread.Sleep(1);
                 Application.DoEvents();
             }
-            dac.voltageDataScope[1] = double.Parse(ReadbackBox.Text);
-
+            if (ReadbackBox.Text != "")
+            {
+                dac.voltageDataScope[1] = double.Parse(ReadbackBox.Text);
+            }
 
             vSet = dac.convertVoltage(vLow);
             Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
@@ -529,8 +534,10 @@ namespace TB_mu2e
                 System.Threading.Thread.Sleep(1);
                 Application.DoEvents();
             }
-            dac.voltageDataScope[2] = double.Parse(ReadbackBox.Text);
-
+            if (ReadbackBox.Text != "")
+            {
+                dac.voltageDataScope[2] = double.Parse(ReadbackBox.Text);
+            }
 
             dac.FitData();
 
@@ -2277,7 +2284,7 @@ namespace TB_mu2e
             vInt = (UInt32)v;
             Mu2e_Register.WriteReg(vInt, ref rTrim3, ref myFEB.client);
             updateVoltage();
-            for (int t = 0; t < 500; t++)
+            for (int t = 0; t < 1000; t++)
             {
                 System.Threading.Thread.Sleep(1);
                 Application.DoEvents();

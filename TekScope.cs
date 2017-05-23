@@ -196,7 +196,7 @@ namespace mu2e.FEB_Test_Jig
             {
                 using (var rmSession = new ResourceManager())
                 {
-                    //mbSession = (MessageBasedSession)rmSession.Open(resourceString);
+                    mbSession = (MessageBasedSession)rmSession.Open(resourceString);
                     // Use SynchronizeCallbacks to specify that the object marshals callbacks across threads appropriately.
                     if (mbSession != null)
                     {
