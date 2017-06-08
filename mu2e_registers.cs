@@ -329,7 +329,7 @@ namespace TB_mu2e
             r1 = new Mu2e_Register();
             r1.name = "BIAS_BUS_DAC0";
             r1.addr = 0x44;
-            r1.fpga_offset_mult = 0x0;
+            r1.fpga_offset_mult = 0x400;
             r1.comment = "Two 12 bits DACs with a possible span of 0..80V. Address 0x44 applies to CMB1..2";
             r1.bit_comment = new string[15];
             list_of_reg.Add(r1);
@@ -337,7 +337,7 @@ namespace TB_mu2e
             r1 = new Mu2e_Register();
             r1.name = "BIAS_BUS_DAC1";
             r1.addr = 0x45;
-            r1.fpga_offset_mult = 0x0;
+            r1.fpga_offset_mult = 0x400;
             r1.comment = "Two 12 bits DACs with a possible span of 0..80V. Address 0x44 applies to CMB3..4";
             r1.bit_comment = new string[15];
             list_of_reg.Add(r1);
