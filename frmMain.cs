@@ -1097,46 +1097,9 @@ namespace TB_mu2e
                 zedFEB1.GraphPane.YAxis.Scale.Max = 100;
                 zedFEB1.GraphPane.YAxis.Scale.Min = 0;
 
-                //Mu2e_Register.WriteReg(0, ref r_pointer0, ref FEB.client);
-                //Mu2e_Register.WriteReg(0, ref r_pointer1, ref FEB.client);
-
-                //uint[] count0 = new uint[512];
-                //uint[] count1 = new uint[512];
-                //uint count0_temp = 0;
-                //uint count1_temp = 1;
-                //for (int i = 0; i < 1024; i++)
-                //{
-                //    Mu2e_Register.WriteReg((uint)i, ref r_pointer0, ref FEB.client);
-                //    Mu2e_Register.WriteReg((uint)i, ref r_pointer1, ref FEB.client);
-                //    if (flgBreak) { i = 1024; }
-                //    if (i % 2 == 0)
-                //    {
-                //        Mu2e_Register.ReadReg(ref r_port0, ref FEB.client);
-                //        count0_temp = r_port0.val;
-                //        Mu2e_Register.ReadReg(ref r_port1, ref FEB.client);
-                //        count1_temp = r_port1.val;                    }
-                //    else
-                //    {
-                //        int th = (i - 1) / 2;
-                //        uint count = 0;
-                //        count0[th] = count0_temp * 65536 + r_port0.val;
-                //        count1[th] = count1_temp * 65536 + r_port1.val;
-                //        count0_temp = 0;
-                //        count1_temp = 0;
-                //        if (myHisto.chan > 7) { count = count1[th]; }
-                //        else { count = count0[th]; }
-                //        myHisto.AddPoint(th, (int)count);
-                //        btnScan.Text = th.ToString();
-                //    }
-                //    //System.Threading.Thread.Sleep(1);
-                //    //Mu2e_Register.ReadReg(ref r_pointer0, ref FEB.client);
-                //    //Mu2e_Register.ReadReg(ref r_pointer1, ref FEB.client);
-                //    //System.Threading.Thread.Sleep(1);
-                //    Application.DoEvents();
-                //}
-
                 for (uint i = 0; i < 64; i++)
                 {
+                    bool CmbCheck = false;
                     uint sipm = i % 8;
                     uint afe;
                     switch (i)
@@ -1145,6 +1108,11 @@ namespace TB_mu2e
                         case 1:
                         case 2:
                         case 3:
+                            r_ch.fpga_index = 0;
+                            r_interval.fpga_index = 0;
+                            afe = 1;
+                            if (checkBox1.Checked) CmbCheck = true;
+                            break;
                         case 4:
                         case 5:
                         case 6:
@@ -1152,11 +1120,17 @@ namespace TB_mu2e
                             r_ch.fpga_index = 0;
                             r_interval.fpga_index = 0;
                             afe = 1;
+                            if (checkBox2.Checked) CmbCheck = true;
                             break;
                         case 8:
                         case 9:
                         case 10:
                         case 11:
+                            r_ch.fpga_index = 0;
+                            r_interval.fpga_index = 0;
+                            afe = 2;
+                            if (checkBox3.Checked) CmbCheck = true;
+                            break;
                         case 12:
                         case 13:
                         case 14:
@@ -1164,11 +1138,17 @@ namespace TB_mu2e
                             r_ch.fpga_index = 0;
                             r_interval.fpga_index = 0;
                             afe = 2;
+                            if (checkBox4.Checked) CmbCheck = true;
                             break;
                         case 16:
                         case 17:
                         case 18:
                         case 19:
+                            r_ch.fpga_index = 1;
+                            r_interval.fpga_index = 1;
+                            afe = 1;
+                            if (checkBox5.Checked) CmbCheck = true;
+                            break;
                         case 20:
                         case 21:
                         case 22:
@@ -1176,11 +1156,17 @@ namespace TB_mu2e
                             r_ch.fpga_index = 1;
                             r_interval.fpga_index = 1;
                             afe = 1;
+                            if (checkBox6.Checked) CmbCheck = true;
                             break;
                         case 24:
                         case 25:
                         case 26:
                         case 27:
+                            r_ch.fpga_index = 1;
+                            r_interval.fpga_index = 1;
+                            afe = 2;
+                            if (checkBox7.Checked) CmbCheck = true;
+                            break;
                         case 28:
                         case 29:
                         case 30:
@@ -1188,11 +1174,17 @@ namespace TB_mu2e
                             r_ch.fpga_index = 1;
                             r_interval.fpga_index = 1;
                             afe = 2;
+                            if (checkBox8.Checked) CmbCheck = true;
                             break;
                         case 32:
                         case 33:
                         case 34:
                         case 35:
+                            r_ch.fpga_index = 2;
+                            r_interval.fpga_index = 2;
+                            afe = 1;
+                            if (checkBox9.Checked) CmbCheck = true;
+                            break;
                         case 36:
                         case 37:
                         case 38:
@@ -1200,11 +1192,17 @@ namespace TB_mu2e
                             r_ch.fpga_index = 2;
                             r_interval.fpga_index = 2;
                             afe = 1;
+                            if (checkBox10.Checked) CmbCheck = true;
                             break;
                         case 40:
                         case 41:
                         case 42:
                         case 43:
+                            r_ch.fpga_index = 2;
+                            r_interval.fpga_index = 2;
+                            afe = 2;
+                            if (checkBox11.Checked) CmbCheck = true;
+                            break;
                         case 44:
                         case 45:
                         case 46:
@@ -1212,11 +1210,17 @@ namespace TB_mu2e
                             r_ch.fpga_index = 2;
                             r_interval.fpga_index = 2;
                             afe = 2;
+                            if (checkBox12.Checked) CmbCheck = true;
                             break;
                         case 48:
                         case 49:
                         case 50:
                         case 51:
+                            r_ch.fpga_index = 3;
+                            r_interval.fpga_index = 3;
+                            afe = 1;
+                            if (checkBox13.Checked) CmbCheck = true;
+                            break;
                         case 52:
                         case 53:
                         case 54:
@@ -1224,11 +1228,17 @@ namespace TB_mu2e
                             r_ch.fpga_index = 3;
                             r_interval.fpga_index = 3;
                             afe = 1;
+                            if (checkBox14.Checked) CmbCheck = true;
                             break;
                         case 56:
                         case 57:
                         case 58:
                         case 59:
+                            r_ch.fpga_index = 3;
+                            r_interval.fpga_index = 3;
+                            afe = 2;
+                            if (checkBox15.Checked) CmbCheck = true;
+                            break;
                         case 60:
                         case 61:
                         case 62:
@@ -1236,6 +1246,7 @@ namespace TB_mu2e
                             r_ch.fpga_index = 3;
                             r_interval.fpga_index = 3;
                             afe = 2;
+                            if (checkBox16.Checked) CmbCheck = true;
                             break;
                         default:
                             r_ch.fpga_index = 0;
@@ -1243,6 +1254,8 @@ namespace TB_mu2e
                             afe = 1;
                             break;
                     }
+                    if (CmbCheck == false) continue;
+
                     Mu2e_Register.WriteReg(sipm + afe*32, ref r_ch, ref FEB.client);
                     uint[] histo = new uint[512];
                     histo = FEB.ReadHisto((int)i);
@@ -1257,31 +1270,6 @@ namespace TB_mu2e
                     PP.FEB1Histo.Add(myHisto[i]);
                 }
 
-                //for (int i = myHisto.min_thresh; i < myHisto.max_thresh; i++)
-                //{
-                //    if (flgBreak) { i = myHisto.max_thresh; }
-                //    UInt32 th = (UInt32)i;
-                //    Mu2e_Register.WriteReg(th, ref r_th0, ref FEB.client);
-                //    System.Threading.Thread.Sleep(1);
-                //    Mu2e_Register.WriteReg(th, ref r_th1, ref FEB.client);
-                //    System.Threading.Thread.Sleep(2 * myHisto.interval);
-
-                //    Mu2e_Register.ReadReg(ref r_count0, ref FEB.client);
-                //    System.Threading.Thread.Sleep(1);
-                //    Mu2e_Register.ReadReg(ref r_count1, ref FEB.client);
-                //    UInt32 count = 0;
-                //    if (myHisto.chan > 7) { count = r_count1.val; }
-                //    else { count = r_count0.val; }
-
-                //    if (count > myHisto.max_count) { myHisto.max_count = count; }
-
-                //    myHisto.AddPoint((int)th, (int)count);
-                //    //myCurve.AddPoint(th, count);
-
-                //    btnScan.Text = i.ToString();
-                //    Application.DoEvents();
-
-                //}
                 myHisto[(int)udChan.Value].min_thresh = (int)udStart.Value;
                 myHisto[(int)udChan.Value].max_thresh = (int)udStop.Value;
                 //if (_ActiveFEB == 1) { PP.FEB1Histo.Add(myHisto[(int)udChan.Value]); }
@@ -2099,11 +2087,6 @@ namespace TB_mu2e
 
         }
 
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void udStart_ValueChanged(object sender, EventArgs e)
         {
 
@@ -2765,7 +2748,6 @@ namespace TB_mu2e
 
         }
 
-
         private void btnConnectScope_Click(object sender, EventArgs e)
         {
             ScopeBias = new TekScope("Bias Scope", Properties.Settings.Default.ScopeBiasResourceString);
@@ -2882,6 +2864,23 @@ namespace TB_mu2e
             }
 
         private void txtTrimSet3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            string cmb_reg;
+            myFEB.ReadCMB(out cmb_reg);
+            label9.Text = cmb_reg;
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
