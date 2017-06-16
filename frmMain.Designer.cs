@@ -94,6 +94,9 @@ namespace TB_mu2e
             this.lblConsole_disp = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabFEB1 = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
+            this.label24 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.checkBox11 = new System.Windows.Forms.CheckBox();
@@ -217,7 +220,6 @@ namespace TB_mu2e
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
             this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabRUN.SuspendLayout();
@@ -945,6 +947,8 @@ namespace TB_mu2e
             // 
             // tabFEB1
             // 
+            this.tabFEB1.Controls.Add(this.button6);
+            this.tabFEB1.Controls.Add(this.label24);
             this.tabFEB1.Controls.Add(this.listBox1);
             this.tabFEB1.Controls.Add(this.checkBox9);
             this.tabFEB1.Controls.Add(this.checkBox10);
@@ -981,10 +985,40 @@ namespace TB_mu2e
             this.tabFEB1.Text = "FEB";
             this.tabFEB1.UseVisualStyleBackColor = true;
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(485, 421);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 30);
+            this.button6.TabIndex = 85;
+            this.button6.Text = "DRAW";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(481, 308);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(140, 20);
+            this.label24.TabIndex = 84;
+            this.label24.Text = "Histogram to Plot";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(485, 331);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(154, 84);
+            this.listBox1.Sorted = true;
+            this.listBox1.TabIndex = 83;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
             // checkBox9
             // 
             this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(549, 96);
+            this.checkBox9.Location = new System.Drawing.Point(549, 26);
             this.checkBox9.Name = "checkBox9";
             this.checkBox9.Size = new System.Drawing.Size(58, 24);
             this.checkBox9.TabIndex = 82;
@@ -994,7 +1028,7 @@ namespace TB_mu2e
             // checkBox10
             // 
             this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(549, 126);
+            this.checkBox10.Location = new System.Drawing.Point(549, 56);
             this.checkBox10.Name = "checkBox10";
             this.checkBox10.Size = new System.Drawing.Size(58, 24);
             this.checkBox10.TabIndex = 81;
@@ -1004,7 +1038,7 @@ namespace TB_mu2e
             // checkBox11
             // 
             this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(549, 156);
+            this.checkBox11.Location = new System.Drawing.Point(549, 86);
             this.checkBox11.Name = "checkBox11";
             this.checkBox11.Size = new System.Drawing.Size(58, 24);
             this.checkBox11.TabIndex = 80;
@@ -1014,7 +1048,7 @@ namespace TB_mu2e
             // checkBox12
             // 
             this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(549, 186);
+            this.checkBox12.Location = new System.Drawing.Point(549, 116);
             this.checkBox12.Name = "checkBox12";
             this.checkBox12.Size = new System.Drawing.Size(58, 24);
             this.checkBox12.TabIndex = 79;
@@ -1024,7 +1058,7 @@ namespace TB_mu2e
             // checkBox13
             // 
             this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(549, 216);
+            this.checkBox13.Location = new System.Drawing.Point(549, 146);
             this.checkBox13.Name = "checkBox13";
             this.checkBox13.Size = new System.Drawing.Size(58, 24);
             this.checkBox13.TabIndex = 78;
@@ -1034,7 +1068,7 @@ namespace TB_mu2e
             // checkBox14
             // 
             this.checkBox14.AutoSize = true;
-            this.checkBox14.Location = new System.Drawing.Point(549, 246);
+            this.checkBox14.Location = new System.Drawing.Point(549, 176);
             this.checkBox14.Name = "checkBox14";
             this.checkBox14.Size = new System.Drawing.Size(58, 24);
             this.checkBox14.TabIndex = 77;
@@ -1044,7 +1078,7 @@ namespace TB_mu2e
             // checkBox15
             // 
             this.checkBox15.AutoSize = true;
-            this.checkBox15.Location = new System.Drawing.Point(549, 276);
+            this.checkBox15.Location = new System.Drawing.Point(549, 206);
             this.checkBox15.Name = "checkBox15";
             this.checkBox15.Size = new System.Drawing.Size(58, 24);
             this.checkBox15.TabIndex = 76;
@@ -1054,7 +1088,7 @@ namespace TB_mu2e
             // checkBox16
             // 
             this.checkBox16.AutoSize = true;
-            this.checkBox16.Location = new System.Drawing.Point(549, 306);
+            this.checkBox16.Location = new System.Drawing.Point(549, 236);
             this.checkBox16.Name = "checkBox16";
             this.checkBox16.Size = new System.Drawing.Size(58, 24);
             this.checkBox16.TabIndex = 75;
@@ -1064,7 +1098,7 @@ namespace TB_mu2e
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(485, 216);
+            this.checkBox5.Location = new System.Drawing.Point(485, 146);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(58, 24);
             this.checkBox5.TabIndex = 74;
@@ -1074,7 +1108,7 @@ namespace TB_mu2e
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(485, 246);
+            this.checkBox6.Location = new System.Drawing.Point(485, 176);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(58, 24);
             this.checkBox6.TabIndex = 73;
@@ -1084,7 +1118,7 @@ namespace TB_mu2e
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(485, 276);
+            this.checkBox7.Location = new System.Drawing.Point(485, 206);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(58, 24);
             this.checkBox7.TabIndex = 72;
@@ -1094,7 +1128,7 @@ namespace TB_mu2e
             // checkBox8
             // 
             this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(485, 306);
+            this.checkBox8.Location = new System.Drawing.Point(485, 236);
             this.checkBox8.Name = "checkBox8";
             this.checkBox8.Size = new System.Drawing.Size(58, 24);
             this.checkBox8.TabIndex = 71;
@@ -1104,7 +1138,7 @@ namespace TB_mu2e
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(485, 156);
+            this.checkBox3.Location = new System.Drawing.Point(485, 86);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(58, 24);
             this.checkBox3.TabIndex = 70;
@@ -1114,7 +1148,7 @@ namespace TB_mu2e
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(485, 186);
+            this.checkBox4.Location = new System.Drawing.Point(485, 116);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(58, 24);
             this.checkBox4.TabIndex = 69;
@@ -1124,7 +1158,7 @@ namespace TB_mu2e
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(485, 126);
+            this.checkBox2.Location = new System.Drawing.Point(485, 56);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(58, 24);
             this.checkBox2.TabIndex = 68;
@@ -1134,7 +1168,7 @@ namespace TB_mu2e
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(485, 96);
+            this.checkBox1.Location = new System.Drawing.Point(485, 26);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(58, 24);
             this.checkBox1.TabIndex = 67;
@@ -1144,7 +1178,7 @@ namespace TB_mu2e
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(481, 73);
+            this.label10.Location = new System.Drawing.Point(481, 3);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(158, 20);
             this.label10.TabIndex = 66;
@@ -2320,20 +2354,6 @@ namespace TB_mu2e
             this.timerScopeTrim.Interval = 50;
             this.timerScopeTrim.Tick += new System.EventHandler(this.timerScopeTrim_Tick);
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Items.AddRange(new object[] {
-            "test item 1",
-            "test item 2",
-            "test item 3"});
-            this.listBox1.Location = new System.Drawing.Point(484, 364);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 84);
-            this.listBox1.TabIndex = 83;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -2593,5 +2613,7 @@ namespace TB_mu2e
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label24;
     }
 }

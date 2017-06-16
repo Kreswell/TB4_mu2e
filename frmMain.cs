@@ -82,6 +82,8 @@ namespace TB_mu2e
         private bool ScopeBiasVoltageUpdated = false;
         private bool ScopeTrimVoltageUpdated = false;
 
+        List<string> ListSipm = new List<string>();
+
         public void AddConsoleMessage(string mess)
         {
             console_label.add_messg(mess);
@@ -1020,25 +1022,25 @@ namespace TB_mu2e
             {
                 #region ShowSpect
                 //create new histo
-                HISTO_curve[] myHisto = new HISTO_curve[64];
-                for (int i = 0; i < 64; i++)
-                {
-                    myHisto[i] = new HISTO_curve();
-                    myHisto[i].list = new PointPairList();
-                    myHisto[i].loglist = new PointPairList();
-                    myHisto[i].created_time = DateTime.Now;
-                    //myHisto[i].min_thresh = (int)udStart.Value;
-                    myHisto[i].min_thresh = 0;
-                    //myHisto[i].max_thresh = (int)udStop.Value;
-                    myHisto[i].max_thresh = 512;
-                    myHisto[i].interval = (int)udInterval.Value;
-                    //myHisto[i].chan = (int)udChan.Value;
-                    myHisto[i].chan = i;
-                    myHisto[i].integral = _IntegralScan;
-                    myHisto[i].board = _ActiveFEB;
-                    myHisto[i].V = Convert.ToDouble(txtV.Text);
-                    myHisto[i].I = Convert.ToDouble(txtI.Text);
-                }
+                //HISTO_curve[] myHisto = new HISTO_curve[64];
+                //for (int i = 0; i < 64; i++)
+                //{
+                //    myHisto[i] = new HISTO_curve();
+                //    myHisto[i].list = new PointPairList();
+                //    myHisto[i].loglist = new PointPairList();
+                //    myHisto[i].created_time = DateTime.Now;
+                //    //myHisto[i].min_thresh = (int)udStart.Value;
+                //    myHisto[i].min_thresh = 0;
+                //    //myHisto[i].max_thresh = (int)udStop.Value;
+                //    myHisto[i].max_thresh = 512;
+                //    myHisto[i].interval = (int)udInterval.Value;
+                //    //myHisto[i].chan = (int)udChan.Value;
+                //    myHisto[i].chan = i;
+                //    myHisto[i].integral = _IntegralScan;
+                //    myHisto[i].board = _ActiveFEB;
+                //    myHisto[i].V = Convert.ToDouble(txtV.Text);
+                //    myHisto[i].I = Convert.ToDouble(txtI.Text);
+                //}
                 udChan_ValueChanged(null, null);
                 System.Threading.Thread.Sleep(100);
                 btnBIAS_MON_Click(null, null);
@@ -1097,8 +1099,26 @@ namespace TB_mu2e
                 zedFEB1.GraphPane.YAxis.Scale.Max = 100;
                 zedFEB1.GraphPane.YAxis.Scale.Min = 0;
 
+                listBox1.DataSource = null;
+                ListSipm.Clear();
                 for (uint i = 0; i < 64; i++)
                 {
+                    HISTO_curve myHisto = new HISTO_curve();
+                    myHisto.list = new PointPairList();
+                    myHisto.loglist = new PointPairList();
+                    myHisto.created_time = DateTime.Now;
+                    //myHisto.min_thresh = (int)udStart.Value;
+                    myHisto.min_thresh = 0;
+                    //myHisto.max_thresh = (int)udStop.Value;
+                    myHisto.max_thresh = 512;
+                    myHisto.interval = (int)udInterval.Value;
+                    //myHisto.chan = (int)udChan.Value;
+                    myHisto.chan = Convert.ToInt32(i);
+                    myHisto.integral = _IntegralScan;
+                    myHisto.board = _ActiveFEB;
+                    myHisto.V = Convert.ToDouble(txtV.Text);
+                    myHisto.I = Convert.ToDouble(txtI.Text);
+
                     bool CmbCheck = false;
                     uint sipm = i % 8;
                     uint afe;
@@ -1264,14 +1284,16 @@ namespace TB_mu2e
                         if (flgBreak) { j = 512; }
                         uint count = 0;
                         count = histo[j];
-                        if (count > myHisto[i].max_count) { myHisto[i].max_count = count; }
-                        myHisto[i].AddPoint((int)j, (int)count);
+                        if (count > myHisto.max_count) { myHisto.max_count = count; }
+                        myHisto.AddPoint((int)j, (int)count);
                     }
-                    PP.FEB1Histo.Add(myHisto[i]);
+                    PP.FEB1Histo.Add(myHisto);
+                    ListSipm.Add(i+1.ToString());
                 }
+                listBox1.DataSource = ListSipm;
 
-                myHisto[(int)udChan.Value].min_thresh = (int)udStart.Value;
-                myHisto[(int)udChan.Value].max_thresh = (int)udStop.Value;
+                //myHisto.min_thresh = (int)udStart.Value;
+                //myHisto.max_thresh = (int)udStop.Value;
                 //if (_ActiveFEB == 1) { PP.FEB1Histo.Add(myHisto[(int)udChan.Value]); }
                 //if (_ActiveFEB == 2) { PP.FEB2Histo.Add(myHisto[(int)udChan.Value]); }
 
@@ -1327,32 +1349,39 @@ namespace TB_mu2e
             Color[] this_color = new Color[12];
             Histo_helper.InitColorList(ref this_color);
 
+            string SipmSel = listBox1.SelectedItem.ToString();
+
+            int SipmNum = Int32.Parse(SipmSel) - 1;
+
             List<HISTO_curve> myHistoList = null;
             zedFEB1.GraphPane.CurveList.Clear();
 
-            if (_ActiveFEB == 1) { myHistoList = PP.FEB1Histo; }
-            if (_ActiveFEB == 2) { myHistoList = PP.FEB2Histo; }
+            myHistoList = PP.FEB1Histo;
+            //if (_ActiveFEB == 2) { myHistoList = PP.FEB2Histo; }
 
             foreach (HISTO_curve h1 in myHistoList)
             {
-                if (chkLogY.Checked)
+                if (h1.chan == SipmNum)
                 {
-                    zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(Math.Log10(h1.max_count + 0.1 * (h1.max_count - h1.min_count))), 0);
-                    zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.loglist, Color.DarkRed, SymbolType.None);
-                }
-                else
-                {
-                    zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(h1.max_count + 0.1 * (h1.max_count - h1.min_count)), 0);
-                    zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, this_color[h1.chan % 16], SymbolType.None);
-                }
-                double s = 0;
-                s = Math.Round((double)(h1.max_thresh - h1.min_thresh) / 10.0, 0);
-                if (zedFEB1.GraphPane.XAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.XAxis.Scale.MajorStep = s; }
-                zedFEB1.GraphPane.XAxis.Scale.MinorStep = zedFEB1.GraphPane.XAxis.Scale.MajorStep / 4;
+                    if (chkLogY.Checked)
+                    {
+                        zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(Math.Log10(h1.max_count + 0.1 * (h1.max_count - h1.min_count))), 0);
+                        zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.loglist, Color.DarkRed, SymbolType.None);
+                    }
+                    else
+                    {
+                        zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(h1.max_count + 0.1 * (h1.max_count - h1.min_count)), 0);
+                        zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, this_color[h1.chan % 16], SymbolType.None);
+                    }
+                    double s = 0;
+                    s = Math.Round((double)(h1.max_thresh - h1.min_thresh) / 10.0, 0);
+                    if (zedFEB1.GraphPane.XAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.XAxis.Scale.MajorStep = s; }
+                    zedFEB1.GraphPane.XAxis.Scale.MinorStep = zedFEB1.GraphPane.XAxis.Scale.MajorStep / 4;
 
-                s = Math.Round((h1.max_count - h1.min_count) / 10.0, 0);
-                if (zedFEB1.GraphPane.YAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.YAxis.Scale.MajorStep = s; }
-                zedFEB1.GraphPane.YAxis.Scale.MinorStep = zedFEB1.GraphPane.YAxis.Scale.MajorStep / 4;
+                    s = Math.Round((h1.max_count - h1.min_count) / 10.0, 0);
+                    if (zedFEB1.GraphPane.YAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.YAxis.Scale.MajorStep = s; }
+                    zedFEB1.GraphPane.YAxis.Scale.MinorStep = zedFEB1.GraphPane.YAxis.Scale.MajorStep / 4;
+                }
             }
             zedFEB1.Invalidate(true);
             Application.DoEvents();
@@ -2873,6 +2902,7 @@ namespace TB_mu2e
             string cmb_reg;
             myFEB.ReadCMB(out cmb_reg);
             label9.Text = cmb_reg;
+            Application.DoEvents();
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -2883,6 +2913,12 @@ namespace TB_mu2e
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            UpdateDisplay();
+            Application.DoEvents();
         }
     }
 
