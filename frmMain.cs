@@ -82,6 +82,8 @@ namespace TB_mu2e
         private bool ScopeBiasVoltageUpdated = false;
         private bool ScopeTrimVoltageUpdated = false;
 
+        List<string> ListSipm = new List<string>();
+
         public void AddConsoleMessage(string mess)
         {
             console_label.add_messg(mess);
@@ -429,30 +431,157 @@ namespace TB_mu2e
             }
         }
 
-        private void doTest(DacProperties dac, double vScope, double vHi, double vMed, double vLow)
+        //private void doTest(DacProperties dac, double vScope, double vHi, double vMed, double vLow)
+        //{
+        //    UInt32 vSet;
+        //    Mu2e_Register r = dac.register;
+
+        //    vSet = dac.convertVoltage(vHi);
+        //    Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+        //    updateVoltage();
+        //    Application.DoEvents();
+        //    dac.voltageDataFEB[0] = vHi;
+        //    dac.voltageDataScope[0] = vScope;
+
+        //    vSet = dac.convertVoltage(vMed);
+        //    Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+        //    updateVoltage();
+        //    Application.DoEvents();
+        //    dac.voltageDataFEB[1] = vMed;
+        //    dac.voltageDataScope[1] = vScope;
+
+        //    vSet = dac.convertVoltage(vLow);
+        //    Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+        //    updateVoltage();
+        //    Application.DoEvents();
+        //    dac.voltageDataFEB[2] = vLow;
+        //    dac.voltageDataScope[2] = vScope;
+
+        //    dac.FitData();
+
+        //    vSet = dac.convertVoltage(0);
+        //    Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+        //    updateVoltage();
+        //    Application.DoEvents();
+        //}
+
+
+        private void doTest(DacProperties dac, double vHi, double vMed, double vLow)
         {
             UInt32 vSet;
             Mu2e_Register r = dac.register;
+            TextBox ReadbackBox = txtBiasRB0;
+            if (dac == ActiveHdmiChannel.Bias0)
+            {
+                ReadbackBox = txtBiasRB0;
+            }
+            else if (dac == ActiveHdmiChannel.Led0)
+            {
+                ReadbackBox = txtLEDRB0;
+            }
+            else if (dac == ActiveHdmiChannel.Trim0)
+            {
+                ReadbackBox = txtTrimRB0;
+            }
+            else if (dac == ActiveHdmiChannel.Trim1)
+            {
+                ReadbackBox = txtTrimRB1;
+            }
+            else if (dac == ActiveHdmiChannel.Trim2)
+            {
+                ReadbackBox = txtTrimRB2;
+            }
+            else if (dac == ActiveHdmiChannel.Trim3)
+            {
+                ReadbackBox = txtTrimRB3;
+            }
+            else { }
+
+            int n = 5; //number of samples per output voltage data point
+            int tSample = 100; //number of ms between output samples
+            double vSamp = 0;
 
             vSet = dac.convertVoltage(vHi);
             Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
-            Application.DoEvents();
+            updateVoltage();
             dac.voltageDataFEB[0] = vHi;
-            dac.voltageDataScope[0] = vScope;
+            for (int t = 0; t < 500; t++)
+            {
+                System.Threading.Thread.Sleep(1);
+                Application.DoEvents();
+            }
+
+            if (ReadbackBox.Text != "")
+            {
+                vSamp = 0;
+                for (int i = 0; i < n; i++)
+                {
+                    for (int t = 0; t < tSample; t++)
+                    {
+                        System.Threading.Thread.Sleep(1);
+                        Application.DoEvents();
+                    }
+                    vSamp += double.Parse(ReadbackBox.Text);
+                }
+                dac.voltageDataScope[0] = vSamp / n;
+            }
+
 
             vSet = dac.convertVoltage(vMed);
             Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
-            Application.DoEvents();
+            updateVoltage();
             dac.voltageDataFEB[1] = vMed;
-            dac.voltageDataScope[1] = vScope;
+
+            for (int t = 0; t < 500; t++)
+            {
+                System.Threading.Thread.Sleep(1);
+                Application.DoEvents();
+            }
+            if (ReadbackBox.Text != "")
+            {
+                vSamp = 0;
+                for (int i = 0; i < n; i++)
+                {
+                    for (int t = 0; t < tSample; t++)
+                    {
+                        System.Threading.Thread.Sleep(1);
+                        Application.DoEvents();
+                    }
+                    vSamp += double.Parse(ReadbackBox.Text);
+                }
+                dac.voltageDataScope[1] = vSamp / n;
+            }
 
             vSet = dac.convertVoltage(vLow);
             Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
-            Application.DoEvents();
+            updateVoltage();
             dac.voltageDataFEB[2] = vLow;
-            dac.voltageDataScope[2] = vScope;
+            for (int t = 0; t < 500; t++)
+            {
+                System.Threading.Thread.Sleep(1);
+                Application.DoEvents();
+            }
+            if (ReadbackBox.Text != "")
+            {
+                vSamp = 0;
+                for (int i = 0; i < n; i++)
+                {
+                    for (int t = 0; t < tSample; t++)
+                    {
+                        System.Threading.Thread.Sleep(1);
+                        Application.DoEvents();
+                    }
+                    vSamp += double.Parse(ReadbackBox.Text);
+                }
+                dac.voltageDataScope[2] = vSamp / n;
+            }
 
             dac.FitData();
+
+            vSet = dac.convertVoltage(0);
+            Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -893,25 +1022,25 @@ namespace TB_mu2e
             {
                 #region ShowSpect
                 //create new histo
-                HISTO_curve[] myHisto = new HISTO_curve[64];
-                for (int i = 0; i < 64; i++)
-                {
-                    myHisto[i] = new HISTO_curve();
-                    myHisto[i].list = new PointPairList();
-                    myHisto[i].loglist = new PointPairList();
-                    myHisto[i].created_time = DateTime.Now;
-                    //myHisto[i].min_thresh = (int)udStart.Value;
-                    myHisto[i].min_thresh = 0;
-                    //myHisto[i].max_thresh = (int)udStop.Value;
-                    myHisto[i].max_thresh = 512;
-                    myHisto[i].interval = (int)udInterval.Value;
-                    //myHisto[i].chan = (int)udChan.Value;
-                    myHisto[i].chan = i;
-                    myHisto[i].integral = _IntegralScan;
-                    myHisto[i].board = _ActiveFEB;
-                    myHisto[i].V = Convert.ToDouble(txtV.Text);
-                    myHisto[i].I = Convert.ToDouble(txtI.Text);
-                }
+                //HISTO_curve[] myHisto = new HISTO_curve[64];
+                //for (int i = 0; i < 64; i++)
+                //{
+                //    myHisto[i] = new HISTO_curve();
+                //    myHisto[i].list = new PointPairList();
+                //    myHisto[i].loglist = new PointPairList();
+                //    myHisto[i].created_time = DateTime.Now;
+                //    //myHisto[i].min_thresh = (int)udStart.Value;
+                //    myHisto[i].min_thresh = 0;
+                //    //myHisto[i].max_thresh = (int)udStop.Value;
+                //    myHisto[i].max_thresh = 512;
+                //    myHisto[i].interval = (int)udInterval.Value;
+                //    //myHisto[i].chan = (int)udChan.Value;
+                //    myHisto[i].chan = i;
+                //    myHisto[i].integral = _IntegralScan;
+                //    myHisto[i].board = _ActiveFEB;
+                //    myHisto[i].V = Convert.ToDouble(txtV.Text);
+                //    myHisto[i].I = Convert.ToDouble(txtI.Text);
+                //}
                 udChan_ValueChanged(null, null);
                 System.Threading.Thread.Sleep(100);
                 btnBIAS_MON_Click(null, null);
@@ -970,46 +1099,27 @@ namespace TB_mu2e
                 zedFEB1.GraphPane.YAxis.Scale.Max = 100;
                 zedFEB1.GraphPane.YAxis.Scale.Min = 0;
 
-                //Mu2e_Register.WriteReg(0, ref r_pointer0, ref FEB.client);
-                //Mu2e_Register.WriteReg(0, ref r_pointer1, ref FEB.client);
-
-                //uint[] count0 = new uint[512];
-                //uint[] count1 = new uint[512];
-                //uint count0_temp = 0;
-                //uint count1_temp = 1;
-                //for (int i = 0; i < 1024; i++)
-                //{
-                //    Mu2e_Register.WriteReg((uint)i, ref r_pointer0, ref FEB.client);
-                //    Mu2e_Register.WriteReg((uint)i, ref r_pointer1, ref FEB.client);
-                //    if (flgBreak) { i = 1024; }
-                //    if (i % 2 == 0)
-                //    {
-                //        Mu2e_Register.ReadReg(ref r_port0, ref FEB.client);
-                //        count0_temp = r_port0.val;
-                //        Mu2e_Register.ReadReg(ref r_port1, ref FEB.client);
-                //        count1_temp = r_port1.val;                    }
-                //    else
-                //    {
-                //        int th = (i - 1) / 2;
-                //        uint count = 0;
-                //        count0[th] = count0_temp * 65536 + r_port0.val;
-                //        count1[th] = count1_temp * 65536 + r_port1.val;
-                //        count0_temp = 0;
-                //        count1_temp = 0;
-                //        if (myHisto.chan > 7) { count = count1[th]; }
-                //        else { count = count0[th]; }
-                //        myHisto.AddPoint(th, (int)count);
-                //        btnScan.Text = th.ToString();
-                //    }
-                //    //System.Threading.Thread.Sleep(1);
-                //    //Mu2e_Register.ReadReg(ref r_pointer0, ref FEB.client);
-                //    //Mu2e_Register.ReadReg(ref r_pointer1, ref FEB.client);
-                //    //System.Threading.Thread.Sleep(1);
-                //    Application.DoEvents();
-                //}
-
+                listBox1.DataSource = null;
+                ListSipm.Clear();
                 for (uint i = 0; i < 64; i++)
                 {
+                    HISTO_curve myHisto = new HISTO_curve();
+                    myHisto.list = new PointPairList();
+                    myHisto.loglist = new PointPairList();
+                    myHisto.created_time = DateTime.Now;
+                    //myHisto.min_thresh = (int)udStart.Value;
+                    myHisto.min_thresh = 0;
+                    //myHisto.max_thresh = (int)udStop.Value;
+                    myHisto.max_thresh = 512;
+                    myHisto.interval = (int)udInterval.Value;
+                    //myHisto.chan = (int)udChan.Value;
+                    myHisto.chan = Convert.ToInt32(i);
+                    myHisto.integral = _IntegralScan;
+                    myHisto.board = _ActiveFEB;
+                    myHisto.V = Convert.ToDouble(txtV.Text);
+                    myHisto.I = Convert.ToDouble(txtI.Text);
+
+                    bool CmbCheck = false;
                     uint sipm = i % 8;
                     uint afe;
                     switch (i)
@@ -1018,6 +1128,11 @@ namespace TB_mu2e
                         case 1:
                         case 2:
                         case 3:
+                            r_ch.fpga_index = 0;
+                            r_interval.fpga_index = 0;
+                            afe = 1;
+                            if (checkBox1.Checked) CmbCheck = true;
+                            break;
                         case 4:
                         case 5:
                         case 6:
@@ -1025,11 +1140,17 @@ namespace TB_mu2e
                             r_ch.fpga_index = 0;
                             r_interval.fpga_index = 0;
                             afe = 1;
+                            if (checkBox2.Checked) CmbCheck = true;
                             break;
                         case 8:
                         case 9:
                         case 10:
                         case 11:
+                            r_ch.fpga_index = 0;
+                            r_interval.fpga_index = 0;
+                            afe = 2;
+                            if (checkBox3.Checked) CmbCheck = true;
+                            break;
                         case 12:
                         case 13:
                         case 14:
@@ -1037,11 +1158,17 @@ namespace TB_mu2e
                             r_ch.fpga_index = 0;
                             r_interval.fpga_index = 0;
                             afe = 2;
+                            if (checkBox4.Checked) CmbCheck = true;
                             break;
                         case 16:
                         case 17:
                         case 18:
                         case 19:
+                            r_ch.fpga_index = 1;
+                            r_interval.fpga_index = 1;
+                            afe = 1;
+                            if (checkBox5.Checked) CmbCheck = true;
+                            break;
                         case 20:
                         case 21:
                         case 22:
@@ -1049,11 +1176,17 @@ namespace TB_mu2e
                             r_ch.fpga_index = 1;
                             r_interval.fpga_index = 1;
                             afe = 1;
+                            if (checkBox6.Checked) CmbCheck = true;
                             break;
                         case 24:
                         case 25:
                         case 26:
                         case 27:
+                            r_ch.fpga_index = 1;
+                            r_interval.fpga_index = 1;
+                            afe = 2;
+                            if (checkBox7.Checked) CmbCheck = true;
+                            break;
                         case 28:
                         case 29:
                         case 30:
@@ -1061,11 +1194,17 @@ namespace TB_mu2e
                             r_ch.fpga_index = 1;
                             r_interval.fpga_index = 1;
                             afe = 2;
+                            if (checkBox8.Checked) CmbCheck = true;
                             break;
                         case 32:
                         case 33:
                         case 34:
                         case 35:
+                            r_ch.fpga_index = 2;
+                            r_interval.fpga_index = 2;
+                            afe = 1;
+                            if (checkBox9.Checked) CmbCheck = true;
+                            break;
                         case 36:
                         case 37:
                         case 38:
@@ -1073,11 +1212,17 @@ namespace TB_mu2e
                             r_ch.fpga_index = 2;
                             r_interval.fpga_index = 2;
                             afe = 1;
+                            if (checkBox10.Checked) CmbCheck = true;
                             break;
                         case 40:
                         case 41:
                         case 42:
                         case 43:
+                            r_ch.fpga_index = 2;
+                            r_interval.fpga_index = 2;
+                            afe = 2;
+                            if (checkBox11.Checked) CmbCheck = true;
+                            break;
                         case 44:
                         case 45:
                         case 46:
@@ -1085,11 +1230,17 @@ namespace TB_mu2e
                             r_ch.fpga_index = 2;
                             r_interval.fpga_index = 2;
                             afe = 2;
+                            if (checkBox12.Checked) CmbCheck = true;
                             break;
                         case 48:
                         case 49:
                         case 50:
                         case 51:
+                            r_ch.fpga_index = 3;
+                            r_interval.fpga_index = 3;
+                            afe = 1;
+                            if (checkBox13.Checked) CmbCheck = true;
+                            break;
                         case 52:
                         case 53:
                         case 54:
@@ -1097,11 +1248,17 @@ namespace TB_mu2e
                             r_ch.fpga_index = 3;
                             r_interval.fpga_index = 3;
                             afe = 1;
+                            if (checkBox14.Checked) CmbCheck = true;
                             break;
                         case 56:
                         case 57:
                         case 58:
                         case 59:
+                            r_ch.fpga_index = 3;
+                            r_interval.fpga_index = 3;
+                            afe = 2;
+                            if (checkBox15.Checked) CmbCheck = true;
+                            break;
                         case 60:
                         case 61:
                         case 62:
@@ -1109,6 +1266,7 @@ namespace TB_mu2e
                             r_ch.fpga_index = 3;
                             r_interval.fpga_index = 3;
                             afe = 2;
+                            if (checkBox16.Checked) CmbCheck = true;
                             break;
                         default:
                             r_ch.fpga_index = 0;
@@ -1116,6 +1274,8 @@ namespace TB_mu2e
                             afe = 1;
                             break;
                     }
+                    if (CmbCheck == false) continue;
+
                     Mu2e_Register.WriteReg(sipm + afe*32, ref r_ch, ref FEB.client);
                     uint[] histo = new uint[512];
                     histo = FEB.ReadHisto((int)i);
@@ -1124,39 +1284,16 @@ namespace TB_mu2e
                         if (flgBreak) { j = 512; }
                         uint count = 0;
                         count = histo[j];
-                        if (count > myHisto[i].max_count) { myHisto[i].max_count = count; }
-                        myHisto[i].AddPoint((int)j, (int)count);
+                        if (count > myHisto.max_count) { myHisto.max_count = count; }
+                        myHisto.AddPoint((int)j, (int)count);
                     }
-                    PP.FEB1Histo.Add(myHisto[i]);
+                    PP.FEB1Histo.Add(myHisto);
+                    ListSipm.Add(i+1.ToString());
                 }
+                listBox1.DataSource = ListSipm;
 
-                //for (int i = myHisto.min_thresh; i < myHisto.max_thresh; i++)
-                //{
-                //    if (flgBreak) { i = myHisto.max_thresh; }
-                //    UInt32 th = (UInt32)i;
-                //    Mu2e_Register.WriteReg(th, ref r_th0, ref FEB.client);
-                //    System.Threading.Thread.Sleep(1);
-                //    Mu2e_Register.WriteReg(th, ref r_th1, ref FEB.client);
-                //    System.Threading.Thread.Sleep(2 * myHisto.interval);
-
-                //    Mu2e_Register.ReadReg(ref r_count0, ref FEB.client);
-                //    System.Threading.Thread.Sleep(1);
-                //    Mu2e_Register.ReadReg(ref r_count1, ref FEB.client);
-                //    UInt32 count = 0;
-                //    if (myHisto.chan > 7) { count = r_count1.val; }
-                //    else { count = r_count0.val; }
-
-                //    if (count > myHisto.max_count) { myHisto.max_count = count; }
-
-                //    myHisto.AddPoint((int)th, (int)count);
-                //    //myCurve.AddPoint(th, count);
-
-                //    btnScan.Text = i.ToString();
-                //    Application.DoEvents();
-
-                //}
-                myHisto[(int)udChan.Value].min_thresh = (int)udStart.Value;
-                myHisto[(int)udChan.Value].max_thresh = (int)udStop.Value;
+                //myHisto.min_thresh = (int)udStart.Value;
+                //myHisto.max_thresh = (int)udStop.Value;
                 //if (_ActiveFEB == 1) { PP.FEB1Histo.Add(myHisto[(int)udChan.Value]); }
                 //if (_ActiveFEB == 2) { PP.FEB2Histo.Add(myHisto[(int)udChan.Value]); }
 
@@ -1212,32 +1349,39 @@ namespace TB_mu2e
             Color[] this_color = new Color[12];
             Histo_helper.InitColorList(ref this_color);
 
+            string SipmSel = listBox1.SelectedItem.ToString();
+
+            int SipmNum = Int32.Parse(SipmSel) - 1;
+
             List<HISTO_curve> myHistoList = null;
             zedFEB1.GraphPane.CurveList.Clear();
 
-            if (_ActiveFEB == 1) { myHistoList = PP.FEB1Histo; }
-            if (_ActiveFEB == 2) { myHistoList = PP.FEB2Histo; }
+            myHistoList = PP.FEB1Histo;
+            //if (_ActiveFEB == 2) { myHistoList = PP.FEB2Histo; }
 
             foreach (HISTO_curve h1 in myHistoList)
             {
-                if (chkLogY.Checked)
+                if (h1.chan == SipmNum)
                 {
-                    zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(Math.Log10(h1.max_count + 0.1 * (h1.max_count - h1.min_count))), 0);
-                    zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.loglist, Color.DarkRed, SymbolType.None);
-                }
-                else
-                {
-                    zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(h1.max_count + 0.1 * (h1.max_count - h1.min_count)), 0);
-                    zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, this_color[h1.chan % 16], SymbolType.None);
-                }
-                double s = 0;
-                s = Math.Round((double)(h1.max_thresh - h1.min_thresh) / 10.0, 0);
-                if (zedFEB1.GraphPane.XAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.XAxis.Scale.MajorStep = s; }
-                zedFEB1.GraphPane.XAxis.Scale.MinorStep = zedFEB1.GraphPane.XAxis.Scale.MajorStep / 4;
+                    if (chkLogY.Checked)
+                    {
+                        zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(Math.Log10(h1.max_count + 0.1 * (h1.max_count - h1.min_count))), 0);
+                        zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.loglist, Color.DarkRed, SymbolType.None);
+                    }
+                    else
+                    {
+                        zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(h1.max_count + 0.1 * (h1.max_count - h1.min_count)), 0);
+                        zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, this_color[h1.chan % 16], SymbolType.None);
+                    }
+                    double s = 0;
+                    s = Math.Round((double)(h1.max_thresh - h1.min_thresh) / 10.0, 0);
+                    if (zedFEB1.GraphPane.XAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.XAxis.Scale.MajorStep = s; }
+                    zedFEB1.GraphPane.XAxis.Scale.MinorStep = zedFEB1.GraphPane.XAxis.Scale.MajorStep / 4;
 
-                s = Math.Round((h1.max_count - h1.min_count) / 10.0, 0);
-                if (zedFEB1.GraphPane.YAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.YAxis.Scale.MajorStep = s; }
-                zedFEB1.GraphPane.YAxis.Scale.MinorStep = zedFEB1.GraphPane.YAxis.Scale.MajorStep / 4;
+                    s = Math.Round((h1.max_count - h1.min_count) / 10.0, 0);
+                    if (zedFEB1.GraphPane.YAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.YAxis.Scale.MajorStep = s; }
+                    zedFEB1.GraphPane.YAxis.Scale.MinorStep = zedFEB1.GraphPane.YAxis.Scale.MajorStep / 4;
+                }
             }
             zedFEB1.Invalidate(true);
             Application.DoEvents();
@@ -1600,7 +1744,7 @@ namespace TB_mu2e
         {
             bool in_spill;
 
-            if (/*tabControl.SelectedIndex == 0*/ PP.myRun != null)
+            if(PP.myRun != null) //HACK: Kres, I found this error where myRun = null and threw lots of errors. you might want to ensure this is what you intend. The line you had is above. Stephen
             {
                 //Console.WriteLine("timer");
                 try
@@ -1972,11 +2116,6 @@ namespace TB_mu2e
 
         }
 
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void udStart_ValueChanged(object sender, EventArgs e)
         {
 
@@ -2024,8 +2163,35 @@ namespace TB_mu2e
 
         private void btnDacUpdate_Click(object sender, EventArgs e)
         {
+            updateVoltage();
+            Application.DoEvents();
+            for (int i = 1; i < 3; i++)
+            {
+                ScopeBias.GetVoltage(i);
+                int t = 0;
+                while (!ScopeBiasVoltageUpdated && t++ < 99999) {
+                    Application.DoEvents();
+                }
+                ScopeBiasVoltageUpdated = false;
+            }
+            for (int i = 1; i < 5; i++)
+            {
+                ScopeTrim.GetVoltage(i);
+                int t = 0;
+                while (!ScopeTrimVoltageUpdated && t++ < 99999) {
+                    Application.DoEvents();
+                }
+                if (ScopeTrimVoltageUpdated)
+                {
+
+                }
+                ScopeTrimVoltageUpdated = false;
+            }
+        }
+
+        private void updateVoltage()
+        {
             Mu2e_FEB_client myFEB = null;
-            Mu2e_Register r;
             double v;
             if (_ActiveFEB == 1)
             { myFEB = PP.FEB1; }
@@ -2038,33 +2204,25 @@ namespace TB_mu2e
 
             if (ActiveHdmiChannel != null)
             {
-                r = ActiveHdmiChannel.Bias0.register;
-                Mu2e_Register.ReadReg(ref r, ref myFEB.client);
-                v = r.val * 0.02;
+                Mu2e_Register.ReadReg(ref rBias, ref myFEB.client);
+                v = rBias.val * 0.02;
                 txtBiasSet0.Text = v.ToString("0.000");
-                r = ActiveHdmiChannel.Led0.register;
-                Mu2e_Register.ReadReg(ref r, ref myFEB.client);
-                v = r.val * 0.003;
+                Mu2e_Register.ReadReg(ref rLed, ref myFEB.client);
+                v = rLed.val * 0.003333333;
                 txtLEDSet0.Text = v.ToString("0.000");
-                r = ActiveHdmiChannel.Trim0.register;
-                Mu2e_Register.ReadReg(ref r, ref myFEB.client);
-                v = ((double)r.val - 2048) * 0.002;
+                Mu2e_Register.ReadReg(ref rTrim0, ref myFEB.client);
+                v = ((double)rTrim0.val - 2048) * 0.002;
                 txtTrimSet0.Text = v.ToString("0.000");
-                r = ActiveHdmiChannel.Trim1.register;
-                Mu2e_Register.ReadReg(ref r, ref myFEB.client);
-                v = ((double)r.val - 2048) * 0.002;
+                Mu2e_Register.ReadReg(ref rTrim1, ref myFEB.client);
+                v = ((double)rTrim1.val - 2048) * 0.002;
                 txtTrimSet1.Text = v.ToString("0.000");
-                r = ActiveHdmiChannel.Trim2.register;
-                Mu2e_Register.ReadReg(ref r, ref myFEB.client);
-                v = ((double)r.val - 2048) * 0.002;
+                Mu2e_Register.ReadReg(ref rTrim2, ref myFEB.client);
+                v = ((double)rTrim2.val - 2048) * 0.002;
                 txtTrimSet2.Text = v.ToString("0.000");
-                r = ActiveHdmiChannel.Trim3.register;
-                Mu2e_Register.ReadReg(ref r, ref myFEB.client);
-                v = ((double)r.val - 2048) * 0.002;
+                Mu2e_Register.ReadReg(ref rTrim3, ref myFEB.client);
+                v = ((double)rTrim3.val - 2048) * 0.002;
                 txtTrimSet3.Text = v.ToString("0.000");
 
-                //   ScopeBias.OnVoltageChanged += ScopeBiasVoltageChanged;
-                //   ScopeTrim.OnVoltageChanged += ScopeTrimVoltageChanged;
               /*  connectScopes();
                 for (int i = 1; i < 3; i++) {
                     ScopeBias.GetVoltage(i);
@@ -2086,7 +2244,6 @@ namespace TB_mu2e
                 ScopeBias.closeScope();
                 ScopeTrim.closeScope();
                 **/
-                Application.DoEvents();
             }
             else { MessageBox.Show("No HDMI channel selected"); return; }
         }
@@ -2111,33 +2268,27 @@ namespace TB_mu2e
                 { MessageBox.Show("No FEB active"); return; }
       
                 double v;
-                Mu2e_Register r;
                 UInt32 vInt;
-                rBias.fpga_index = fpga_num;
+
                 v = Convert.ToDouble(txtBiasSet0.Text);
                 vInt = (UInt32)v * 50;
-                r = ActiveHdmiChannel.Bias0.register;
-                Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+                Mu2e_Register.WriteReg(vInt, ref rBias, ref myFEB.client);
                 v = Convert.ToDouble(txtLEDSet0.Text);
                 vInt = (UInt32)v * 300;
-                r = ActiveHdmiChannel.Led0.register;
-                Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+                Mu2e_Register.WriteReg(vInt, ref rLed, ref myFEB.client);
                 v = Convert.ToDouble(txtTrimSet0.Text) * 500 + 2048;
                 vInt = (UInt32)v;
-                r = ActiveHdmiChannel.Trim0.register;
-                Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+                Mu2e_Register.WriteReg(vInt, ref rTrim0, ref myFEB.client);
                 v = Convert.ToDouble(txtTrimSet1.Text) * 500 + 2048;
                 vInt = (UInt32)v;
-                r = ActiveHdmiChannel.Trim1.register;
-                Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+                Mu2e_Register.WriteReg(vInt, ref rTrim1, ref myFEB.client);
                 v = Convert.ToDouble(txtTrimSet2.Text) * 500 + 2048;
                 vInt = (UInt32)v;
-                r = ActiveHdmiChannel.Trim2.register;
-                Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+                Mu2e_Register.WriteReg(vInt, ref rTrim2, ref myFEB.client);
                 v = Convert.ToDouble(txtTrimSet3.Text) * 500 + 2048;
                 vInt = (UInt32)v;
-                r = ActiveHdmiChannel.Trim3.register;
-                Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+                Mu2e_Register.WriteReg(vInt, ref rTrim3, ref myFEB.client);
+                updateVoltage();
             }
             Application.DoEvents();
         }
@@ -2155,52 +2306,78 @@ namespace TB_mu2e
         private void btnDacScan_Click(object sender, EventArgs e)
         {
             Mu2e_FEB_client myFEB = null;
-            Mu2e_Register r;
             double v;
 
             myFEB = PP.FEB1;
             UInt32 vInt;
-            v = 75;
+
+            v = 65;
             vInt = (UInt32)v * 50;
-            r = ActiveHdmiChannel.Bias0.register;
-            Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
-            v = 14;
+            Mu2e_Register.WriteReg(vInt, ref rBias, ref myFEB.client);
+            v = 12;
             vInt = (UInt32)v * 300;
-            r = ActiveHdmiChannel.Led0.register;
-            Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+            Mu2e_Register.WriteReg(vInt, ref rLed, ref myFEB.client);
             v = 4 * 500 + 2048;
             vInt = (UInt32)v;
-            r = ActiveHdmiChannel.Trim0.register;
-            Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+            Mu2e_Register.WriteReg(vInt, ref rTrim0, ref myFEB.client);
             v = 4 * 500 + 2048;
             vInt = (UInt32)v;
-            r = ActiveHdmiChannel.Trim1.register;
-            Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+            Mu2e_Register.WriteReg(vInt, ref rTrim1, ref myFEB.client);
             v = 4 * 500 + 2048;
             vInt = (UInt32)v;
-            r = ActiveHdmiChannel.Trim2.register;
-            Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+            Mu2e_Register.WriteReg(vInt, ref rTrim2, ref myFEB.client);
             v = 4 * 500 + 2048;
             vInt = (UInt32)v;
-            r = ActiveHdmiChannel.Trim3.register;
-            Mu2e_Register.WriteReg(vInt, ref r, ref myFEB.client);
+            Mu2e_Register.WriteReg(vInt, ref rTrim3, ref myFEB.client);
+            updateVoltage();
+            for (int t = 0; t < 2000; t++)
+            {
+                System.Threading.Thread.Sleep(1);
+                Application.DoEvents();
+            }
 
             //Check voltage readbacks. If all six too small print error message.
             bool doScan = true;
-            if (vScopeBias < 50 && vScopeLED < 10 && vScopeTrim0 < 1 && vScopeTrim1 < 1 && vScopeTrim2 <1 && vScopeTrim3 < 1)
+            if (vScopeBias < 50 || vScopeLED < 10 || vScopeTrim0 < 1 || vScopeTrim1 < 1 || vScopeTrim2 <1 || vScopeTrim3 < 1)
             {
                 DialogResult result = MessageBox.Show("Test cable appears to not be connected.\nAre you sure you are connected to the correct channel?\nRun anyway?", "", MessageBoxButtons.OKCancel);
-                if (result == DialogResult.Cancel) { doScan = false; }
+                if (result == DialogResult.Cancel)
+                {
+                    doScan = false;
+
+                    v = 0;
+                    vInt = (UInt32)v * 50;
+                    Mu2e_Register.WriteReg(vInt, ref rBias, ref myFEB.client);
+                    vInt = (UInt32)v * 300;
+                    Mu2e_Register.WriteReg(vInt, ref rLed, ref myFEB.client);
+                    v = 2048;
+                    vInt = (UInt32)v;
+                    Mu2e_Register.WriteReg(vInt, ref rTrim0, ref myFEB.client);
+                    vInt = (UInt32)v;
+                    Mu2e_Register.WriteReg(vInt, ref rTrim1, ref myFEB.client);
+                    vInt = (UInt32)v;
+                    Mu2e_Register.WriteReg(vInt, ref rTrim2, ref myFEB.client);
+                    vInt = (UInt32)v;
+                    Mu2e_Register.WriteReg(vInt, ref rTrim3, ref myFEB.client);
+                    updateVoltage();
+                    Application.DoEvents();
+                }
             }
 
             if (doScan)
             {
-                doTest(ActiveHdmiChannel.Bias0, vScopeBias, 75, 35, 10);
-                doTest(ActiveHdmiChannel.Led0, vScopeLED, 14, 7, 0);
-                doTest(ActiveHdmiChannel.Trim0, vScopeTrim0, 4, 0, -4);
-                doTest(ActiveHdmiChannel.Trim1, vScopeTrim1, 4, 0, -4);
-                doTest(ActiveHdmiChannel.Trim2, vScopeTrim2, 4, 0, -4);
-                doTest(ActiveHdmiChannel.Trim3, vScopeTrim3, 4, 0, -4);
+                doTest(ActiveHdmiChannel.Bias0, 65, 35, 10);
+                doTest(ActiveHdmiChannel.Led0, 12, 6, 0);
+                doTest(ActiveHdmiChannel.Trim0, 4, 0, -4);
+                doTest(ActiveHdmiChannel.Trim1, 4, 0, -4);
+                doTest(ActiveHdmiChannel.Trim2, 4, 0, -4);
+                doTest(ActiveHdmiChannel.Trim3, 4, 0, -4);
+                //doTest(ActiveHdmiChannel.Bias0, vScopeBias, 75, 35, 10);
+                //doTest(ActiveHdmiChannel.Led0, vScopeLED, 14, 7, 0);
+                //doTest(ActiveHdmiChannel.Trim0, vScopeTrim0, 4, 0, -4);
+                //doTest(ActiveHdmiChannel.Trim1, vScopeTrim1, 4, 0, -4);
+                //doTest(ActiveHdmiChannel.Trim2, vScopeTrim2, 4, 0, -4);
+                //doTest(ActiveHdmiChannel.Trim3, vScopeTrim3, 4, 0, -4);
                 ActiveHdmiChannel.isTested = true;
                 setButtonColor();
             }
@@ -2243,6 +2420,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel0))
             { HdmiChannelList.Add(HdmiChannel0); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ12_Click(object sender, EventArgs e)
@@ -2261,6 +2440,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel1))
             { HdmiChannelList.Add(HdmiChannel1); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ13_Click(object sender, EventArgs e)
@@ -2279,6 +2460,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel2))
             { HdmiChannelList.Add(HdmiChannel2); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ14_Click(object sender, EventArgs e)
@@ -2297,6 +2480,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel3))
             { HdmiChannelList.Add(HdmiChannel3); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ15_Click(object sender, EventArgs e)
@@ -2315,6 +2500,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel4))
             { HdmiChannelList.Add(HdmiChannel4); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ16_Click(object sender, EventArgs e)
@@ -2333,6 +2520,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel5))
             { HdmiChannelList.Add(HdmiChannel5); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ17_Click(object sender, EventArgs e)
@@ -2351,6 +2540,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel6))
             { HdmiChannelList.Add(HdmiChannel6); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ18_Click(object sender, EventArgs e)
@@ -2369,6 +2560,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel7))
             { HdmiChannelList.Add(HdmiChannel7); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ19_Click(object sender, EventArgs e)
@@ -2387,6 +2580,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel8))
             { HdmiChannelList.Add(HdmiChannel8); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ20_Click(object sender, EventArgs e)
@@ -2405,6 +2600,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel9))
             { HdmiChannelList.Add(HdmiChannel9); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ21_Click(object sender, EventArgs e)
@@ -2423,6 +2620,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel10))
             { HdmiChannelList.Add(HdmiChannel10); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ22_Click(object sender, EventArgs e)
@@ -2441,6 +2640,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel11))
             { HdmiChannelList.Add(HdmiChannel11); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ23_Click(object sender, EventArgs e)
@@ -2459,6 +2660,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel12))
             { HdmiChannelList.Add(HdmiChannel12); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ24_Click(object sender, EventArgs e)
@@ -2477,6 +2680,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel13))
             { HdmiChannelList.Add(HdmiChannel13); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ25_Click(object sender, EventArgs e)
@@ -2495,6 +2700,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel14))
             { HdmiChannelList.Add(HdmiChannel14); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnJ26_Click(object sender, EventArgs e)
@@ -2513,6 +2720,8 @@ namespace TB_mu2e
             if (!HdmiChannelList.Exists(x => x == HdmiChannel15))
             { HdmiChannelList.Add(HdmiChannel15); }
             setButtonColor();
+            updateVoltage();
+            Application.DoEvents();
         }
 
         private void btnDacSave_Click(object sender, EventArgs e)
@@ -2568,13 +2777,8 @@ namespace TB_mu2e
 
         }
 
-
         private void btnConnectScope_Click(object sender, EventArgs e)
         {
-            connectScopes();
-        }
-
-        private void connectScopes() { 
             ScopeBias = new TekScope("Bias Scope", Properties.Settings.Default.ScopeBiasResourceString);
             if (ScopeBias.isConnected == false)
             {
@@ -2586,7 +2790,7 @@ namespace TB_mu2e
                 Properties.Settings.Default.Save();
                 ScopeBias.OnConnectedStateChanged += ScopeBiasConnectionChanged;
                 ScopeBias.OnVoltageChanged += ScopeBiasVoltageChanged;
-                //timerScopeBias.Enabled = true;
+                timerScopeBias.Enabled = true;
             }
 
             ScopeTrim = new TekScope("Trim Scope", Properties.Settings.Default.ScopeTrimResourceString);
@@ -2600,7 +2804,7 @@ namespace TB_mu2e
                 Properties.Settings.Default.Save();
                 ScopeTrim.OnConnectedStateChanged += ScopeTrimConnectionChanged;
                 ScopeTrim.OnVoltageChanged += ScopeTrimVoltageChanged;
-                //timerScopeTrim.Enabled = true;
+                timerScopeTrim.Enabled = true;
             }
         }
 
@@ -2633,7 +2837,7 @@ namespace TB_mu2e
             }
             //else
             // tbVolts.Text = "x.xx";
-            //timerScopeTrim.Enabled = true;
+            timerScopeTrim.Enabled = true;
             ScopeTrimVoltageUpdated = true;
         }
 
@@ -2658,7 +2862,7 @@ namespace TB_mu2e
             }
             //else
             // tbVolts.Text = "x.xx";
-            //timerScopeBias.Enabled = true;
+            timerScopeBias.Enabled = true;
             ScopeBiasVoltageUpdated = true;
 
         }
@@ -2675,16 +2879,47 @@ namespace TB_mu2e
         {
             timerScopeTrim.Enabled = false; //renabled in the voltageChagned call back
             if (ScopeTrim != null && ScopeTrim.isConnected == true)
-                ScopeTrim.GetVoltage();
+                 ScopeTrim.GetVoltage();
         }
 
         private void timerScopeBias_Tick(object sender, EventArgs e)
         {
             timerScopeBias.Enabled = false; //renabled in the voltageChagned call back
-            if (ScopeBias != null && ScopeBias.isConnected == true)
-                ScopeBias.GetVoltage();
+            if (ScopeBias != null && ScopeBias.isConnected == true) { 
+                VoltageChangedEventsArgs voltArgs = ScopeBias.GetVoltage();
+                Console.WriteLine("Here is an example where calling GetVoltage directly returns the reqested voltage."
+                                  + " Channel " + voltArgs.channel + " = " + voltArgs.Voltage);
+                }
+            }
+
+        private void txtTrimSet3_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            string cmb_reg;
+            myFEB.ReadCMB(out cmb_reg);
+            label9.Text = cmb_reg;
+            Application.DoEvents();
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            UpdateDisplay();
+            Application.DoEvents();
+        }
     }
 
 
