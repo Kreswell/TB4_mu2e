@@ -1288,7 +1288,8 @@ namespace TB_mu2e
                         myHisto.AddPoint((int)j, (int)count);
                     }
                     PP.FEB1Histo.Add(myHisto);
-                    ListSipm.Add(i+1.ToString());
+                    uint SipmNum = i + 1;
+                    ListSipm.Add(SipmNum.ToString());
                 }
                 listBox1.DataSource = ListSipm;
 
@@ -1371,7 +1372,8 @@ namespace TB_mu2e
                     else
                     {
                         zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(h1.max_count + 0.1 * (h1.max_count - h1.min_count)), 0);
-                        zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, this_color[h1.chan % 16], SymbolType.None);
+                        //zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, this_color[h1.chan % 16], SymbolType.None);
+                        zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, Color.DarkBlue, SymbolType.None);
                     }
                     double s = 0;
                     s = Math.Round((double)(h1.max_thresh - h1.min_thresh) / 10.0, 0);
@@ -2395,11 +2397,11 @@ namespace TB_mu2e
 
         private void btnSnSave_Click(object sender, EventArgs e)
         {
-            Mu2e_FEB_client myFEB = null;
-            if (_ActiveFEB == 1)
-            { myFEB = PP.FEB1; }
-            if (_ActiveFEB == 2)
-            { myFEB = PP.FEB2; }
+            //Mu2e_FEB_client myFEB = null;
+            //if (_ActiveFEB == 1)
+            myFEB = PP.FEB1;
+            //if (_ActiveFEB == 2)
+            //{ myFEB = PP.FEB2; }
 
             myFEB.FEBserialNum = txtSN.Text;
         }

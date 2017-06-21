@@ -100,7 +100,8 @@ namespace TB_mu2e
         public void SetV(double V, int fpga = 0)
         {
             UInt32 counts;
-            double t = V / 5.38 * 256;
+            //double t = V / 5.38 * 256;
+            double t = V * 50;
             t = System.Math.Round(t);
             try { counts = Convert.ToUInt32(t); }
             catch { counts = 0; }
@@ -124,7 +125,8 @@ namespace TB_mu2e
 
             try { V = (double)Convert.ToInt32(a, 16); }
             catch { V = 0; }
-            double t = V * 5.38 / 256;
+            //double t = V * 5.38 / 256;
+            double t = V * 0.02;
             //t = System.Math.Round(t*1000)/1000;
 
             return t;
