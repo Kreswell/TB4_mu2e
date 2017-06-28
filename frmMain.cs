@@ -1049,6 +1049,7 @@ namespace TB_mu2e
                 //myHisto.I = Convert.ToDouble(txtI.Text);
                 //Fetch registers
                 int FPGA_index = (int)udFPGA.Value;
+                Mu2e_Register r_CSR;
                 Mu2e_Register r_mux;
                 Mu2e_Register r_ch;
                 Mu2e_Register r_interval;
@@ -1056,12 +1057,14 @@ namespace TB_mu2e
                 Mu2e_Register r_pointer1;
                 Mu2e_Register r_port0;
                 Mu2e_Register r_port1;
+                Mu2e_Register r_ped;
                 //Mu2e_Register r_th0; //write this last- starts count : bit[12]=1 means still counting
                 //Mu2e_Register r_count0;
                 //Mu2e_Register r_th1; //write this last- starts count : bit[12]=1 means still counting
                 //Mu2e_Register r_count1;
 
                 Mu2e_Register.FindAddr(0x20, ref FEB.arrReg, out r_mux);
+                Mu2e_Register.FindName("CSR", ref FEB.arrReg, out r_CSR);
                 Mu2e_Register.FindName("HISTO_CTRL_REG", ref FEB.arrReg, out r_ch);
                 Mu2e_Register.FindName("HISTO_COUNT_INTERVAL", ref FEB.arrReg, out r_interval);
                 Mu2e_Register.FindName("HISTO_POINTER_AFE0", ref FEB.arrReg, out r_pointer0);
@@ -1073,8 +1076,8 @@ namespace TB_mu2e
                 //Mu2e_Register.FindName("HISTO_THRESH_AFE1", ref FEB.arrReg, out r_th1);
                 //Mu2e_Register.FindName("HISTO_COUNT1", ref FEB.arrReg, out r_count1);
 
-                r_ch.fpga_index = (ushort)FPGA_index;
-                r_interval.fpga_index = (ushort)FPGA_index;
+                //r_ch.fpga_index = (ushort)FPGA_index;
+                //r_interval.fpga_index = (ushort)FPGA_index;
                 //r_th0.fpga_index = (ushort)FPGA_index;
                 //r_count0.fpga_index = (ushort)FPGA_index;
                 //r_th1.fpga_index = (ushort)FPGA_index;
@@ -1121,15 +1124,16 @@ namespace TB_mu2e
 
                     bool CmbCheck = false;
                     uint sipm = i % 8;
-                    uint afe;
+                    uint sipm16 = i % 0x10;
+                    uint afe = 1;
+                    UInt16 fpga = 0;
                     switch (i)
                     {
                         case 0:
                         case 1:
                         case 2:
                         case 3:
-                            r_ch.fpga_index = 0;
-                            r_interval.fpga_index = 0;
+                            fpga = 0;
                             afe = 1;
                             if (checkBox1.Checked) CmbCheck = true;
                             break;
@@ -1137,8 +1141,7 @@ namespace TB_mu2e
                         case 5:
                         case 6:
                         case 7:
-                            r_ch.fpga_index = 0;
-                            r_interval.fpga_index = 0;
+                            fpga = 0;
                             afe = 1;
                             if (checkBox2.Checked) CmbCheck = true;
                             break;
@@ -1146,8 +1149,7 @@ namespace TB_mu2e
                         case 9:
                         case 10:
                         case 11:
-                            r_ch.fpga_index = 0;
-                            r_interval.fpga_index = 0;
+                            fpga = 0;
                             afe = 2;
                             if (checkBox3.Checked) CmbCheck = true;
                             break;
@@ -1155,8 +1157,7 @@ namespace TB_mu2e
                         case 13:
                         case 14:
                         case 15:
-                            r_ch.fpga_index = 0;
-                            r_interval.fpga_index = 0;
+                            fpga = 0;
                             afe = 2;
                             if (checkBox4.Checked) CmbCheck = true;
                             break;
@@ -1164,8 +1165,7 @@ namespace TB_mu2e
                         case 17:
                         case 18:
                         case 19:
-                            r_ch.fpga_index = 1;
-                            r_interval.fpga_index = 1;
+                            fpga = 1;
                             afe = 1;
                             if (checkBox5.Checked) CmbCheck = true;
                             break;
@@ -1173,8 +1173,7 @@ namespace TB_mu2e
                         case 21:
                         case 22:
                         case 23:
-                            r_ch.fpga_index = 1;
-                            r_interval.fpga_index = 1;
+                            fpga = 1;
                             afe = 1;
                             if (checkBox6.Checked) CmbCheck = true;
                             break;
@@ -1182,8 +1181,7 @@ namespace TB_mu2e
                         case 25:
                         case 26:
                         case 27:
-                            r_ch.fpga_index = 1;
-                            r_interval.fpga_index = 1;
+                            fpga = 1;
                             afe = 2;
                             if (checkBox7.Checked) CmbCheck = true;
                             break;
@@ -1191,8 +1189,7 @@ namespace TB_mu2e
                         case 29:
                         case 30:
                         case 31:
-                            r_ch.fpga_index = 1;
-                            r_interval.fpga_index = 1;
+                            fpga = 1;
                             afe = 2;
                             if (checkBox8.Checked) CmbCheck = true;
                             break;
@@ -1200,8 +1197,7 @@ namespace TB_mu2e
                         case 33:
                         case 34:
                         case 35:
-                            r_ch.fpga_index = 2;
-                            r_interval.fpga_index = 2;
+                            fpga = 2;
                             afe = 1;
                             if (checkBox9.Checked) CmbCheck = true;
                             break;
@@ -1209,8 +1205,7 @@ namespace TB_mu2e
                         case 37:
                         case 38:
                         case 39:
-                            r_ch.fpga_index = 2;
-                            r_interval.fpga_index = 2;
+                            fpga = 2;
                             afe = 1;
                             if (checkBox10.Checked) CmbCheck = true;
                             break;
@@ -1218,8 +1213,7 @@ namespace TB_mu2e
                         case 41:
                         case 42:
                         case 43:
-                            r_ch.fpga_index = 2;
-                            r_interval.fpga_index = 2;
+                            fpga = 2;
                             afe = 2;
                             if (checkBox11.Checked) CmbCheck = true;
                             break;
@@ -1227,8 +1221,7 @@ namespace TB_mu2e
                         case 45:
                         case 46:
                         case 47:
-                            r_ch.fpga_index = 2;
-                            r_interval.fpga_index = 2;
+                            fpga = 2;
                             afe = 2;
                             if (checkBox12.Checked) CmbCheck = true;
                             break;
@@ -1236,8 +1229,7 @@ namespace TB_mu2e
                         case 49:
                         case 50:
                         case 51:
-                            r_ch.fpga_index = 3;
-                            r_interval.fpga_index = 3;
+                            fpga = 3;
                             afe = 1;
                             if (checkBox13.Checked) CmbCheck = true;
                             break;
@@ -1245,8 +1237,7 @@ namespace TB_mu2e
                         case 53:
                         case 54:
                         case 55:
-                            r_ch.fpga_index = 3;
-                            r_interval.fpga_index = 3;
+                            fpga = 3;
                             afe = 1;
                             if (checkBox14.Checked) CmbCheck = true;
                             break;
@@ -1254,8 +1245,7 @@ namespace TB_mu2e
                         case 57:
                         case 58:
                         case 59:
-                            r_ch.fpga_index = 3;
-                            r_interval.fpga_index = 3;
+                            fpga = 3;
                             afe = 2;
                             if (checkBox15.Checked) CmbCheck = true;
                             break;
@@ -1263,22 +1253,30 @@ namespace TB_mu2e
                         case 61:
                         case 62:
                         case 63:
-                            r_ch.fpga_index = 3;
-                            r_interval.fpga_index = 3;
+                            fpga = 3;
                             afe = 2;
                             if (checkBox16.Checked) CmbCheck = true;
                             break;
                         default:
-                            r_ch.fpga_index = 0;
-                            r_interval.fpga_index = 0;
+                            fpga = 0;
                             afe = 1;
                             break;
                     }
+                    r_CSR.fpga_index = fpga;
+                    r_ch.fpga_index = fpga;
+                    r_interval.fpga_index = fpga;
                     if (CmbCheck == false) continue;
 
+                    Mu2e_Register.FindAddr(Convert.ToUInt16(128+sipm16), ref FEB.arrReg, out r_ped);
+                    Mu2e_Register.WriteReg(0xFE0, ref r_ped, ref FEB.client);
+                    Mu2e_Register.WriteReg(0x60, ref r_CSR, ref FEB.client);
+                    Mu2e_Register.WriteReg(0x0, ref r_CSR, ref FEB.client);
+                    //Set histo pointer to 0 before generating histo.
+                    Mu2e_Register.WriteReg(0x0, ref r_pointer0, ref FEB.client);
+                    Mu2e_Register.WriteReg(0x0, ref r_pointer1, ref FEB.client);
                     Mu2e_Register.WriteReg(sipm + afe*32, ref r_ch, ref FEB.client);
                     uint[] histo = new uint[512];
-                    histo = FEB.ReadHisto((int)i);
+                    histo = FEB.ReadHisto(sipm, afe, fpga);
                     for (uint j = 0; j < 512; j++)
                     {
                         if (flgBreak) { j = 512; }

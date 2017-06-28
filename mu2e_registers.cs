@@ -463,7 +463,18 @@ namespace TB_mu2e
             r1.bit_comment[2] = "[2] Spill Gate.";
             list_of_reg.Add(r1);
 
-///broadcast reg
+            for (int i = 0; i < 16; i++)
+            {
+                r1 = new Mu2e_Register();
+                r1.name = "Self_Trigger_Ped" + i.ToString();
+                r1.addr = (ushort)(0x80 + i);
+                r1.fpga_offset_mult = 0x400;
+                r1.comment = "Pedestal subtracted from the ADC data before the trigger threshold is applied." + i.ToString();
+                r1.bit_comment = new string[15];
+                list_of_reg.Add(r1);
+            }
+
+            ///broadcast reg
 
             r1 = new Mu2e_Register();
             r1.name = "FLASH_GATE_CONTROL";

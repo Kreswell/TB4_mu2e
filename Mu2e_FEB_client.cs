@@ -380,26 +380,30 @@ namespace TB_mu2e
             catch { return false; }
         }
 
-        public uint[] ReadHisto(int channel)
+        public uint[] ReadHisto(uint sipm, uint afe, uint fpga)
         {
+            string writecmd = "";
+            string readcmd = "";
+            string fpgaPrefix = "";
             uint[] Histo = new uint[512];
             if (_ClientOpen)
             {
-                if (channel < 8)
-                {
-                    SendStr("wr 14 0");
-                    SendStr("rdm 16 400");
-                    System.Threading.Thread.Sleep(100);
-                }
-                else if (8 <= channel && channel < 16)
-                {
-                    SendStr("wr 15 0");
-                    SendStr("rdm 17 400");
-                    System.Threading.Thread.Sleep(100);
-                }
-                else { }
                 string HistoStr = "";
                 string[] delimiters = new string[] { " ", "\r\n " };
+                if (fpga == 0)
+                { fpgaPrefix = "0"; }
+                else if (fpga == 1)
+                { fpgaPrefix = "4"; }
+                else if (fpga == 2)
+                { fpgaPrefix = "8"; }
+                else if (fpga == 3)
+                { fpgaPrefix = "c"; }
+                else { }
+                writecmd = "wr " + fpgaPrefix + Convert.ToString(13 + afe) + " 0";
+                readcmd = "rdm " + fpgaPrefix + Convert.ToString(15 + afe) + " 400";
+                SendStr(writecmd);
+                SendStr(readcmd);
+                System.Threading.Thread.Sleep(100);
                 int rt = 0;
                 ReadStr(out HistoStr, out rt);
                 string[] SplitHistoStr = HistoStr.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
