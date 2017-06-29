@@ -1267,7 +1267,10 @@ namespace TB_mu2e
                     r_interval.fpga_index = fpga;
                     if (CmbCheck == false) continue;
 
-                    Mu2e_Register.FindAddr(Convert.ToUInt16(128+sipm16), ref FEB.arrReg, out r_ped);
+                    UInt16 pedaddr = Convert.ToUInt16(128 + sipm16);
+
+                    Mu2e_Register.FindAddr(pedaddr, ref FEB.arrReg, out r_ped);
+                    r_ped.fpga_index = fpga;
                     Mu2e_Register.WriteReg(0xFE0, ref r_ped, ref FEB.client);
                     Mu2e_Register.WriteReg(0x60, ref r_CSR, ref FEB.client);
                     Mu2e_Register.WriteReg(0x0, ref r_CSR, ref FEB.client);
