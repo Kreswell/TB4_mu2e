@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Media;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -965,6 +966,7 @@ namespace TB_mu2e
         private void btnScan_Click(object sender, EventArgs e)
         {
             //zedFEB1.GraphPane.CurveList.Clear();
+            listBox1.ClearSelected();
             Mu2e_FEB_client FEB = new Mu2e_FEB_client();
             switch (_ActiveFEB)
             {
@@ -1097,7 +1099,7 @@ namespace TB_mu2e
                 //loop over th
                 //zedFEB1.GraphPane.XAxis.Scale.Max = myHisto.max_thresh;
                 //zedFEB1.GraphPane.XAxis.Scale.Min = myHisto.min_thresh;
-                zedFEB1.GraphPane.XAxis.Scale.Max = 512;
+                zedFEB1.GraphPane.XAxis.Scale.Max = 256;
                 zedFEB1.GraphPane.XAxis.Scale.Min = 0;
                 zedFEB1.GraphPane.YAxis.Scale.Max = 100;
                 zedFEB1.GraphPane.YAxis.Scale.Min = 0;
@@ -1113,7 +1115,7 @@ namespace TB_mu2e
                     //myHisto.min_thresh = (int)udStart.Value;
                     myHisto.min_thresh = 0;
                     //myHisto.max_thresh = (int)udStop.Value;
-                    myHisto.max_thresh = 512;
+                    myHisto.max_thresh = 256;
                     myHisto.interval = (int)udInterval.Value;
                     //myHisto.chan = (int)udChan.Value;
                     myHisto.chan = Convert.ToInt32(i);
@@ -1351,39 +1353,42 @@ namespace TB_mu2e
             Color[] this_color = new Color[12];
             Histo_helper.InitColorList(ref this_color);
 
-            string SipmSel = listBox1.SelectedItem.ToString();
-
-            int SipmNum = Int32.Parse(SipmSel) - 1;
-
-            List<HISTO_curve> myHistoList = null;
-            zedFEB1.GraphPane.CurveList.Clear();
-
-            myHistoList = PP.FEB1Histo;
-            //if (_ActiveFEB == 2) { myHistoList = PP.FEB2Histo; }
-
-            foreach (HISTO_curve h1 in myHistoList)
+            if (listBox1.SelectedItem != null)
             {
-                if (h1.chan == SipmNum)
-                {
-                    if (chkLogY.Checked)
-                    {
-                        zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(Math.Log10(h1.max_count + 0.1 * (h1.max_count - h1.min_count))), 0);
-                        zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.loglist, Color.DarkRed, SymbolType.None);
-                    }
-                    else
-                    {
-                        zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(h1.max_count + 0.1 * (h1.max_count - h1.min_count)), 0);
-                        //zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, this_color[h1.chan % 16], SymbolType.None);
-                        zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, Color.DarkBlue, SymbolType.None);
-                    }
-                    double s = 0;
-                    s = Math.Round((double)(h1.max_thresh - h1.min_thresh) / 10.0, 0);
-                    if (zedFEB1.GraphPane.XAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.XAxis.Scale.MajorStep = s; }
-                    zedFEB1.GraphPane.XAxis.Scale.MinorStep = zedFEB1.GraphPane.XAxis.Scale.MajorStep / 4;
+                string SipmSel = listBox1.SelectedItem.ToString();
 
-                    s = Math.Round((h1.max_count - h1.min_count) / 10.0, 0);
-                    if (zedFEB1.GraphPane.YAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.YAxis.Scale.MajorStep = s; }
-                    zedFEB1.GraphPane.YAxis.Scale.MinorStep = zedFEB1.GraphPane.YAxis.Scale.MajorStep / 4;
+                int SipmNum = Int32.Parse(SipmSel) - 1;
+
+                List<HISTO_curve> myHistoList = null;
+                zedFEB1.GraphPane.CurveList.Clear();
+
+                myHistoList = PP.FEB1Histo;
+                //if (_ActiveFEB == 2) { myHistoList = PP.FEB2Histo; }
+
+                foreach (HISTO_curve h1 in myHistoList)
+                {
+                    if (h1.chan == SipmNum)
+                    {
+                        if (chkLogY.Checked)
+                        {
+                            zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(Math.Log10(h1.max_count + 0.1 * (h1.max_count - h1.min_count))), 0);
+                            zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.loglist, Color.DarkRed, SymbolType.None);
+                        }
+                        else
+                        {
+                            zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(h1.max_count + 0.1 * (h1.max_count - h1.min_count)), 0);
+                            //zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, this_color[h1.chan % 16], SymbolType.None);
+                            zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, Color.DarkBlue, SymbolType.None);
+                        }
+                        double s = 0;
+                        s = Math.Round((double)(h1.max_thresh - h1.min_thresh) / 10.0, 0);
+                        if (zedFEB1.GraphPane.XAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.XAxis.Scale.MajorStep = s; }
+                        zedFEB1.GraphPane.XAxis.Scale.MinorStep = zedFEB1.GraphPane.XAxis.Scale.MajorStep / 4;
+
+                        s = Math.Round((h1.max_count - h1.min_count) / 10.0, 0);
+                        if (zedFEB1.GraphPane.YAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.YAxis.Scale.MajorStep = s; }
+                        zedFEB1.GraphPane.YAxis.Scale.MinorStep = zedFEB1.GraphPane.YAxis.Scale.MajorStep / 4;
+                    }
                 }
             }
             zedFEB1.Invalidate(true);
@@ -2369,6 +2374,8 @@ namespace TB_mu2e
 
             if (doScan)
             {
+                // Plays the sound associated with the Asterisk system event.
+                SystemSounds.Asterisk.Play();
                 doTest(ActiveHdmiChannel.Bias0, 65, 35, 10);
                 doTest(ActiveHdmiChannel.Led0, 12, 6, 0);
                 doTest(ActiveHdmiChannel.Trim0, 4, 0, -4);
@@ -2383,6 +2390,8 @@ namespace TB_mu2e
                 //doTest(ActiveHdmiChannel.Trim3, vScopeTrim3, 4, 0, -4);
                 ActiveHdmiChannel.isTested = true;
                 setButtonColor();
+                // Plays the sound associated with the Exclamation system event.
+                SystemSounds.Exclamation.Play();
             }
         }
 
@@ -2915,13 +2924,13 @@ namespace TB_mu2e
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            UpdateDisplay();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            UpdateDisplay();
-            Application.DoEvents();
+            //UpdateDisplay();
+            //Application.DoEvents();
         }
     }
 
