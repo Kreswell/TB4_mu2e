@@ -506,9 +506,9 @@ namespace TB_mu2e
             Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
             updateVoltage();
             dac.voltageDataFEB[0] = vHi;
-            for (int t = 0; t < 500; t++)
+            for (int t = 0; t < 20; t++)
             {
-                System.Threading.Thread.Sleep(1);
+                System.Threading.Thread.Sleep(20);
                 Application.DoEvents();
             }
 
@@ -519,7 +519,7 @@ namespace TB_mu2e
                 {
                     for (int t = 0; t < tSample; t++)
                     {
-                        System.Threading.Thread.Sleep(1);
+                        System.Threading.Thread.Sleep(20);
                         Application.DoEvents();
                     }
                     vSamp += double.Parse(ReadbackBox.Text);
@@ -533,9 +533,9 @@ namespace TB_mu2e
             updateVoltage();
             dac.voltageDataFEB[1] = vMed;
 
-            for (int t = 0; t < 500; t++)
+            for (int t = 0; t < 20; t++)
             {
-                System.Threading.Thread.Sleep(1);
+                System.Threading.Thread.Sleep(20);
                 Application.DoEvents();
             }
             if (ReadbackBox.Text != "")
@@ -545,7 +545,7 @@ namespace TB_mu2e
                 {
                     for (int t = 0; t < tSample; t++)
                     {
-                        System.Threading.Thread.Sleep(1);
+                        System.Threading.Thread.Sleep(20);
                         Application.DoEvents();
                     }
                     vSamp += double.Parse(ReadbackBox.Text);
@@ -557,9 +557,9 @@ namespace TB_mu2e
             Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
             updateVoltage();
             dac.voltageDataFEB[2] = vLow;
-            for (int t = 0; t < 500; t++)
+            for (int t = 0; t < 20; t++)
             {
-                System.Threading.Thread.Sleep(1);
+                System.Threading.Thread.Sleep(20);
                 Application.DoEvents();
             }
             if (ReadbackBox.Text != "")
@@ -569,7 +569,7 @@ namespace TB_mu2e
                 {
                     for (int t = 0; t < tSample; t++)
                     {
-                        System.Threading.Thread.Sleep(1);
+                        System.Threading.Thread.Sleep(20);
                         Application.DoEvents();
                     }
                     vSamp += double.Parse(ReadbackBox.Text);
@@ -2338,9 +2338,9 @@ namespace TB_mu2e
             vInt = (UInt32)v;
             Mu2e_Register.WriteReg(vInt, ref rTrim3, ref myFEB.client);
             updateVoltage();
-            for (int t = 0; t < 2000; t++)
+            for (int t = 0; t < 200; t++)
             {
-                System.Threading.Thread.Sleep(1);
+                System.Threading.Thread.Sleep(20);
                 Application.DoEvents();
             }
 
@@ -2932,6 +2932,67 @@ namespace TB_mu2e
             //UpdateDisplay();
             //Application.DoEvents();
         }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked && checkBox2.Checked && checkBox3.Checked && checkBox4.Checked && checkBox5.Checked && checkBox6.Checked && checkBox7.Checked && checkBox8.Checked)
+            {
+                checkBox1.Checked = false;
+                checkBox2.Checked = false;
+                checkBox3.Checked = false;
+                checkBox4.Checked = false;
+                checkBox5.Checked = false;
+                checkBox6.Checked = false;
+                checkBox7.Checked = false;
+                checkBox8.Checked = false;
+            }
+            else
+            {
+                checkBox1.Checked = true;
+                checkBox2.Checked = true;
+                checkBox3.Checked = true;
+                checkBox4.Checked = true;
+                checkBox5.Checked = true;
+                checkBox6.Checked = true;
+                checkBox7.Checked = true;
+                checkBox8.Checked = true;
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (checkBox9.Checked && checkBox10.Checked && checkBox11.Checked && checkBox12.Checked && checkBox13.Checked && checkBox14.Checked && checkBox15.Checked && checkBox16.Checked)
+            {
+                checkBox9.Checked = false;
+                checkBox10.Checked = false;
+                checkBox11.Checked = false;
+                checkBox12.Checked = false;
+                checkBox13.Checked = false;
+                checkBox14.Checked = false;
+                checkBox15.Checked = false;
+                checkBox16.Checked = false;
+            }
+            else
+            {
+                checkBox9.Checked = true;
+                checkBox10.Checked = true;
+                checkBox11.Checked = true;
+                checkBox12.Checked = true;
+                checkBox13.Checked = true;
+                checkBox14.Checked = true;
+                checkBox15.Checked = true;
+                checkBox16.Checked = true;
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            for (int fpga = 0; fpga < 4; fpga++)
+            {
+                PP.FEB1.SetV(Convert.ToDouble(textBox2.Text), fpga);
+            }
+        }
+
     }
 
 
