@@ -70,6 +70,11 @@ namespace TB_mu2e
             _slope = slopeInt.ToString("X");
             _intercept = interceptInt.ToString("X");
         }
+
+        //Make lists of test values for diagnostics.
+        public List<double> HVHiVals = new List<double>();
+        public List<double> HVMedVals = new List<double>();
+        public List<double> HVLowVals = new List<double>();
     }
 
     class BiasProperties : DacProperties

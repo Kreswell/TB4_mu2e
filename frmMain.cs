@@ -499,14 +499,14 @@ namespace TB_mu2e
             else { }
 
             int n = 5; //number of samples per output voltage data point
-            int tSample = 100; //number of ms between output samples
+            int tSample = 5; //number of 20ms steps between output samples
             double vSamp = 0;
 
             vSet = dac.convertVoltage(vHi);
             Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
             updateVoltage();
             dac.voltageDataFEB[0] = vHi;
-            for (int t = 0; t < 20; t++)
+            for (int t = 0; t < 3*vHi; t++)
             {
                 System.Threading.Thread.Sleep(20);
                 Application.DoEvents();
@@ -522,6 +522,7 @@ namespace TB_mu2e
                         System.Threading.Thread.Sleep(20);
                         Application.DoEvents();
                     }
+                    dac.HVHiVals.Add(double.Parse(ReadbackBox.Text));
                     vSamp += double.Parse(ReadbackBox.Text);
                 }
                 dac.voltageDataScope[0] = vSamp / n;
@@ -533,7 +534,7 @@ namespace TB_mu2e
             updateVoltage();
             dac.voltageDataFEB[1] = vMed;
 
-            for (int t = 0; t < 20; t++)
+            for (int t = 0; t < 3*(vHi-vMed+10); t++)
             {
                 System.Threading.Thread.Sleep(20);
                 Application.DoEvents();
@@ -548,6 +549,7 @@ namespace TB_mu2e
                         System.Threading.Thread.Sleep(20);
                         Application.DoEvents();
                     }
+                    dac.HVMedVals.Add(double.Parse(ReadbackBox.Text));
                     vSamp += double.Parse(ReadbackBox.Text);
                 }
                 dac.voltageDataScope[1] = vSamp / n;
@@ -557,7 +559,7 @@ namespace TB_mu2e
             Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
             updateVoltage();
             dac.voltageDataFEB[2] = vLow;
-            for (int t = 0; t < 20; t++)
+            for (int t = 0; t < 3*(vMed-vLow+10); t++)
             {
                 System.Threading.Thread.Sleep(20);
                 Application.DoEvents();
@@ -572,6 +574,7 @@ namespace TB_mu2e
                         System.Threading.Thread.Sleep(20);
                         Application.DoEvents();
                     }
+                    dac.HVLowVals.Add(double.Parse(ReadbackBox.Text));
                     vSamp += double.Parse(ReadbackBox.Text);
                 }
                 dac.voltageDataScope[2] = vSamp / n;
@@ -2750,27 +2753,322 @@ namespace TB_mu2e
             }
             if (DoSave)
             {
-                string hName = "";
                 string dirName = "c://data//";
 
+                string hName = "";
                 hName += "FEBdsf_";
                 hName += txtSN.Text;
                 hName += "vScan";
                 hName = dirName + hName + ".dsf";
                 StreamWriter sw = new StreamWriter(hName);
 
+                string biasAddr = "044";
+                string trim0Addr = "030";
+                string trim1Addr = "031";
+                string trim2Addr = "032";
+                string trim3Addr = "033";
+
                 foreach (var chan in HdmiChannelList)
                 {
+                    if (chan == HdmiChannel0)
+                    {
+                        biasAddr = "044";
+                        trim0Addr = "030";
+                        trim1Addr = "031";
+                        trim2Addr = "032";
+                        trim3Addr = "033";
+                    }
+                    else if (chan == HdmiChannel1)
+                    {
+                        biasAddr = "044";
+                        trim0Addr = "034";
+                        trim1Addr = "035";
+                        trim2Addr = "036";
+                        trim3Addr = "037";
+                    }
+                    else if (chan == HdmiChannel2)
+                    {
+                        biasAddr = "045";
+                        trim0Addr = "038";
+                        trim1Addr = "039";
+                        trim2Addr = "03A";
+                        trim3Addr = "03B";
+                    }
+                    else if (chan == HdmiChannel3)
+                    {
+                        biasAddr = "045";
+                        trim0Addr = "03C";
+                        trim1Addr = "03D";
+                        trim2Addr = "03E";
+                        trim3Addr = "03F";
+                    }
+                    else if (chan == HdmiChannel4)
+                    {
+                        biasAddr = "444";
+                        trim0Addr = "430";
+                        trim1Addr = "431";
+                        trim2Addr = "432";
+                        trim3Addr = "433";
+                    }
+                    else if (chan == HdmiChannel5)
+                    {
+                        biasAddr = "444";
+                        trim0Addr = "434";
+                        trim1Addr = "435";
+                        trim2Addr = "436";
+                        trim3Addr = "437";
+                    }
+                    else if (chan == HdmiChannel6)
+                    {
+                        biasAddr = "445";
+                        trim0Addr = "438";
+                        trim1Addr = "439";
+                        trim2Addr = "43A";
+                        trim3Addr = "43B";
+                    }
+                    else if (chan == HdmiChannel7)
+                    {
+                        biasAddr = "445";
+                        trim0Addr = "43C";
+                        trim1Addr = "43D";
+                        trim2Addr = "43E";
+                        trim3Addr = "43F";
+                    }
+                    else if (chan == HdmiChannel8)
+                    {
+                        biasAddr = "844";
+                        trim0Addr = "830";
+                        trim1Addr = "831";
+                        trim2Addr = "832";
+                        trim3Addr = "833";
+                    }
+                    else if (chan == HdmiChannel9)
+                    {
+                        biasAddr = "844";
+                        trim0Addr = "834";
+                        trim1Addr = "835";
+                        trim2Addr = "836";
+                        trim3Addr = "837";
+                    }
+                    else if (chan == HdmiChannel10)
+                    {
+                        biasAddr = "845";
+                        trim0Addr = "838";
+                        trim1Addr = "839";
+                        trim2Addr = "83A";
+                        trim3Addr = "83B";
+                    }
+                    else if (chan == HdmiChannel11)
+                    {
+                        biasAddr = "845";
+                        trim0Addr = "83C";
+                        trim1Addr = "83D";
+                        trim2Addr = "83E";
+                        trim3Addr = "83F";
+                    }
+                    else if (chan == HdmiChannel12)
+                    {
+                        biasAddr = "C44";
+                        trim0Addr = "C30";
+                        trim1Addr = "C31";
+                        trim2Addr = "C32";
+                        trim3Addr = "C33";
+                    }
+                    else if (chan == HdmiChannel13)
+                    {
+                        biasAddr = "C44";
+                        trim0Addr = "C34";
+                        trim1Addr = "C35";
+                        trim2Addr = "C36";
+                        trim3Addr = "C37";
+                    }
+                    else if (chan == HdmiChannel14)
+                    {
+                        biasAddr = "C45";
+                        trim0Addr = "C38";
+                        trim1Addr = "C39";
+                        trim2Addr = "C3A";
+                        trim3Addr = "C3B";
+                    }
+                    else if (chan == HdmiChannel15)
+                    {
+                        biasAddr = "C45";
+                        trim0Addr = "C3C";
+                        trim1Addr = "C3D";
+                        trim2Addr = "C3E";
+                        trim3Addr = "C3F";
+                    }
+                    else { }
                     if (chan.isTested)
                     {
-                        sw.WriteLine("dsf " + chan.Bias0.slope + ", " + chan.Bias0.intercept);
-                        sw.WriteLine("dsf " + chan.Trim0.slope + ", " + chan.Trim0.intercept);
-                        sw.WriteLine("dsf " + chan.Trim1.slope + ", " + chan.Trim1.intercept);
-                        sw.WriteLine("dsf " + chan.Trim2.slope + ", " + chan.Trim2.intercept);
-                        sw.WriteLine("dsf " + chan.Trim3.slope + ", " + chan.Trim3.intercept);
+                        sw.WriteLine("dsf " + biasAddr + " " + chan.Bias0.slope + ", " + chan.Bias0.intercept);
+                        sw.WriteLine("dsf " + trim0Addr + " " + chan.Trim0.slope + ", " + chan.Trim0.intercept);
+                        sw.WriteLine("dsf " + trim1Addr + " " + chan.Trim1.slope + ", " + chan.Trim1.intercept);
+                        sw.WriteLine("dsf " + trim2Addr + " " + chan.Trim2.slope + ", " + chan.Trim2.intercept);
+                        sw.WriteLine("dsf " + trim3Addr + " " + chan.Trim3.slope + ", " + chan.Trim3.intercept);
                     }
                 }
                 sw.Close();
+
+                string fName = "";
+                fName += "HVtestVals_";
+                fName += txtSN.Text;
+                fName = dirName + fName + ".txt";
+                StreamWriter swf = new StreamWriter(fName);
+
+                string hdmi = "";
+                foreach (var chan in HdmiChannelList)
+                {
+                    if (chan == HdmiChannel0) { hdmi = "J11"; }
+                    else if (chan == HdmiChannel1) { hdmi = "J12"; }
+                    else if (chan == HdmiChannel2) { hdmi = "J13"; }
+                    else if (chan == HdmiChannel3) { hdmi = "J14"; }
+                    else if (chan == HdmiChannel4) { hdmi = "J15"; }
+                    else if (chan == HdmiChannel5) { hdmi = "J16"; }
+                    else if (chan == HdmiChannel6) { hdmi = "J17"; }
+                    else if (chan == HdmiChannel7) { hdmi = "J18"; }
+                    else if (chan == HdmiChannel8) { hdmi = "J19"; }
+                    else if (chan == HdmiChannel9) { hdmi = "J20"; }
+                    else if (chan == HdmiChannel10) { hdmi = "J21"; }
+                    else if (chan == HdmiChannel11) { hdmi = "J22"; }
+                    else if (chan == HdmiChannel12) { hdmi = "J23"; }
+                    else if (chan == HdmiChannel13) { hdmi = "J24"; }
+                    else if (chan == HdmiChannel14) { hdmi = "J25"; }
+                    else if (chan == HdmiChannel15) { hdmi = "J26"; }
+                    else { };
+
+                    swf.WriteLine("HDMI port " + hdmi);
+
+                    swf.Write("Bias high HV test results: ");
+                    foreach (var val in chan.Bias0.HVHiVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+                    swf.Write("Bias medium HV test results: ");
+                    foreach (var val in chan.Bias0.HVMedVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+                    swf.Write("Bias low HV test results: ");
+                    foreach (var val in chan.Bias0.HVLowVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+                    swf.Write("LED high HV test results: ");
+                    foreach (var val in chan.Led0.HVHiVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+                    swf.Write("LED medium HV test results: ");
+                    foreach (var val in chan.Led0.HVMedVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+                    swf.Write("LED low HV test results: ");
+                    foreach (var val in chan.Led0.HVLowVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+                    swf.Write("Trim0 high HV test results: ");
+                    foreach (var val in chan.Trim0.HVHiVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+                    swf.Write("Trim0 medium HV test results: ");
+                    foreach (var val in chan.Trim0.HVMedVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+                    swf.Write("Trim0 low HV test results: ");
+                    foreach (var val in chan.Trim0.HVLowVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+
+                    swf.Write("Trim1 high HV test results: ");
+                    foreach (var val in chan.Trim1.HVHiVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+                    swf.Write("Trim1 medium HV test results: ");
+                    foreach (var val in chan.Trim1.HVMedVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+                    swf.Write("Trim1 low HV test results: ");
+                    foreach (var val in chan.Trim1.HVLowVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+
+                    swf.Write("Trim2 high HV test results: ");
+                    foreach (var val in chan.Trim2.HVHiVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+                    swf.Write("Trim2 medium HV test results: ");
+                    foreach (var val in chan.Trim2.HVMedVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+                    swf.Write("Trim2 low HV test results: ");
+                    foreach (var val in chan.Trim2.HVLowVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+
+                    swf.Write("Trim3 high HV test results: ");
+                    foreach (var val in chan.Trim3.HVHiVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+                    swf.Write("Trim3 medium HV test results: ");
+                    foreach (var val in chan.Trim3.HVMedVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+
+                    swf.Write("Trim3 low HV test results: ");
+                    foreach (var val in chan.Trim3.HVLowVals)
+                    {
+                        swf.Write(val + " ");
+                    }
+                    swf.WriteLine("");
+                }
+                swf.Close();
             }
         }
 
