@@ -179,6 +179,7 @@ namespace TB_mu2e
             this.txtSN = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.DAC_Voltages = new System.Windows.Forms.GroupBox();
+            this.btnLoadCalib = new System.Windows.Forms.Button();
             this.txtTrim3Int = new System.Windows.Forms.TextBox();
             this.txtTrim3Slope = new System.Windows.Forms.TextBox();
             this.txtTrim2Int = new System.Windows.Forms.TextBox();
@@ -235,7 +236,7 @@ namespace TB_mu2e
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
             this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
-            this.btnLoadCalib = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabRUN.SuspendLayout();
@@ -2015,6 +2016,16 @@ namespace TB_mu2e
             this.DAC_Voltages.TabStop = false;
             this.DAC_Voltages.Text = "DAC Voltages";
             // 
+            // btnLoadCalib
+            // 
+            this.btnLoadCalib.Location = new System.Drawing.Point(364, 458);
+            this.btnLoadCalib.Name = "btnLoadCalib";
+            this.btnLoadCalib.Size = new System.Drawing.Size(195, 43);
+            this.btnLoadCalib.TabIndex = 93;
+            this.btnLoadCalib.Text = "LOAD CALIBRATIONS";
+            this.btnLoadCalib.UseVisualStyleBackColor = true;
+            this.btnLoadCalib.Click += new System.EventHandler(this.btnLoadCalib_Click);
+            // 
             // txtTrim3Int
             // 
             this.txtTrim3Int.Location = new System.Drawing.Point(483, 211);
@@ -2503,15 +2514,9 @@ namespace TB_mu2e
             this.timerScopeTrim.Interval = 50;
             this.timerScopeTrim.Tick += new System.EventHandler(this.timerScopeTrim_Tick);
             // 
-            // btnLoadCalib
+            // openFileDialog1
             // 
-            this.btnLoadCalib.Location = new System.Drawing.Point(364, 458);
-            this.btnLoadCalib.Name = "btnLoadCalib";
-            this.btnLoadCalib.Size = new System.Drawing.Size(195, 43);
-            this.btnLoadCalib.TabIndex = 93;
-            this.btnLoadCalib.Text = "LOAD CALIBRATIONS";
-            this.btnLoadCalib.UseVisualStyleBackColor = true;
-            this.btnLoadCalib.Click += new System.EventHandler(this.btnLoadCalib_Click);
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // frmMain
             // 
@@ -2790,5 +2795,6 @@ namespace TB_mu2e
         private System.Windows.Forms.TextBox txtBiasInt;
         private System.Windows.Forms.TextBox txtBiasSlope;
         private System.Windows.Forms.Button btnLoadCalib;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

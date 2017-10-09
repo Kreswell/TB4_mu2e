@@ -3332,13 +3332,7 @@ namespace TB_mu2e
                     string fileLine = "";
                     while ((fileLine = sr.ReadLine()) != null)
                     {
-                        byte[] buf = PP.GetBytes(fileLine);
-                        while (PP.active_Socket.Available > 0)
-                        {
-                            byte[] rbuf = new byte[PP.active_Socket.Available];
-                            PP.active_Socket.Receive(rbuf);
-                        }
-                        PP.active_Socket.Send(buf);
+                        PP.FEB1.SendStr(fileLine);
                         System.Threading.Thread.Sleep(1);
                     }
 
