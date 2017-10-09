@@ -3319,7 +3319,7 @@ namespace TB_mu2e
 
         private void btnLoadCalib_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            //OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.InitialDirectory = "c:\\data\\";
             openFileDialog1.RestoreDirectory = true;

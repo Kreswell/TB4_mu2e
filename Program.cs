@@ -363,6 +363,7 @@ namespace TB_mu2e
             return new string(chars);
         }
 
+        [STAThread]
         static void Main()
         {
             FEB1Histo = new List<HISTO_curve>();

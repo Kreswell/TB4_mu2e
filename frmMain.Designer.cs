@@ -2795,6 +2795,6 @@ namespace TB_mu2e
         private System.Windows.Forms.TextBox txtBiasInt;
         private System.Windows.Forms.TextBox txtBiasSlope;
         private System.Windows.Forms.Button btnLoadCalib;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        public System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
