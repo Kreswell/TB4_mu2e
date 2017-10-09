@@ -94,6 +94,9 @@ namespace TB_mu2e
             this.lblConsole_disp = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabFEB1 = new System.Windows.Forms.TabPage();
+            this.label27 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
@@ -175,10 +178,21 @@ namespace TB_mu2e
             this.btnSnSave = new System.Windows.Forms.Button();
             this.txtSN = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
             this.DAC_Voltages = new System.Windows.Forms.GroupBox();
+            this.txtTrim3Int = new System.Windows.Forms.TextBox();
+            this.txtTrim3Slope = new System.Windows.Forms.TextBox();
+            this.txtTrim2Int = new System.Windows.Forms.TextBox();
+            this.txtTrim2Slope = new System.Windows.Forms.TextBox();
+            this.txtTrim1Int = new System.Windows.Forms.TextBox();
+            this.txtTrim1Slope = new System.Windows.Forms.TextBox();
+            this.txtTrim0Int = new System.Windows.Forms.TextBox();
+            this.txtTrim0Slope = new System.Windows.Forms.TextBox();
+            this.txtBiasInt = new System.Windows.Forms.TextBox();
+            this.txtBiasSlope = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txtCalibComments = new System.Windows.Forms.TextBox();
             this.btnDacSave = new System.Windows.Forms.Button();
             this.btnJ26 = new System.Windows.Forms.Button();
             this.btnDacScan = new System.Windows.Forms.Button();
@@ -221,9 +235,7 @@ namespace TB_mu2e
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
             this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
-            this.button8 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
+            this.btnLoadCalib = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabRUN.SuspendLayout();
@@ -994,6 +1006,33 @@ namespace TB_mu2e
             this.tabFEB1.TabIndex = 3;
             this.tabFEB1.Text = "FEB";
             this.tabFEB1.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(377, 33);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(43, 20);
+            this.label27.TabIndex = 88;
+            this.label27.Text = "Bias";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(379, 56);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(75, 27);
+            this.textBox2.TabIndex = 63;
+            this.textBox2.Text = "56.1";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(379, 89);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 27);
+            this.button8.TabIndex = 87;
+            this.button8.Text = "Set All";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 
@@ -1847,9 +1886,6 @@ namespace TB_mu2e
             this.tabFEBtest.Controls.Add(this.btnSnSave);
             this.tabFEBtest.Controls.Add(this.txtSN);
             this.tabFEBtest.Controls.Add(this.label26);
-            this.tabFEBtest.Controls.Add(this.button3);
-            this.tabFEBtest.Controls.Add(this.textBox14);
-            this.tabFEBtest.Controls.Add(this.label25);
             this.tabFEBtest.Controls.Add(this.DAC_Voltages);
             this.tabFEBtest.Location = new System.Drawing.Point(4, 32);
             this.tabFEBtest.Name = "tabFEBtest";
@@ -1880,7 +1916,7 @@ namespace TB_mu2e
             // 
             // btnConnectScope
             // 
-            this.btnConnectScope.Location = new System.Drawing.Point(368, 90);
+            this.btnConnectScope.Location = new System.Drawing.Point(359, 43);
             this.btnConnectScope.Name = "btnConnectScope";
             this.btnConnectScope.Size = new System.Drawing.Size(183, 37);
             this.btnConnectScope.TabIndex = 9;
@@ -1890,7 +1926,7 @@ namespace TB_mu2e
             // 
             // btnSnSave
             // 
-            this.btnSnSave.Location = new System.Drawing.Point(440, 53);
+            this.btnSnSave.Location = new System.Drawing.Point(431, 6);
             this.btnSnSave.Name = "btnSnSave";
             this.btnSnSave.Size = new System.Drawing.Size(111, 31);
             this.btnSnSave.TabIndex = 8;
@@ -1900,7 +1936,7 @@ namespace TB_mu2e
             // 
             // txtSN
             // 
-            this.txtSN.Location = new System.Drawing.Point(219, 55);
+            this.txtSN.Location = new System.Drawing.Point(210, 8);
             this.txtSN.Name = "txtSN";
             this.txtSN.Size = new System.Drawing.Size(215, 27);
             this.txtSN.TabIndex = 5;
@@ -1910,41 +1946,29 @@ namespace TB_mu2e
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.label26.Location = new System.Drawing.Point(101, 51);
+            this.label26.Location = new System.Drawing.Point(92, 6);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(112, 31);
             this.label26.TabIndex = 4;
             this.label26.Text = "FEB SN";
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(440, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(111, 31);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "CONNECT";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // textBox14
-            // 
-            this.textBox14.Location = new System.Drawing.Point(219, 10);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(215, 27);
-            this.textBox14.TabIndex = 2;
-            this.textBox14.Text = "dcrc3.fnal.gov";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.label25.Location = new System.Drawing.Point(6, 6);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(206, 31);
-            this.label25.TabIndex = 1;
-            this.label25.Text = "FEB ADDRESS";
-            // 
             // DAC_Voltages
             // 
+            this.DAC_Voltages.Controls.Add(this.btnLoadCalib);
+            this.DAC_Voltages.Controls.Add(this.txtTrim3Int);
+            this.DAC_Voltages.Controls.Add(this.txtTrim3Slope);
+            this.DAC_Voltages.Controls.Add(this.txtTrim2Int);
+            this.DAC_Voltages.Controls.Add(this.txtTrim2Slope);
+            this.DAC_Voltages.Controls.Add(this.txtTrim1Int);
+            this.DAC_Voltages.Controls.Add(this.txtTrim1Slope);
+            this.DAC_Voltages.Controls.Add(this.txtTrim0Int);
+            this.DAC_Voltages.Controls.Add(this.txtTrim0Slope);
+            this.DAC_Voltages.Controls.Add(this.txtBiasInt);
+            this.DAC_Voltages.Controls.Add(this.txtBiasSlope);
+            this.DAC_Voltages.Controls.Add(this.label29);
+            this.DAC_Voltages.Controls.Add(this.label28);
+            this.DAC_Voltages.Controls.Add(this.label25);
+            this.DAC_Voltages.Controls.Add(this.txtCalibComments);
             this.DAC_Voltages.Controls.Add(this.btnDacSave);
             this.DAC_Voltages.Controls.Add(this.btnJ26);
             this.DAC_Voltages.Controls.Add(this.btnDacScan);
@@ -1986,14 +2010,119 @@ namespace TB_mu2e
             this.DAC_Voltages.Controls.Add(this.txtBiasSet0);
             this.DAC_Voltages.Location = new System.Drawing.Point(557, 6);
             this.DAC_Voltages.Name = "DAC_Voltages";
-            this.DAC_Voltages.Size = new System.Drawing.Size(390, 606);
+            this.DAC_Voltages.Size = new System.Drawing.Size(692, 606);
             this.DAC_Voltages.TabIndex = 0;
             this.DAC_Voltages.TabStop = false;
             this.DAC_Voltages.Text = "DAC Voltages";
             // 
+            // txtTrim3Int
+            // 
+            this.txtTrim3Int.Location = new System.Drawing.Point(483, 211);
+            this.txtTrim3Int.Name = "txtTrim3Int";
+            this.txtTrim3Int.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim3Int.TabIndex = 92;
+            // 
+            // txtTrim3Slope
+            // 
+            this.txtTrim3Slope.Location = new System.Drawing.Point(401, 211);
+            this.txtTrim3Slope.Name = "txtTrim3Slope";
+            this.txtTrim3Slope.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim3Slope.TabIndex = 91;
+            // 
+            // txtTrim2Int
+            // 
+            this.txtTrim2Int.Location = new System.Drawing.Point(483, 178);
+            this.txtTrim2Int.Name = "txtTrim2Int";
+            this.txtTrim2Int.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim2Int.TabIndex = 90;
+            // 
+            // txtTrim2Slope
+            // 
+            this.txtTrim2Slope.Location = new System.Drawing.Point(401, 178);
+            this.txtTrim2Slope.Name = "txtTrim2Slope";
+            this.txtTrim2Slope.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim2Slope.TabIndex = 89;
+            // 
+            // txtTrim1Int
+            // 
+            this.txtTrim1Int.Location = new System.Drawing.Point(483, 145);
+            this.txtTrim1Int.Name = "txtTrim1Int";
+            this.txtTrim1Int.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim1Int.TabIndex = 88;
+            // 
+            // txtTrim1Slope
+            // 
+            this.txtTrim1Slope.Location = new System.Drawing.Point(401, 145);
+            this.txtTrim1Slope.Name = "txtTrim1Slope";
+            this.txtTrim1Slope.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim1Slope.TabIndex = 87;
+            // 
+            // txtTrim0Int
+            // 
+            this.txtTrim0Int.Location = new System.Drawing.Point(483, 112);
+            this.txtTrim0Int.Name = "txtTrim0Int";
+            this.txtTrim0Int.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim0Int.TabIndex = 86;
+            // 
+            // txtTrim0Slope
+            // 
+            this.txtTrim0Slope.Location = new System.Drawing.Point(401, 112);
+            this.txtTrim0Slope.Name = "txtTrim0Slope";
+            this.txtTrim0Slope.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim0Slope.TabIndex = 85;
+            // 
+            // txtBiasInt
+            // 
+            this.txtBiasInt.Location = new System.Drawing.Point(483, 46);
+            this.txtBiasInt.Name = "txtBiasInt";
+            this.txtBiasInt.Size = new System.Drawing.Size(76, 27);
+            this.txtBiasInt.TabIndex = 84;
+            // 
+            // txtBiasSlope
+            // 
+            this.txtBiasSlope.Location = new System.Drawing.Point(401, 46);
+            this.txtBiasSlope.Name = "txtBiasSlope";
+            this.txtBiasSlope.Size = new System.Drawing.Size(76, 27);
+            this.txtBiasSlope.TabIndex = 83;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(479, 23);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(74, 20);
+            this.label29.TabIndex = 82;
+            this.label29.Text = "Intercept";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(397, 23);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(51, 20);
+            this.label28.TabIndex = 81;
+            this.label28.Text = "Slope";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(137, 291);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(90, 20);
+            this.label25.TabIndex = 80;
+            this.label25.Text = "Comments";
+            // 
+            // txtCalibComments
+            // 
+            this.txtCalibComments.Location = new System.Drawing.Point(141, 314);
+            this.txtCalibComments.Multiline = true;
+            this.txtCalibComments.Name = "txtCalibComments";
+            this.txtCalibComments.Size = new System.Drawing.Size(418, 138);
+            this.txtCalibComments.TabIndex = 79;
+            // 
             // btnDacSave
             // 
-            this.btnDacSave.Location = new System.Drawing.Point(200, 458);
+            this.btnDacSave.Location = new System.Drawing.Point(141, 458);
             this.btnDacSave.Name = "btnDacSave";
             this.btnDacSave.Size = new System.Drawing.Size(148, 43);
             this.btnDacSave.TabIndex = 78;
@@ -2014,7 +2143,7 @@ namespace TB_mu2e
             // 
             // btnDacScan
             // 
-            this.btnDacScan.Location = new System.Drawing.Point(234, 314);
+            this.btnDacScan.Location = new System.Drawing.Point(401, 244);
             this.btnDacScan.Name = "btnDacScan";
             this.btnDacScan.Size = new System.Drawing.Size(93, 29);
             this.btnDacScan.TabIndex = 77;
@@ -2046,11 +2175,11 @@ namespace TB_mu2e
             // 
             // btnDacWrite
             // 
-            this.btnDacWrite.Location = new System.Drawing.Point(234, 279);
+            this.btnDacWrite.Location = new System.Drawing.Point(200, 244);
             this.btnDacWrite.Name = "btnDacWrite";
             this.btnDacWrite.Size = new System.Drawing.Size(93, 29);
             this.btnDacWrite.TabIndex = 69;
-            this.btnDacWrite.Text = "WRITE";
+            this.btnDacWrite.Text = "SET";
             this.btnDacWrite.UseVisualStyleBackColor = true;
             this.btnDacWrite.Click += new System.EventHandler(this.btnDacWrite_Click);
             // 
@@ -2374,32 +2503,15 @@ namespace TB_mu2e
             this.timerScopeTrim.Interval = 50;
             this.timerScopeTrim.Tick += new System.EventHandler(this.timerScopeTrim_Tick);
             // 
-            // button8
+            // btnLoadCalib
             // 
-            this.button8.Location = new System.Drawing.Point(379, 89);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 27);
-            this.button8.TabIndex = 87;
-            this.button8.Text = "Set All";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(379, 56);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(75, 27);
-            this.textBox2.TabIndex = 63;
-            this.textBox2.Text = "56.1";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(377, 33);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(43, 20);
-            this.label27.TabIndex = 88;
-            this.label27.Text = "Bias";
+            this.btnLoadCalib.Location = new System.Drawing.Point(364, 458);
+            this.btnLoadCalib.Name = "btnLoadCalib";
+            this.btnLoadCalib.Size = new System.Drawing.Size(195, 43);
+            this.btnLoadCalib.TabIndex = 93;
+            this.btnLoadCalib.Text = "LOAD CALIBRATIONS";
+            this.btnLoadCalib.UseVisualStyleBackColor = true;
+            this.btnLoadCalib.Click += new System.EventHandler(this.btnLoadCalib_Click);
             // 
             // frmMain
             // 
@@ -2614,9 +2726,6 @@ namespace TB_mu2e
         private System.Windows.Forms.TextBox txtBiasSet0;
         private System.Windows.Forms.TextBox txtSN;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button btnDacWrite;
         private System.Windows.Forms.Button btnDacScan;
         private System.Windows.Forms.Button btnSnSave;
@@ -2666,5 +2775,20 @@ namespace TB_mu2e
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox txtCalibComments;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox txtTrim3Int;
+        private System.Windows.Forms.TextBox txtTrim3Slope;
+        private System.Windows.Forms.TextBox txtTrim2Int;
+        private System.Windows.Forms.TextBox txtTrim2Slope;
+        private System.Windows.Forms.TextBox txtTrim1Int;
+        private System.Windows.Forms.TextBox txtTrim1Slope;
+        private System.Windows.Forms.TextBox txtTrim0Int;
+        private System.Windows.Forms.TextBox txtTrim0Slope;
+        private System.Windows.Forms.TextBox txtBiasInt;
+        private System.Windows.Forms.TextBox txtBiasSlope;
+        private System.Windows.Forms.Button btnLoadCalib;
     }
 }

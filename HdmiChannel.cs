@@ -54,17 +54,23 @@ namespace TB_mu2e
         public double[] voltageDataScope = new double[3];
         private string _slope;
         private string _intercept;
+        private double _slopeDouble;
+        private double _interceptDouble;
 
         public Mu2e_Register register { get { return _register; } set { _register = value; } }
         public double voltage { get { return _voltage; } set { _voltage = value; } }
         public string slope { get { return _slope; } set { _slope = value; } }
         public string intercept { get { return _intercept; } set { _intercept = value; } }
+        public double slopeDouble { get { return _slopeDouble; } set { _slopeDouble = value; } }
+        public double interceptDouble { get { return _interceptDouble; } set { _interceptDouble = value; } }
 
         public abstract UInt32 convertVoltage(double vIn);
 
         public void FitData()
         {
             Tuple<double, double> fitParams = MathNet.Numerics.Fit.Line(voltageDataFEB, voltageDataScope);
+            _slopeDouble = fitParams.Item2;
+            _interceptDouble = fitParams.Item1;
             Int16 slopeInt = (Int16)(fitParams.Item2*32768);
             Int16 interceptInt = (Int16)(fitParams.Item1*32768);
             _slope = slopeInt.ToString("X");

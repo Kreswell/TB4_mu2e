@@ -472,29 +472,43 @@ namespace TB_mu2e
             UInt32 vSet;
             Mu2e_Register r = dac.register;
             TextBox ReadbackBox = txtBiasRB0;
+            TextBox SlopeBox = null;
+            TextBox InterceptBox = null;
             if (dac == ActiveHdmiChannel.Bias0)
             {
                 ReadbackBox = txtBiasRB0;
+                SlopeBox = txtBiasSlope;
+                InterceptBox = txtBiasInt;
             }
             else if (dac == ActiveHdmiChannel.Led0)
             {
                 ReadbackBox = txtLEDRB0;
+                SlopeBox = null;
+                InterceptBox = null;
             }
             else if (dac == ActiveHdmiChannel.Trim0)
             {
                 ReadbackBox = txtTrimRB0;
+                SlopeBox = txtTrim0Slope;
+                InterceptBox = txtTrim0Int;
             }
             else if (dac == ActiveHdmiChannel.Trim1)
             {
                 ReadbackBox = txtTrimRB1;
+                SlopeBox = txtTrim1Slope;
+                InterceptBox = txtTrim1Int;
             }
             else if (dac == ActiveHdmiChannel.Trim2)
             {
                 ReadbackBox = txtTrimRB2;
+                SlopeBox = txtTrim2Slope;
+                InterceptBox = txtTrim2Int;
             }
             else if (dac == ActiveHdmiChannel.Trim3)
             {
                 ReadbackBox = txtTrimRB3;
+                SlopeBox = txtTrim3Slope;
+                InterceptBox = txtTrim3Int;
             }
             else { }
 
@@ -581,6 +595,12 @@ namespace TB_mu2e
             }
 
             dac.FitData();
+
+            if (SlopeBox != null && InterceptBox != null)
+            {
+                SlopeBox.Text = dac.slopeDouble.ToString("G");
+                InterceptBox.Text = dac.interceptDouble.ToString("G");
+            }
 
             vSet = dac.convertVoltage(0);
             Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
@@ -2752,13 +2772,15 @@ namespace TB_mu2e
                 }
             }
             if (DoSave)
-            {
+            {           
                 string dirName = "c://data//";
-
                 string hName = "";
+                DateTime testDate = DateTime.Now;
+       
                 hName += "FEBdsf_";
                 hName += txtSN.Text;
-                hName += "vScan";
+                hName += "_";
+                hName += testDate.ToString("yyyyMMdd");
                 hName = dirName + hName + ".dsf";
                 StreamWriter sw = new StreamWriter(hName);
 
@@ -2913,10 +2935,14 @@ namespace TB_mu2e
                 string fName = "";
                 fName += "HVtestVals_";
                 fName += txtSN.Text;
+                hName += "_";
+                hName += testDate.ToString("yyyyMMdd");
                 fName = dirName + fName + ".txt";
                 StreamWriter swf = new StreamWriter(fName);
 
+                string comments = txtCalibComments.Text;
                 string hdmi = "";
+                swf.WriteLine(comments);
                 foreach (var chan in HdmiChannelList)
                 {
                     if (chan == HdmiChannel0) { hdmi = "J11"; }
@@ -3291,6 +3317,38 @@ namespace TB_mu2e
             }
         }
 
+        private void btnLoadCalib_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.InitialDirectory = "c:\\data\\";
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    StreamReader sr = new StreamReader(openFileDialog1.FileName);
+                    string fileLine = "";
+                    while ((fileLine = sr.ReadLine()) != null)
+                    {
+                        byte[] buf = PP.GetBytes(fileLine);
+                        while (PP.active_Socket.Available > 0)
+                        {
+                            byte[] rbuf = new byte[PP.active_Socket.Available];
+                            PP.active_Socket.Receive(rbuf);
+                        }
+                        PP.active_Socket.Send(buf);
+                        System.Threading.Thread.Sleep(1);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                }
+            }
+        }
     }
 
 
