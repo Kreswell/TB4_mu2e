@@ -371,7 +371,7 @@ namespace TB_mu2e
             //myRun = new Run();
             FEB1 = new Mu2e_FEB_client();
             FEB1.name = "FEB1";
-            FEB1.host_name_prop = "DCRC3";
+            FEB1.host_name_prop = "172.16.10.10";
 
             FEB2 = new Mu2e_FEB_client();
             FEB2.name = "FEB2";

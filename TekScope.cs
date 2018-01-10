@@ -2,7 +2,7 @@
      * class TecScope
      * namespace mu2e.FEB_Test_Jig
 
-private TekScope ScopeTrim = new TekScope(); constructor opens a window allowing the user to select the VISA resource for a scope. You will need to make two TekScope instances. I suggest: ScopeTrim and ScopeBias. 
+private TekScope DMM = new TekScope(); constructor opens a window allowing the user to select the VISA resource for a scope. You will need to make two TekScope instances. I suggest: DMM and ScopeBias. 
 
 For each scope, subscribe to the 
 
@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 using Ivi.Visa;
 using NationalInstruments.Visa;
 
@@ -62,8 +63,38 @@ namespace mu2e.FEB_Test_Jig
         private MessageBasedSession mbSession;
         private IVisaAsyncResult asyncHandle = null;
 
+        /// <summary>
+        /// FEBchan is a helper struct, mapping FEB channels to the DMM channels that are measuring the voltage
+        /// Choosing the signal in this channel provides the integer value of the DMM channel to read for this siganl.
+        /// </summary>
+        public struct FEBchan
+        {
+            /// <summary>
+            /// J refers to the actual HDMI refernce designator value on the FEB PCB. Valid values: J11-J26
+            /// </summary>
+            public int J;
+            /// <summary>
+            /// Trim0 is the first signal for this FEB channel. LED is the last.
+            /// </summary>
+            public int Trim0;
+            public int Trim1;
+            public int Trim2;
+            public int Trim3;
+            public int Bias;
+            /// <summary>
+            /// LED is the last signal for this FEB channel. Trim0 is the first.
+            /// </summary>
+            public int LED;
+        }
+        /// <summary>
+        /// FEBchan[16] is a helper array, mapping FEB channels to the DMM channels that are measuring the voltage
+        /// Choosing the FEB channel (0-16) then choosing the signal in this channel 
+        /// provides the integer value of the DMM channel to read for the siganl in this channel.
+        /// </summary>
+        public FEBchan[] FEBchannel = new FEBchan[16];
+
         // +++ properties 
-        private string _scopeName = "Default scope name";
+        private string _scopeName = "Agilent 37970A DMM";
         public string scopeName { 
             get { return _scopeName; } 
             set { _scopeName = value.Trim(); }
@@ -101,6 +132,20 @@ namespace mu2e.FEB_Test_Jig
                 }
             }
         }
+
+        //++++ Helper property to assign DMM channels only no other use.
+        private int _DMMchan = 100; // channel 101 is the first. but each get increments by one.
+        /// <summary>
+        /// Only used to assign DMM channel references at start up. no other use.
+        /// </summary>
+        private int DMMchan { get
+            {
+                if (_DMMchan == 140) { _DMMchan = 201; } // jump to the second module
+                else if (_DMMchan == 240) { _DMMchan = 301; } // jump to the third module
+                else _DMMchan++; //increment by one
+                return _DMMchan;
+            }  }
+        //---- Helper DMM property
         // --- properties
 
         // +++ Constructors
@@ -110,7 +155,24 @@ namespace mu2e.FEB_Test_Jig
         /// </summary>
         public TekScope()
         {
-            _isConnected = false;
+            assignDMMchannels();
+            OpenScope(scopeName);
+        }
+
+        private void assignDMMchannels()
+        {
+            //populate the references to the DMM channels
+            int connector = 11;
+            for (int chan = 0; chan < 16; chan++)
+            {
+                FEBchannel[chan].J = connector++;
+                FEBchannel[chan].Trim0 = DMMchan;
+                FEBchannel[chan].Trim1 = DMMchan;
+                FEBchannel[chan].Trim2 = DMMchan;
+                FEBchannel[chan].Trim3 = DMMchan;
+                FEBchannel[chan].Bias = DMMchan;
+                FEBchannel[chan].LED = DMMchan;
+            }
         }
 
         /// <summary>
@@ -124,7 +186,7 @@ namespace mu2e.FEB_Test_Jig
         /// </param>
         public TekScope(string scopeName, string lastResourceString = null)
         {
-            _isConnected = false;
+            assignDMMchannels();
             OpenScope(scopeName, lastResourceString);
         }
         // --- Constructors
@@ -137,7 +199,7 @@ namespace mu2e.FEB_Test_Jig
             }
         }
 
-        public bool OpenScope(string name, string lastResourceString = null)
+        public bool OpenScope(string name, string lastResourceString = "ASRL1::INSTR")
         {
             bool open = false;
 
@@ -145,24 +207,51 @@ namespace mu2e.FEB_Test_Jig
 
             if (inTestMode) return true;
 
-            using (SelectResource sr = new SelectResource( scopeName ))
+            using (SelectResource sr = new SelectResource( scopeName, lastResourceString))
             {
-                if (lastResourceString != null)
-                {
-                    sr.ResourceName = lastResourceString;
-                }
-                DialogResult result = sr.ShowDialog();
+                /*  if (lastResourceString != null)
+                  {
+                      sr.ResourceName = lastResourceString;
+                  }*/
+                DialogResult result = sr.DialogResult;
+                if (result != DialogResult.OK) 
+                    result = sr.ShowDialog();
                 if (result == DialogResult.OK)
                 {
+                    if(sr!= null) sr.Close();
                     lastResourceString = sr.ResourceName;
                     Cursor.Current = Cursors.WaitCursor;
                     try
                     {
                         using (var rmSession = new ResourceManager())
                         {
-                            mbSession = (MessageBasedSession)rmSession.Open(sr.ResourceName);
+                            mbSession = (MessageBasedSession)rmSession.Open(lastResourceString);
+
+                            ISerialSession serial = mbSession as ISerialSession;
+
+                            serial.BaudRate = 115200;
+
+                            serial.DataBits = 8;
+
+                            serial.Parity = SerialParity.None;
+
+                            serial.FlowControl = SerialFlowControlModes.RtsCts;
+                         
                             // Use SynchronizeCallbacks to specify that the object marshals callbacks across threads appropriately.
                             mbSession.SynchronizeCallbacks = true;
+
+                            // ++++++ Reset the DMM to clear errors
+                            write("*RST;*CLS\n");
+                            // not supported... mbSession.WaitOnEvent(EventType.Clear);
+                            Thread.Sleep(500);
+                            write("*CLS\n"); //some times it takes two clears to reset a DMM error
+                            Thread.Sleep(500);
+                            // ------ end of reset
+
+                            //CONFigure[:VOLTage][:DC][{< range >| AUTO | MIN | MAX | DEF} [,{<resolution>|MIN|MAX|DEF}] ]
+                            write("CONFigure:VOLTage:DC AUTO, (@101:316)\n"); 
+
+                           // write("SENSe:VOLTage:DC:NPLC1,(@101:316)");
                             _isConnected = true;
                         }
                     }
@@ -295,105 +384,113 @@ namespace mu2e.FEB_Test_Jig
         }
 
         /// <summary>
-        /// Requests a voltage measurement from the channel.
+        /// Requests all 6 voltage measurements for the specified FEB HDMI channel.
         /// <para>The voltage measurement is returned on onVoltageChanged event</para>
+        /// <para>onVoltageChanged returns double[6] showing all 6 HDMI values in the order Trim0-Trim3, Bias, LED</para>
         /// <para>If inTestMode=true then onVoltageChanged is asserted with VoltageChangedEventArgs.Voltage = voltageDefaultValue</para>
         /// </summary>
-        /// <param name="channelNumber">the integer number 1-4, of the scope channel to read</param>
-        internal void GetVoltage(int channelNumber = 1)
+        /// <param name="channelNumber">the integer number 0-15, of the FEB HDMI channel to read</param>
+        internal void GetVoltage(int HDMIchannelNumber = 0)
         {
             if (inTestMode)
             {
                 VoltageChangedEventsArgs VoltArgs = new VoltageChangedEventsArgs();
                 if (OnVoltageChanged != null)
-                    VoltArgs.channel = channelNumber;
+                    VoltArgs.channel = HDMIchannelNumber;
                     OnVoltageChanged(this, VoltArgs);
                 return;
             }
 
-            if (channelNumber < 1 || channelNumber > 4 )
-                throw new Exception(scopeName + ": GetVoltage. channel number " + channelNumber + " is out of bounds. Must be 1-4" );
+            if (HDMIchannelNumber < 0 || HDMIchannelNumber > 15 )
+                throw new Exception(scopeName + ": GetVoltage. channel number " + HDMIchannelNumber + " is out of bounds. Must be 0-15" );
 
-            write("MEASUrement:MEAS" + channelNumber + ":VALue?");
+            // For assistance with DMM VISA See: 
+            //https://www.keysight.com/upload/cmc_upload/All/iols_15_5_visa_users_guide.pdf
+            //https://literature.cdn.keysight.com/litweb/pdf/34972-90001.pdf?id=1837993
+            //https://www.keysight.com/upload/cmc_upload/All/34970-90003_users.pdf
+            //http://instructor.physics.lsa.umich.edu/adv-labs/Tools_Resources/HP%2034970A%20quick%20reference%20guide.pdf
+            //http://literature.cdn.keysight.com/litweb/pdf/5989-6338EN.pdf
+            string range =  FEBchannel[HDMIchannelNumber].Trim0 + ":" + FEBchannel[HDMIchannelNumber].LED;
+            write("MEASure:VOLTage:DC? (@"+ range +")\n"); // AUTO ,MAX, (@101)"); //,316)");
             WriteComplete += readVoltage;
-            
-            //TODO: enter message queue required to read voltage.
-        }
 
-        private void readVoltage(object sender, EventArgs e)
-        {
-            WriteComplete -= readVoltage;
-            ReadComplete += parseVoltage;
-            read();
-        }
+//TODO: enter message queue required to read voltage.
+}
 
-        private void parseVoltage(object sender, readArgs e)
-        {
-            VoltageChangedEventsArgs VoltArgs = new VoltageChangedEventsArgs();
-            try
-            {
-                ReadComplete -= parseVoltage;
-                //expected result = :MEASUREMENT:MEAS1:VALUE 3.5414E0\n
-                string rawResponse = RemoveCommonEscapeSequences(e.text);
-                string[] response = rawResponse.Split(':');
-                string channel = response[2].Replace("MEAS","").Trim();
-                VoltArgs.channel = int.Parse(channel);
-                string[] value = response[3].Split(' ');
-                string voltage = value[1].Trim();
-                VoltArgs.Voltage = double.Parse(voltage);
-                VoltArgs.isValid = !(voltage == "9.9E37"); // 9.9E37 is the scope return value for invalid measurement.
-            }
-            catch(Exception arg)
-            {
-                VoltArgs.isValid = false;
-            }
-            if (OnVoltageChanged != null)
-                    OnVoltageChanged(this, VoltArgs);
-        }
+private void readVoltage(object sender, EventArgs e)
+{
+WriteComplete -= readVoltage;
+ReadComplete += parseVoltage;
+read();
+}
 
-        private string RemoveCommonEscapeSequences(string s)
-        {
-            return (s != null) ? s.Replace("\\n", "").Replace("\n", "").Replace("\\r", "").Replace("\r", "") : s;
-        }
+private void parseVoltage(object sender, readArgs e)
+{
+VoltageChangedEventsArgs VoltArgs = new VoltageChangedEventsArgs();
+try
+{
+    ReadComplete -= parseVoltage;
+    //expected result = :MEASUREMENT:MEAS1:VALUE 3.5414E0\n
+    string rawResponse = RemoveCommonEscapeSequences(e.text);
+    string[] response = rawResponse.Split(',');
+    VoltArgs.Voltage = new double[response.Length];
+                for( int i = 0; i < response.Length; i++)
+                {
+                    VoltArgs.Voltage[i] = double.Parse(response[i]);
+                }
+    VoltArgs.isValid = (response.Length > 0); // 9.9E37 is the scope return value for invalid measurement.
+}
+catch(Exception arg)
+{
+    VoltArgs.isValid = false;
+}
+if (OnVoltageChanged != null)
+        OnVoltageChanged(this, VoltArgs);
+}
 
-        private string ReplaceCommonEscapeSequences(string s)
-        {
-            return (s != null) ? s.Replace("\\n", "\n").Replace("\\r", "\r") : s;
-        }
+private string RemoveCommonEscapeSequences(string s)
+{
+return (s != null) ? s.Replace("\\n", "").Replace("\n", "").Replace("\\r", "").Replace("\r", "") : s;
+}
 
-        private string InsertCommonEscapeSequences(string s)
-        {
-            return (s != null) ? s.Replace("\n", "\\n").Replace("\r", "\\r") : s;
-        } 
-    }
+private string ReplaceCommonEscapeSequences(string s)
+{
+return (s != null) ? s.Replace("\\n", "\n").Replace("\\r", "\r") : s;
+}
 
-    public class readArgs : EventArgs
-    {
-        public string text = "";
-    }
+private string InsertCommonEscapeSequences(string s)
+{
+return (s != null) ? s.Replace("\n", "\\n").Replace("\r", "\\r") : s;
+} 
+}
 
-    public class ConnectedStateEventArgs : EventArgs
-    {
-        public bool isConnected = false;
+public class readArgs : EventArgs
+{
+public string text = "";
+}
 
-        public ConnectedStateEventArgs(bool NewConnectionState){
-            isConnected = NewConnectionState;
-        }
-    }
+public class ConnectedStateEventArgs : EventArgs
+{
+public bool isConnected = false;
 
-    public class VoltageChangedEventsArgs : EventArgs
-    {
-        /// <summary>
-        /// If the read was successful. parsing errors or closed scope can cause failure
-        /// </summary>
-        public bool isValid = false; 
-        /// <summary>
-        /// The channel generating the event
-        /// </summary>
-        public int channel = 0; // the channel read
-        /// <summary>
-        /// The voltage measurement
-        /// </summary>
-        public double Voltage = TekScope.voltageDefaultValue; //voltage value
-    }
+public ConnectedStateEventArgs(bool NewConnectionState){
+isConnected = NewConnectionState;
+}
+}
+
+public class VoltageChangedEventsArgs : EventArgs
+{
+/// <summary>
+/// If the read was successful. parsing errors or closed scope can cause failure
+/// </summary>
+public bool isValid = false; 
+/// <summary>
+/// The channel generating the event
+/// </summary>
+public int channel = 0; // the channel read
+/// <summary>
+/// The voltage measurement
+/// </summary>
+public double[] Voltage = { TekScope.voltageDefaultValue }; //voltage value
+}
 }

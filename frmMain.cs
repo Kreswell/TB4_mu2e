@@ -40,8 +40,8 @@ namespace TB_mu2e
         private mu2e_Event DispEvent;
         private bool DebugLogging;
 
-        TekScope ScopeBias;
-        TekScope ScopeTrim;
+        //TekScope ScopeBias;
+        TekScope DMM; //only need one TekScope when using the DMM
 
         double vScopeBias;
         double vScopeLED;
@@ -1744,6 +1744,7 @@ namespace TB_mu2e
 
         private void btnDacUpdate_Click(object sender, EventArgs e)
         {
+
             Mu2e_FEB_client myFEB = null;
             Mu2e_Register rBias;
             Mu2e_Register rLed;
@@ -1751,201 +1752,201 @@ namespace TB_mu2e
             Mu2e_Register rTrim1;
             Mu2e_Register rTrim2;
             Mu2e_Register rTrim3;
-            if (_ActiveFEB == 1)
-            { myFEB = PP.FEB1; }
-            else if (_ActiveFEB == 2)
-            { myFEB = PP.FEB2; }
-            else
-            { MessageBox.Show("No FEB active"); return; }
-            double v;
-            ushort fpga_num;
-            switch (HdmiChannel)
-            {
-                case 0:
-                    fpga_num = 0;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH0", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH0", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH1", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH2", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH3", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 1:
-                    fpga_num = 0;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH1", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH4", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH5", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH6", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH7", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 2:
-                    fpga_num = 0;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH2", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH8", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH9", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH10", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH11", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 3:
-                    fpga_num = 0;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH3", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH12", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH13", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH14", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH15", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 4:
-                    fpga_num = 1;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH0", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH0", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH1", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH2", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH3", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 5:
-                    fpga_num = 1;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH1", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH4", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH5", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH6", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH7", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 6:
-                    fpga_num = 1;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH2", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH8", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH9", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH10", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH11", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 7:
-                    fpga_num = 1;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH3", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH12", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH13", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH14", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH15", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 8:
-                    fpga_num = 2;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH0", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH0", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH1", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH2", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH3", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 9:
-                    fpga_num = 2;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH1", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH4", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH5", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH6", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH7", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 10:
-                    fpga_num = 2;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH2", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH8", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH9", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH10", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH11", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 11:
-                    fpga_num = 2;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH3", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH12", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH13", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH14", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH15", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 12:
-                    fpga_num = 3;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH0", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH0", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH1", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH2", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH3", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 13:
-                    fpga_num = 3;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH1", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH4", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH5", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH6", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH7", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 14:
-                    fpga_num = 3;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH2", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH8", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH9", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH10", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH11", ref myFEB.arrReg, out rTrim3);
-                    break;
-                case 15:
-                    fpga_num = 3;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH3", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH12", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH13", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH14", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH15", ref myFEB.arrReg, out rTrim3);
-                    break;
-                default:
-                    fpga_num = 0;
-                    Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
-                    Mu2e_Register.FindName("LED_INTENSITY_DAC_CH0", ref myFEB.arrReg, out rLed);
-                    Mu2e_Register.FindName("BIAS_DAC_CH0", ref myFEB.arrReg, out rTrim0);
-                    Mu2e_Register.FindName("BIAS_DAC_CH1", ref myFEB.arrReg, out rTrim1);
-                    Mu2e_Register.FindName("BIAS_DAC_CH2", ref myFEB.arrReg, out rTrim2);
-                    Mu2e_Register.FindName("BIAS_DAC_CH3", ref myFEB.arrReg, out rTrim3);
-                    break;
-            }
-            string name = tabControl.SelectedTab.Text;
-            rBias.fpga_index = fpga_num;
-            Mu2e_Register.ReadReg(ref rBias, ref myFEB.client);
-            v = rBias.val*0.02;
-            txtBiasSet0.Text = v.ToString("0.000");
-            rLed.fpga_index = fpga_num;
-            Mu2e_Register.ReadReg(ref rLed, ref myFEB.client);
-            v = rLed.val * 0.003;
-            txtLEDSet0.Text = v.ToString("0.000");
-            rTrim0.fpga_index = fpga_num;
-            Mu2e_Register.ReadReg(ref rTrim0, ref myFEB.client);
-            v = ((double)rTrim0.val - 2048) * 0.002;
-            txtTrimSet0.Text = v.ToString("0.000");
-            rTrim1.fpga_index = fpga_num;
-            Mu2e_Register.ReadReg(ref rTrim1, ref myFEB.client);
-            v = ((double)rTrim1.val - 2048) * 0.002;
-            txtTrimSet1.Text = v.ToString("0.000");
-            rTrim2.fpga_index = fpga_num;
-            Mu2e_Register.ReadReg(ref rTrim2, ref myFEB.client);
-            v = ((double)rTrim2.val - 2048) * 0.002;
-            txtTrimSet2.Text = v.ToString("0.000");
-            rTrim3.fpga_index = fpga_num;
-            Mu2e_Register.ReadReg(ref rTrim3, ref myFEB.client);
-            v = ((double)rTrim3.val - 2048) * 0.002;
-            txtTrimSet3.Text = v.ToString("0.000");
-            ScopeBias.GetVoltage(1);
-            ScopeBias.GetVoltage(2);
-            ScopeTrim.GetVoltage(1);
-            ScopeTrim.GetVoltage(2);
-            ScopeTrim.GetVoltage(3);
-            ScopeTrim.GetVoltage(4);
+                      if (_ActiveFEB == 1)
+                            { myFEB = PP.FEB1; }
+                      else if (_ActiveFEB == 2)
+                            { myFEB = PP.FEB2; }
+                      else
+                      {
+                          MessageBox.Show("No FEB active");
+                          return;
+                      }
+
+                      DMM.GetVoltage((int)HdmiChannel);
+
+                      double v;
+                      ushort fpga_num;
+                      switch (HdmiChannel)
+                      {
+                          case 0:
+                              fpga_num = 0;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH0", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH0", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH1", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH2", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH3", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 1:
+                              fpga_num = 0;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH1", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH4", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH5", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH6", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH7", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 2:
+                              fpga_num = 0;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH2", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH8", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH9", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH10", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH11", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 3:
+                              fpga_num = 0;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH3", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH12", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH13", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH14", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH15", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 4:
+                              fpga_num = 1;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH0", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH0", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH1", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH2", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH3", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 5:
+                              fpga_num = 1;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH1", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH4", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH5", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH6", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH7", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 6:
+                              fpga_num = 1;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH2", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH8", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH9", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH10", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH11", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 7:
+                              fpga_num = 1;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH3", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH12", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH13", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH14", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH15", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 8:
+                              fpga_num = 2;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH0", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH0", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH1", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH2", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH3", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 9:
+                              fpga_num = 2;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH1", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH4", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH5", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH6", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH7", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 10:
+                              fpga_num = 2;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH2", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH8", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH9", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH10", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH11", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 11:
+                              fpga_num = 2;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH3", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH12", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH13", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH14", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH15", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 12:
+                              fpga_num = 3;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH0", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH0", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH1", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH2", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH3", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 13:
+                              fpga_num = 3;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH1", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH4", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH5", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH6", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH7", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 14:
+                              fpga_num = 3;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH2", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH8", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH9", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH10", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH11", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          case 15:
+                              fpga_num = 3;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC1", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH3", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH12", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH13", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH14", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH15", ref myFEB.arrReg, out rTrim3);
+                              break;
+                          default:
+                              fpga_num = 0;
+                              Mu2e_Register.FindName("BIAS_BUS_DAC0", ref myFEB.arrReg, out rBias);
+                              Mu2e_Register.FindName("LED_INTENSITY_DAC_CH0", ref myFEB.arrReg, out rLed);
+                              Mu2e_Register.FindName("BIAS_DAC_CH0", ref myFEB.arrReg, out rTrim0);
+                              Mu2e_Register.FindName("BIAS_DAC_CH1", ref myFEB.arrReg, out rTrim1);
+                              Mu2e_Register.FindName("BIAS_DAC_CH2", ref myFEB.arrReg, out rTrim2);
+                              Mu2e_Register.FindName("BIAS_DAC_CH3", ref myFEB.arrReg, out rTrim3);
+                              break;
+                      }
+                      string name = tabControl.SelectedTab.Text;
+                      rBias.fpga_index = fpga_num;
+                      Mu2e_Register.ReadReg(ref rBias, ref myFEB.client);
+                      v = rBias.val*0.02;
+                      txtBiasSet0.Text = v.ToString("0.000");
+                      rLed.fpga_index = fpga_num;
+                      Mu2e_Register.ReadReg(ref rLed, ref myFEB.client);
+                      v = rLed.val * 0.003;
+                      txtLEDSet0.Text = v.ToString("0.000");
+                      rTrim0.fpga_index = fpga_num;
+                      Mu2e_Register.ReadReg(ref rTrim0, ref myFEB.client);
+                      v = ((double)rTrim0.val - 2048) * 0.002;
+                      txtTrimSet0.Text = v.ToString("0.000");
+                      rTrim1.fpga_index = fpga_num;
+                      Mu2e_Register.ReadReg(ref rTrim1, ref myFEB.client);
+                      v = ((double)rTrim1.val - 2048) * 0.002;
+                      txtTrimSet1.Text = v.ToString("0.000");
+                      rTrim2.fpga_index = fpga_num;
+                      Mu2e_Register.ReadReg(ref rTrim2, ref myFEB.client);
+                      v = ((double)rTrim2.val - 2048) * 0.002;
+                      txtTrimSet2.Text = v.ToString("0.000");
+                      rTrim3.fpga_index = fpga_num;
+                      Mu2e_Register.ReadReg(ref rTrim3, ref myFEB.client);
+                      v = ((double)rTrim3.val - 2048) * 0.002;
+                      txtTrimSet3.Text = v.ToString("0.000");
 
             Application.DoEvents();
         }
@@ -2490,59 +2491,47 @@ namespace TB_mu2e
 
         private void btnConnectScope_Click(object sender, EventArgs e)
         {
-            ScopeBias = new TekScope("Bias Scope");
-            ScopeTrim = new TekScope("Trim Scope");
-            ScopeBias.OnConnectedStateChanged += ScopeBiasConnectionChanged;
-            ScopeBias.OnVoltageChanged += ScopeBiasVoltageChanged;
-            ScopeTrim.OnConnectedStateChanged += ScopeTrimConnectionChanged;
-            ScopeTrim.OnVoltageChanged += ScopeTrimVoltageChanged;
+            //ScopeBias = new TekScope("Bias Scope");
+            DMM = new TekScope();
+            //ScopeBias.OnConnectedStateChanged += ScopeBiasConnectionChanged;
+            
+            DMM.OnConnectedStateChanged += DMMTrimConnectionChanged;
+            DMM.OnVoltageChanged += DMMVoltagesChanged;
 
+            if (DMM.isConnected) btnConnectScope.Enabled = false;
         }
 
-        private void ScopeTrimVoltageChanged(object sender, VoltageChangedEventsArgs e)
+        private void DMMVoltagesChanged(object sender, VoltageChangedEventsArgs e)
         {
-            if (ScopeTrim.inTestMode || e.isValid)
+           if (DMM.inTestMode || (e.isValid && e.Voltage.Length == 6)) 
             {
-                switch (e.channel)
-                {
-                    case 1:
-                        vScopeTrim0 = e.Voltage;
-                        txtTrimRB0.Text = vScopeTrim0.ToString("0.00");
-                        break;
-                    case 2:
-                        vScopeTrim1 = e.Voltage;
-                        txtTrimRB1.Text = vScopeTrim1.ToString("0.00");
-                        break;
-                    case 3:
-                        vScopeTrim2 = e.Voltage;
-                        txtTrimRB2.Text = vScopeTrim2.ToString("0.00");
-                        break;
-                    case 4:
-                        vScopeTrim3 = e.Voltage;
-                        txtTrimRB3.Text = vScopeTrim3.ToString("0.00");
-                        break;
-                    default:
-                        break;
-                }
+                vScopeTrim0 = e.Voltage[0];
+                txtTrimRB0.Text = vScopeTrim0.ToString("0.00");
+                vScopeTrim1 = e.Voltage[1];
+                txtTrimRB1.Text = vScopeTrim1.ToString("0.00");
+                vScopeTrim2 = e.Voltage[2];
+                txtTrimRB2.Text = vScopeTrim2.ToString("0.00");
+                vScopeTrim3 = e.Voltage[3];
+                txtTrimRB3.Text = vScopeTrim3.ToString("0.00");
+                vScopeBias = e.Voltage[4];
+                txtBiasRB0.Text = vScopeBias.ToString("0.00");
+                vScopeLED = e.Voltage[5];
+                txtLEDRB0.Text = vScopeLED.ToString("0.00");
+
                 //tbVolts.Text = e.Voltage.ToString("0.00") + "V";
             }
             //else
             // tbVolts.Text = "x.xx";
         }
 
-        private void ScopeBiasVoltageChanged(object sender, VoltageChangedEventsArgs e)
+        private void DMMBiasVoltageChanged(object sender, VoltageChangedEventsArgs e)
         {
-            if (ScopeBias.inTestMode || e.isValid)
+            if (DMM.inTestMode || e.isValid)
             {
                 switch (e.channel)
                 {
                     case 1:
-                        vScopeBias = e.Voltage;
-                        txtBiasRB0.Text = vScopeBias.ToString("0.00");
-                        break;
-                    case 2:
-                        vScopeLED = e.Voltage;
-                        txtLEDRB0.Text = vScopeLED.ToString("0.00");
+                       
                         break;
                     default:
                         break;
@@ -2553,17 +2542,22 @@ namespace TB_mu2e
                // tbVolts.Text = "x.xx";
         }
 
-        private void ScopeBiasConnectionChanged(object sender, ConnectedStateEventArgs e)
+        private void DMMBiasConnectionChanged(object sender, ConnectedStateEventArgs e)
         {
 
         }
 
-        private void ScopeTrimConnectionChanged(object sender, ConnectedStateEventArgs e)
+        private void DMMTrimConnectionChanged(object sender, ConnectedStateEventArgs e)
         {
 
         }
 
         private void txtTrimRB0_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFEB1_Click(object sender, EventArgs e)
         {
 
         }
