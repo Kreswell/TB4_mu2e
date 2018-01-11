@@ -84,6 +84,8 @@ namespace TB_mu2e
         private bool ScopeTrimVoltageUpdated = false;
 
         List<string> ListSipm = new List<string>();
+        List<string> ListSipmIV = new List<string>();
+        List<string> ListSipmHisto = new List<string>();
 
         public void AddConsoleMessage(string mess)
         {
@@ -431,41 +433,6 @@ namespace TB_mu2e
                 }
             }
         }
-
-        //private void doTest(DacProperties dac, double vScope, double vHi, double vMed, double vLow)
-        //{
-        //    UInt32 vSet;
-        //    Mu2e_Register r = dac.register;
-
-        //    vSet = dac.convertVoltage(vHi);
-        //    Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
-        //    updateVoltage();
-        //    Application.DoEvents();
-        //    dac.voltageDataFEB[0] = vHi;
-        //    dac.voltageDataScope[0] = vScope;
-
-        //    vSet = dac.convertVoltage(vMed);
-        //    Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
-        //    updateVoltage();
-        //    Application.DoEvents();
-        //    dac.voltageDataFEB[1] = vMed;
-        //    dac.voltageDataScope[1] = vScope;
-
-        //    vSet = dac.convertVoltage(vLow);
-        //    Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
-        //    updateVoltage();
-        //    Application.DoEvents();
-        //    dac.voltageDataFEB[2] = vLow;
-        //    dac.voltageDataScope[2] = vScope;
-
-        //    dac.FitData();
-
-        //    vSet = dac.convertVoltage(0);
-        //    Mu2e_Register.WriteReg(vSet, ref r, ref myFEB.client);
-        //    updateVoltage();
-        //    Application.DoEvents();
-        //}
-
 
         private void doTest(DacProperties dac, double vHi, double vMed, double vLow)
         {
@@ -1122,10 +1089,10 @@ namespace TB_mu2e
                 //loop over th
                 //zedFEB1.GraphPane.XAxis.Scale.Max = myHisto.max_thresh;
                 //zedFEB1.GraphPane.XAxis.Scale.Min = myHisto.min_thresh;
-                zedFEB1.GraphPane.XAxis.Scale.Max = 256;
-                zedFEB1.GraphPane.XAxis.Scale.Min = 0;
-                zedFEB1.GraphPane.YAxis.Scale.Max = 100;
-                zedFEB1.GraphPane.YAxis.Scale.Min = 0;
+                zedGraphHisto.GraphPane.XAxis.Scale.Max = 256;
+                zedGraphHisto.GraphPane.XAxis.Scale.Min = 0;
+                zedGraphHisto.GraphPane.YAxis.Scale.Max = 100;
+                zedGraphHisto.GraphPane.YAxis.Scale.Min = 0;
 
                 listBox1.DataSource = null;
                 ListSipm.Clear();
@@ -1321,7 +1288,7 @@ namespace TB_mu2e
 
                 //myHisto.min_thresh = (int)udStart.Value;
                 //myHisto.max_thresh = (int)udStop.Value;
-                //if (_ActiveFEB == 1) { PP.FEB1Histo.Add(myHisto[(int)udChan.Value]); }
+                //if (_ActiveFEB == 1) { PP.FEB1Histo.Add(myHisto[(int)udChan.Value])zedFEB; }
                 //if (_ActiveFEB == 2) { PP.FEB2Histo.Add(myHisto[(int)udChan.Value]); }
 
                 Application.DoEvents();
@@ -1335,39 +1302,39 @@ namespace TB_mu2e
 
         private void UpdateDisplay_IV(IV_curve myIV)
         {
-            zedFEB1.GraphPane.CurveList.Clear();
+            zedGraphIV.GraphPane.CurveList.Clear();
             if (chkLogY.Checked)
             {
                 if (myIV.min_I < 0)
-                    { zedFEB1.GraphPane.YAxis.Scale.Min = -2; }
+                    { zedGraphIV.GraphPane.YAxis.Scale.Min = -2; }
                 else if (Math.Round((double)(Math.Log10(myIV.min_I))) < -2)
-                    { zedFEB1.GraphPane.YAxis.Scale.Min = -2; }
+                    { zedGraphIV.GraphPane.YAxis.Scale.Min = -2; }
                 else
-                    { zedFEB1.GraphPane.YAxis.Scale.Min = Math.Round((double)(Math.Log10(myIV.min_I))) - .1; }
+                    { zedGraphIV.GraphPane.YAxis.Scale.Min = Math.Round((double)(Math.Log10(myIV.min_I))) - .1; }
 
-                zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(Math.Log10(myIV.max_I * 1000)), 0);
+                zedGraphIV.GraphPane.YAxis.Scale.Max = Math.Round((double)(Math.Log10(myIV.max_I * 1000)), 0);
 
-                if (zedFEB1.GraphPane.YAxis.Scale.Max < 0.1) { zedFEB1.GraphPane.YAxis.Scale.Max = 0.1; }
+                if (zedGraphIV.GraphPane.YAxis.Scale.Max < 0.1) { zedGraphIV.GraphPane.YAxis.Scale.Max = 0.1; }
 
-                zedFEB1.GraphPane.AddCurve(myIV.chan.ToString(), myIV.loglist, Color.DarkRed, SymbolType.None);
-                zedFEB1.GraphPane.YAxis.Scale.MajorStep = .1 * (double)(Math.Log10(myIV.max_I * 1000));
+                zedGraphIV.GraphPane.AddCurve(myIV.chan.ToString(), myIV.loglist, Color.DarkRed, SymbolType.None);
+                zedGraphIV.GraphPane.YAxis.Scale.MajorStep = .1 * (double)(Math.Log10(myIV.max_I * 1000));
             }
             else
             {
-                zedFEB1.GraphPane.YAxis.Scale.Min = 0.0;
-                zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(myIV.max_I + 0.1 * (myIV.max_I - myIV.min_I)), 0);
-                zedFEB1.GraphPane.AddCurve(myIV.chan.ToString(), myIV.list, Color.DarkRed, SymbolType.None);
+                zedGraphIV.GraphPane.YAxis.Scale.Min = 0.0;
+                zedGraphIV.GraphPane.YAxis.Scale.Max = Math.Round((double)(myIV.max_I + 0.1 * (myIV.max_I - myIV.min_I)), 0);
+                zedGraphIV.GraphPane.AddCurve(myIV.chan.ToString(), myIV.list, Color.DarkRed, SymbolType.None);
             }
             double s = Math.Round((double)(myIV.max_v - myIV.min_v) / 10.0, 0);
-            if (zedFEB1.GraphPane.XAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.XAxis.Scale.MajorStep = s; }
-            zedFEB1.GraphPane.XAxis.Scale.MinorStep = zedFEB1.GraphPane.XAxis.Scale.MajorStep / 4;
-            zedFEB1.GraphPane.XAxis.Scale.Min = (double)udStart.Value - .2;
-            zedFEB1.GraphPane.XAxis.Scale.Max = (double)udStop.Value + .2;
+            if (zedGraphIV.GraphPane.XAxis.Scale.MajorStep < s) { zedGraphIV.GraphPane.XAxis.Scale.MajorStep = s; }
+            zedGraphIV.GraphPane.XAxis.Scale.MinorStep = zedGraphIV.GraphPane.XAxis.Scale.MajorStep / 4;
+            zedGraphIV.GraphPane.XAxis.Scale.Min = (double)udStart.Value - .2;
+            zedGraphIV.GraphPane.XAxis.Scale.Max = (double)udStop.Value + .2;
 
             s = Math.Round((myIV.max_I - myIV.min_I) / 10.0, 0);
-            zedFEB1.GraphPane.YAxis.Scale.MinorStep = zedFEB1.GraphPane.YAxis.Scale.MajorStep / 4;
+            zedGraphIV.GraphPane.YAxis.Scale.MinorStep = zedGraphIV.GraphPane.YAxis.Scale.MajorStep / 4;
 
-            zedFEB1.Invalidate(true);
+            zedGraphIV.Invalidate(true);
             Application.DoEvents();
         }
 
@@ -1383,7 +1350,7 @@ namespace TB_mu2e
                 int SipmNum = Int32.Parse(SipmSel) - 1;
 
                 List<HISTO_curve> myHistoList = null;
-                zedFEB1.GraphPane.CurveList.Clear();
+                zedGraphHisto.GraphPane.CurveList.Clear();
 
                 myHistoList = PP.FEB1Histo;
                 //if (_ActiveFEB == 2) { myHistoList = PP.FEB2Histo; }
@@ -1394,27 +1361,27 @@ namespace TB_mu2e
                     {
                         if (chkLogY.Checked)
                         {
-                            zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(Math.Log10(h1.max_count + 0.1 * (h1.max_count - h1.min_count))), 0);
-                            zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.loglist, Color.DarkRed, SymbolType.None);
+                            zedGraphHisto.GraphPane.YAxis.Scale.Max = Math.Round((double)(Math.Log10(h1.max_count + 0.1 * (h1.max_count - h1.min_count))), 0);
+                            zedGraphHisto.GraphPane.AddCurve(h1.chan.ToString(), h1.loglist, Color.DarkRed, SymbolType.None);
                         }
                         else
                         {
-                            zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(h1.max_count + 0.1 * (h1.max_count - h1.min_count)), 0);
+                            zedGraphHisto.GraphPane.YAxis.Scale.Max = Math.Round((double)(h1.max_count + 0.1 * (h1.max_count - h1.min_count)), 0);
                             //zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, this_color[h1.chan % 16], SymbolType.None);
-                            zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, Color.DarkBlue, SymbolType.None);
+                            zedGraphHisto.GraphPane.AddCurve(h1.chan.ToString(), h1.list, Color.DarkBlue, SymbolType.None);
                         }
                         double s = 0;
                         s = Math.Round((double)(h1.max_thresh - h1.min_thresh) / 10.0, 0);
-                        if (zedFEB1.GraphPane.XAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.XAxis.Scale.MajorStep = s; }
-                        zedFEB1.GraphPane.XAxis.Scale.MinorStep = zedFEB1.GraphPane.XAxis.Scale.MajorStep / 4;
+                        if (zedGraphHisto.GraphPane.XAxis.Scale.MajorStep < s) { zedGraphHisto.GraphPane.XAxis.Scale.MajorStep = s; }
+                        zedGraphHisto.GraphPane.XAxis.Scale.MinorStep = zedGraphHisto.GraphPane.XAxis.Scale.MajorStep / 4;
 
                         s = Math.Round((h1.max_count - h1.min_count) / 10.0, 0);
-                        if (zedFEB1.GraphPane.YAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.YAxis.Scale.MajorStep = s; }
-                        zedFEB1.GraphPane.YAxis.Scale.MinorStep = zedFEB1.GraphPane.YAxis.Scale.MajorStep / 4;
+                        if (zedGraphHisto.GraphPane.YAxis.Scale.MajorStep < s) { zedGraphHisto.GraphPane.YAxis.Scale.MajorStep = s; }
+                        zedGraphHisto.GraphPane.YAxis.Scale.MinorStep = zedGraphHisto.GraphPane.YAxis.Scale.MajorStep / 4;
                     }
                 }
             }
-            zedFEB1.Invalidate(true);
+            zedGraphHisto.Invalidate(true);
             Application.DoEvents();
         }
 
@@ -2322,11 +2289,6 @@ namespace TB_mu2e
                 updateVoltage();
             }
             Application.DoEvents();
-        }
-
-        private void zedFEB1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void zedGraphControl1_Load(object sender, EventArgs e)
@@ -3342,6 +3304,322 @@ namespace TB_mu2e
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
+        }
+
+        private void checkBox48_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSelLowIV_Click(object sender, EventArgs e)
+        {
+            if (chkBoxJ11IV.Checked && chkBoxJ12IV.Checked && chkBoxJ13IV.Checked && chkBoxJ14IV.Checked && chkBoxJ15IV.Checked && chkBoxJ16IV.Checked && chkBoxJ17IV.Checked && chkBoxJ18IV.Checked)
+            {
+                chkBoxJ11IV.Checked = false;
+                chkBoxJ12IV.Checked = false;
+                chkBoxJ13IV.Checked = false;
+                chkBoxJ14IV.Checked = false;
+                chkBoxJ15IV.Checked = false;
+                chkBoxJ16IV.Checked = false;
+                chkBoxJ17IV.Checked = false;
+                chkBoxJ18IV.Checked = false;
+            }
+            else
+            {
+                chkBoxJ11IV.Checked = true;
+                chkBoxJ12IV.Checked = true;
+                chkBoxJ13IV.Checked = true;
+                chkBoxJ14IV.Checked = true;
+                chkBoxJ15IV.Checked = true;
+                chkBoxJ16IV.Checked = true;
+                chkBoxJ17IV.Checked = true;
+                chkBoxJ18IV.Checked = true;
+            }
+        }
+
+        private void checkBox25_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSelLowHist_Click(object sender, EventArgs e)
+        {
+            if (chkBoxJ11Hist.Checked && chkBoxJ12Hist.Checked && chkBoxJ13Hist.Checked && chkBoxJ14Hist.Checked && chkBoxJ15Hist.Checked && chkBoxJ16Hist.Checked && chkBoxJ17Hist.Checked && chkBoxJ18Hist.Checked)
+            {
+                chkBoxJ11Hist.Checked = false;
+                chkBoxJ12Hist.Checked = false;
+                chkBoxJ13Hist.Checked = false;
+                chkBoxJ14Hist.Checked = false;
+                chkBoxJ15Hist.Checked = false;
+                chkBoxJ16Hist.Checked = false;
+                chkBoxJ17Hist.Checked = false;
+                chkBoxJ18Hist.Checked = false;
+            }
+            else
+            {
+                chkBoxJ11Hist.Checked = true;
+                chkBoxJ12Hist.Checked = true;
+                chkBoxJ13Hist.Checked = true;
+                chkBoxJ14Hist.Checked = true;
+                chkBoxJ15Hist.Checked = true;
+                chkBoxJ16Hist.Checked = true;
+                chkBoxJ17Hist.Checked = true;
+                chkBoxJ18Hist.Checked = true;
+            }
+        }
+
+        private void btnSelHiHist_Click(object sender, EventArgs e)
+        {
+            if (chkBoxJ19Hist.Checked && chkBoxJ20Hist.Checked && chkBoxJ21Hist.Checked && chkBoxJ22Hist.Checked && chkBoxJ23Hist.Checked && chkBoxJ24Hist.Checked && chkBoxJ25Hist.Checked && chkBoxJ26Hist.Checked)
+            {
+                chkBoxJ19Hist.Checked = false;
+                chkBoxJ20Hist.Checked = false;
+                chkBoxJ21Hist.Checked = false;
+                chkBoxJ22Hist.Checked = false;
+                chkBoxJ23Hist.Checked = false;
+                chkBoxJ24Hist.Checked = false;
+                chkBoxJ25Hist.Checked = false;
+                chkBoxJ26Hist.Checked = false;
+            }
+            else
+            {
+                chkBoxJ19Hist.Checked = true;
+                chkBoxJ20Hist.Checked = true;
+                chkBoxJ21Hist.Checked = true;
+                chkBoxJ22Hist.Checked = true;
+                chkBoxJ23Hist.Checked = true;
+                chkBoxJ24Hist.Checked = true;
+                chkBoxJ25Hist.Checked = true;
+                chkBoxJ26Hist.Checked = true;
+            }
+        }
+
+        private void btnSelHiIV_Click(object sender, EventArgs e)
+        {
+            if (chkBoxJ19IV.Checked && chkBoxJ20IV.Checked && chkBoxJ21IV.Checked && chkBoxJ22IV.Checked && chkBoxJ23IV.Checked && chkBoxJ24IV.Checked && chkBoxJ25IV.Checked && chkBoxJ26IV.Checked)
+            {
+                chkBoxJ19IV.Checked = false;
+                chkBoxJ20IV.Checked = false;
+                chkBoxJ21IV.Checked = false;
+                chkBoxJ22IV.Checked = false;
+                chkBoxJ23IV.Checked = false;
+                chkBoxJ24IV.Checked = false;
+                chkBoxJ25IV.Checked = false;
+                chkBoxJ26IV.Checked = false;
+            }
+            else
+            {
+                chkBoxJ19IV.Checked = true;
+                chkBoxJ20IV.Checked = true;
+                chkBoxJ21IV.Checked = true;
+                chkBoxJ22IV.Checked = true;
+                chkBoxJ23IV.Checked = true;
+                chkBoxJ24IV.Checked = true;
+                chkBoxJ25IV.Checked = true;
+                chkBoxJ26IV.Checked = true;
+            }
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            string cmb_reg;
+            myFEB.ReadCMB(out cmb_reg);
+            labelTempIV.Text = cmb_reg;
+            Application.DoEvents();
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            string cmb_reg;
+            myFEB.ReadCMB(out cmb_reg);
+            labelTempHist.Text = cmb_reg;
+            Application.DoEvents();
+        }
+
+        private void btnIVScan_Click(object sender, EventArgs e)
+        {
+            listBox3.ClearSelected();
+            listBox3.DataSource = null;
+            ListSipmIV.Clear();
+            Mu2e_FEB_client FEB = new Mu2e_FEB_client();
+            switch (_ActiveFEB)
+            {
+                case 1:
+                    FEB = PP.FEB1;
+                    break;
+                case 2:
+                    FEB = PP.FEB2;
+                    break;
+            }
+
+            if (btnScan.Text != "SCAN") { flgBreak = true; return; }
+
+            IV_curve myIV = new IV_curve();
+
+            myIV.min_v = (double)numericUpDown3.Value;
+            myIV.max_v = (double)numericUpDown2.Value;
+            for (uint i = 0; i < 64; i++)
+            {
+                bool CmbCheck = false;
+                uint sipm = i % 8;
+                uint sipm16 = i % 0x10;
+                UInt16 fpga = 0;
+                switch (i)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        if (chkBoxJ11IV.Checked) CmbCheck = true;
+                        fpga = 0;
+                        break;
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                        if (chkBoxJ12IV.Checked) CmbCheck = true;
+                        fpga = 0;
+                        break;
+                    case 8:
+                    case 9:
+                    case 10:
+                    case 11:
+                        if (chkBoxJ13IV.Checked) CmbCheck = true;
+                        fpga = 0;
+                        break;
+                    case 12:
+                    case 13:
+                    case 14:
+                    case 15:
+                        if (chkBoxJ14IV.Checked) CmbCheck = true;
+                        fpga = 0;
+                        break;
+                    case 16:
+                    case 17:
+                    case 18:
+                    case 19:
+                        if (chkBoxJ15IV.Checked) CmbCheck = true;
+                        fpga = 1;
+                        break;
+                    case 20:
+                    case 21:
+                    case 22:
+                    case 23:
+                        if (chkBoxJ16IV.Checked) CmbCheck = true;
+                        fpga = 1;
+                        break;
+                    case 24:
+                    case 25:
+                    case 26:
+                    case 27:
+                        if (chkBoxJ17IV.Checked) CmbCheck = true;
+                        fpga = 1;
+                        break;
+                    case 28:
+                    case 29:
+                    case 30:
+                    case 31:
+                        if (chkBoxJ18IV.Checked) CmbCheck = true;
+                        fpga = 1;
+                        break;
+                    case 32:
+                    case 33:
+                    case 34:
+                    case 35:
+                        if (chkBoxJ19IV.Checked) CmbCheck = true;
+                        fpga = 2;
+                        break;
+                    case 36:
+                    case 37:
+                    case 38:
+                    case 39:
+                        if (chkBoxJ20IV.Checked) CmbCheck = true;
+                        fpga = 2;
+                        break;
+                    case 40:
+                    case 41:
+                    case 42:
+                    case 43:
+                        if (chkBoxJ21IV.Checked) CmbCheck = true;
+                        fpga = 2;
+                        break;
+                    case 44:
+                    case 45:
+                    case 46:
+                    case 47:
+                        if (chkBoxJ22IV.Checked) CmbCheck = true;
+                        fpga = 2;
+                        break;
+                    case 48:
+                    case 49:
+                    case 50:
+                    case 51:
+                        if (chkBoxJ23IV.Checked) CmbCheck = true;
+                        fpga = 3;
+                        break;
+                    case 52:
+                    case 53:
+                    case 54:
+                    case 55:
+                        if (chkBoxJ24IV.Checked) CmbCheck = true;
+                        fpga = 3;
+                        break;
+                    case 56:
+                    case 57:
+                    case 58:
+                    case 59:
+                        if (chkBoxJ25IV.Checked) CmbCheck = true;
+                        fpga = 3;
+                        break;
+                    case 60:
+                    case 61:
+                    case 62:
+                    case 63:
+                        if (chkBoxJ26IV.Checked) CmbCheck = true;
+                        fpga = 3;
+                        break;
+                    default:
+                        break;
+                }
+                if (CmbCheck == false) continue;
+                double I = FEB.ReadA0(fpga, (int)i);
+
+                myIV.chan = (Int32)i;
+                myIV.board = _ActiveFEB;
+                decimal v = numericUpDown3.Value;
+                while ((v < numericUpDown2.Value) & !flgBreak)
+                {
+                    Application.DoEvents();
+                    myIV.AddPoint((double)v, I);
+
+                    btnIVScan.Text = v.ToString("0.00") + "V";
+
+                    v += udInterval.Value / 1000;
+
+                    System.Threading.Thread.Sleep(10);
+                    Application.DoEvents();
+                }
+                if (_ActiveFEB == 1) { PP.FEB1IVs.Add(myIV); }
+                if (_ActiveFEB == 2) { PP.FEB2IVs.Add(myIV); }
+                v = numericUpDown3.Value;
+                btnBiasWRITE_Click(null, null);
+                if (myIV.saved == false) { myIV.Save(); }
+                myIV.saved = true;
+                myIV.saved_time = DateTime.Now;
+            }
+            btnIVScan.Text = "SCAN";
+            flgBreak = false;
+            Application.DoEvents();
+        }
+
+        private void txtI_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

@@ -233,6 +233,67 @@ namespace TB_mu2e
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.txtBiasSet0 = new System.Windows.Forms.TextBox();
+            this.tabIV = new System.Windows.Forms.TabPage();
+            this.label33 = new System.Windows.Forms.Label();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label38 = new System.Windows.Forms.Label();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.button18 = new System.Windows.Forms.Button();
+            this.labelTempIV = new System.Windows.Forms.Label();
+            this.btnSelHiIV = new System.Windows.Forms.Button();
+            this.btnSelLowIV = new System.Windows.Forms.Button();
+            this.label34 = new System.Windows.Forms.Label();
+            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.chkBoxJ19IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ20IV = new System.Windows.Forms.CheckBox();
+            this.btnIVScan = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.chkBoxJ21IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ22IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ23IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ24IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ25IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ26IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ15IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ16IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ17IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ18IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ13IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ14IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ12IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ11IV = new System.Windows.Forms.CheckBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.zedGraphIV = new ZedGraph.ZedGraphControl();
+            this.tabHist = new System.Windows.Forms.TabPage();
+            this.button19 = new System.Windows.Forms.Button();
+            this.labelTempHist = new System.Windows.Forms.Label();
+            this.zedGraphHisto = new ZedGraph.ZedGraphControl();
+            this.label30 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.btnSelHiHist = new System.Windows.Forms.Button();
+            this.btnSelLowHist = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.chkBoxJ19Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ20Hist = new System.Windows.Forms.CheckBox();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.chkBoxJ21Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ22Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ23Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ24Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ25Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ26Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ15Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ16Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ17Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ18Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ13Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ14Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ12Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ11Hist = new System.Windows.Forms.CheckBox();
+            this.label32 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
             this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
@@ -263,6 +324,10 @@ namespace TB_mu2e
             this.groupBox6.SuspendLayout();
             this.tabFEBtest.SuspendLayout();
             this.DAC_Voltages.SuspendLayout();
+            this.tabIV.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            this.tabHist.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -318,6 +383,8 @@ namespace TB_mu2e
             this.tabControl.Controls.Add(this.tabFEB1);
             this.tabControl.Controls.Add(this.tabWC);
             this.tabControl.Controls.Add(this.tabFEBtest);
+            this.tabControl.Controls.Add(this.tabIV);
+            this.tabControl.Controls.Add(this.tabHist);
             this.tabControl.Location = new System.Drawing.Point(1, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -1324,7 +1391,6 @@ namespace TB_mu2e
             this.zedFEB1.ScrollMinY2 = 0D;
             this.zedFEB1.Size = new System.Drawing.Size(602, 448);
             this.zedFEB1.TabIndex = 60;
-            this.zedFEB1.Load += new System.EventHandler(this.zedFEB1_Load);
             // 
             // groupBoxSpillStat
             // 
@@ -1721,6 +1787,7 @@ namespace TB_mu2e
             this.txtI.Size = new System.Drawing.Size(55, 24);
             this.txtI.TabIndex = 62;
             this.txtI.Text = "0.000";
+            this.txtI.TextChanged += new System.EventHandler(this.txtI_TextChanged);
             // 
             // txtV
             // 
@@ -1893,7 +1960,7 @@ namespace TB_mu2e
             this.tabFEBtest.Padding = new System.Windows.Forms.Padding(3);
             this.tabFEBtest.Size = new System.Drawing.Size(1255, 665);
             this.tabFEBtest.TabIndex = 8;
-            this.tabFEBtest.Text = "FEB Test";
+            this.tabFEBtest.Text = "Calibration";
             this.tabFEBtest.UseVisualStyleBackColor = true;
             // 
             // button5
@@ -1914,6 +1981,7 @@ namespace TB_mu2e
             this.label9.Size = new System.Drawing.Size(53, 20);
             this.label9.TabIndex = 66;
             this.label9.Text = "label9";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // btnConnectScope
             // 
@@ -2498,6 +2566,697 @@ namespace TB_mu2e
             this.txtBiasSet0.TabIndex = 1;
             this.txtBiasSet0.TextChanged += new System.EventHandler(this.txtBiasSet1_TextChanged);
             // 
+            // tabIV
+            // 
+            this.tabIV.Controls.Add(this.label33);
+            this.tabIV.Controls.Add(this.numericUpDown2);
+            this.tabIV.Controls.Add(this.label38);
+            this.tabIV.Controls.Add(this.numericUpDown3);
+            this.tabIV.Controls.Add(this.button18);
+            this.tabIV.Controls.Add(this.labelTempIV);
+            this.tabIV.Controls.Add(this.btnSelHiIV);
+            this.tabIV.Controls.Add(this.btnSelLowIV);
+            this.tabIV.Controls.Add(this.label34);
+            this.tabIV.Controls.Add(this.listBox3);
+            this.tabIV.Controls.Add(this.chkBoxJ19IV);
+            this.tabIV.Controls.Add(this.chkBoxJ20IV);
+            this.tabIV.Controls.Add(this.btnIVScan);
+            this.tabIV.Controls.Add(this.button17);
+            this.tabIV.Controls.Add(this.chkBoxJ21IV);
+            this.tabIV.Controls.Add(this.chkBoxJ22IV);
+            this.tabIV.Controls.Add(this.chkBoxJ23IV);
+            this.tabIV.Controls.Add(this.chkBoxJ24IV);
+            this.tabIV.Controls.Add(this.chkBoxJ25IV);
+            this.tabIV.Controls.Add(this.chkBoxJ26IV);
+            this.tabIV.Controls.Add(this.chkBoxJ15IV);
+            this.tabIV.Controls.Add(this.chkBoxJ16IV);
+            this.tabIV.Controls.Add(this.chkBoxJ17IV);
+            this.tabIV.Controls.Add(this.chkBoxJ18IV);
+            this.tabIV.Controls.Add(this.chkBoxJ13IV);
+            this.tabIV.Controls.Add(this.chkBoxJ14IV);
+            this.tabIV.Controls.Add(this.chkBoxJ12IV);
+            this.tabIV.Controls.Add(this.chkBoxJ11IV);
+            this.tabIV.Controls.Add(this.label35);
+            this.tabIV.Controls.Add(this.zedGraphIV);
+            this.tabIV.Location = new System.Drawing.Point(4, 32);
+            this.tabIV.Name = "tabIV";
+            this.tabIV.Padding = new System.Windows.Forms.Padding(3);
+            this.tabIV.Size = new System.Drawing.Size(1255, 665);
+            this.tabIV.TabIndex = 9;
+            this.tabIV.Text = "IV";
+            this.tabIV.UseVisualStyleBackColor = true;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(314, 400);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(43, 20);
+            this.label33.TabIndex = 120;
+            this.label33.Text = "Stop";
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(401, 398);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            4096,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(57, 27);
+            this.numericUpDown2.TabIndex = 119;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            57,
+            0,
+            0,
+            0});
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(314, 367);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(45, 20);
+            this.label38.TabIndex = 118;
+            this.label38.Text = "Start";
+            // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.Location = new System.Drawing.Point(401, 365);
+            this.numericUpDown3.Maximum = new decimal(new int[] {
+            4095,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(56, 27);
+            this.numericUpDown3.TabIndex = 117;
+            this.numericUpDown3.Value = new decimal(new int[] {
+            55,
+            0,
+            0,
+            0});
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(11, 347);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(219, 35);
+            this.button18.TabIndex = 116;
+            this.button18.Text = "UPDATE TEMPERATURE";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
+            // labelTempIV
+            // 
+            this.labelTempIV.AutoSize = true;
+            this.labelTempIV.Location = new System.Drawing.Point(7, 12);
+            this.labelTempIV.Name = "labelTempIV";
+            this.labelTempIV.Size = new System.Drawing.Size(101, 20);
+            this.labelTempIV.TabIndex = 115;
+            this.labelTempIV.Text = "labelTempIV";
+            // 
+            // btnSelHiIV
+            // 
+            this.btnSelHiIV.Location = new System.Drawing.Point(318, 320);
+            this.btnSelHiIV.Name = "btnSelHiIV";
+            this.btnSelHiIV.Size = new System.Drawing.Size(139, 39);
+            this.btnSelHiIV.TabIndex = 112;
+            this.btnSelHiIV.Text = "Select J19-J26";
+            this.btnSelHiIV.UseVisualStyleBackColor = true;
+            this.btnSelHiIV.Click += new System.EventHandler(this.btnSelHiIV_Click);
+            // 
+            // btnSelLowIV
+            // 
+            this.btnSelLowIV.Location = new System.Drawing.Point(318, 275);
+            this.btnSelLowIV.Name = "btnSelLowIV";
+            this.btnSelLowIV.Size = new System.Drawing.Size(139, 39);
+            this.btnSelLowIV.TabIndex = 111;
+            this.btnSelLowIV.Text = "Select J11-J18";
+            this.btnSelLowIV.UseVisualStyleBackColor = true;
+            this.btnSelLowIV.Click += new System.EventHandler(this.btnSelLowIV_Click);
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(260, 440);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(140, 20);
+            this.label34.TabIndex = 110;
+            this.label34.Text = "Histogram to Plot";
+            // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.ItemHeight = 20;
+            this.listBox3.Location = new System.Drawing.Point(264, 463);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(208, 64);
+            this.listBox3.Sorted = true;
+            this.listBox3.TabIndex = 109;
+            // 
+            // chkBoxJ19IV
+            // 
+            this.chkBoxJ19IV.AutoSize = true;
+            this.chkBoxJ19IV.Location = new System.Drawing.Point(382, 35);
+            this.chkBoxJ19IV.Name = "chkBoxJ19IV";
+            this.chkBoxJ19IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ19IV.TabIndex = 108;
+            this.chkBoxJ19IV.Text = "J19";
+            this.chkBoxJ19IV.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ20IV
+            // 
+            this.chkBoxJ20IV.AutoSize = true;
+            this.chkBoxJ20IV.Location = new System.Drawing.Point(382, 65);
+            this.chkBoxJ20IV.Name = "chkBoxJ20IV";
+            this.chkBoxJ20IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ20IV.TabIndex = 107;
+            this.chkBoxJ20IV.Text = "J20";
+            this.chkBoxJ20IV.UseVisualStyleBackColor = true;
+            // 
+            // btnIVScan
+            // 
+            this.btnIVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIVScan.Location = new System.Drawing.Point(264, 533);
+            this.btnIVScan.Name = "btnIVScan";
+            this.btnIVScan.Size = new System.Drawing.Size(101, 39);
+            this.btnIVScan.TabIndex = 89;
+            this.btnIVScan.Text = "SCAN";
+            this.btnIVScan.UseVisualStyleBackColor = true;
+            this.btnIVScan.Click += new System.EventHandler(this.btnIVScan_Click);
+            // 
+            // button17
+            // 
+            this.button17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button17.Location = new System.Drawing.Point(371, 533);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(101, 39);
+            this.button17.TabIndex = 90;
+            this.button17.Text = "SAVE";
+            this.button17.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ21IV
+            // 
+            this.chkBoxJ21IV.AutoSize = true;
+            this.chkBoxJ21IV.Location = new System.Drawing.Point(382, 95);
+            this.chkBoxJ21IV.Name = "chkBoxJ21IV";
+            this.chkBoxJ21IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ21IV.TabIndex = 106;
+            this.chkBoxJ21IV.Text = "J21";
+            this.chkBoxJ21IV.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ22IV
+            // 
+            this.chkBoxJ22IV.AutoSize = true;
+            this.chkBoxJ22IV.Location = new System.Drawing.Point(382, 125);
+            this.chkBoxJ22IV.Name = "chkBoxJ22IV";
+            this.chkBoxJ22IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ22IV.TabIndex = 105;
+            this.chkBoxJ22IV.Text = "J22";
+            this.chkBoxJ22IV.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ23IV
+            // 
+            this.chkBoxJ23IV.AutoSize = true;
+            this.chkBoxJ23IV.Location = new System.Drawing.Point(382, 155);
+            this.chkBoxJ23IV.Name = "chkBoxJ23IV";
+            this.chkBoxJ23IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ23IV.TabIndex = 104;
+            this.chkBoxJ23IV.Text = "J23";
+            this.chkBoxJ23IV.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ24IV
+            // 
+            this.chkBoxJ24IV.AutoSize = true;
+            this.chkBoxJ24IV.Location = new System.Drawing.Point(382, 185);
+            this.chkBoxJ24IV.Name = "chkBoxJ24IV";
+            this.chkBoxJ24IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ24IV.TabIndex = 103;
+            this.chkBoxJ24IV.Text = "J24";
+            this.chkBoxJ24IV.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ25IV
+            // 
+            this.chkBoxJ25IV.AutoSize = true;
+            this.chkBoxJ25IV.Location = new System.Drawing.Point(382, 215);
+            this.chkBoxJ25IV.Name = "chkBoxJ25IV";
+            this.chkBoxJ25IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ25IV.TabIndex = 102;
+            this.chkBoxJ25IV.Text = "J25";
+            this.chkBoxJ25IV.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ26IV
+            // 
+            this.chkBoxJ26IV.AutoSize = true;
+            this.chkBoxJ26IV.Location = new System.Drawing.Point(382, 245);
+            this.chkBoxJ26IV.Name = "chkBoxJ26IV";
+            this.chkBoxJ26IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ26IV.TabIndex = 101;
+            this.chkBoxJ26IV.Text = "J26";
+            this.chkBoxJ26IV.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ15IV
+            // 
+            this.chkBoxJ15IV.AutoSize = true;
+            this.chkBoxJ15IV.Location = new System.Drawing.Point(318, 155);
+            this.chkBoxJ15IV.Name = "chkBoxJ15IV";
+            this.chkBoxJ15IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ15IV.TabIndex = 100;
+            this.chkBoxJ15IV.Text = "J15";
+            this.chkBoxJ15IV.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ16IV
+            // 
+            this.chkBoxJ16IV.AutoSize = true;
+            this.chkBoxJ16IV.Location = new System.Drawing.Point(318, 185);
+            this.chkBoxJ16IV.Name = "chkBoxJ16IV";
+            this.chkBoxJ16IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ16IV.TabIndex = 99;
+            this.chkBoxJ16IV.Text = "J16";
+            this.chkBoxJ16IV.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ17IV
+            // 
+            this.chkBoxJ17IV.AutoSize = true;
+            this.chkBoxJ17IV.Location = new System.Drawing.Point(318, 215);
+            this.chkBoxJ17IV.Name = "chkBoxJ17IV";
+            this.chkBoxJ17IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ17IV.TabIndex = 98;
+            this.chkBoxJ17IV.Text = "J17";
+            this.chkBoxJ17IV.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ18IV
+            // 
+            this.chkBoxJ18IV.AutoSize = true;
+            this.chkBoxJ18IV.Location = new System.Drawing.Point(318, 245);
+            this.chkBoxJ18IV.Name = "chkBoxJ18IV";
+            this.chkBoxJ18IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ18IV.TabIndex = 97;
+            this.chkBoxJ18IV.Text = "J18";
+            this.chkBoxJ18IV.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ13IV
+            // 
+            this.chkBoxJ13IV.AutoSize = true;
+            this.chkBoxJ13IV.Location = new System.Drawing.Point(318, 95);
+            this.chkBoxJ13IV.Name = "chkBoxJ13IV";
+            this.chkBoxJ13IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ13IV.TabIndex = 96;
+            this.chkBoxJ13IV.Text = "J13";
+            this.chkBoxJ13IV.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ14IV
+            // 
+            this.chkBoxJ14IV.AutoSize = true;
+            this.chkBoxJ14IV.Location = new System.Drawing.Point(318, 125);
+            this.chkBoxJ14IV.Name = "chkBoxJ14IV";
+            this.chkBoxJ14IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ14IV.TabIndex = 95;
+            this.chkBoxJ14IV.Text = "J14";
+            this.chkBoxJ14IV.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ12IV
+            // 
+            this.chkBoxJ12IV.AutoSize = true;
+            this.chkBoxJ12IV.Location = new System.Drawing.Point(318, 65);
+            this.chkBoxJ12IV.Name = "chkBoxJ12IV";
+            this.chkBoxJ12IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ12IV.TabIndex = 94;
+            this.chkBoxJ12IV.Text = "J12";
+            this.chkBoxJ12IV.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ11IV
+            // 
+            this.chkBoxJ11IV.AutoSize = true;
+            this.chkBoxJ11IV.Location = new System.Drawing.Point(318, 35);
+            this.chkBoxJ11IV.Name = "chkBoxJ11IV";
+            this.chkBoxJ11IV.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ11IV.TabIndex = 93;
+            this.chkBoxJ11IV.Text = "J11";
+            this.chkBoxJ11IV.UseVisualStyleBackColor = true;
+            this.chkBoxJ11IV.CheckedChanged += new System.EventHandler(this.checkBox48_CheckedChanged);
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(314, 12);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(158, 20);
+            this.label35.TabIndex = 92;
+            this.label35.Text = "CMB CONNECTED";
+            // 
+            // zedGraphIV
+            // 
+            this.zedGraphIV.Location = new System.Drawing.Point(489, 12);
+            this.zedGraphIV.Margin = new System.Windows.Forms.Padding(14, 12, 14, 12);
+            this.zedGraphIV.Name = "zedGraphIV";
+            this.zedGraphIV.ScrollGrace = 0D;
+            this.zedGraphIV.ScrollMaxX = 0D;
+            this.zedGraphIV.ScrollMaxY = 0D;
+            this.zedGraphIV.ScrollMaxY2 = 0D;
+            this.zedGraphIV.ScrollMinX = 0D;
+            this.zedGraphIV.ScrollMinY = 0D;
+            this.zedGraphIV.ScrollMinY2 = 0D;
+            this.zedGraphIV.Size = new System.Drawing.Size(752, 560);
+            this.zedGraphIV.TabIndex = 61;
+            // 
+            // tabHist
+            // 
+            this.tabHist.Controls.Add(this.button19);
+            this.tabHist.Controls.Add(this.labelTempHist);
+            this.tabHist.Controls.Add(this.zedGraphHisto);
+            this.tabHist.Controls.Add(this.label30);
+            this.tabHist.Controls.Add(this.textBox3);
+            this.tabHist.Controls.Add(this.button3);
+            this.tabHist.Controls.Add(this.btnSelHiHist);
+            this.tabHist.Controls.Add(this.btnSelLowHist);
+            this.tabHist.Controls.Add(this.label31);
+            this.tabHist.Controls.Add(this.listBox2);
+            this.tabHist.Controls.Add(this.chkBoxJ19Hist);
+            this.tabHist.Controls.Add(this.chkBoxJ20Hist);
+            this.tabHist.Controls.Add(this.button11);
+            this.tabHist.Controls.Add(this.button12);
+            this.tabHist.Controls.Add(this.chkBoxJ21Hist);
+            this.tabHist.Controls.Add(this.chkBoxJ22Hist);
+            this.tabHist.Controls.Add(this.chkBoxJ23Hist);
+            this.tabHist.Controls.Add(this.chkBoxJ24Hist);
+            this.tabHist.Controls.Add(this.chkBoxJ25Hist);
+            this.tabHist.Controls.Add(this.chkBoxJ26Hist);
+            this.tabHist.Controls.Add(this.chkBoxJ15Hist);
+            this.tabHist.Controls.Add(this.chkBoxJ16Hist);
+            this.tabHist.Controls.Add(this.chkBoxJ17Hist);
+            this.tabHist.Controls.Add(this.chkBoxJ18Hist);
+            this.tabHist.Controls.Add(this.chkBoxJ13Hist);
+            this.tabHist.Controls.Add(this.chkBoxJ14Hist);
+            this.tabHist.Controls.Add(this.chkBoxJ12Hist);
+            this.tabHist.Controls.Add(this.chkBoxJ11Hist);
+            this.tabHist.Controls.Add(this.label32);
+            this.tabHist.Location = new System.Drawing.Point(4, 32);
+            this.tabHist.Name = "tabHist";
+            this.tabHist.Padding = new System.Windows.Forms.Padding(3);
+            this.tabHist.Size = new System.Drawing.Size(1255, 665);
+            this.tabHist.TabIndex = 10;
+            this.tabHist.Text = "Histogram";
+            this.tabHist.UseVisualStyleBackColor = true;
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(11, 350);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(219, 35);
+            this.button19.TabIndex = 117;
+            this.button19.Text = "UPDATE TEMPERATURE";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // labelTempHist
+            // 
+            this.labelTempHist.AutoSize = true;
+            this.labelTempHist.Location = new System.Drawing.Point(7, 15);
+            this.labelTempHist.Name = "labelTempHist";
+            this.labelTempHist.Size = new System.Drawing.Size(117, 20);
+            this.labelTempHist.TabIndex = 116;
+            this.labelTempHist.Text = "labelTempHist";
+            // 
+            // zedGraphHisto
+            // 
+            this.zedGraphHisto.Location = new System.Drawing.Point(489, 15);
+            this.zedGraphHisto.Margin = new System.Windows.Forms.Padding(14, 12, 14, 12);
+            this.zedGraphHisto.Name = "zedGraphHisto";
+            this.zedGraphHisto.ScrollGrace = 0D;
+            this.zedGraphHisto.ScrollMaxX = 0D;
+            this.zedGraphHisto.ScrollMaxY = 0D;
+            this.zedGraphHisto.ScrollMaxY2 = 0D;
+            this.zedGraphHisto.ScrollMinX = 0D;
+            this.zedGraphHisto.ScrollMinY = 0D;
+            this.zedGraphHisto.ScrollMinY2 = 0D;
+            this.zedGraphHisto.Size = new System.Drawing.Size(752, 560);
+            this.zedGraphHisto.TabIndex = 115;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(314, 365);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(43, 20);
+            this.label30.TabIndex = 114;
+            this.label30.Text = "Bias";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(318, 388);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(75, 27);
+            this.textBox3.TabIndex = 91;
+            this.textBox3.Text = "56.1";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(397, 388);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 27);
+            this.button3.TabIndex = 113;
+            this.button3.Text = "Set All";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // btnSelHiHist
+            // 
+            this.btnSelHiHist.Location = new System.Drawing.Point(318, 323);
+            this.btnSelHiHist.Name = "btnSelHiHist";
+            this.btnSelHiHist.Size = new System.Drawing.Size(139, 39);
+            this.btnSelHiHist.TabIndex = 112;
+            this.btnSelHiHist.Text = "Select J19-J26";
+            this.btnSelHiHist.UseVisualStyleBackColor = true;
+            this.btnSelHiHist.Click += new System.EventHandler(this.btnSelHiHist_Click);
+            // 
+            // btnSelLowHist
+            // 
+            this.btnSelLowHist.Location = new System.Drawing.Point(318, 278);
+            this.btnSelLowHist.Name = "btnSelLowHist";
+            this.btnSelLowHist.Size = new System.Drawing.Size(139, 39);
+            this.btnSelLowHist.TabIndex = 111;
+            this.btnSelLowHist.Text = "Select J11-J18";
+            this.btnSelLowHist.UseVisualStyleBackColor = true;
+            this.btnSelLowHist.Click += new System.EventHandler(this.btnSelLowHist_Click);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(260, 443);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(140, 20);
+            this.label31.TabIndex = 110;
+            this.label31.Text = "Histogram to Plot";
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 20;
+            this.listBox2.Location = new System.Drawing.Point(264, 466);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(208, 64);
+            this.listBox2.Sorted = true;
+            this.listBox2.TabIndex = 109;
+            // 
+            // chkBoxJ19Hist
+            // 
+            this.chkBoxJ19Hist.AutoSize = true;
+            this.chkBoxJ19Hist.Location = new System.Drawing.Point(382, 38);
+            this.chkBoxJ19Hist.Name = "chkBoxJ19Hist";
+            this.chkBoxJ19Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ19Hist.TabIndex = 108;
+            this.chkBoxJ19Hist.Text = "J19";
+            this.chkBoxJ19Hist.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ20Hist
+            // 
+            this.chkBoxJ20Hist.AutoSize = true;
+            this.chkBoxJ20Hist.Location = new System.Drawing.Point(382, 68);
+            this.chkBoxJ20Hist.Name = "chkBoxJ20Hist";
+            this.chkBoxJ20Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ20Hist.TabIndex = 107;
+            this.chkBoxJ20Hist.Text = "J20";
+            this.chkBoxJ20Hist.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button11.Location = new System.Drawing.Point(264, 536);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(101, 39);
+            this.button11.TabIndex = 89;
+            this.button11.Text = "SCAN";
+            this.button11.UseVisualStyleBackColor = true;
+            // 
+            // button12
+            // 
+            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button12.Location = new System.Drawing.Point(371, 536);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(101, 39);
+            this.button12.TabIndex = 90;
+            this.button12.Text = "SAVE";
+            this.button12.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ21Hist
+            // 
+            this.chkBoxJ21Hist.AutoSize = true;
+            this.chkBoxJ21Hist.Location = new System.Drawing.Point(382, 98);
+            this.chkBoxJ21Hist.Name = "chkBoxJ21Hist";
+            this.chkBoxJ21Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ21Hist.TabIndex = 106;
+            this.chkBoxJ21Hist.Text = "J21";
+            this.chkBoxJ21Hist.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ22Hist
+            // 
+            this.chkBoxJ22Hist.AutoSize = true;
+            this.chkBoxJ22Hist.Location = new System.Drawing.Point(382, 128);
+            this.chkBoxJ22Hist.Name = "chkBoxJ22Hist";
+            this.chkBoxJ22Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ22Hist.TabIndex = 105;
+            this.chkBoxJ22Hist.Text = "J22";
+            this.chkBoxJ22Hist.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ23Hist
+            // 
+            this.chkBoxJ23Hist.AutoSize = true;
+            this.chkBoxJ23Hist.Location = new System.Drawing.Point(382, 158);
+            this.chkBoxJ23Hist.Name = "chkBoxJ23Hist";
+            this.chkBoxJ23Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ23Hist.TabIndex = 104;
+            this.chkBoxJ23Hist.Text = "J23";
+            this.chkBoxJ23Hist.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ24Hist
+            // 
+            this.chkBoxJ24Hist.AutoSize = true;
+            this.chkBoxJ24Hist.Location = new System.Drawing.Point(382, 188);
+            this.chkBoxJ24Hist.Name = "chkBoxJ24Hist";
+            this.chkBoxJ24Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ24Hist.TabIndex = 103;
+            this.chkBoxJ24Hist.Text = "J24";
+            this.chkBoxJ24Hist.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ25Hist
+            // 
+            this.chkBoxJ25Hist.AutoSize = true;
+            this.chkBoxJ25Hist.Location = new System.Drawing.Point(382, 218);
+            this.chkBoxJ25Hist.Name = "chkBoxJ25Hist";
+            this.chkBoxJ25Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ25Hist.TabIndex = 102;
+            this.chkBoxJ25Hist.Text = "J25";
+            this.chkBoxJ25Hist.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ26Hist
+            // 
+            this.chkBoxJ26Hist.AutoSize = true;
+            this.chkBoxJ26Hist.Location = new System.Drawing.Point(382, 248);
+            this.chkBoxJ26Hist.Name = "chkBoxJ26Hist";
+            this.chkBoxJ26Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ26Hist.TabIndex = 101;
+            this.chkBoxJ26Hist.Text = "J26";
+            this.chkBoxJ26Hist.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ15Hist
+            // 
+            this.chkBoxJ15Hist.AutoSize = true;
+            this.chkBoxJ15Hist.Location = new System.Drawing.Point(318, 158);
+            this.chkBoxJ15Hist.Name = "chkBoxJ15Hist";
+            this.chkBoxJ15Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ15Hist.TabIndex = 100;
+            this.chkBoxJ15Hist.Text = "J15";
+            this.chkBoxJ15Hist.UseVisualStyleBackColor = true;
+            this.chkBoxJ15Hist.CheckedChanged += new System.EventHandler(this.checkBox25_CheckedChanged);
+            // 
+            // chkBoxJ16Hist
+            // 
+            this.chkBoxJ16Hist.AutoSize = true;
+            this.chkBoxJ16Hist.Location = new System.Drawing.Point(318, 188);
+            this.chkBoxJ16Hist.Name = "chkBoxJ16Hist";
+            this.chkBoxJ16Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ16Hist.TabIndex = 99;
+            this.chkBoxJ16Hist.Text = "J16";
+            this.chkBoxJ16Hist.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ17Hist
+            // 
+            this.chkBoxJ17Hist.AutoSize = true;
+            this.chkBoxJ17Hist.Location = new System.Drawing.Point(318, 218);
+            this.chkBoxJ17Hist.Name = "chkBoxJ17Hist";
+            this.chkBoxJ17Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ17Hist.TabIndex = 98;
+            this.chkBoxJ17Hist.Text = "J17";
+            this.chkBoxJ17Hist.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ18Hist
+            // 
+            this.chkBoxJ18Hist.AutoSize = true;
+            this.chkBoxJ18Hist.Location = new System.Drawing.Point(318, 248);
+            this.chkBoxJ18Hist.Name = "chkBoxJ18Hist";
+            this.chkBoxJ18Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ18Hist.TabIndex = 97;
+            this.chkBoxJ18Hist.Text = "J18";
+            this.chkBoxJ18Hist.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ13Hist
+            // 
+            this.chkBoxJ13Hist.AutoSize = true;
+            this.chkBoxJ13Hist.Location = new System.Drawing.Point(318, 98);
+            this.chkBoxJ13Hist.Name = "chkBoxJ13Hist";
+            this.chkBoxJ13Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ13Hist.TabIndex = 96;
+            this.chkBoxJ13Hist.Text = "J13";
+            this.chkBoxJ13Hist.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ14Hist
+            // 
+            this.chkBoxJ14Hist.AutoSize = true;
+            this.chkBoxJ14Hist.Location = new System.Drawing.Point(318, 128);
+            this.chkBoxJ14Hist.Name = "chkBoxJ14Hist";
+            this.chkBoxJ14Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ14Hist.TabIndex = 95;
+            this.chkBoxJ14Hist.Text = "J14";
+            this.chkBoxJ14Hist.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ12Hist
+            // 
+            this.chkBoxJ12Hist.AutoSize = true;
+            this.chkBoxJ12Hist.Location = new System.Drawing.Point(318, 68);
+            this.chkBoxJ12Hist.Name = "chkBoxJ12Hist";
+            this.chkBoxJ12Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ12Hist.TabIndex = 94;
+            this.chkBoxJ12Hist.Text = "J12";
+            this.chkBoxJ12Hist.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ11Hist
+            // 
+            this.chkBoxJ11Hist.AutoSize = true;
+            this.chkBoxJ11Hist.Location = new System.Drawing.Point(318, 38);
+            this.chkBoxJ11Hist.Name = "chkBoxJ11Hist";
+            this.chkBoxJ11Hist.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ11Hist.TabIndex = 93;
+            this.chkBoxJ11Hist.Text = "J11";
+            this.chkBoxJ11Hist.UseVisualStyleBackColor = true;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(314, 15);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(158, 20);
+            this.label32.TabIndex = 92;
+            this.label32.Text = "CMB CONNECTED";
+            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -2573,6 +3332,12 @@ namespace TB_mu2e
             this.tabFEBtest.PerformLayout();
             this.DAC_Voltages.ResumeLayout(false);
             this.DAC_Voltages.PerformLayout();
+            this.tabIV.ResumeLayout(false);
+            this.tabIV.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            this.tabHist.ResumeLayout(false);
+            this.tabHist.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2796,5 +3561,66 @@ namespace TB_mu2e
         private System.Windows.Forms.TextBox txtBiasSlope;
         private System.Windows.Forms.Button btnLoadCalib;
         public System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.TabPage tabIV;
+        private System.Windows.Forms.TabPage tabHist;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Label labelTempIV;
+        private System.Windows.Forms.Button btnSelHiIV;
+        private System.Windows.Forms.Button btnSelLowIV;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.CheckBox chkBoxJ19IV;
+        private System.Windows.Forms.CheckBox chkBoxJ20IV;
+        public System.Windows.Forms.Button btnIVScan;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.CheckBox chkBoxJ21IV;
+        private System.Windows.Forms.CheckBox chkBoxJ22IV;
+        private System.Windows.Forms.CheckBox chkBoxJ23IV;
+        private System.Windows.Forms.CheckBox chkBoxJ24IV;
+        private System.Windows.Forms.CheckBox chkBoxJ25IV;
+        private System.Windows.Forms.CheckBox chkBoxJ26IV;
+        private System.Windows.Forms.CheckBox chkBoxJ15IV;
+        private System.Windows.Forms.CheckBox chkBoxJ16IV;
+        private System.Windows.Forms.CheckBox chkBoxJ17IV;
+        private System.Windows.Forms.CheckBox chkBoxJ18IV;
+        private System.Windows.Forms.CheckBox chkBoxJ13IV;
+        private System.Windows.Forms.CheckBox chkBoxJ14IV;
+        private System.Windows.Forms.CheckBox chkBoxJ12IV;
+        private System.Windows.Forms.CheckBox chkBoxJ11IV;
+        private System.Windows.Forms.Label label35;
+        private ZedGraph.ZedGraphControl zedGraphIV;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Label labelTempHist;
+        private ZedGraph.ZedGraphControl zedGraphHisto;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSelHiHist;
+        private System.Windows.Forms.Button btnSelLowHist;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.CheckBox chkBoxJ19Hist;
+        private System.Windows.Forms.CheckBox chkBoxJ20Hist;
+        public System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.CheckBox chkBoxJ21Hist;
+        private System.Windows.Forms.CheckBox chkBoxJ22Hist;
+        private System.Windows.Forms.CheckBox chkBoxJ23Hist;
+        private System.Windows.Forms.CheckBox chkBoxJ24Hist;
+        private System.Windows.Forms.CheckBox chkBoxJ25Hist;
+        private System.Windows.Forms.CheckBox chkBoxJ26Hist;
+        private System.Windows.Forms.CheckBox chkBoxJ15Hist;
+        private System.Windows.Forms.CheckBox chkBoxJ16Hist;
+        private System.Windows.Forms.CheckBox chkBoxJ17Hist;
+        private System.Windows.Forms.CheckBox chkBoxJ18Hist;
+        private System.Windows.Forms.CheckBox chkBoxJ13Hist;
+        private System.Windows.Forms.CheckBox chkBoxJ14Hist;
+        private System.Windows.Forms.CheckBox chkBoxJ12Hist;
+        private System.Windows.Forms.CheckBox chkBoxJ11Hist;
+        private System.Windows.Forms.Label label32;
     }
 }
