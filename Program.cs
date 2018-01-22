@@ -363,6 +363,7 @@ namespace TB_mu2e
             return new string(chars);
         }
 
+        [STAThread]
         static void Main()
         {
             FEB1Histo = new List<HISTO_curve>();
@@ -375,7 +376,7 @@ namespace TB_mu2e
 
             FEB2 = new Mu2e_FEB_client();
             FEB2.name = "FEB2";
-            FEB2.host_name_prop = "DCRC5";
+            FEB2.host_name_prop = "DCRC3.fnal.gov";
             //FEC = new Mu2e_FECC_client();
 
             WC = new WC_client();

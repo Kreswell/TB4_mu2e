@@ -45,7 +45,7 @@ namespace TB_mu2e
         public int max_timeout;
         public int timeout;
         public List<Mu2e_Register> arrReg;
-        public int _FEBserialNum;
+        public string _FEBserialNum;
 
         // events 
         //public delegate void cOpening();
@@ -59,7 +59,7 @@ namespace TB_mu2e
         public bool ClientOpen { get { return _ClientOpen; } }
         public bool ClientBusy { get { return _ClientBusy; } set { _ClientBusy = value; } }
         public int TNETsocketNum { get { return _TNETsocketNum; } set { _TNETsocketNum = value; } }
-        public int FEBserialNum { get { return _FEBserialNum; } set { _FEBserialNum = value; } }
+        public string FEBserialNum { get { return _FEBserialNum; } set { _FEBserialNum = value; } }
 
 
         public void Open()
@@ -100,7 +100,8 @@ namespace TB_mu2e
         public void SetV(double V, int fpga = 0)
         {
             UInt32 counts;
-            double t = V / 5.38 * 256;
+            //double t = V / 5.38 * 256;
+            double t = V * 50;
             t = System.Math.Round(t);
             try { counts = Convert.ToUInt32(t); }
             catch { counts = 0; }
@@ -124,7 +125,8 @@ namespace TB_mu2e
 
             try { V = (double)Convert.ToInt32(a, 16); }
             catch { V = 0; }
-            double t = V * 5.38 / 256;
+            //double t = V * 5.38 / 256;
+            double t = V * 0.02;
             //t = System.Math.Round(t*1000)/1000;
 
             return t;
@@ -378,26 +380,30 @@ namespace TB_mu2e
             catch { return false; }
         }
 
-        public uint[] ReadHisto(int channel)
+        public uint[] ReadHisto(uint sipm, uint afe, uint fpga)
         {
+            string writecmd = "";
+            string readcmd = "";
+            string fpgaPrefix = "";
             uint[] Histo = new uint[512];
             if (_ClientOpen)
             {
-                if (channel < 8)
-                {
-                    SendStr("wr 14 0");
-                    SendStr("rdm 16 400");
-                    System.Threading.Thread.Sleep(100);
-                }
-                else if (8 <= channel && channel < 16)
-                {
-                    SendStr("wr 15 0");
-                    SendStr("rdm 17 400");
-                    System.Threading.Thread.Sleep(100);
-                }
-                else { }
                 string HistoStr = "";
                 string[] delimiters = new string[] { " ", "\r\n " };
+                if (fpga == 0)
+                { fpgaPrefix = "0"; }
+                else if (fpga == 1)
+                { fpgaPrefix = "4"; }
+                else if (fpga == 2)
+                { fpgaPrefix = "8"; }
+                else if (fpga == 3)
+                { fpgaPrefix = "c"; }
+                else { }
+                writecmd = "wr " + fpgaPrefix + Convert.ToString(13 + afe) + " 0";
+                readcmd = "rdm " + fpgaPrefix + Convert.ToString(15 + afe) + " 400";
+                SendStr(writecmd);
+                SendStr(readcmd);
+                System.Threading.Thread.Sleep(100);
                 int rt = 0;
                 ReadStr(out HistoStr, out rt);
                 string[] SplitHistoStr = HistoStr.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);

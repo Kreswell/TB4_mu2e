@@ -329,7 +329,7 @@ namespace TB_mu2e
             r1 = new Mu2e_Register();
             r1.name = "BIAS_BUS_DAC0";
             r1.addr = 0x44;
-            r1.fpga_offset_mult = 0x0;
+            r1.fpga_offset_mult = 0x400;
             r1.comment = "Two 12 bits DACs with a possible span of 0..80V. Address 0x44 applies to CMB1..2";
             r1.bit_comment = new string[15];
             list_of_reg.Add(r1);
@@ -337,7 +337,7 @@ namespace TB_mu2e
             r1 = new Mu2e_Register();
             r1.name = "BIAS_BUS_DAC1";
             r1.addr = 0x45;
-            r1.fpga_offset_mult = 0x0;
+            r1.fpga_offset_mult = 0x400;
             r1.comment = "Two 12 bits DACs with a possible span of 0..80V. Address 0x44 applies to CMB3..4";
             r1.bit_comment = new string[15];
             list_of_reg.Add(r1);
@@ -463,7 +463,18 @@ namespace TB_mu2e
             r1.bit_comment[2] = "[2] Spill Gate.";
             list_of_reg.Add(r1);
 
-///broadcast reg
+            for (int i = 0; i < 16; i++)
+            {
+                r1 = new Mu2e_Register();
+                r1.name = "Self_Trigger_Ped" + i.ToString();
+                r1.addr = (ushort)(0x80 + i);
+                r1.fpga_offset_mult = 0x400;
+                r1.comment = "Pedestal subtracted from the ADC data before the trigger threshold is applied." + i.ToString();
+                r1.bit_comment = new string[15];
+                list_of_reg.Add(r1);
+            }
+
+            ///broadcast reg
 
             r1 = new Mu2e_Register();
             r1.name = "FLASH_GATE_CONTROL";
@@ -656,9 +667,6 @@ namespace TB_mu2e
                 { reg = r; return true; }
             }
             { return false; }
-            {
-
-            }
         }
 
         public static void ReadReg(ref Mu2e_Register reg, ref TcpClient myClient)
