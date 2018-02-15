@@ -19,13 +19,36 @@ namespace mu2e.FEB_Test_Jig
         /// </summary>
         private System.ComponentModel.Container components = null;
 
-        public SelectResource(string name)
+        /// <summary>
+        /// Opens a dialog box to select the resource. 
+        /// </summary>
+        /// <param name="name">The name of the resource to open</param>
+        /// <param name="resourceName">The VISA resource name to connect to. </param>
+        /// <param>If this name matches an entry in the availableResourcesListBox then this resource is assumed to be the desired selection and the dialog box closes with ok</param>
+        public SelectResource(string name, string resourceName)
         {
             //
             // Required for Windows Form Designer support
             //
             InitializeComponent();
             Text = "Select " + name + " resource";
+
+            // This example uses an instance of the NationalInstruments.Visa.ResourceManager class to find resources on the system.
+            // Alternatively, static methods provided by the Ivi.Visa.ResourceManager class may be used when an application
+            // requires additional VISA .NET implementations.
+            using (var rmSession = new ResourceManager())
+            {
+                foreach (string s in rmSession.Find("(ASRL|GPIB|TCPIP|USB)?*INSTR"))
+                {
+                    availableResourcesListBox.Items.Add(s);
+                }
+            }
+
+            if (resourceName!= null && availableResourcesListBox.Items.Contains(resourceName))
+            {
+                ResourceName = resourceName;
+                this.DialogResult = DialogResult.OK;
+            }
         }
 
         /// <summary>
@@ -149,16 +172,7 @@ namespace mu2e.FEB_Test_Jig
 
         private void OnLoad(object sender, System.EventArgs e)
         {
-            // This example uses an instance of the NationalInstruments.Visa.ResourceManager class to find resources on the system.
-            // Alternatively, static methods provided by the Ivi.Visa.ResourceManager class may be used when an application
-            // requires additional VISA .NET implementations.
-            using (var rmSession = new ResourceManager())
-            {
-                foreach (string s in rmSession.Find("(ASRL|GPIB|TCPIP|USB)?*INSTR"))
-                {
-                    availableResourcesListBox.Items.Add(s);
-                }
-            }
+          
         }
 
         private void availableResourcesListBox_DoubleClick(object sender, System.EventArgs e)
