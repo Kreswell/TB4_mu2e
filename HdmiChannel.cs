@@ -10,7 +10,7 @@ namespace TB_mu2e
     class HdmiChannel
     {
         private System.Windows.Forms.Button _button;
-        private uint _channel;
+        private int _channel;
         private uint _fpga_num;
         private BiasProperties _Bias0;
         private LedProperties _Led0;
@@ -22,7 +22,7 @@ namespace TB_mu2e
         private bool _isTested;
 
         public System.Windows.Forms.Button button { get { return _button; } set { _button = value; } }
-        public uint channel { get { return _channel; } set { _channel = value; } }
+        public int channel { get { return _channel; } set { _channel = value; } }
         public uint fpga_num { get { return _fpga_num; } set { _fpga_num = value; } }
         public BiasProperties Bias0 { get { return _Bias0; } set { _Bias0 = value; } }
         public LedProperties Led0 { get { return _Led0; } set { _Led0 = value; } }
