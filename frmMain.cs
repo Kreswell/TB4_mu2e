@@ -3137,6 +3137,16 @@ namespace TB_mu2e
             // tbVolts.Text = "x.xx";
         }
 
+        private void DMMBiasConnectionChanged(object sender, ConnectedStateEventArgs e)
+        {
+
+        }
+
+        private void DMMTrimConnectionChanged(object sender, ConnectedStateEventArgs e)
+        {
+
+        }
+
         //private void ScopeTrimVoltageChanged(object sender, VoltageChangedEventsArgs e)
         //{
         //    if (ScopeTrim.inTestMode || e.isValid)
