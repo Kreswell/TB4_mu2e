@@ -179,6 +179,12 @@ namespace TB_mu2e
             this.txtSN = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.DAC_Voltages = new System.Windows.Forms.GroupBox();
+            this.btnZeroVoltages = new System.Windows.Forms.Button();
+            this.txtMuxI3 = new System.Windows.Forms.TextBox();
+            this.txtMuxI2 = new System.Windows.Forms.TextBox();
+            this.txtMuxI1 = new System.Windows.Forms.TextBox();
+            this.txtMuxI0 = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
             this.btnLoadCalib = new System.Windows.Forms.Button();
             this.txtTrim3Int = new System.Windows.Forms.TextBox();
             this.txtTrim3Slope = new System.Windows.Forms.TextBox();
@@ -298,6 +304,7 @@ namespace TB_mu2e
             this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
             this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.CalibPType = new System.Windows.Forms.TabPage();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabRUN.SuspendLayout();
@@ -385,6 +392,7 @@ namespace TB_mu2e
             this.tabControl.Controls.Add(this.tabFEBtest);
             this.tabControl.Controls.Add(this.tabIV);
             this.tabControl.Controls.Add(this.tabHist);
+            this.tabControl.Controls.Add(this.CalibPType);
             this.tabControl.Location = new System.Drawing.Point(1, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -2023,6 +2031,12 @@ namespace TB_mu2e
             // 
             // DAC_Voltages
             // 
+            this.DAC_Voltages.Controls.Add(this.btnZeroVoltages);
+            this.DAC_Voltages.Controls.Add(this.txtMuxI3);
+            this.DAC_Voltages.Controls.Add(this.txtMuxI2);
+            this.DAC_Voltages.Controls.Add(this.txtMuxI1);
+            this.DAC_Voltages.Controls.Add(this.txtMuxI0);
+            this.DAC_Voltages.Controls.Add(this.label36);
             this.DAC_Voltages.Controls.Add(this.btnLoadCalib);
             this.DAC_Voltages.Controls.Add(this.txtTrim3Int);
             this.DAC_Voltages.Controls.Add(this.txtTrim3Slope);
@@ -2083,6 +2097,53 @@ namespace TB_mu2e
             this.DAC_Voltages.TabIndex = 0;
             this.DAC_Voltages.TabStop = false;
             this.DAC_Voltages.Text = "DAC Voltages";
+            // 
+            // btnZeroVoltages
+            // 
+            this.btnZeroVoltages.Location = new System.Drawing.Point(299, 244);
+            this.btnZeroVoltages.Name = "btnZeroVoltages";
+            this.btnZeroVoltages.Size = new System.Drawing.Size(93, 29);
+            this.btnZeroVoltages.TabIndex = 99;
+            this.btnZeroVoltages.Text = "Zero All";
+            this.btnZeroVoltages.UseVisualStyleBackColor = true;
+            this.btnZeroVoltages.Click += new System.EventHandler(this.btnZeroVoltages_Click);
+            // 
+            // txtMuxI3
+            // 
+            this.txtMuxI3.Location = new System.Drawing.Point(583, 211);
+            this.txtMuxI3.Name = "txtMuxI3";
+            this.txtMuxI3.Size = new System.Drawing.Size(76, 27);
+            this.txtMuxI3.TabIndex = 98;
+            // 
+            // txtMuxI2
+            // 
+            this.txtMuxI2.Location = new System.Drawing.Point(583, 178);
+            this.txtMuxI2.Name = "txtMuxI2";
+            this.txtMuxI2.Size = new System.Drawing.Size(76, 27);
+            this.txtMuxI2.TabIndex = 97;
+            // 
+            // txtMuxI1
+            // 
+            this.txtMuxI1.Location = new System.Drawing.Point(583, 145);
+            this.txtMuxI1.Name = "txtMuxI1";
+            this.txtMuxI1.Size = new System.Drawing.Size(76, 27);
+            this.txtMuxI1.TabIndex = 96;
+            // 
+            // txtMuxI0
+            // 
+            this.txtMuxI0.Location = new System.Drawing.Point(583, 112);
+            this.txtMuxI0.Name = "txtMuxI0";
+            this.txtMuxI0.Size = new System.Drawing.Size(76, 27);
+            this.txtMuxI0.TabIndex = 95;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(579, 23);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(101, 20);
+            this.label36.TabIndex = 94;
+            this.label36.Text = "Mux Current";
             // 
             // btnLoadCalib
             // 
@@ -2222,7 +2283,7 @@ namespace TB_mu2e
             // 
             // btnDacScan
             // 
-            this.btnDacScan.Location = new System.Drawing.Point(401, 244);
+            this.btnDacScan.Location = new System.Drawing.Point(460, 244);
             this.btnDacScan.Name = "btnDacScan";
             this.btnDacScan.Size = new System.Drawing.Size(93, 29);
             this.btnDacScan.TabIndex = 77;
@@ -3277,6 +3338,15 @@ namespace TB_mu2e
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // CalibPType
+            // 
+            this.CalibPType.Location = new System.Drawing.Point(4, 32);
+            this.CalibPType.Name = "CalibPType";
+            this.CalibPType.Size = new System.Drawing.Size(1255, 665);
+            this.CalibPType.TabIndex = 11;
+            this.CalibPType.Text = "Prototype Calibration";
+            this.CalibPType.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -3622,5 +3692,12 @@ namespace TB_mu2e
         private System.Windows.Forms.CheckBox chkBoxJ12Hist;
         private System.Windows.Forms.CheckBox chkBoxJ11Hist;
         private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Button btnZeroVoltages;
+        private System.Windows.Forms.TextBox txtMuxI3;
+        private System.Windows.Forms.TextBox txtMuxI2;
+        private System.Windows.Forms.TextBox txtMuxI1;
+        private System.Windows.Forms.TextBox txtMuxI0;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.TabPage CalibPType;
     }
 }

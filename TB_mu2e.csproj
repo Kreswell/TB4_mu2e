@@ -117,9 +117,8 @@
       <HintPath>packages\log4net.2.0.3\lib\net35-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MathNet.Numerics, Version=3.18.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\MathNet.Numerics.3.18.0\lib\net40\MathNet.Numerics.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MathNet.Numerics, Version=4.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MathNet.Numerics.4.4.0\lib\net40\MathNet.Numerics.dll</HintPath>
     </Reference>
     <Reference Include="NationalInstruments.Visa, Version=15.5.0.49152, Culture=neutral, PublicKeyToken=2eaa5af0834e221d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -127,6 +126,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
