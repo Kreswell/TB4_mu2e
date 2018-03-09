@@ -60,7 +60,7 @@ namespace TB_mu2e
         public override UInt32 convertVoltage(double vIn)
         {
             UInt32 vOut;
-            vOut = (UInt32)vIn * 50;
+            vOut = (UInt32)(vIn * 50);
             return vOut;
         }
     }
@@ -70,7 +70,7 @@ namespace TB_mu2e
         public override UInt32 convertVoltage(double vIn)
         {
             UInt32 vOut;
-            vOut = (UInt32)vIn * 300;
+            vOut = (UInt32)(vIn * 300);
             return vOut;
         }
     }
@@ -80,7 +80,7 @@ namespace TB_mu2e
         public override UInt32 convertVoltage(double vIn)
         {
             UInt32 vOut;
-            vOut = (UInt32)vIn * 500 + 2048;
+            vOut = (UInt32)(vIn * 500 + 2048);
             return vOut;
         }
 

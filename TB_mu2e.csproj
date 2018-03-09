@@ -140,6 +140,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FEB.cs" />
     <Compile Include="HdmiChannel.cs" />
     <Compile Include="ClientNameChange.cs">
       <SubType>Form</SubType>
@@ -154,6 +155,7 @@
     <Compile Include="SelectResource.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Signals.cs" />
     <Compile Include="SpillData.cs" />
     <Compile Include="TCP_reciever.cs" />
     <Compile Include="TekScope.cs" />
@@ -167,6 +169,7 @@
     <Compile Include="Mu2e_FEB_client.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VoltageRegister.cs" />
     <Compile Include="WC_client .cs" />
     <EmbeddedResource Include="ClientNameChange.resx">
       <DependentUpon>ClientNameChange.cs</DependentUpon>
