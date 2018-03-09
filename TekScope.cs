@@ -30,24 +30,24 @@ using TB_mu2e;
 namespace mu2e.FEB_Test_Jig
 {
 
-    public class TekScope
+    public static class TekScope
     {
         /// <summary>
         /// likely not needed. This is asserted when the write command is completed. This is exposed publicly only for testing.
         /// </summary>
-        public event EventHandler WriteComplete;
+        public static event EventHandler WriteComplete;
         /// <summary>
         /// likely not needed. This is asserted when the read command is completed. This is exposed publicly only for testing.
         /// </summary>
-        public event EventHandler<readArgs> ReadComplete;
+        public static  event EventHandler<readArgs> ReadComplete;
         /// <summary>
         /// is asserted when the scope connection changes
         /// </summary>
-        public event EventHandler<ConnectedStateEventArgs> OnConnectedStateChanged;
+        public static event EventHandler<ConnectedStateEventArgs> OnConnectedStateChanged;
         /// <summary>
         /// returns the voltage measurement after a call to GetVoltage(channelNumber)
         /// </summary>
-        public event EventHandler<VoltageChangedEventsArgs> OnVoltageChanged;
+        public static  event EventHandler<VoltageChangedEventsArgs> OnVoltageChanged;
         /// <summary>
         /// Is returned as a VoltageChangedEventArg.voltage when GetVoltage(channelNumber) is called when no scope is attached
         /// <para>This can be used for testing with out scopes attached</para>
@@ -56,30 +56,30 @@ namespace mu2e.FEB_Test_Jig
         /// <summary>
         /// set inTestMode = true if no scopes are connected. Open scope will succeed, and GetVoltage(ChannelNumber) will retrun voltageDefaultValue.
         /// </summary>
-        public bool inTestMode = false;
+        public static bool inTestMode = false;
 
-        private SelectResource sr;
-        private ISerialSession serial;
-        private MessageBasedSession mbSession;
-        private IVisaAsyncResult asyncHandle = null;
-        private ResourceManager rmSession = null;
+        private static SelectResource sr;
+        private static ISerialSession serial;
+        private static MessageBasedSession mbSession;
+        private static IVisaAsyncResult asyncHandle = null;
+        private static ResourceManager rmSession = null;
 
         // +++ properties 
-        private string _scopeName = "Agilent 37970A DMM";
-        public string scopeName
+        private static string _scopeName = "Agilent 37970A DMM";
+        public static string scopeName
         {
             get { return _scopeName; }
             set { _scopeName = value.Trim(); }
         }
 
-        private bool _isConnected = false;
+        private static bool _isConnected = false;
 
         /// <summary>
         /// true indicates the scope is connected and can be used
         /// false indicates the scope has not been set up or cannot be opened.
         /// Get a true value by calling OpenScope or using the new constructor.
         /// </summary>
-        public bool isConnected
+        public static bool isConnected
         {
             get
             {
@@ -97,17 +97,17 @@ namespace mu2e.FEB_Test_Jig
                 {
                     _isConnected = value;
                     // raise the state changed event with the new value
-                    OnConnectedStateChanged?.Invoke(this, new ConnectedStateEventArgs(value));
+                    OnConnectedStateChanged?.Invoke(null, new ConnectedStateEventArgs(value));
                 }
             }
         }
 
         //++++ Helper property to assign DMM channels only no other use.
-        private int _DMMchan = 100; // channel 101 is the first. but each get increments by one.
+        private static int _DMMchan = 100; // channel 101 is the first. but each get increments by one.
         /// <summary>
         /// Only used to assign DMM channel references at start up. no other use.
         /// </summary>
-        public int DMMchan
+        public static int DMMchan
         {
             get
             {
@@ -125,12 +125,12 @@ namespace mu2e.FEB_Test_Jig
         /// Starts a new scope instance but does not attempt to open the scope for use.
         /// <para>Call OpenScope to start communications.</para>
         /// </summary>
-        public TekScope()
-        {
+   //     public static TekScope()
+    //    {
 
-          //  assignDMMchannels();
-            OpenScope(scopeName);
-        }
+            //  assignDMMchannels();
+   //         OpenScope(scopeName);
+   //     }
 
         /// <summary>
         /// Starts a new scope instance and attempts to open the scope for use.
@@ -141,14 +141,14 @@ namespace mu2e.FEB_Test_Jig
         /// <param name="lastResourceString">Optional. If blank, a dialog will allow the user to select a scope from the available scope resources. 
         /// <para>if used, this is a tektronix scope resource string identifying a specific scope that is known to be connected.</para>
         /// </param>
-        public TekScope(string scopeName, string lastResourceString = null)
+    /*    public TekScope(string scopeName, string lastResourceString = null)
         {
-          //  assignDMMchannels();
+            //  assignDMMchannels();
             OpenScope(scopeName, lastResourceString);
-        }
+        }*/
         // --- Constructors
 
-        public void Dispose()
+        public static void Dispose()
         {
             if (mbSession != null)
             {
@@ -156,7 +156,7 @@ namespace mu2e.FEB_Test_Jig
             }
         }
 
-        public bool OpenScope(string name, string lastResourceString = "ASRL1::INSTR")
+        public static  bool OpenScope(string name, string lastResourceString = "ASRL1::INSTR")
         {
             bool open = false;
 
@@ -241,7 +241,7 @@ namespace mu2e.FEB_Test_Jig
         /// Close this scope instance. 
         /// <para>OnConnectedStateChanged will assert with isConnected = false</para>
         /// </summary>
-        public void closeScope()
+        public static  void closeScope()
         {
             if (!inTestMode)
             {
@@ -251,7 +251,7 @@ namespace mu2e.FEB_Test_Jig
         }
 
 
-        internal void write(string command)
+        internal static  void write(string command)
         {
             try
             {
@@ -269,7 +269,7 @@ namespace mu2e.FEB_Test_Jig
         }
 
 
-        private void OnWriteComplete(IVisaAsyncResult result)
+        private static void OnWriteComplete(IVisaAsyncResult result)
         {
             try
             {
@@ -278,7 +278,7 @@ namespace mu2e.FEB_Test_Jig
 
                 if (WriteComplete != null)
                 {
-                    WriteComplete(this, default(EventArgs));
+                    WriteComplete(null, default(EventArgs));
                 }
             }
 
@@ -289,7 +289,7 @@ namespace mu2e.FEB_Test_Jig
         }
 
 
-        internal void read()
+        internal static void read()
         {
             try
             {
@@ -304,7 +304,7 @@ namespace mu2e.FEB_Test_Jig
             }
         }
 
-        private void OnReadComplete(IVisaAsyncResult result)
+        private static void OnReadComplete(IVisaAsyncResult result)
         {
             try
             {
@@ -313,7 +313,7 @@ namespace mu2e.FEB_Test_Jig
                 {
                     readArgs e = new readArgs();
                     e.text = InsertCommonEscapeSequences(responseString);
-                    ReadComplete(this, e);
+                    ReadComplete(null, e);
                 }
 
             }
@@ -323,7 +323,7 @@ namespace mu2e.FEB_Test_Jig
                 {
                     readArgs e = new readArgs();
                     e.text = InsertCommonEscapeSequences(scopeName + ": OnReadComplete failed. " + exp.Message);
-                    ReadComplete(this, e);
+                    ReadComplete(null, e);
                 }
                 else
                 {
@@ -355,19 +355,19 @@ namespace mu2e.FEB_Test_Jig
         /// Choosing the FEB channel (0-16) then choosing the signal in this channel 
         /// provides the integer value of the DMM channel to read for the siganl in this channel.
         /// </summary>
-        
-        public List<int> signalList_AllSignals = new List<int>();
-        public List<int> signalList_AllBiass = new List<int>();
-        public List<int> signalList_AllTrims = new List<int>();
-        public List<int> signalList_AllLEDs = new List<int>();
-        public List<int> signalList_Trim0s = new List<int>();
-        public List<int> signalList_Trim1s = new List<int>();
-        public List<int> signalList_Trim2s = new List<int>();
-        public List<int> signalList_Trim3s = new List<int>();
-        public Dictionary<int, VoltageSignal> DMMsignalLookup = new Dictionary<int, VoltageSignal>();
-        
+        /*   
+           public List<int> signalList_AllSignals = new List<int>();
+           public List<int> signalList_AllBiass = new List<int>();
+           public List<int> signalList_AllTrims = new List<int>();
+           public List<int> signalList_AllLEDs = new List<int>();
+           public List<int> signalList_Trim0s = new List<int>();
+           public List<int> signalList_Trim1s = new List<int>();
+           public List<int> signalList_Trim2s = new List<int>();
+           public List<int> signalList_Trim3s = new List<int>();
+           public Dictionary<int, VoltageSignal> DMMsignalLookup = new Dictionary<int, VoltageSignal>();
+           */
 
-        
+        /*
         private void assignDMMchannels()
         {
             //populate the references to the DMM channels
@@ -440,16 +440,16 @@ namespace mu2e.FEB_Test_Jig
                 FEB.FPGAs[id].Add(FEB.HDMIs[chan].Trim3);
                 FEB.FPGAs[id].Add(FEB.HDMIs[chan].Bias);
                 FEB.FPGAs[id].Add(FEB.HDMIs[chan].LED); */
+        /*
+                        FEB.HDMIs[chan].Trim1.myFPGA = id;
+                        FEB.HDMIs[chan].Trim2.myFPGA = id;
+                        FEB.HDMIs[chan].Trim3.myFPGA = id;
+                        FEB.HDMIs[chan].Bias.myFPGA = id;
+                        FEB.HDMIs[chan].LED.myFPGA = id;
+                        FEB.HDMIs[chan].Trim0.myFPGA = id;
+                    } */
 
-                FEB.HDMIs[chan].Trim1.myFPGA = id;
-                FEB.HDMIs[chan].Trim2.myFPGA = id;
-                FEB.HDMIs[chan].Trim3.myFPGA = id;
-                FEB.HDMIs[chan].Bias.myFPGA = id;
-                FEB.HDMIs[chan].LED.myFPGA = id;
-                FEB.HDMIs[chan].Trim0.myFPGA = id;
-            }
-        }
-        
+
         /// <summary>
         /// Get voltage readings from the DMM for the list of signals requested.
         /// </summary>
@@ -458,25 +458,25 @@ namespace mu2e.FEB_Test_Jig
         /// <param name="registerSettingRef">Reference to the FPGA register for this measurement. Marks the measurement with the register setting</param>
         /// <param name="CycleTimeMin">The minimum time the measurements should be taken</param>
         /// <returns>a list of VoltageSignals containing the channel, FPGA, signal type, registerSettingRef and measurement data for each signal requested</returns>
-  /*      public List<VoltageSignal> GetVoltages(List<int> list, int NumberOfMeasurements, MeasureType mType = MeasureType.ZeroAndNew, float CycleTimeMin = 0f)
-        {
-            List<VoltageSignal> newVoltages = new List<VoltageSignal>();// the copy of new voltages returned
-            VoltageSignal next = new VoltageSignal();
+        /*      public List<VoltageSignal> GetVoltages(List<int> list, int NumberOfMeasurements, MeasureType mType = MeasureType.ZeroAndNew, float CycleTimeMin = 0f)
+              {
+                  List<VoltageSignal> newVoltages = new List<VoltageSignal>();// the copy of new voltages returned
+                  VoltageSignal next = new VoltageSignal();
 
-            foreach (int c in list)
-            {
-                for (int n = 0; n < NumberOfMeasurements; n++) // get the number of measurements in a round-robbin
-                {
-                    next = DMMsignalLookup[c];
-                    next = GetVoltage(next, 1, mType, CycleTimeMin);
+                  foreach (int c in list)
+                  {
+                      for (int n = 0; n < NumberOfMeasurements; n++) // get the number of measurements in a round-robbin
+                      {
+                          next = DMMsignalLookup[c];
+                          next = GetVoltage(next, 1, mType, CycleTimeMin);
 
-                }
-                newVoltages.Add(next);
-            }
+                      }
+                      newVoltages.Add(next);
+                  }
 
-            return newVoltages;
-        }
-        */
+                  return newVoltages;
+              }
+              */
 
         /// <summary>
         /// Get voltage readings from the DMM for signal requested.
@@ -486,28 +486,28 @@ namespace mu2e.FEB_Test_Jig
         /// <param name="registerSettingRef">Reference to the FPGA register for this measurement. Marks the measurement with the register setting</param>
         /// <param name="CycleTimeMin">The minimum time the measurements should be taken</param>
         /// <returns>a list of VoltageSignals containing the channel, FPGA, signal type, registerSettingRef and measurement data for each signal requested</returns>
-    //    public double GetVoltage(SignalMeasurement sig, int NumberOfMeasurements, MeasureType mType = MeasureType.ZeroAndNew, float CycleTimeMin = 0f)
-        public double GetVoltage(DMM sig)
+        //    public double GetVoltage(SignalMeasurement sig, int NumberOfMeasurements, MeasureType mType = MeasureType.ZeroAndNew, float CycleTimeMin = 0f)
+        public static double GetVoltage(DMM sig)
         {
             double newVolts = 0;
 
-           // if (mType == MeasureType.ZeroAndNew)
-           //     sig.clear();
+            // if (mType == MeasureType.ZeroAndNew)
+            //     sig.clear();
             string DMMcommand = "MEASure:VOLTage:DC? " + sig.myDmmVoltRange + ", " + ((double)(0.000001 * sig.myDmmVoltRange)).ToString() + ", (@" + sig.myDMMchannel + ")\n";
             //  for (int n = 0; n < NumberOfMeasurements; n++)
             //  {
             if (singleReadWrite(DMMcommand, out newVolts)) return newVolts;
             else return double.NaN;
-                  //  sig.Add(newVolts);
-          //  }
+            //  sig.Add(newVolts);
+            //  }
 
-        //    VoltageChangedEventsArgs onNewVolts = new VoltageChangedEventsArgs(true, sig.myDmm.myHDMIChannel, sig.myDmm.myFPGA, SignalType.Trim, sig.myMeasurements.measurements.ToArray());
-        //    OnVoltageChanged?.Invoke(this, onNewVolts);
+            //    VoltageChangedEventsArgs onNewVolts = new VoltageChangedEventsArgs(true, sig.myDmm.myHDMIChannel, sig.myDmm.myFPGA, SignalType.Trim, sig.myMeasurements.measurements.ToArray());
+            //    OnVoltageChanged?.Invoke(this, onNewVolts);
 
             return newVolts;
         }
 
-        private bool singleReadWrite(string command, out double newVoltage)
+        private static bool singleReadWrite(string command, out double newVoltage)
         {
             newVoltage = 0;
             try
@@ -547,7 +547,7 @@ namespace mu2e.FEB_Test_Jig
         }
 
 
-        internal void GetSignalList_test(List<int> list)
+        internal static void GetSignalList_test(List<int> list)
         {
             string range = "";
             foreach (int i in list)
@@ -587,7 +587,7 @@ namespace mu2e.FEB_Test_Jig
             //  simpleReadWrite("FETCh?");
         }
 
-
+/*
         /// <summary>
         /// Requests all 6 voltage measurements for the specified FEB HDMI channel.
         /// <para>The voltage measurement is returned on onVoltageChanged event</para>
@@ -624,12 +624,14 @@ namespace mu2e.FEB_Test_Jig
                            WriteComplete += readVoltage;
                        }
                        else //use Sync read and write Added Jan 2017 Stephen to avoid errors with ivi.VISA
-                       { */
+                       { */ 
+                       /*
             simpleReadWrite("MEASure:VOLTage:DC? (@" + range + ")\n");
             //   }
         }
+        */
 
-        private void simpleReadWrite(string command)
+        private static void simpleReadWrite(string command)
         {
             try
             {
@@ -650,7 +652,7 @@ namespace mu2e.FEB_Test_Jig
                 {
                     readArgs e = new readArgs();
                     e.text = InsertCommonEscapeSequences(DMMresponse);
-                    parseVoltage(this, e);
+                    parseVoltage(null, e);
                 }
             }
             catch (Exception exp)
@@ -659,7 +661,7 @@ namespace mu2e.FEB_Test_Jig
             }
         }
 
-        private void readVoltage(object sender, EventArgs e)
+        private static  void readVoltage(object sender, EventArgs e)
         {
             WriteComplete -= readVoltage;
             ReadComplete += parseVoltage;
@@ -667,7 +669,7 @@ namespace mu2e.FEB_Test_Jig
         }
 
 
-        private void parseVoltage(object sender, readArgs e)
+        private static  void parseVoltage(object sender, readArgs e)
         {
             VoltageChangedEventsArgs VoltArgs = new VoltageChangedEventsArgs();
             try
@@ -687,20 +689,20 @@ namespace mu2e.FEB_Test_Jig
             {
                 VoltArgs.isValid = false;
             }
-            OnVoltageChanged?.Invoke(this, VoltArgs);
+            OnVoltageChanged?.Invoke(null, VoltArgs);
         }
 
-        private string RemoveCommonEscapeSequences(string s)
+        private static  string RemoveCommonEscapeSequences(string s)
         {
             return (s != null) ? s.Replace("\\n", "").Replace("\n", "").Replace("\\r", "").Replace("\r", "") : s;
         }
 
-        private string ReplaceCommonEscapeSequences(string s)
+        private static  string ReplaceCommonEscapeSequences(string s)
         {
             return (s != null) ? s.Replace("\\n", "\n").Replace("\\r", "\r") : s;
         }
 
-        private string InsertCommonEscapeSequences(string s)
+        private static  string InsertCommonEscapeSequences(string s)
         {
             return (s != null) ? s.Replace("\n", "\\n").Replace("\r", "\\r") : s;
         }
@@ -710,8 +712,9 @@ namespace mu2e.FEB_Test_Jig
             ZeroAndNew,
             AddToExisting
         }
-
     }
+
+    
 
     public class DMM
     {

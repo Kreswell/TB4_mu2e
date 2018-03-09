@@ -33,8 +33,7 @@ namespace mu2e.FEB_Test_Jig
         private string _FEBserialNum;
         public string FEBserialNum { get { return _FEBserialNum; } set { _FEBserialNum = value; } }
 
-        private TekScope myDMM = new TekScope();
-        private List<VoltageSignal> HDMISignals;
+        private List<VoltageSignal> HDMISignals = new List<VoltageSignal>();
 
         //public TcpClient myClient = new TcpClient();
         //public List<Mu2e_Register> arrReg = new List<Mu2e_Register>();
@@ -42,27 +41,27 @@ namespace mu2e.FEB_Test_Jig
         public HDMIchan[] HDMIs = new HDMIchan[16];
         public FPGAgroup[] FPGAs = new FPGAgroup[4];
         public AFEgroup[] AFEs = new AFEgroup[8];
-        public BiasSignal[] Biases = new BiasSignal[8]; //TODO: Biases are only 4 per board not on signal
-        public TrimSignal[] Trims = new TrimSignal[64];
-        public LEDsignal[] LEDs = new LEDsignal[16];
+        public List<BiasSignal> Biases = new List<BiasSignal>(); 
+        public List<TrimSignal> Trims = new List<TrimSignal>();
+        public List<LEDsignal> LEDs = new List<LEDsignal>();
         public VoltageSignal[] Voltages = new VoltageSignal[88]; //All voltage signals.
 
         public static VoltageSignal getVoltageSignalByHDMI(int hdmi, SignalType sigtyp)
         {
-            if (hdmi < 0 || hdmi > 15) throw new IndexOutOfRangeException($"HDMI value of {HDMIs} is out of 0-15 range");
-            return HDMIs[hdmi].GetSignalFromType(sigtyp);
+            //  if (hdmi < 0 || hdmi > 15) throw new IndexOutOfRangeException($"HDMI value of {HDMIs} is out of 0-15 range");
+            return null; // HDMIs[hdmi].GetSignalFromType(sigtyp);
         }
 
         public static VoltageSignal getVoltageSignalByFPGA(int FPGA, SignalType sigtyp)
         {
-            if (FPGA < 0 || FPGA > 4) throw new IndexOutOfRangeException($"FPGA value of {FPGA} is out of 0-4 range");
-            return HDMIs[FPGA / 4].GetSignalFromType(sigtyp);
+            //  if (FPGA < 0 || FPGA > 4) throw new IndexOutOfRangeException($"FPGA value of {FPGA} is out of 0-4 range");
+            return null;// HDMIs[FPGA / 4].GetSignalFromType(sigtyp);
         }
 
         public static VoltageSignal getVoltageSignalByBias(int FPGA, SignalType sigtyp)
         {
             if (FPGA < 0 || FPGA > 4) throw new IndexOutOfRangeException($"FPGA value of {FPGA} is out of 0-4 range");
-            return HDMIs[FPGA / 4].GetSignalFromType(sigtyp);
+            return null; //HDMIs[FPGA / 4].GetSignalFromType(sigtyp);
         }
 
         public enum GetVoltageTypes
@@ -84,24 +83,73 @@ namespace mu2e.FEB_Test_Jig
 
         private void BuildHDMIsignalDB()
         {
-            VoltageSignal newSignal;
-            for (int sigNum = 0; sigNum < (6 * 16); sigNum++)
+
+            TrimSignal newTrim;
+            BiasSignal newBias;
+            LEDsignal newLED;
+            int connector = 11;
+            int myHDMI = 0;
+            int myAFE = 0;
+            ushort myFPGA = 0;
+
+            for (int chan = 0; chan < 16; chan++)
             {
-                // make all the signals on the FEB and assign the DMM channel number
-                newSignal = new VoltageSignal(myDMM);
-                newSignal.myMeasurements.myDmm.myDMMchannel = myDMM.DMMchan;
-                newSignal.signalID = sigNum;
-                HDMISignals.Add(newSignal);
+                // load this channel's references
+                // DMMchan.get auto increments to the correct DMM channel signal 
+                myHDMI = chan;
+                myAFE = chan / 2;
+                myFPGA = (ushort)(chan /4);
 
-                // add this signal to the HDMIChan view
-          
-                trim = (TrimSignal)HDMISignals[i];
+                HDMIs[chan] = new HDMIchan();
+                HDMIs[chan].J = connector++;
+                // load the trims
+                for (int idx = 0; idx < 4; idx++)
+                {
+                    newTrim = new TrimSignal();
+                    newTrim.myMeasurements.myDmm.myDMMchannel = TekScope.DMMchan;
+                    newTrim.signalID = chan + idx;
+                    newTrim.signalType = SignalType.Trim;
+                    newTrim.myHDMIChannel = myHDMI;
+                    newTrim.myAFE = myAFE;
+                    newTrim.myFPGA = myFPGA;
 
+                    HDMIs[chan].Trims[idx] = newTrim;
+                    Trims.Add(HDMIs[chan].Trims[idx]);
+                }
+                //load the Bias
+                newBias = new BiasSignal();
+                newBias.myMeasurements.myDmm.myDMMchannel = TekScope.DMMchan;
+                newBias.signalID = chan + 5;
+                newBias.signalType = SignalType.Bias;
+                newBias.myHDMIChannel = myHDMI;
+                newBias.myAFE = myAFE;
+                newBias.myFPGA = myFPGA;
+
+                HDMIs[chan].Bias = newBias;
+                Biases.Add(HDMIs[chan].Bias);
+
+                //load the LED
+                newLED = new LEDsignal();
+                newLED.myMeasurements.myDmm.myDMMchannel = TekScope.DMMchan;
+                newLED.signalID = chan + 6;
+                newLED.signalType = SignalType.Bias;
+                newLED.myHDMIChannel = myHDMI;
+                newLED.myAFE = myAFE;
+                newLED.myFPGA = myFPGA;
+
+                HDMIs[chan].LED = newLED;
+                LEDs.Add(HDMIs[chan].LED);
             }
-            
-        }
-    }
 
+            //Do tests
+            int hT = HDMIs[0].Trims[0].myMeasurements.myDmm.myDmmVoltRange;
+            HDMIs[0].Trims[0].myMeasurements.myDmm.myDmmVoltRange = 9999;
+            int TT = Trims[0].myMeasurements.myDmm.myDmmVoltRange;
+            Trims[0].myMeasurements.myDmm.myDmmVoltRange = hT;
+
+        }
+
+    }
     /// <summary>
     /// FEBchan is a helper struct, mapping FEB channels to the DMM channels that are measuring the voltage
     /// Choosing the signal in this channel provides the integer value of the DMM channel to read for this siganl.
@@ -112,47 +160,18 @@ namespace mu2e.FEB_Test_Jig
         /// J refers to the actual HDMI refernce designator value on the FEB PCB. Valid values: J11-J26
         /// </summary>
         /// 
-        int _J = 0; // channel number i.e. J connector RefDes AKA HDMI socket;
-        public int J
-        {
-            get { return _J; }
-            set
-            {
-                _J = value;
-                Trim0.myHDMIChannel = value;
-                Trim1.myHDMIChannel = value;
-                Trim2.myHDMIChannel = value;
-                Trim3.myHDMIChannel = value;
-                LED.myHDMIChannel = value;
-                Bias.myHDMIChannel = value;
-            }
-        }
-        /// <summary>
-        /// Trim0 is the first signal for this FEB channel. LED is the last.
-        /// </summary>
-        public VoltageSignal Trim0 = new VoltageSignal();
-        public VoltageSignal Trim1 = new VoltageSignal();
-        public VoltageSignal Trim2 = new VoltageSignal();
-        public VoltageSignal Trim3 = new VoltageSignal();
-        public VoltageSignal Bias = new VoltageSignal();
-        /// <summary>
-        /// LED is the last signal for this FEB channel. Trim0 is the first.
-        /// </summary>
-        public VoltageSignal LED = new VoltageSignal();
+        public int J;
+        public TrimSignal[] Trims = new TrimSignal[4];
+        public BiasSignal Bias = new BiasSignal();
+        public LEDsignal LED = new LEDsignal();
 
         public HDMIchan()
         {
-            //Trim0.signalType = SignalType.Trim0;
-            //Trim1.signalType = SignalType.Trim1;
-            //Trim2.signalType = SignalType.Trim2;
-            //Trim3.signalType = SignalType.Trim3;
-            //LED.signalType = SignalType.LED;
-            //Bias.signalType = SignalType.Bias;
         }
 
-        public VoltageSignal GetSignalFromType(SignalType sigtyp)
+     /*   public VoltageSignal GetSignalFromType(SignalType sigtyp)
         {
-            VoltageSignal retval = new VoltageSignal();
+            //VoltageSignal retval = new VoltageSignal();
             //switch (sigtyp)
             //{
             //    case SignalType.Trim0:
@@ -176,18 +195,13 @@ namespace mu2e.FEB_Test_Jig
             //    default:
             //        break;
             //}
-            return retval;
-        }
-
-        public static explicit operator HDMIchan(VoltageSignal v)
-        {
-            return new HDMIchan();
-        }
+            return null; //retval;
+        } */
     }
 
     public class SignalMeasurement
     {
-        private TekScope DMM;
+       
         public DMM myDmm = new DMM();
         public bool isValid = false;
         public double maxValue;
@@ -196,10 +210,9 @@ namespace mu2e.FEB_Test_Jig
         public List<double> measurements;
         private double sum;
 
-        public SignalMeasurement(TekScope dmm)
+        public SignalMeasurement()
         {
             clear();
-            DMM = dmm;
         }
 
         public void GetMeasurement(int numberOfMeasurements = 1)
@@ -207,7 +220,7 @@ namespace mu2e.FEB_Test_Jig
             double retval;
             for (int i = 0; i < numberOfMeasurements; i++)
             {
-                if ((retval = DMM.GetVoltage(myDmm)) != double.NaN)
+                if ((retval = TekScope.GetVoltage(myDmm)) != double.NaN)
                     Add(retval);
             }
         }
@@ -250,4 +263,4 @@ namespace mu2e.FEB_Test_Jig
 
            } */
     }
-}
+}   

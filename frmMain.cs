@@ -15,11 +15,6 @@ namespace TB_mu2e
     public partial class frmMain : Form
     {
         FEB myFEB = new FEB();
-        
-        List<VoltageSignal> VoltageList = new List<VoltageSignal>();
-        List<TrimSignal> TrimList = new List<TrimSignal>();
-        List<BiasSignal> BiasList = new List<BiasSignal>();
-        List<LEDsignal> LEDList = new List<LEDsignal>();
 
         private int _ActiveFEB = 0;
         private int reg_set = 0;
@@ -71,12 +66,6 @@ namespace TB_mu2e
         private bool DebugLogging;
 
         Mu2e_FEB_client myFEBclient = PP.FEB1;
-
-        //static TekScope ScopeBias;
-        //static TekScope ScopeTrim;
-
-        //TekScope ScopeBias;
-        private TekScope DMM; //only need one TekScope when using the DMM
 
         double vScopeBias;
         double vScopeLED;
@@ -3136,12 +3125,11 @@ namespace TB_mu2e
 
         private void btnConnectScope_Click(object sender, EventArgs e)
         {
-            DMM = new TekScope();
 
-            DMM.OnConnectedStateChanged += DMMTrimConnectionChanged;
-            DMM.OnVoltageChanged += DMMVoltagesChanged;
+            TekScope.OnConnectedStateChanged += DMMTrimConnectionChanged;
+            TekScope.OnVoltageChanged += DMMVoltagesChanged;
 
-            if (DMM.isConnected) btnConnectScope.Enabled = false;
+            if (TekScope.isConnected) btnConnectScope.Enabled = false;
 
             myFEB.GetVoltages(FEB.GetVoltageTypes.AllVoltages);
 
@@ -3177,7 +3165,7 @@ namespace TB_mu2e
 
         private void DMMVoltagesChanged(object sender, VoltageChangedEventsArgs e)
         {
-            if (DMM.inTestMode || (e.isValid && e.Voltage.Length == 6))
+            if (e.isValid && e.Voltage.Length == 6)
             {
                 vScopeTrim0 = e.Voltage[0];
                 txtTrimRB0.Text = vScopeTrim0.ToString("0.0000");
@@ -3778,7 +3766,7 @@ namespace TB_mu2e
             {
                 foreach (TrimSignal trimsig in myFEB.Trims)
                 {
-                    if (trimsig.signalIndex%8 == i)
+                    if (trimsig.signalIndex % 8 == i)
                     {
                         trimsig.voltageSetting = 4;
                     }
@@ -3787,8 +3775,8 @@ namespace TB_mu2e
                 {
                     if (trimsig.signalIndex % 8 == i)
                     {
-                        trimsig.myMeasurements.GetMeasurement();
-                        trimsig.calibration.Vhi = trimsig.myMeasurements;
+                        trimsig.myMeasurements.GetMeasurement(5);
+                        trimsig.calibration.Vhi = trimsig.SaveMeasurements(); 
                     }
                 }
                 myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
@@ -3801,10 +3789,10 @@ namespace TB_mu2e
                             if (biassig.myAFE == trimsig.myAFE)
                             {
                                 double deltaV = trimsig.myMeasurements.averageValue - biassig.myMeasurements.averageValue;
-                                trimsig.muxCurrent = deltaV / 10000000;
+                                trimsig.muxCurrent = deltaV * 100; //Current is in nA, measured across 10M resistor.
                             }
                         }
-                        trimsig.voltageSetting = 0;
+                        ZeroAllVoltages();
                     }
                 }
 
@@ -3812,14 +3800,16 @@ namespace TB_mu2e
                 myFEB.GetVoltages(FEB.GetVoltageTypes.AllTrim);
                 foreach (TrimSignal trimsig in myFEB.Trims)
                 {
-                    trimsig.calibration.Vmed = trimsig.myMeasurements;
+                    trimsig.myMeasurements.GetMeasurement(5);
+                    trimsig.calibration.Vmed = trimsig.SaveMeasurements();
                 }
 
                 myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, -4);
                 myFEB.GetVoltages(FEB.GetVoltageTypes.AllTrim);
                 foreach (TrimSignal trimsig in myFEB.Trims)
                 {
-                    trimsig.calibration.Vlow = trimsig.myMeasurements;
+                    trimsig.myMeasurements.GetMeasurement(5);
+                    trimsig.calibration.Vlow = trimsig.SaveMeasurements();
                 }
 
                 myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 0);
@@ -3829,33 +3819,37 @@ namespace TB_mu2e
                 myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
                 foreach (BiasSignal biassig in myFEB.Biases)
                 {
-                    biassig.calibration.Vhi = biassig.myMeasurements;
+                    biassig.myMeasurements.GetMeasurement(5);
+                    biassig.calibration.Vhi = biassig.SaveMeasurements();
                 }
 
                 myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 35);
                 myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
                 foreach (BiasSignal biassig in myFEB.Biases)
                 {
-                    biassig.calibration.Vmed = biassig.myMeasurements;
+                    biassig.myMeasurements.GetMeasurement(5);
+                    biassig.calibration.Vmed = biassig.SaveMeasurements();
                 }
 
                 myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 5);
                 myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
                 foreach (BiasSignal biassig in myFEB.Biases)
                 {
-                    biassig.calibration.Vlow = biassig.myMeasurements;
+                    biassig.myMeasurements.GetMeasurement(5);
+                    biassig.calibration.Vlow = biassig.SaveMeasurements();
                 }
 
-                myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 0);
+                ZeroAllVoltages();
 
                 //Check that all channels look good.
-                myFEB.SetVoltages(FEB.GetVoltageTypes.AllVoltages, 2);
-                myFEB.GetVoltages(FEB.GetVoltageTypes.AllVoltages);
-                foreach (VoltageSignal vsig in myFEB.Voltages)
+                myFEB.SetVoltages(FEB.GetVoltageTypes.AllLED, 2);
+                myFEB.GetVoltages(FEB.GetVoltageTypes.AllLED);
+                foreach (VoltageSignal vLED in myFEB.LEDs)
                 {
-                    if (Math.Abs(vsig.voltageSetting - vsig.myMeasurements.averageValue) > 1)
+                    vLED.myMeasurements.GetMeasurement(1);
+                    if (Math.Abs(vLED.voltageSetting - vLED.myMeasurements.averageValue) > 1)
                     {
-                        vsig.isBad = true;
+                        vLED.isBad = true;
                     }
                 }
 
