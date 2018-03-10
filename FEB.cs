@@ -39,12 +39,12 @@ namespace mu2e.FEB_Test_Jig
         //public List<Mu2e_Register> arrReg = new List<Mu2e_Register>();
 
         public HDMIchan[] HDMIs = new HDMIchan[16];
-        public FPGAgroup[] FPGAs = new FPGAgroup[4];
-        public AFEgroup[] AFEs = new AFEgroup[8];
-        public List<BiasSignal> Biases = new List<BiasSignal>(); 
+        public List<FPGA> FPGAs = new List<FPGA>();
+        public List<AFE> AFEs = new List<AFE>();
+        public List<BiasChannel> Biases = new List<BiasChannel>();
         public List<TrimSignal> Trims = new List<TrimSignal>();
         public List<LEDsignal> LEDs = new List<LEDsignal>();
-        public VoltageSignal[] Voltages = new VoltageSignal[88]; //All voltage signals.
+        public VoltageSignal[] Voltages = new VoltageSignal[6 * 16]; //All voltage signals.
 
         public static VoltageSignal getVoltageSignalByHDMI(int hdmi, SignalType sigtyp)
         {
@@ -69,7 +69,7 @@ namespace mu2e.FEB_Test_Jig
             AllVoltages,
             AllTrim,
             AllBias,
-            AllLED,
+            AllLED
         }
 
         public FEB()
@@ -77,7 +77,7 @@ namespace mu2e.FEB_Test_Jig
             BuildHDMIsignalDB();
         }
 
-        public void GetVoltages(GetVoltageTypes types) { }
+        public void GetVoltages(GetVoltageTypes types, int numberOfMeasurements = 1) { }
 
         public void SetVoltages(GetVoltageTypes types, double setting, bool GetMeasurements = true) { }
 
@@ -91,124 +91,167 @@ namespace mu2e.FEB_Test_Jig
             int myHDMI = 0;
             int myAFE = 0;
             ushort myFPGA = 0;
+            int vcount = 0;
 
+            //Main for loop builds the arrays for HDMIs, Trims, Biases, LEDs, and Voltages
             for (int chan = 0; chan < 16; chan++)
             {
                 // load this channel's references
-                // DMMchan.get auto increments to the correct DMM channel signal 
                 myHDMI = chan;
                 myAFE = chan / 2;
-                myFPGA = (ushort)(chan /4);
+                myFPGA = (ushort)(chan / 4);
 
                 HDMIs[chan] = new HDMIchan();
                 HDMIs[chan].J = connector++;
+
                 // load the trims
                 for (int idx = 0; idx < 4; idx++)
                 {
                     newTrim = new TrimSignal();
+                    // DMMchan.get auto increments to the correct DMM channel signal 
                     newTrim.myMeasurements.myDmm.myDMMchannel = TekScope.DMMchan;
-                    newTrim.signalID = chan + idx;
+                    newTrim.voltageSignal_ID = chan + idx;
                     newTrim.signalType = SignalType.Trim;
                     newTrim.myHDMIChannel = myHDMI;
-                    newTrim.myAFE = myAFE;
-                    newTrim.myFPGA = myFPGA;
+                    newTrim.myAFE_ID = myAFE;
+                    newTrim.myFPGA_ID = myFPGA;
 
-                    HDMIs[chan].Trims[idx] = newTrim;
-                    Trims.Add(HDMIs[chan].Trims[idx]);
+                    HDMIs[chan].Trims[idx] = newTrim; //build the HDMIs entry
+                    Trims.Add(HDMIs[chan].Trims[idx]); //Add it to the trims while its here
+                    Voltages[vcount++] = HDMIs[chan].Trims[idx]; //Add it to the voltages while its here
                 }
                 //load the Bias
                 newBias = new BiasSignal();
                 newBias.myMeasurements.myDmm.myDMMchannel = TekScope.DMMchan;
-                newBias.signalID = chan + 5;
+                newBias.voltageSignal_ID = chan + 5;
                 newBias.signalType = SignalType.Bias;
                 newBias.myHDMIChannel = myHDMI;
-                newBias.myAFE = myAFE;
-                newBias.myFPGA = myFPGA;
-
-                HDMIs[chan].Bias = newBias;
-                Biases.Add(HDMIs[chan].Bias);
+                newBias.myAFE_ID = myAFE;
+                newBias.myFPGA_ID = myFPGA;
+                //Cant add it to the Biases because this is generating BiasSignals and Biases is for BiasChannel i.e each BiasChannel Biases has 2 BiasSignals 
+                HDMIs[chan].Bias = newBias;             // build the HDMIs entry
+                Voltages[vcount++] = HDMIs[chan].Bias;  //Add it to the voltages while its here
 
                 //load the LED
                 newLED = new LEDsignal();
                 newLED.myMeasurements.myDmm.myDMMchannel = TekScope.DMMchan;
-                newLED.signalID = chan + 6;
+                newLED.voltageSignal_ID = chan + 6;
                 newLED.signalType = SignalType.Bias;
                 newLED.myHDMIChannel = myHDMI;
-                newLED.myAFE = myAFE;
-                newLED.myFPGA = myFPGA;
+                newLED.myAFE_ID = myAFE;
+                newLED.myFPGA_ID = myFPGA;
 
-                HDMIs[chan].LED = newLED;
-                LEDs.Add(HDMIs[chan].LED);
+                HDMIs[chan].LED = newLED;               // build the HDMIs entry
+                LEDs.Add(HDMIs[chan].LED);              //Add it to the LEDs while its here
+                Voltages[vcount++] = HDMIs[chan].LED;   //Add it to the voltages while its here
             }
 
-            //Do tests
-            int hT = HDMIs[0].Trims[0].myMeasurements.myDmm.myDmmVoltRange;
-            HDMIs[0].Trims[0].myMeasurements.myDmm.myDmmVoltRange = 9999;
-            int TT = Trims[0].myMeasurements.myDmm.myDmmVoltRange;
-            Trims[0].myMeasurements.myDmm.myDmmVoltRange = hT;
+            //build the biasChannels and the AFEs
+            BiasChannel newBiasChan;
+            AFE newAFE;
+            for (int chan = 0; chan < 16; chan++)
+            {
+                // load the Biases. 8 biases per FEB
+                newBiasChan = new BiasChannel();
+                newAFE = new AFE();
+
+                newBiasChan.myAFE_ID = (int)(chan / 2);
+                newBiasChan.Biases[0] = HDMIs[chan].Bias;
+                //  newAFE.HDMIs[0] = HDMIs[chan++]; // load the HDMIs into the AFEs
+
+                newBiasChan.Biases[1] = HDMIs[chan].Bias;
+                //  newAFE.HDMIs[1] = HDMIs[chan];
+
+                Biases.Add(newBiasChan);
+
+                newAFE.Bias = newBiasChan;
+
+                AFEs.Add(newAFE);
+            }
+
+            // load the trims into the AFEs
+            for (int afe = 0; afe < 8; afe++)
+            {
+                AFEs[afe].AFE_ID = afe; //set the ID number for this AFE
+                AFEs[afe].Bias = Biases[afe]; //match the ADE to its bias
+
+                //load the Trim signals
+                for (int t = 0; t < 8; t++)
+                {
+                    AFEs[afe].Trims[t] = Trims[afe * t];
+                }
+                // load the HDMIs and LED signals
+                AFEs[afe].HDMIs[0] = HDMIs[afe * 2];
+                AFEs[afe].LEDs[0] = LEDs[afe * 2];
+                AFEs[afe].HDMIs[1] = HDMIs[1 + (afe * 2)];
+                AFEs[afe].LEDs[1] = LEDs[1 + (afe * 2)];
+            }
+
+            // load the FPGAs
+            for (int fpga = 0; fpga < 4; fpga++)
+            {
+                FPGA newFPGA = new FPGA();
+                newFPGA.FPGA_ID = fpga;
+
+                //load the 2 AFEs
+                newFPGA.AFEs[0] = AFEs[0 + fpga * 2];
+                newFPGA.AFEs[1] = AFEs[1 + (fpga * 2)];
+
+                //load the 2 Biases
+                newFPGA.Biases[0] = Biases[0 + fpga * 2];
+                newFPGA.Biases[1] = Biases[1 + (fpga * 2)]; //TODO: FIX BIAS BUG
+
+                //load the 4 LEDs
+                newFPGA.LEDs[0] = LEDs[0 + fpga * 4];
+                newFPGA.LEDs[1] = LEDs[1 + (fpga * 4)];
+                newFPGA.LEDs[2] = LEDs[2 + (fpga * 4)];
+                newFPGA.LEDs[3] = LEDs[3 + (fpga * 4)];
+
+                //load the 4 HDMIs
+                newFPGA.HDMIs[0] = HDMIs[0 + fpga * 4];
+                newFPGA.HDMIs[1] = HDMIs[1 + (fpga * 4)];
+                newFPGA.HDMIs[2] = HDMIs[2 + (fpga * 4)];
+                newFPGA.HDMIs[3] = HDMIs[3 + (fpga * 4)];
+
+                //load the 16 Trims
+                for (int t = 0; t < 16; t++)
+                {
+                    newFPGA.Trims[t] = Trims[fpga * t];
+                }
+
+                // add it to the list
+                FPGAs.Add(newFPGA);
+            }
+            // now that all lists are built, link the FPGA, AFE, and BiasChannel objects
+            foreach (AFE afe in AFEs)
+            {
+                afe.myFPGA = FPGAs[afe.myFPGA_ID];
+            }
+
+            foreach (BiasChannel bc in Biases)
+            {
+                bc.myAFE = AFEs[bc.myAFE_ID];
+            }
+
+            foreach (VoltageSignal v in Voltages)
+            {
+                v.myAFE = AFEs[v.myAFE_ID];
+            }
 
         }
-
     }
-    /// <summary>
-    /// FEBchan is a helper struct, mapping FEB channels to the DMM channels that are measuring the voltage
-    /// Choosing the signal in this channel provides the integer value of the DMM channel to read for this siganl.
-    /// </summary>
-    public class HDMIchan
-    {
-        /// <summary>
-        /// J refers to the actual HDMI refernce designator value on the FEB PCB. Valid values: J11-J26
-        /// </summary>
-        /// 
-        public int J;
-        public TrimSignal[] Trims = new TrimSignal[4];
-        public BiasSignal Bias = new BiasSignal();
-        public LEDsignal LED = new LEDsignal();
 
-        public HDMIchan()
-        {
-        }
-
-     /*   public VoltageSignal GetSignalFromType(SignalType sigtyp)
-        {
-            //VoltageSignal retval = new VoltageSignal();
-            //switch (sigtyp)
-            //{
-            //    case SignalType.Trim0:
-            //        retval = Trim0;
-            //        break;
-            //    case SignalType.Trim1:
-            //        retval = Trim1;
-            //        break;
-            //    case SignalType.Trim2:
-            //        retval = Trim2;
-            //        break;
-            //    case SignalType.Trim3:
-            //        retval = Trim3;
-            //        break;
-            //    case SignalType.Bias:
-            //        retval = Bias;
-            //        break;
-            //    case SignalType.LED:
-            //        retval = LED;
-            //        break;
-            //    default:
-            //        break;
-            //}
-            return null; //retval;
-        } */
-    }
 
     public class SignalMeasurement
     {
-       
+
         public DMM myDmm = new DMM();
         public bool isValid = false;
         public double maxValue;
         public double minValue;
         public double averageValue { get { return (measurements.Count > 0) ? sum / measurements.Count : 0d; } }
         public List<double> measurements;
-        private double sum;
+        public double sum;
 
         public SignalMeasurement()
         {
@@ -249,18 +292,27 @@ namespace mu2e.FEB_Test_Jig
             sum += value;
         }
 
-        internal void Invalidate(int wait)
+        private Thread waitThread;
+        public void Invalidate(int wait_ms)
         {
             isValid = false;
-            // ThreadPool.QueueUserWorkItem(new WaitCallback(waitToValidate), ti);
 
-            Thread.Sleep(wait);
-            isValid = true;
+            SignalMeasurement wait = new SignalMeasurement();
+            waitThread = new Thread(wait.waitToValidate);
+
+            waitThread.Start(wait_ms);
         }
 
-        /*  private WaitCallback waitToValidate()
-           {
+        public void waitToValidate(object wait_ms)
+        {
+            Console.WriteLine("+++ entering wait thread for voltage to stabilize");
+            Thread.Sleep((int)wait_ms);
+            isValid = true;
+            Console.WriteLine("--- Exiting wait thread for voltage to stabilize");
 
-           } */
+            GetMeasurement();
+        }
+
     }
-}   
+
+}

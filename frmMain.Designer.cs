@@ -31,6 +31,10 @@ namespace TB_mu2e
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("FPGA 0", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("FPGA 1", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("FPGA 2", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("FPGA 3", System.Windows.Forms.HorizontalAlignment.Left);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFEB1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -303,6 +307,26 @@ namespace TB_mu2e
             this.CalibPType = new System.Windows.Forms.TabPage();
             this.btnFullVScan = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.txtTrim7 = new System.Windows.Forms.TextBox();
+            this.textBox26 = new System.Windows.Forms.TextBox();
+            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.txtTrim6 = new System.Windows.Forms.TextBox();
+            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.txtTrim5 = new System.Windows.Forms.TextBox();
+            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.txtTrim4 = new System.Windows.Forms.TextBox();
+            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.txtTrim2 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtTrim1 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label46 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
@@ -313,10 +337,6 @@ namespace TB_mu2e
             this.label39 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.lblTrim0RB = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
-            this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label48 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
@@ -350,38 +370,37 @@ namespace TB_mu2e
             this.label78 = new System.Windows.Forms.Label();
             this.label79 = new System.Windows.Forms.Label();
             this.label80 = new System.Windows.Forms.Label();
-            this.label81 = new System.Windows.Forms.Label();
             this.label82 = new System.Windows.Forms.Label();
             this.label83 = new System.Windows.Forms.Label();
             this.label84 = new System.Windows.Forms.Label();
             this.label87 = new System.Windows.Forms.Label();
             this.label88 = new System.Windows.Forms.Label();
-            this.label89 = new System.Windows.Forms.Label();
             this.label90 = new System.Windows.Forms.Label();
             this.label91 = new System.Windows.Forms.Label();
             this.label92 = new System.Windows.Forms.Label();
+            this.label81 = new System.Windows.Forms.Label();
+            this.label89 = new System.Windows.Forms.Label();
             this.txtTrim0 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.txtTrim1 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.txtTrim2 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
             this.txtTrim3 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.txtTrim4 = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.txtTrim5 = new System.Windows.Forms.TextBox();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.textBox23 = new System.Windows.Forms.TextBox();
-            this.txtTrim6 = new System.Windows.Forms.TextBox();
-            this.textBox25 = new System.Windows.Forms.TextBox();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.txtTrim7 = new System.Windows.Forms.TextBox();
-            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
+            this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.domUpDownFPGA = new System.Windows.Forms.DomainUpDown();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label85 = new System.Windows.Forms.Label();
+            this.label86 = new System.Windows.Forms.Label();
+            this.label93 = new System.Windows.Forms.Label();
+            this.label94 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.Channel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.IsGood = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Gain = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Offset = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MuxCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.IsTested = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.IsCalibrated = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button9 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabRUN.SuspendLayout();
@@ -3399,6 +3418,12 @@ namespace TB_mu2e
             // 
             // CalibPType
             // 
+            this.CalibPType.Controls.Add(this.button9);
+            this.CalibPType.Controls.Add(this.listView1);
+            this.CalibPType.Controls.Add(this.label94);
+            this.CalibPType.Controls.Add(this.label85);
+            this.CalibPType.Controls.Add(this.label47);
+            this.CalibPType.Controls.Add(this.domUpDownFPGA);
             this.CalibPType.Controls.Add(this.btnFullVScan);
             this.CalibPType.Controls.Add(this.tableLayoutPanel1);
             this.CalibPType.Location = new System.Drawing.Point(4, 32);
@@ -3410,16 +3435,18 @@ namespace TB_mu2e
             // 
             // btnFullVScan
             // 
-            this.btnFullVScan.Location = new System.Drawing.Point(888, 351);
+            this.btnFullVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFullVScan.Location = new System.Drawing.Point(301, 253);
             this.btnFullVScan.Name = "btnFullVScan";
-            this.btnFullVScan.Size = new System.Drawing.Size(75, 34);
+            this.btnFullVScan.Size = new System.Drawing.Size(100, 50);
             this.btnFullVScan.TabIndex = 1;
-            this.btnFullVScan.Text = "Scan";
+            this.btnFullVScan.Text = "SCAN";
             this.btnFullVScan.UseVisualStyleBackColor = true;
             this.btnFullVScan.Click += new System.EventHandler(this.btnFullVScan_Click);
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.tableLayoutPanel1.ColumnCount = 9;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 86F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
@@ -3441,11 +3468,9 @@ namespace TB_mu2e
             this.tableLayoutPanel1.Controls.Add(this.textBox20, 7, 5);
             this.tableLayoutPanel1.Controls.Add(this.textBox19, 4, 5);
             this.tableLayoutPanel1.Controls.Add(this.txtTrim4, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.textBox17, 7, 4);
             this.tableLayoutPanel1.Controls.Add(this.textBox16, 4, 4);
             this.tableLayoutPanel1.Controls.Add(this.textBox11, 4, 3);
             this.tableLayoutPanel1.Controls.Add(this.txtTrim2, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.textBox9, 7, 2);
             this.tableLayoutPanel1.Controls.Add(this.textBox8, 4, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtTrim1, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.textBox6, 7, 1);
@@ -3492,20 +3517,24 @@ namespace TB_mu2e
             this.tableLayoutPanel1.Controls.Add(this.label77, 5, 7);
             this.tableLayoutPanel1.Controls.Add(this.label78, 5, 8);
             this.tableLayoutPanel1.Controls.Add(this.label79, 6, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label80, 6, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label82, 6, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label83, 6, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label84, 6, 6);
             this.tableLayoutPanel1.Controls.Add(this.label87, 8, 1);
             this.tableLayoutPanel1.Controls.Add(this.label88, 8, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label90, 8, 4);
             this.tableLayoutPanel1.Controls.Add(this.label91, 8, 5);
             this.tableLayoutPanel1.Controls.Add(this.label92, 8, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label81, 6, 7);
             this.tableLayoutPanel1.Controls.Add(this.label89, 8, 7);
             this.tableLayoutPanel1.Controls.Add(this.txtTrim0, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtTrim3, 1, 4);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(247, 3);
+            this.tableLayoutPanel1.Controls.Add(this.textBox17, 7, 8);
+            this.tableLayoutPanel1.Controls.Add(this.label90, 8, 8);
+            this.tableLayoutPanel1.Controls.Add(this.label81, 6, 8);
+            this.tableLayoutPanel1.Controls.Add(this.label84, 6, 7);
+            this.tableLayoutPanel1.Controls.Add(this.label83, 6, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label82, 6, 5);
+            this.tableLayoutPanel1.Controls.Add(this.textBox9, 7, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label80, 6, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label86, 8, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label93, 8, 4);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(407, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 9;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
@@ -3519,6 +3548,146 @@ namespace TB_mu2e
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(840, 300);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // textBox28
+            // 
+            this.textBox28.Location = new System.Drawing.Point(369, 270);
+            this.textBox28.Name = "textBox28";
+            this.textBox28.Size = new System.Drawing.Size(91, 27);
+            this.textBox28.TabIndex = 79;
+            // 
+            // txtTrim7
+            // 
+            this.txtTrim7.Location = new System.Drawing.Point(89, 270);
+            this.txtTrim7.Name = "txtTrim7";
+            this.txtTrim7.Size = new System.Drawing.Size(91, 27);
+            this.txtTrim7.TabIndex = 78;
+            // 
+            // textBox26
+            // 
+            this.textBox26.Location = new System.Drawing.Point(649, 237);
+            this.textBox26.Name = "textBox26";
+            this.textBox26.Size = new System.Drawing.Size(91, 27);
+            this.textBox26.TabIndex = 77;
+            // 
+            // textBox25
+            // 
+            this.textBox25.Location = new System.Drawing.Point(369, 237);
+            this.textBox25.Name = "textBox25";
+            this.textBox25.Size = new System.Drawing.Size(91, 27);
+            this.textBox25.TabIndex = 76;
+            // 
+            // txtTrim6
+            // 
+            this.txtTrim6.Location = new System.Drawing.Point(89, 237);
+            this.txtTrim6.Name = "txtTrim6";
+            this.txtTrim6.Size = new System.Drawing.Size(91, 27);
+            this.txtTrim6.TabIndex = 75;
+            // 
+            // textBox23
+            // 
+            this.textBox23.Location = new System.Drawing.Point(649, 204);
+            this.textBox23.Name = "textBox23";
+            this.textBox23.Size = new System.Drawing.Size(91, 27);
+            this.textBox23.TabIndex = 74;
+            // 
+            // textBox22
+            // 
+            this.textBox22.Location = new System.Drawing.Point(369, 204);
+            this.textBox22.Name = "textBox22";
+            this.textBox22.Size = new System.Drawing.Size(91, 27);
+            this.textBox22.TabIndex = 73;
+            // 
+            // txtTrim5
+            // 
+            this.txtTrim5.Location = new System.Drawing.Point(89, 204);
+            this.txtTrim5.Name = "txtTrim5";
+            this.txtTrim5.Size = new System.Drawing.Size(91, 27);
+            this.txtTrim5.TabIndex = 72;
+            // 
+            // textBox20
+            // 
+            this.textBox20.Location = new System.Drawing.Point(649, 171);
+            this.textBox20.Name = "textBox20";
+            this.textBox20.Size = new System.Drawing.Size(91, 27);
+            this.textBox20.TabIndex = 71;
+            // 
+            // textBox19
+            // 
+            this.textBox19.Location = new System.Drawing.Point(369, 171);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(91, 27);
+            this.textBox19.TabIndex = 70;
+            // 
+            // txtTrim4
+            // 
+            this.txtTrim4.Location = new System.Drawing.Point(89, 171);
+            this.txtTrim4.Name = "txtTrim4";
+            this.txtTrim4.Size = new System.Drawing.Size(91, 27);
+            this.txtTrim4.TabIndex = 69;
+            // 
+            // textBox17
+            // 
+            this.textBox17.Location = new System.Drawing.Point(649, 270);
+            this.textBox17.Name = "textBox17";
+            this.textBox17.Size = new System.Drawing.Size(91, 27);
+            this.textBox17.TabIndex = 68;
+            // 
+            // textBox16
+            // 
+            this.textBox16.Location = new System.Drawing.Point(369, 138);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(91, 27);
+            this.textBox16.TabIndex = 67;
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(369, 105);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(91, 27);
+            this.textBox11.TabIndex = 62;
+            // 
+            // txtTrim2
+            // 
+            this.txtTrim2.Location = new System.Drawing.Point(89, 105);
+            this.txtTrim2.Name = "txtTrim2";
+            this.txtTrim2.Size = new System.Drawing.Size(91, 27);
+            this.txtTrim2.TabIndex = 61;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(649, 105);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(91, 27);
+            this.textBox9.TabIndex = 60;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(369, 72);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(91, 27);
+            this.textBox8.TabIndex = 59;
+            // 
+            // txtTrim1
+            // 
+            this.txtTrim1.Location = new System.Drawing.Point(89, 72);
+            this.txtTrim1.Name = "txtTrim1";
+            this.txtTrim1.Size = new System.Drawing.Size(91, 27);
+            this.txtTrim1.TabIndex = 58;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(649, 39);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(91, 27);
+            this.textBox6.TabIndex = 57;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(369, 39);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(91, 27);
+            this.textBox5.TabIndex = 56;
             // 
             // label46
             // 
@@ -3630,26 +3799,6 @@ namespace TB_mu2e
             this.lblTrim0RB.TabIndex = 9;
             this.lblTrim0RB.Text = "00.0000";
             this.lblTrim0RB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 200;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timerScopeBias
-            // 
-            this.timerScopeBias.Interval = 55;
-            this.timerScopeBias.Tick += new System.EventHandler(this.timerScopeBias_Tick);
-            // 
-            // timerScopeTrim
-            // 
-            this.timerScopeTrim.Interval = 50;
-            this.timerScopeTrim.Tick += new System.EventHandler(this.timerScopeTrim_Tick);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // label48
             // 
@@ -3977,27 +4126,17 @@ namespace TB_mu2e
             // 
             this.label80.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label80.AutoSize = true;
-            this.label80.Location = new System.Drawing.Point(574, 75);
+            this.label80.Location = new System.Drawing.Point(574, 108);
             this.label80.Name = "label80";
             this.label80.Size = new System.Drawing.Size(57, 20);
             this.label80.TabIndex = 42;
             this.label80.Text = "Bias 1";
             // 
-            // label81
-            // 
-            this.label81.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label81.AutoSize = true;
-            this.label81.Location = new System.Drawing.Point(574, 240);
-            this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(57, 20);
-            this.label81.TabIndex = 43;
-            this.label81.Text = "LED 3";
-            // 
             // label82
             // 
             this.label82.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label82.AutoSize = true;
-            this.label82.Location = new System.Drawing.Point(574, 141);
+            this.label82.Location = new System.Drawing.Point(574, 174);
             this.label82.Name = "label82";
             this.label82.Size = new System.Drawing.Size(57, 20);
             this.label82.TabIndex = 44;
@@ -4007,7 +4146,7 @@ namespace TB_mu2e
             // 
             this.label83.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label83.AutoSize = true;
-            this.label83.Location = new System.Drawing.Point(574, 174);
+            this.label83.Location = new System.Drawing.Point(574, 207);
             this.label83.Name = "label83";
             this.label83.Size = new System.Drawing.Size(57, 20);
             this.label83.TabIndex = 45;
@@ -4017,7 +4156,7 @@ namespace TB_mu2e
             // 
             this.label84.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label84.AutoSize = true;
-            this.label84.Location = new System.Drawing.Point(574, 207);
+            this.label84.Location = new System.Drawing.Point(574, 240);
             this.label84.Name = "label84";
             this.label84.Size = new System.Drawing.Size(57, 20);
             this.label84.TabIndex = 46;
@@ -4043,21 +4182,11 @@ namespace TB_mu2e
             this.label88.TabIndex = 50;
             this.label88.Text = "00.0000";
             // 
-            // label89
-            // 
-            this.label89.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label89.AutoSize = true;
-            this.label89.Location = new System.Drawing.Point(746, 240);
-            this.label89.Name = "label89";
-            this.label89.Size = new System.Drawing.Size(67, 20);
-            this.label89.TabIndex = 51;
-            this.label89.Text = "00.0000";
-            // 
             // label90
             // 
             this.label90.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label90.AutoSize = true;
-            this.label90.Location = new System.Drawing.Point(746, 141);
+            this.label90.Location = new System.Drawing.Point(746, 273);
             this.label90.Name = "label90";
             this.label90.Size = new System.Drawing.Size(67, 20);
             this.label90.TabIndex = 52;
@@ -4083,61 +4212,32 @@ namespace TB_mu2e
             this.label92.TabIndex = 54;
             this.label92.Text = "00.0000";
             // 
+            // label81
+            // 
+            this.label81.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label81.AutoSize = true;
+            this.label81.Location = new System.Drawing.Point(574, 273);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(57, 20);
+            this.label81.TabIndex = 43;
+            this.label81.Text = "LED 3";
+            // 
+            // label89
+            // 
+            this.label89.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label89.AutoSize = true;
+            this.label89.Location = new System.Drawing.Point(746, 240);
+            this.label89.Name = "label89";
+            this.label89.Size = new System.Drawing.Size(67, 20);
+            this.label89.TabIndex = 51;
+            this.label89.Text = "00.0000";
+            // 
             // txtTrim0
             // 
             this.txtTrim0.Location = new System.Drawing.Point(89, 39);
             this.txtTrim0.Name = "txtTrim0";
             this.txtTrim0.Size = new System.Drawing.Size(91, 27);
             this.txtTrim0.TabIndex = 55;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(369, 39);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(91, 27);
-            this.textBox5.TabIndex = 56;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(649, 39);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(91, 27);
-            this.textBox6.TabIndex = 57;
-            // 
-            // txtTrim1
-            // 
-            this.txtTrim1.Location = new System.Drawing.Point(89, 72);
-            this.txtTrim1.Name = "txtTrim1";
-            this.txtTrim1.Size = new System.Drawing.Size(91, 27);
-            this.txtTrim1.TabIndex = 58;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(369, 72);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(91, 27);
-            this.textBox8.TabIndex = 59;
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(649, 72);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(91, 27);
-            this.textBox9.TabIndex = 60;
-            // 
-            // txtTrim2
-            // 
-            this.txtTrim2.Location = new System.Drawing.Point(89, 105);
-            this.txtTrim2.Name = "txtTrim2";
-            this.txtTrim2.Size = new System.Drawing.Size(91, 27);
-            this.txtTrim2.TabIndex = 61;
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(369, 105);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(91, 27);
-            this.textBox11.TabIndex = 62;
             // 
             // txtTrim3
             // 
@@ -4146,96 +4246,163 @@ namespace TB_mu2e
             this.txtTrim3.Size = new System.Drawing.Size(91, 27);
             this.txtTrim3.TabIndex = 63;
             // 
-            // textBox16
+            // timer1
             // 
-            this.textBox16.Location = new System.Drawing.Point(369, 138);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(91, 27);
-            this.textBox16.TabIndex = 67;
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 200;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // textBox17
+            // timerScopeBias
             // 
-            this.textBox17.Location = new System.Drawing.Point(649, 138);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(91, 27);
-            this.textBox17.TabIndex = 68;
+            this.timerScopeBias.Interval = 55;
+            this.timerScopeBias.Tick += new System.EventHandler(this.timerScopeBias_Tick);
             // 
-            // txtTrim4
+            // timerScopeTrim
             // 
-            this.txtTrim4.Location = new System.Drawing.Point(89, 171);
-            this.txtTrim4.Name = "txtTrim4";
-            this.txtTrim4.Size = new System.Drawing.Size(91, 27);
-            this.txtTrim4.TabIndex = 69;
+            this.timerScopeTrim.Interval = 50;
+            this.timerScopeTrim.Tick += new System.EventHandler(this.timerScopeTrim_Tick);
             // 
-            // textBox19
+            // openFileDialog1
             // 
-            this.textBox19.Location = new System.Drawing.Point(369, 171);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(91, 27);
-            this.textBox19.TabIndex = 70;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // textBox20
+            // domUpDownFPGA
             // 
-            this.textBox20.Location = new System.Drawing.Point(649, 171);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(91, 27);
-            this.textBox20.TabIndex = 71;
+            this.domUpDownFPGA.Items.Add("0");
+            this.domUpDownFPGA.Items.Add("1");
+            this.domUpDownFPGA.Items.Add("2");
+            this.domUpDownFPGA.Items.Add("3");
+            this.domUpDownFPGA.Location = new System.Drawing.Point(336, 102);
+            this.domUpDownFPGA.Name = "domUpDownFPGA";
+            this.domUpDownFPGA.Size = new System.Drawing.Size(40, 27);
+            this.domUpDownFPGA.TabIndex = 2;
+            this.domUpDownFPGA.Text = "0";
             // 
-            // txtTrim5
+            // label47
             // 
-            this.txtTrim5.Location = new System.Drawing.Point(89, 204);
-            this.txtTrim5.Name = "txtTrim5";
-            this.txtTrim5.Size = new System.Drawing.Size(91, 27);
-            this.txtTrim5.TabIndex = 72;
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(197, 4);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(204, 29);
+            this.label47.TabIndex = 3;
+            this.label47.Text = "Voltage Settings";
             // 
-            // textBox22
+            // label85
             // 
-            this.textBox22.Location = new System.Drawing.Point(369, 204);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(91, 27);
-            this.textBox22.TabIndex = 73;
+            this.label85.AutoSize = true;
+            this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label85.Location = new System.Drawing.Point(331, 74);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(70, 25);
+            this.label85.TabIndex = 4;
+            this.label85.Text = "FPGA";
             // 
-            // textBox23
+            // label86
             // 
-            this.textBox23.Location = new System.Drawing.Point(649, 204);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(91, 27);
-            this.textBox23.TabIndex = 74;
+            this.label86.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label86.AutoSize = true;
+            this.label86.Location = new System.Drawing.Point(746, 108);
+            this.label86.Name = "label86";
+            this.label86.Size = new System.Drawing.Size(67, 20);
+            this.label86.TabIndex = 80;
+            this.label86.Text = "00.0000";
             // 
-            // txtTrim6
+            // label93
             // 
-            this.txtTrim6.Location = new System.Drawing.Point(89, 237);
-            this.txtTrim6.Name = "txtTrim6";
-            this.txtTrim6.Size = new System.Drawing.Size(91, 27);
-            this.txtTrim6.TabIndex = 75;
+            this.label93.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label93.AutoSize = true;
+            this.label93.Location = new System.Drawing.Point(746, 141);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(67, 20);
+            this.label93.TabIndex = 81;
+            this.label93.Text = "00.0000";
             // 
-            // textBox25
+            // label94
             // 
-            this.textBox25.Location = new System.Drawing.Point(369, 237);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(91, 27);
-            this.textBox25.TabIndex = 76;
+            this.label94.AutoSize = true;
+            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label94.Location = new System.Drawing.Point(236, 309);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(165, 29);
+            this.label94.TabIndex = 5;
+            this.label94.Text = "Scan Results";
+            this.label94.Click += new System.EventHandler(this.label94_Click);
             // 
-            // textBox26
+            // listView1
             // 
-            this.textBox26.Location = new System.Drawing.Point(649, 237);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(91, 27);
-            this.textBox26.TabIndex = 77;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Channel,
+            this.IsGood,
+            this.Gain,
+            this.Offset,
+            this.IsTested,
+            this.IsCalibrated,
+            this.MuxCurrent});
+            listViewGroup1.Header = "FPGA 0";
+            listViewGroup1.Name = "FPGA0";
+            listViewGroup2.Header = "FPGA 1";
+            listViewGroup2.Name = "FPGA1";
+            listViewGroup3.Header = "FPGA 2";
+            listViewGroup3.Name = "FPGA2";
+            listViewGroup4.Header = "FPGA 3";
+            listViewGroup4.Name = "FPGA3";
+            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3,
+            listViewGroup4});
+            this.listView1.Location = new System.Drawing.Point(407, 309);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(840, 300);
+            this.listView1.TabIndex = 6;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // txtTrim7
+            // Channel
             // 
-            this.txtTrim7.Location = new System.Drawing.Point(89, 270);
-            this.txtTrim7.Name = "txtTrim7";
-            this.txtTrim7.Size = new System.Drawing.Size(91, 27);
-            this.txtTrim7.TabIndex = 78;
+            this.Channel.Text = "Channel";
+            this.Channel.Width = 80;
             // 
-            // textBox28
+            // IsGood
             // 
-            this.textBox28.Location = new System.Drawing.Point(369, 270);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(91, 27);
-            this.textBox28.TabIndex = 79;
+            this.IsGood.Text = "Looks Good?";
+            this.IsGood.Width = 120;
+            // 
+            // Gain
+            // 
+            this.Gain.Text = "Gain";
+            this.Gain.Width = 80;
+            // 
+            // Offset
+            // 
+            this.Offset.Text = "Offset";
+            this.Offset.Width = 80;
+            // 
+            // MuxCurrent
+            // 
+            this.MuxCurrent.Text = "Mux Current (nA)";
+            this.MuxCurrent.Width = 150;
+            // 
+            // IsTested
+            // 
+            this.IsTested.Text = "Test Completed?";
+            this.IsTested.Width = 150;
+            // 
+            // IsCalibrated
+            // 
+            this.IsCalibrated.Text = "Calibrations Applied?";
+            this.IsCalibrated.Width = 178;
+            // 
+            // button9
+            // 
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.Location = new System.Drawing.Point(301, 559);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(100, 50);
+            this.button9.TabIndex = 7;
+            this.button9.Text = "SAVE";
+            this.button9.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
@@ -4299,6 +4466,7 @@ namespace TB_mu2e
             this.tabHist.ResumeLayout(false);
             this.tabHist.PerformLayout();
             this.CalibPType.ResumeLayout(false);
+            this.CalibPType.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -4669,5 +4837,20 @@ namespace TB_mu2e
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox txtTrim0;
         private System.Windows.Forms.TextBox txtTrim3;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.DomainUpDown domUpDownFPGA;
+        private System.Windows.Forms.Label label85;
+        private System.Windows.Forms.Label label94;
+        private System.Windows.Forms.Label label86;
+        private System.Windows.Forms.Label label93;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader Channel;
+        private System.Windows.Forms.ColumnHeader IsGood;
+        private System.Windows.Forms.ColumnHeader Gain;
+        private System.Windows.Forms.ColumnHeader Offset;
+        private System.Windows.Forms.ColumnHeader IsTested;
+        private System.Windows.Forms.ColumnHeader IsCalibrated;
+        private System.Windows.Forms.ColumnHeader MuxCurrent;
     }
 }

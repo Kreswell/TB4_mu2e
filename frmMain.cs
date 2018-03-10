@@ -479,7 +479,7 @@ namespace TB_mu2e
             double vSamp = 0;
 
             vSet = dac.convertVoltage(vHi);
-            Mu2e_Register.WriteReg(vSet, ref r, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vSet, ref r, myFEBclient.client);
             updateVoltage();
             dac.voltageDataFEB[0] = vHi;
             for (int t = 0; t < 3 * vHi; t++)
@@ -506,7 +506,7 @@ namespace TB_mu2e
 
 
             vSet = dac.convertVoltage(vMed);
-            Mu2e_Register.WriteReg(vSet, ref r, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vSet, ref r, myFEBclient.client);
             updateVoltage();
             dac.voltageDataFEB[1] = vMed;
 
@@ -532,7 +532,7 @@ namespace TB_mu2e
             }
 
             vSet = dac.convertVoltage(vLow);
-            Mu2e_Register.WriteReg(vSet, ref r, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vSet, ref r, myFEBclient.client);
             updateVoltage();
             dac.voltageDataFEB[2] = vLow;
             for (int t = 0; t < 3 * (vMed - vLow + 10); t++)
@@ -565,7 +565,7 @@ namespace TB_mu2e
             }
 
             vSet = dac.convertVoltage(0);
-            Mu2e_Register.WriteReg(vSet, ref r, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vSet, ref r, myFEBclient.client);
             updateVoltage();
             Application.DoEvents();
         }
@@ -606,9 +606,9 @@ namespace TB_mu2e
             double vDelta = 0;
             double vSamp = 0;
 
-            Mu2e_Register.WriteReg(0, ref biasr, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(0, ref biasr, myFEBclient.client);
             vSet = trim.convertVoltage(v);
-            Mu2e_Register.WriteReg(vSet, ref trimr, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vSet, ref trimr, myFEBclient.client);
             updateVoltage();
             for (int t = 0; t < 3 * v; t++)
             {
@@ -814,7 +814,7 @@ namespace TB_mu2e
                     Mu2e_Register r1;
                     Mu2e_Register.FindName(rnames[j], ref myFEBclient.arrReg, out r1);
                     r1.fpga_index = fpga_num;
-                    Mu2e_Register.ReadReg(ref r1, ref myFEBclient.client);
+                    Mu2e_Register.ReadReg(ref r1, myFEBclient.client);
                     if (!r1.pref_hex)
                     { txtREGISTERS[j].Text = r1.val.ToString(); }
                     else
@@ -852,7 +852,7 @@ namespace TB_mu2e
                         try
                         {
                             UInt32 v = Convert.ToUInt32(txtREGISTERS[j].Text, 16);
-                            Mu2e_Register.WriteReg(v, ref r1, ref myFEBclient.client);
+                            Mu2e_Register.WriteReg(v, ref r1, myFEBclient.client);
                         }
                         catch
                         { txtREGISTERS[j].Text = "?"; }
@@ -862,7 +862,7 @@ namespace TB_mu2e
                         try
                         {
                             UInt32 v = Convert.ToUInt32(txtREGISTERS[j].Text);
-                            Mu2e_Register.WriteReg(v, ref r1, ref myFEBclient.client);
+                            Mu2e_Register.WriteReg(v, ref r1, myFEBclient.client);
                         }
                         catch
                         { txtREGISTERS[j].Text = "?"; }
@@ -911,7 +911,7 @@ namespace TB_mu2e
                     Mu2e_Register r1;
                     Mu2e_Register.FindName(rnames[j], ref myFEBclient.arrReg, out r1);
                     r1.fpga_index = fpga_num;
-                    Mu2e_Register.ReadReg(ref r1, ref myFEBclient.client);
+                    Mu2e_Register.ReadReg(ref r1, myFEBclient.client);
                     if (!r1.pref_hex)
                     { txtSPILL[j].Text = r1.val.ToString(); }
                     else
@@ -943,7 +943,7 @@ namespace TB_mu2e
                         try
                         {
                             UInt32 v = Convert.ToUInt32(txtREGISTERS[j].Text, 16);
-                            Mu2e_Register.WriteReg(v, ref r1, ref myFEBclient.client);
+                            Mu2e_Register.WriteReg(v, ref r1, myFEBclient.client);
                         }
                         catch
                         { txtSPILL[j].Text = "?"; }
@@ -953,7 +953,7 @@ namespace TB_mu2e
                         try
                         {
                             UInt32 v = Convert.ToUInt32(txtSPILL[j].Text);
-                            Mu2e_Register.WriteReg(v, ref r1, ref myFEBclient.client);
+                            Mu2e_Register.WriteReg(v, ref r1, myFEBclient.client);
                         }
                         catch
                         { txtSPILL[j].Text = "?"; }
@@ -1147,7 +1147,7 @@ namespace TB_mu2e
                 //UInt32 v = (UInt32)(myHisto.chan);
                 //if (v > 7) { v = v - 8; }
                 //if (_IntegralScan) { v = v + 8; }
-                Mu2e_Register.WriteReg(0, ref r_mux, ref myFEBclient.client);
+                Mu2e_Register.WriteReg(0, ref r_mux, myFEBclient.client);
                 //Mu2e_Register.WriteReg(v+96, ref r_ch, ref FEB.client);
                 //v = (UInt32)(myHisto.interval);
                 //Mu2e_Register.WriteReg(v, ref r_interval, ref FEB.client);
@@ -1331,13 +1331,13 @@ namespace TB_mu2e
 
                     Mu2e_Register.FindAddr(pedaddr, ref myFEBclient.arrReg, out r_ped);
                     r_ped.fpga_index = fpga;
-                    Mu2e_Register.WriteReg(0xFE0, ref r_ped, ref myFEBclient.client);
-                    Mu2e_Register.WriteReg(0x60, ref r_CSR, ref myFEBclient.client);
-                    Mu2e_Register.WriteReg(0x0, ref r_CSR, ref myFEBclient.client);
+                    Mu2e_Register.WriteReg(0xFE0, ref r_ped, myFEBclient.client);
+                    Mu2e_Register.WriteReg(0x60, ref r_CSR, myFEBclient.client);
+                    Mu2e_Register.WriteReg(0x0, ref r_CSR, myFEBclient.client);
                     //Set histo pointer to 0 before generating histo.
-                    Mu2e_Register.WriteReg(0x0, ref r_pointer0, ref myFEBclient.client);
-                    Mu2e_Register.WriteReg(0x0, ref r_pointer1, ref myFEBclient.client);
-                    Mu2e_Register.WriteReg(sipm + afe * 32, ref r_ch, ref myFEBclient.client);
+                    Mu2e_Register.WriteReg(0x0, ref r_pointer0, myFEBclient.client);
+                    Mu2e_Register.WriteReg(0x0, ref r_pointer1, myFEBclient.client);
+                    Mu2e_Register.WriteReg(sipm + afe * 32, ref r_ch, myFEBclient.client);
                     uint[] histo = new uint[512];
                     histo = myFEBclient.ReadHisto(sipm, afe, fpga);
                     for (uint j = 0; j < 512; j++)
@@ -1590,7 +1590,7 @@ namespace TB_mu2e
             Mu2e_Register r3;
             Mu2e_Register.FindName("SPILL_STATE", ref PP.FEB1.arrReg, out r3);
             System.Threading.Thread.Sleep(250);
-            Mu2e_Register.ReadReg(ref r3, ref PP.FEB1.client);
+            Mu2e_Register.ReadReg(ref r3, PP.FEB1.client);
 
 
 
@@ -1623,9 +1623,9 @@ namespace TB_mu2e
                     WC_client.check_status(out in_spill, out s_num_trig, out s_WC_time);
 
                     Console.Write(in_spill.ToString() + " ");
-                    Mu2e_Register.ReadReg(ref r3, ref PP.FEB1.client);
+                    Mu2e_Register.ReadReg(ref r3, PP.FEB1.client);
                     Console.Write(r3.val.ToString() + " ");
-                    Mu2e_Register.ReadReg(ref r3, ref PP.FEB2.client);
+                    Mu2e_Register.ReadReg(ref r3, PP.FEB2.client);
                     Console.Write(r3.val.ToString() + " ");
                 }
                 //PP.FEB2.ReadAll(ref ev, ref PP.FEB2.client);
@@ -1800,7 +1800,7 @@ namespace TB_mu2e
                 if (chan < 16)
                 {
                     uint v = (uint)(0x10 + chan);
-                    Mu2e_Register.WriteReg(v, ref mux_reg, ref myFEBclient.client);
+                    Mu2e_Register.WriteReg(v, ref mux_reg, myFEBclient.client);
                 }
             }
 
@@ -1822,7 +1822,7 @@ namespace TB_mu2e
                         Mu2e_Register r_spill;
                         Mu2e_Register.FindName("TRIG_CONTROL", ref PP.FEB1.arrReg, out r_spill);
                         if (!PP.myRun.OneSpill)
-                        { Mu2e_Register.WriteReg(0x300, ref r_spill, ref PP.FEB1.client); }
+                        { Mu2e_Register.WriteReg(0x300, ref r_spill, PP.FEB1.client); }
                     }
                     if (PP.myRun != null)
                     {
@@ -2021,7 +2021,7 @@ namespace TB_mu2e
             if (PP.myRun != null)
             {
                 PP.myRun.ActivateRun(); PP.myRun.UpdateStatus("Run STARTING in ONE SPILL MODE");
-                Mu2e_Register.WriteReg(0x300, ref r_spill, ref PP.FEB1.client);
+                Mu2e_Register.WriteReg(0x300, ref r_spill, PP.FEB1.client);
                 PP.myRun.OneSpill = true;
             }
         }
@@ -2270,22 +2270,22 @@ namespace TB_mu2e
 
             if (ActiveHdmiChannel != null)
             {
-                Mu2e_Register.ReadReg(ref rBias, ref myFEBclient.client);
+                Mu2e_Register.ReadReg(ref rBias, myFEBclient.client);
                 v = rBias.val * 0.02;
                 txtBiasSet0.Text = v.ToString("0.000");
-                Mu2e_Register.ReadReg(ref rLed, ref myFEBclient.client);
+                Mu2e_Register.ReadReg(ref rLed, myFEBclient.client);
                 v = rLed.val * 0.003333333;
                 txtLEDSet0.Text = v.ToString("0.000");
-                Mu2e_Register.ReadReg(ref rTrim0, ref myFEBclient.client);
+                Mu2e_Register.ReadReg(ref rTrim0, myFEBclient.client);
                 v = ((double)rTrim0.val - 2048) * 0.002;
                 txtTrimSet0.Text = v.ToString("0.000");
-                Mu2e_Register.ReadReg(ref rTrim1, ref myFEBclient.client);
+                Mu2e_Register.ReadReg(ref rTrim1, myFEBclient.client);
                 v = ((double)rTrim1.val - 2048) * 0.002;
                 txtTrimSet1.Text = v.ToString("0.000");
-                Mu2e_Register.ReadReg(ref rTrim2, ref myFEBclient.client);
+                Mu2e_Register.ReadReg(ref rTrim2, myFEBclient.client);
                 v = ((double)rTrim2.val - 2048) * 0.002;
                 txtTrimSet2.Text = v.ToString("0.000");
-                Mu2e_Register.ReadReg(ref rTrim3, ref myFEBclient.client);
+                Mu2e_Register.ReadReg(ref rTrim3, myFEBclient.client);
                 v = ((double)rTrim3.val - 2048) * 0.002;
                 txtTrimSet3.Text = v.ToString("0.000");
 
@@ -2315,22 +2315,22 @@ namespace TB_mu2e
 
             v = Convert.ToDouble(txtBiasSet0.Text);
             vInt = (UInt32)v * 50;
-            Mu2e_Register.WriteReg(vInt, ref rBias, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vInt, ref rBias, myFEBclient.client);
             v = Convert.ToDouble(txtLEDSet0.Text);
             vInt = (UInt32)v * 300;
-            Mu2e_Register.WriteReg(vInt, ref rLed, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vInt, ref rLed, myFEBclient.client);
             v = Convert.ToDouble(txtTrimSet0.Text) * 500 + 2048;
             vInt = (UInt32)v;
-            Mu2e_Register.WriteReg(vInt, ref rTrim0, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vInt, ref rTrim0, myFEBclient.client);
             v = Convert.ToDouble(txtTrimSet1.Text) * 500 + 2048;
             vInt = (UInt32)v;
-            Mu2e_Register.WriteReg(vInt, ref rTrim1, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vInt, ref rTrim1, myFEBclient.client);
             v = Convert.ToDouble(txtTrimSet2.Text) * 500 + 2048;
             vInt = (UInt32)v;
-            Mu2e_Register.WriteReg(vInt, ref rTrim2, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vInt, ref rTrim2, myFEBclient.client);
             v = Convert.ToDouble(txtTrimSet3.Text) * 500 + 2048;
             vInt = (UInt32)v;
-            Mu2e_Register.WriteReg(vInt, ref rTrim3, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vInt, ref rTrim3, myFEBclient.client);
             updateVoltage();
         }
 
@@ -2349,22 +2349,22 @@ namespace TB_mu2e
 
             v = 65;
             vInt = (UInt32)v * 50;
-            Mu2e_Register.WriteReg(vInt, ref rBias, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vInt, ref rBias, myFEBclient.client);
             v = 12;
             vInt = (UInt32)v * 300;
-            Mu2e_Register.WriteReg(vInt, ref rLed, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vInt, ref rLed, myFEBclient.client);
             v = 4 * 500 + 2048;
             vInt = (UInt32)v;
-            Mu2e_Register.WriteReg(vInt, ref rTrim0, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vInt, ref rTrim0, myFEBclient.client);
             v = 4 * 500 + 2048;
             vInt = (UInt32)v;
-            Mu2e_Register.WriteReg(vInt, ref rTrim1, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vInt, ref rTrim1, myFEBclient.client);
             v = 4 * 500 + 2048;
             vInt = (UInt32)v;
-            Mu2e_Register.WriteReg(vInt, ref rTrim2, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vInt, ref rTrim2, myFEBclient.client);
             v = 4 * 500 + 2048;
             vInt = (UInt32)v;
-            Mu2e_Register.WriteReg(vInt, ref rTrim3, ref myFEBclient.client);
+            Mu2e_Register.WriteReg(vInt, ref rTrim3, myFEBclient.client);
             updateVoltage();
             for (int t = 0; t < 200; t++)
             {
@@ -2383,18 +2383,18 @@ namespace TB_mu2e
 
                     v = 0;
                     vInt = (UInt32)v * 50;
-                    Mu2e_Register.WriteReg(vInt, ref rBias, ref myFEBclient.client);
+                    Mu2e_Register.WriteReg(vInt, ref rBias, myFEBclient.client);
                     vInt = (UInt32)v * 300;
-                    Mu2e_Register.WriteReg(vInt, ref rLed, ref myFEBclient.client);
+                    Mu2e_Register.WriteReg(vInt, ref rLed, myFEBclient.client);
                     v = 2048;
                     vInt = (UInt32)v;
-                    Mu2e_Register.WriteReg(vInt, ref rTrim0, ref myFEBclient.client);
+                    Mu2e_Register.WriteReg(vInt, ref rTrim0, myFEBclient.client);
                     vInt = (UInt32)v;
-                    Mu2e_Register.WriteReg(vInt, ref rTrim1, ref myFEBclient.client);
+                    Mu2e_Register.WriteReg(vInt, ref rTrim1, myFEBclient.client);
                     vInt = (UInt32)v;
-                    Mu2e_Register.WriteReg(vInt, ref rTrim2, ref myFEBclient.client);
+                    Mu2e_Register.WriteReg(vInt, ref rTrim2, myFEBclient.client);
                     vInt = (UInt32)v;
-                    Mu2e_Register.WriteReg(vInt, ref rTrim3, ref myFEBclient.client);
+                    Mu2e_Register.WriteReg(vInt, ref rTrim3, myFEBclient.client);
                     updateVoltage();
                     Application.DoEvents();
                 }
@@ -3784,11 +3784,11 @@ namespace TB_mu2e
                 {
                     if (trimsig.signalIndex % 8 == i)
                     {
-                        foreach (BiasSignal biassig in myFEB.Biases)
+                        foreach (BiasChannel biassig in myFEB.Biases)
                         {
                             if (biassig.myAFE == trimsig.myAFE)
                             {
-                                double deltaV = trimsig.myMeasurements.averageValue - biassig.myMeasurements.averageValue;
+                                double deltaV = trimsig.myMeasurements.averageValue - biassig.averageValue;
                                 trimsig.muxCurrent = deltaV * 100; //Current is in nA, measured across 10M resistor.
                             }
                         }
@@ -3810,6 +3810,7 @@ namespace TB_mu2e
                 {
                     trimsig.myMeasurements.GetMeasurement(5);
                     trimsig.calibration.Vlow = trimsig.SaveMeasurements();
+                    trimsig.calibration.DoCalibrationFit();
                 }
 
                 myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 0);
@@ -3817,26 +3818,27 @@ namespace TB_mu2e
                 //Do bias calibration voltage measurements.
                 myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 65);
                 myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
-                foreach (BiasSignal biassig in myFEB.Biases)
+                foreach (BiasChannel biassig in myFEB.Biases)
                 {
-                    biassig.myMeasurements.GetMeasurement(5);
+                    biassig.GetMeasurement(5);
                     biassig.calibration.Vhi = biassig.SaveMeasurements();
                 }
 
                 myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 35);
                 myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
-                foreach (BiasSignal biassig in myFEB.Biases)
+                foreach (BiasChannel biassig in myFEB.Biases)
                 {
-                    biassig.myMeasurements.GetMeasurement(5);
+                    biassig.GetMeasurement(5);
                     biassig.calibration.Vmed = biassig.SaveMeasurements();
                 }
 
                 myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 5);
                 myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
-                foreach (BiasSignal biassig in myFEB.Biases)
+                foreach (BiasChannel biassig in myFEB.Biases)
                 {
-                    biassig.myMeasurements.GetMeasurement(5);
+                    biassig.GetMeasurement(5);
                     biassig.calibration.Vlow = biassig.SaveMeasurements();
+                    biassig.calibration.DoCalibrationFit();
                 }
 
                 ZeroAllVoltages();
@@ -3855,6 +3857,11 @@ namespace TB_mu2e
 
                 ZeroAllVoltages();
             }
+        }
+
+        private void label94_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

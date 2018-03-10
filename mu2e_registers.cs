@@ -646,6 +646,8 @@ namespace TB_mu2e
 
         public static bool FindName(string reg_name, ref List<Mu2e_Register> reg_list, out Mu2e_Register reg)
         {
+            //Or instead just do
+            //Mu2e_Register reg = regList.Find(r => r.name == reg_name);
             reg = null;
             foreach (Mu2e_Register r in reg_list)
             {
@@ -660,6 +662,8 @@ namespace TB_mu2e
 
         public static bool FindAddr(UInt16 reg_addr, ref List<Mu2e_Register> reg_list, out Mu2e_Register reg)
         {
+            //Or instead just do
+            //Mu2e_Register reg = regList.Find(r => r.addr == reg_addr);
             reg = null;
             foreach (Mu2e_Register r in reg_list)
             {
@@ -669,7 +673,7 @@ namespace TB_mu2e
             { return false; }
         }
 
-        public static void ReadReg(ref Mu2e_Register reg, ref TcpClient myClient)
+        public static void ReadReg(ref Mu2e_Register reg, TcpClient myClient)
         {
             ushort addr = (ushort)(reg.addr + (reg.fpga_index * reg.fpga_offset_mult));
             ushort upper_addr = (ushort)(reg.upper_addr + (reg.fpga_index * reg.fpga_offset_mult));
@@ -743,7 +747,7 @@ namespace TB_mu2e
             catch { }
         }
 
-        public static void WriteReg(UInt32 v, ref Mu2e_Register reg, ref TcpClient myClient)
+        public static void WriteReg(UInt32 v, ref Mu2e_Register reg, TcpClient myClient)
         {
             ushort addr = (ushort)(reg.addr + (reg.fpga_index * reg.fpga_offset_mult));
             ushort upper_addr = (ushort)(reg.upper_addr + (reg.fpga_index * reg.fpga_offset_mult));
