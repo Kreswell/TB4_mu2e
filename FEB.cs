@@ -75,11 +75,76 @@ namespace mu2e.FEB_Test_Jig
         public FEB()
         {
             BuildHDMIsignalDB();
+            TekScope.OpenScope();
         }
 
-        public void GetVoltages(GetVoltageTypes types, int numberOfMeasurements = 1) { }
+        public void GetVoltages(GetVoltageTypes types, int numberOfMeasurements = 1)
+        {
+            switch (types)
+            {
+                case GetVoltageTypes.AllVoltages:
+                    foreach (VoltageSignal vs in Voltages)
+                    {
+                        vs.myMeasurements.GetMeasurement(numberOfMeasurements);
+                    }
+                    break;
+                case GetVoltageTypes.AllTrim:
+                    foreach (VoltageSignal vs in Trims)
+                    {
+                        vs.myMeasurements.GetMeasurement(numberOfMeasurements);
+                    }
+                    break;
+                case GetVoltageTypes.AllBias:
+                    foreach (BiasChannel bc in Biases)
+                    {
+                        foreach (VoltageSignal vs in bc.Biases)
+                            vs.myMeasurements.GetMeasurement(numberOfMeasurements);
+                    }
+                    break;
+                case GetVoltageTypes.AllLED:
+                    foreach (VoltageSignal vs in LEDs)
+                    {
+                        vs.myMeasurements.GetMeasurement(numberOfMeasurements);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
 
-        public void SetVoltages(GetVoltageTypes types, double setting, bool GetMeasurements = true) { }
+        public void SetVoltages(GetVoltageTypes types, double newVoltage)
+        {
+            switch (types)
+            {
+                case GetVoltageTypes.AllVoltages:
+                    foreach (VoltageSignal vs in Voltages)
+                    {
+                        vs.voltageSetting = newVoltage;
+                    }
+                    break;
+                case GetVoltageTypes.AllTrim:
+                    foreach (VoltageSignal vs in Trims)
+                    {
+                        vs.voltageSetting = newVoltage;
+                    }
+                    break;
+                case GetVoltageTypes.AllBias:
+                    foreach (BiasChannel bc in Biases)
+                    {
+                        foreach (VoltageSignal vs in bc.Biases)
+                            vs.voltageSetting = newVoltage;
+                    }
+                    break;
+                case GetVoltageTypes.AllLED:
+                    foreach (VoltageSignal vs in LEDs)
+                    {
+                        vs.voltageSetting = newVoltage;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
 
         private void BuildHDMIsignalDB()
         {
@@ -112,9 +177,11 @@ namespace mu2e.FEB_Test_Jig
                     newTrim.myMeasurements.myDmm.myDMMchannel = TekScope.DMMchan;
                     newTrim.voltageSignal_ID = chan + idx;
                     newTrim.signalType = SignalType.Trim;
-                    newTrim.myHDMIChannel = myHDMI;
+                    newTrim.myHDMI_ID = myHDMI;
                     newTrim.myAFE_ID = myAFE;
                     newTrim.myFPGA_ID = myFPGA;
+                    newTrim.signalIndex = (ushort)chan;
+                    newTrim.SetRegister();
 
                     HDMIs[chan].Trims[idx] = newTrim; //build the HDMIs entry
                     Trims.Add(HDMIs[chan].Trims[idx]); //Add it to the trims while its here
@@ -125,9 +192,11 @@ namespace mu2e.FEB_Test_Jig
                 newBias.myMeasurements.myDmm.myDMMchannel = TekScope.DMMchan;
                 newBias.voltageSignal_ID = chan + 5;
                 newBias.signalType = SignalType.Bias;
-                newBias.myHDMIChannel = myHDMI;
+                newBias.myHDMI_ID = myHDMI;
+                newBias.myHDMI = HDMIs[myHDMI];
                 newBias.myAFE_ID = myAFE;
                 newBias.myFPGA_ID = myFPGA;
+                
                 //Cant add it to the Biases because this is generating BiasSignals and Biases is for BiasChannel i.e each BiasChannel Biases has 2 BiasSignals 
                 HDMIs[chan].Bias = newBias;             // build the HDMIs entry
                 Voltages[vcount++] = HDMIs[chan].Bias;  //Add it to the voltages while its here
@@ -137,9 +206,11 @@ namespace mu2e.FEB_Test_Jig
                 newLED.myMeasurements.myDmm.myDMMchannel = TekScope.DMMchan;
                 newLED.voltageSignal_ID = chan + 6;
                 newLED.signalType = SignalType.Bias;
-                newLED.myHDMIChannel = myHDMI;
+                newLED.myHDMI_ID = myHDMI;
+                newLED.myHDMI = HDMIs[myHDMI];
                 newLED.myAFE_ID = myAFE;
                 newLED.myFPGA_ID = myFPGA;
+                newLED.SetRegister();
 
                 HDMIs[chan].LED = newLED;               // build the HDMIs entry
                 LEDs.Add(HDMIs[chan].LED);              //Add it to the LEDs while its here
@@ -297,20 +368,42 @@ namespace mu2e.FEB_Test_Jig
         {
             isValid = false;
 
-            SignalMeasurement wait = new SignalMeasurement();
-            waitThread = new Thread(wait.waitToValidate);
+       //     SignalMeasurement wait = new SignalMeasurement();
+       //     waitThread = new Thread(wait.waitToValidate);
+       //     waitThread.Start(wait_ms);
 
-            waitThread.Start(wait_ms);
+            WaitObject wait = new WaitObject(wait_ms, this);
+            waitThread = new Thread(wait.waitToValidate);
+            waitThread.Start();
         }
 
-        public void waitToValidate(object wait_ms)
+   /*     public void waitToValidate(object waitObject)
         {
+            WaitObject w = (WaitObject)waitObject;
             Console.WriteLine("+++ entering wait thread for voltage to stabilize");
             Thread.Sleep((int)wait_ms);
             isValid = true;
             Console.WriteLine("--- Exiting wait thread for voltage to stabilize");
 
-            GetMeasurement();
+            //  GetMeasurement();
+        }*/
+
+        public struct WaitObject
+        {
+            int wait_ms; 
+             SignalMeasurement isValidRef;
+
+            public WaitObject(int wait, SignalMeasurement isvalidref)
+            {
+                wait_ms = wait;
+                isValidRef = isvalidref;
+            }
+
+            public void waitToValidate()
+            {
+                Thread.Sleep(wait_ms);
+                isValidRef.isValid = true;
+            }
         }
 
     }

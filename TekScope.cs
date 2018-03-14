@@ -156,11 +156,13 @@ namespace mu2e.FEB_Test_Jig
             }
         }
 
-        public static  bool OpenScope(string name, string lastResourceString = "ASRL1::INSTR")
+      //  public static  bool OpenScope(string name, string lastResourceString = "ASRL1::INSTR")
+            public static bool OpenScope()
         {
             bool open = false;
+            string lastResourceString = "ASRL1::INSTR";
 
-            scopeName = name;
+            //scopeName = name;
 
             if (inTestMode) return true;
 

@@ -65,7 +65,7 @@ namespace TB_mu2e
         private mu2e_Event DispEvent;
         private bool DebugLogging;
 
-        Mu2e_FEB_client myFEBclient = PP.FEB1;
+        public Mu2e_FEB_client myFEBclient = PP.FEB1;
 
         double vScopeBias;
         double vScopeLED;
@@ -90,7 +90,8 @@ namespace TB_mu2e
         public frmMain()
         {
             InitializeComponent();
-            btnFEB1.BackColor = SystemColors.Control;
+
+         btnFEB1.BackColor = SystemColors.Control;
             lblMessage.Text = msg1Conn + "\n" + msg2Conn;
 
             btnFEB1.Click += new System.EventHandler(this.button1_Click);
@@ -704,6 +705,7 @@ namespace TB_mu2e
                 }
                 if (comm.name.Contains("FECC")) { }
                 lblMessage.Text = DateTime.Now + " -> " + comm.m_prop;
+                VoltageSignal.myClient = myFEBclient.client;
             }
         }
 

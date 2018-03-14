@@ -449,7 +449,7 @@ namespace mu2e.FEB_Test_Jig
     {
         Trim,
         Bias,
-        LED,
+        LED
     }
 
 }

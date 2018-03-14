@@ -8,11 +8,10 @@ using System.IO;
 using System.Threading;
 using System.ComponentModel;
 using ZedGraph;
-using mu2e.FEB_Test_Jig;
 
 namespace TB_mu2e
 {
-    class Mu2e_FEB_client : IStenComms
+    public class Mu2e_FEB_client : IStenComms
     {
         #region InterfaceStenComms
         public string m_prop { get { return m; } set { m = value; } }
@@ -46,6 +45,7 @@ namespace TB_mu2e
         public int max_timeout;
         public int timeout;
         public List<Mu2e_Register> arrReg;
+        public string _FEBserialNum;
 
         // events 
         //public delegate void cOpening();
@@ -59,6 +59,8 @@ namespace TB_mu2e
         public bool ClientOpen { get { return _ClientOpen; } }
         public bool ClientBusy { get { return _ClientBusy; } set { _ClientBusy = value; } }
         public int TNETsocketNum { get { return _TNETsocketNum; } set { _TNETsocketNum = value; } }
+        public string FEBserialNum { get { return _FEBserialNum; } set { _FEBserialNum = value; } }
+
 
         public void Open()
         {
@@ -93,6 +95,7 @@ namespace TB_mu2e
             }
 
         }
+
 
         public void SetV(double V, int fpga = 0)
         {
@@ -280,9 +283,9 @@ namespace TB_mu2e
             Mu2e_Register reg_trig_count;
             Mu2e_Register.FindAddr(0x67, ref arrReg, out reg_trig_count);
 
-            Mu2e_Register.ReadReg(ref reg_spill_state, ref client);
-            Mu2e_Register.ReadReg(ref reg_spill_num, ref client);
-            Mu2e_Register.ReadReg(ref reg_trig_count, ref client);
+            Mu2e_Register.ReadReg(ref reg_spill_state, client);
+            Mu2e_Register.ReadReg(ref reg_spill_num, client);
+            Mu2e_Register.ReadReg(ref reg_trig_count, client);
 
             spill_state = reg_spill_state.val;
             spill_num=reg_spill_num.val;
@@ -326,22 +329,22 @@ namespace TB_mu2e
                     switch (CMB_num)
                     {
                         case 0:
-                            Mu2e_Register.WriteReg(1, ref CMB_set, ref this.client);
+                            Mu2e_Register.WriteReg(1, ref CMB_set, client);
                             break;
                         case 1:
-                            Mu2e_Register.WriteReg(2, ref CMB_set, ref this.client);
+                            Mu2e_Register.WriteReg(2, ref CMB_set, client);
                             break;
                         case 2:
-                            Mu2e_Register.WriteReg(4, ref CMB_set, ref this.client);
+                            Mu2e_Register.WriteReg(4, ref CMB_set, client);
                             break;
                         case 3:
-                            Mu2e_Register.WriteReg(8, ref CMB_set, ref this.client);
+                            Mu2e_Register.WriteReg(8, ref CMB_set, client);
                             break;
                         default:
-                            Mu2e_Register.WriteReg(1, ref CMB_set, ref this.client);
+                            Mu2e_Register.WriteReg(1, ref CMB_set, client);
                             break;
                     }
-                    Mu2e_Register.WriteReg(0x200, ref CMB_cmnd, ref this.client);
+                    Mu2e_Register.WriteReg(0x200, ref CMB_cmnd, client);
 
                     SendStr("rdi 26");
                     string t = "";
