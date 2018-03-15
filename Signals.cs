@@ -213,11 +213,12 @@ namespace mu2e.FEB_Test_Jig
         public int voltageSignal_ID = 0;
         public AFE myAFE;
 
-        public static TcpClient myClient { get; set; }
+        public TcpClient myClient { get; set; }
         public List<Mu2e_Register> regList { get; set; }
         public bool isBad = false;
 
-        public int myHDMIChannel { get; set; }
+        public int myHDMI_ID { get; set; }
+        public HDMIchan myHDMI;
         public UInt16 myFPGA_ID { get; set; }
         public int myAFE_ID { get; set; } //Bias
         public UInt16 signalIndex { get; set; } //0-3 for trims, 1,2 for AFE (Bias), 0-16 for LEDs 

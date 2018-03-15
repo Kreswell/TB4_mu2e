@@ -72,9 +72,9 @@ namespace mu2e.FEB_Test_Jig
             AllLED
         }
 
-        public FEB()
+        public FEB(Mu2e_FEB_client FEBclient)
         {
-            BuildHDMIsignalDB();
+            BuildHDMIsignalDB(FEBclient);
             TekScope.OpenScope();
         }
 
@@ -146,8 +146,10 @@ namespace mu2e.FEB_Test_Jig
             }
         }
 
-        private void BuildHDMIsignalDB()
+        private void BuildHDMIsignalDB(Mu2e_FEB_client FEBclient)
         {
+            TcpClient client = FEBclient.client;
+            List<Mu2e_Register> arrReg = FEBclient.arrReg;
 
             TrimSignal newTrim;
             BiasSignal newBias;
@@ -180,7 +182,9 @@ namespace mu2e.FEB_Test_Jig
                     newTrim.myHDMI_ID = myHDMI;
                     newTrim.myAFE_ID = myAFE;
                     newTrim.myFPGA_ID = myFPGA;
-                    newTrim.signalIndex = (ushort)chan;
+                    newTrim.signalIndex = (ushort)((chan*4 + idx) % 16);
+                    newTrim.myClient = client;
+                    newTrim.regList = arrReg;
                     newTrim.SetRegister();
 
                     HDMIs[chan].Trims[idx] = newTrim; //build the HDMIs entry
@@ -196,7 +200,11 @@ namespace mu2e.FEB_Test_Jig
                 newBias.myHDMI = HDMIs[myHDMI];
                 newBias.myAFE_ID = myAFE;
                 newBias.myFPGA_ID = myFPGA;
-                
+                newBias.signalIndex = (ushort)((chan % 4) / 2);
+                newBias.myClient = client;
+                newBias.regList = arrReg;
+                newBias.SetRegister();
+
                 //Cant add it to the Biases because this is generating BiasSignals and Biases is for BiasChannel i.e each BiasChannel Biases has 2 BiasSignals 
                 HDMIs[chan].Bias = newBias;             // build the HDMIs entry
                 Voltages[vcount++] = HDMIs[chan].Bias;  //Add it to the voltages while its here
@@ -210,6 +218,9 @@ namespace mu2e.FEB_Test_Jig
                 newLED.myHDMI = HDMIs[myHDMI];
                 newLED.myAFE_ID = myAFE;
                 newLED.myFPGA_ID = myFPGA;
+                newLED.signalIndex = (ushort)(chan % 4);
+                newLED.myClient = client;
+                newLED.regList = arrReg;
                 newLED.SetRegister();
 
                 HDMIs[chan].LED = newLED;               // build the HDMIs entry

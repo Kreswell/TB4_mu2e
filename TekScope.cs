@@ -57,6 +57,8 @@ namespace mu2e.FEB_Test_Jig
         /// set inTestMode = true if no scopes are connected. Open scope will succeed, and GetVoltage(ChannelNumber) will retrun voltageDefaultValue.
         /// </summary>
         public static bool inTestMode = false;
+        //public static bool inTestMode = true;
+
 
         private static SelectResource sr;
         private static ISerialSession serial;

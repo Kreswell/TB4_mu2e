@@ -14,7 +14,6 @@ namespace TB_mu2e
 
     public partial class frmMain : Form
     {
-        FEB myFEB = new FEB();
 
         private int _ActiveFEB = 0;
         private int reg_set = 0;
@@ -65,7 +64,9 @@ namespace TB_mu2e
         private mu2e_Event DispEvent;
         private bool DebugLogging;
 
-        public Mu2e_FEB_client myFEBclient = PP.FEB1;
+        public static Mu2e_FEB_client myFEBclient = PP.FEB1;
+
+        FEB myFEB = new FEB(myFEBclient);
 
         double vScopeBias;
         double vScopeLED;
@@ -705,7 +706,7 @@ namespace TB_mu2e
                 }
                 if (comm.name.Contains("FECC")) { }
                 lblMessage.Text = DateTime.Now + " -> " + comm.m_prop;
-                VoltageSignal.myClient = myFEBclient.client;
+                //VoltageSignal.myClient = myFEBclient.client;
             }
         }
 
@@ -796,7 +797,7 @@ namespace TB_mu2e
 
         private void btnRegREAD_Click(object sender, EventArgs e)
         {
-            Mu2e_FEB_client myFEBclient = null;
+            //Mu2e_FEB_client myFEBclient = null;
             string cmb_reg;
             int i = this.tabControl.SelectedIndex;
             if (tabControl.SelectedTab.Text.Contains("FEB"))
@@ -3556,16 +3557,16 @@ namespace TB_mu2e
             listBox3.ClearSelected();
             listBox3.DataSource = null;
             ListSipmIV.Clear();
-            Mu2e_FEB_client FEB = new Mu2e_FEB_client();
-            switch (_ActiveFEB)
-            {
-                case 1:
-                    FEB = PP.FEB1;
-                    break;
-                case 2:
-                    FEB = PP.FEB2;
-                    break;
-            }
+            //Mu2e_FEB_client myFEBclient = new Mu2e_FEB_client();
+            //switch (_ActiveFEB)
+            //{
+            //    case 1:
+            //        myFEBclient = PP.FEB1;
+            //        break;
+            //    case 2:
+            //        myFEBclient = PP.FEB2;
+            //        break;
+            //}
 
             if (btnScan.Text != "SCAN") { flgBreak = true; return; }
 
@@ -3697,7 +3698,7 @@ namespace TB_mu2e
                         break;
                 }
                 if (CmbCheck == false) continue;
-                double I = FEB.ReadA0(fpga, (int)i);
+                double I = myFEBclient.ReadA0(fpga, (int)i);
 
                 myIV.chan = (Int32)i;
                 myIV.board = _ActiveFEB;
