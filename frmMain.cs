@@ -64,9 +64,8 @@ namespace TB_mu2e
         private mu2e_Event DispEvent;
         private bool DebugLogging;
 
-        public static Mu2e_FEB_client myFEBclient = PP.FEB1;
-
-        FEB myFEB = new FEB(myFEBclient);
+        public Mu2e_FEB_client myFEBclient = PP.FEB1;
+        FEB myFEB = new FEB();
 
         double vScopeBias;
         double vScopeLED;
@@ -92,7 +91,10 @@ namespace TB_mu2e
         {
             InitializeComponent();
 
-         btnFEB1.BackColor = SystemColors.Control;
+            myFEB.FEBclient = myFEBclient;
+            myFEB.BuildHDMIsignalDB();
+
+            btnFEB1.BackColor = SystemColors.Control;
             lblMessage.Text = msg1Conn + "\n" + msg2Conn;
 
             btnFEB1.Click += new System.EventHandler(this.button1_Click);
@@ -2444,7 +2446,7 @@ namespace TB_mu2e
         {
             //Mu2e_FEB_client myFEB = null;
             //if (_ActiveFEB == 1)
-            myFEBclient = PP.FEB1;
+            //myFEBclient = PP.FEB1;
             //if (_ActiveFEB == 2)
             //{ myFEB = PP.FEB2; }
 

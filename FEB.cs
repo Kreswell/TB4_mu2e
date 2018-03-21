@@ -35,8 +35,7 @@ namespace mu2e.FEB_Test_Jig
 
         private List<VoltageSignal> HDMISignals = new List<VoltageSignal>();
 
-        //public TcpClient myClient = new TcpClient();
-        //public List<Mu2e_Register> arrReg = new List<Mu2e_Register>();
+        public Mu2e_FEB_client FEBclient { get; set; }
 
         public HDMIchan[] HDMIs = new HDMIchan[16];
         public List<FPGA> FPGAs = new List<FPGA>();
@@ -72,9 +71,9 @@ namespace mu2e.FEB_Test_Jig
             AllLED
         }
 
-        public FEB(Mu2e_FEB_client FEBclient)
+        public FEB()
         {
-            BuildHDMIsignalDB(FEBclient);
+            //BuildHDMIsignalDB();
             TekScope.OpenScope();
         }
 
@@ -146,11 +145,8 @@ namespace mu2e.FEB_Test_Jig
             }
         }
 
-        private void BuildHDMIsignalDB(Mu2e_FEB_client FEBclient)
+        public void BuildHDMIsignalDB()
         {
-            TcpClient client = FEBclient.client;
-            List<Mu2e_Register> arrReg = FEBclient.arrReg;
-
             TrimSignal newTrim;
             BiasSignal newBias;
             LEDsignal newLED;
@@ -159,6 +155,10 @@ namespace mu2e.FEB_Test_Jig
             int myAFE = 0;
             ushort myFPGA = 0;
             int vcount = 0;
+
+
+            TcpClient client = FEBclient.client;
+            List<Mu2e_Register> arrReg = FEBclient.arrReg;
 
             //Main for loop builds the arrays for HDMIs, Trims, Biases, LEDs, and Voltages
             for (int chan = 0; chan < 16; chan++)
