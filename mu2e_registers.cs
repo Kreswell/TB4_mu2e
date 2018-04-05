@@ -673,7 +673,8 @@ namespace TB_mu2e
             { return false; }
         }
 
-        public static void ReadReg(ref Mu2e_Register reg, TcpClient myClient)
+        // The optional readType allows for voltage registers to use "drd" to apply calibrations. 
+        public static void ReadReg(ref Mu2e_Register reg, TcpClient myClient, string readType = "rd")
         {
             ushort addr = (ushort)(reg.addr + (reg.fpga_index * reg.fpga_offset_mult));
             ushort upper_addr = (ushort)(reg.upper_addr + (reg.fpga_index * reg.fpga_offset_mult));
@@ -687,7 +688,7 @@ namespace TB_mu2e
                     //StreamReader SR = new StreamReader(TNETStream);
                     if (reg.width <= 16)
                     {
-                        string lin = "rd " + Convert.ToString(addr, 16) + "\r\n";
+                        string lin = readType + " " + Convert.ToString(addr, 16) + "\r\n";
                         byte[] buf = PP.GetBytes(lin);
                         TNETStream.Write(buf, 0, buf.Length);
 
@@ -708,7 +709,7 @@ namespace TB_mu2e
                     }
                     else if (reg.width > 16)
                     {
-                        string lin = "rd " + Convert.ToString(upper_addr, 16) + "\r\n";
+                        string lin = readType + " " + Convert.ToString(upper_addr, 16) + "\r\n";
                         byte[] buf = PP.GetBytes(lin);
                         TNETStream.Write(buf, 0, buf.Length);
                         System.Threading.Thread.Sleep(10);
@@ -723,7 +724,7 @@ namespace TB_mu2e
                             BufVal(rec_buf, out t, out dv);
                             tv[0] = t;
                         }
-                        lin = "rd " + Convert.ToString(lower_addr, 16) + "\r\n";
+                        lin = readType + " " + Convert.ToString(lower_addr, 16) + "\r\n";
                         buf = PP.GetBytes(lin);
                         TNETStream.Write(buf, 0, buf.Length);
                         System.Threading.Thread.Sleep(10);
@@ -747,7 +748,8 @@ namespace TB_mu2e
             catch { }
         }
 
-        public static void WriteReg(UInt32 v, ref Mu2e_Register reg, TcpClient myClient)
+        //The optional writeType allows for "dwr" to be used for voltage registers to apply calibrations.
+        public static void WriteReg(UInt32 v, ref Mu2e_Register reg, TcpClient myClient, string writeType = "wr")
         {
             ushort addr = (ushort)(reg.addr + (reg.fpga_index * reg.fpga_offset_mult));
             ushort upper_addr = (ushort)(reg.upper_addr + (reg.fpga_index * reg.fpga_offset_mult));
@@ -761,7 +763,7 @@ namespace TB_mu2e
                 {
                     if (v >= Math.Pow(2, 16)) { Exception e = new Exception("write val greater than possible"); throw e; }
                     string sv = Convert.ToString(v, 16);
-                    string lout = "wr " + Convert.ToString(addr, 16) + " " + sv+ "\r\n";
+                    string lout = writeType + " " + Convert.ToString(addr, 16) + " " + sv+ "\r\n";
                     byte[] buf = PP.GetBytes(lout);
                     TNETStream.Write(buf, 0, buf.Length);
 
@@ -774,14 +776,14 @@ namespace TB_mu2e
                     {
                         uint vu = v % (uint)(Math.Pow(2, 16));
                         string sv = Convert.ToString(vu, 16);
-                        string lout = "wr " + Convert.ToString(upper_addr, 16) + " " + sv + "\r\n";
+                        string lout = writeType + " " + Convert.ToString(upper_addr, 16) + " " + sv + "\r\n";
                         byte[] buf = PP.GetBytes(lout);
                         TNETStream.Write(buf, 0, buf.Length);
                     }
                     //else
                     {
                         string sv = "0";
-                        string lout = "wr " + Convert.ToString(upper_addr, 16) + " " + sv + "\r\n";
+                        string lout = writeType + " " + Convert.ToString(upper_addr, 16) + " " + sv + "\r\n";
                         byte[] buf = PP.GetBytes(lout);
                         TNETStream.Write(buf, 0, buf.Length);
                     }
@@ -790,7 +792,7 @@ namespace TB_mu2e
                     {
                         uint vl = v & (uint)(0xffff);
                         string sv = Convert.ToString(vl, 16);
-                        string lout = "wr " + Convert.ToString(lower_addr, 16) + " " + sv + "\r\n";
+                        string lout = writeType + " " + Convert.ToString(lower_addr, 16) + " " + sv + "\r\n";
                         byte[] buf = PP.GetBytes(lout);
                         TNETStream.Write(buf, 0, buf.Length);
                     }

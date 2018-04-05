@@ -305,6 +305,19 @@ namespace TB_mu2e
             this.chkBoxJ11Hist = new System.Windows.Forms.CheckBox();
             this.label32 = new System.Windows.Forms.Label();
             this.CalibPType = new System.Windows.Forms.TabPage();
+            this.button9 = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.Channel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.IsGood = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Gain = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Offset = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.IsTested = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.IsCalibrated = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MuxCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label94 = new System.Windows.Forms.Label();
+            this.label85 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.domUpDownFPGA = new System.Windows.Forms.DomainUpDown();
             this.btnFullVScan = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox28 = new System.Windows.Forms.TextBox();
@@ -318,11 +331,9 @@ namespace TB_mu2e
             this.textBox20 = new System.Windows.Forms.TextBox();
             this.textBox19 = new System.Windows.Forms.TextBox();
             this.txtTrim4 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.txtTrim2 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.txtTrim1 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -369,38 +380,28 @@ namespace TB_mu2e
             this.label77 = new System.Windows.Forms.Label();
             this.label78 = new System.Windows.Forms.Label();
             this.label79 = new System.Windows.Forms.Label();
-            this.label80 = new System.Windows.Forms.Label();
-            this.label82 = new System.Windows.Forms.Label();
-            this.label83 = new System.Windows.Forms.Label();
-            this.label84 = new System.Windows.Forms.Label();
             this.label87 = new System.Windows.Forms.Label();
             this.label88 = new System.Windows.Forms.Label();
-            this.label90 = new System.Windows.Forms.Label();
             this.label91 = new System.Windows.Forms.Label();
             this.label92 = new System.Windows.Forms.Label();
-            this.label81 = new System.Windows.Forms.Label();
             this.label89 = new System.Windows.Forms.Label();
             this.txtTrim0 = new System.Windows.Forms.TextBox();
             this.txtTrim3 = new System.Windows.Forms.TextBox();
+            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.label90 = new System.Windows.Forms.Label();
+            this.label81 = new System.Windows.Forms.Label();
+            this.label84 = new System.Windows.Forms.Label();
+            this.label83 = new System.Windows.Forms.Label();
+            this.label82 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label80 = new System.Windows.Forms.Label();
+            this.label86 = new System.Windows.Forms.Label();
+            this.label93 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
             this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.domUpDownFPGA = new System.Windows.Forms.DomainUpDown();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label85 = new System.Windows.Forms.Label();
-            this.label86 = new System.Windows.Forms.Label();
-            this.label93 = new System.Windows.Forms.Label();
-            this.label94 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.Channel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.IsGood = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Gain = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Offset = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.MuxCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.IsTested = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.IsCalibrated = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabRUN.SuspendLayout();
@@ -3418,6 +3419,7 @@ namespace TB_mu2e
             // 
             // CalibPType
             // 
+            this.CalibPType.Controls.Add(this.button10);
             this.CalibPType.Controls.Add(this.button9);
             this.CalibPType.Controls.Add(this.listView1);
             this.CalibPType.Controls.Add(this.label94);
@@ -3433,12 +3435,130 @@ namespace TB_mu2e
             this.CalibPType.Text = "Prototype Calibration";
             this.CalibPType.UseVisualStyleBackColor = true;
             // 
+            // button9
+            // 
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.Location = new System.Drawing.Point(301, 559);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(100, 50);
+            this.button9.TabIndex = 7;
+            this.button9.Text = "SAVE";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Channel,
+            this.IsGood,
+            this.Gain,
+            this.Offset,
+            this.IsTested,
+            this.IsCalibrated,
+            this.MuxCurrent});
+            listViewGroup1.Header = "FPGA 0";
+            listViewGroup1.Name = "FPGA0";
+            listViewGroup2.Header = "FPGA 1";
+            listViewGroup2.Name = "FPGA1";
+            listViewGroup3.Header = "FPGA 2";
+            listViewGroup3.Name = "FPGA2";
+            listViewGroup4.Header = "FPGA 3";
+            listViewGroup4.Name = "FPGA3";
+            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3,
+            listViewGroup4});
+            this.listView1.Location = new System.Drawing.Point(407, 309);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(840, 300);
+            this.listView1.TabIndex = 6;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // Channel
+            // 
+            this.Channel.Text = "Channel";
+            this.Channel.Width = 80;
+            // 
+            // IsGood
+            // 
+            this.IsGood.Text = "Looks Good?";
+            this.IsGood.Width = 120;
+            // 
+            // Gain
+            // 
+            this.Gain.Text = "Gain";
+            this.Gain.Width = 80;
+            // 
+            // Offset
+            // 
+            this.Offset.Text = "Offset";
+            this.Offset.Width = 80;
+            // 
+            // IsTested
+            // 
+            this.IsTested.Text = "Test Completed?";
+            this.IsTested.Width = 150;
+            // 
+            // IsCalibrated
+            // 
+            this.IsCalibrated.Text = "Calibrations Applied?";
+            this.IsCalibrated.Width = 178;
+            // 
+            // MuxCurrent
+            // 
+            this.MuxCurrent.Text = "Mux Current (nA)";
+            this.MuxCurrent.Width = 150;
+            // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label94.Location = new System.Drawing.Point(236, 309);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(165, 29);
+            this.label94.TabIndex = 5;
+            this.label94.Text = "Scan Results";
+            this.label94.Click += new System.EventHandler(this.label94_Click);
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label85.Location = new System.Drawing.Point(331, 74);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(70, 25);
+            this.label85.TabIndex = 4;
+            this.label85.Text = "FPGA";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(197, 4);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(204, 29);
+            this.label47.TabIndex = 3;
+            this.label47.Text = "Voltage Settings";
+            // 
+            // domUpDownFPGA
+            // 
+            this.domUpDownFPGA.Items.Add("0");
+            this.domUpDownFPGA.Items.Add("1");
+            this.domUpDownFPGA.Items.Add("2");
+            this.domUpDownFPGA.Items.Add("3");
+            this.domUpDownFPGA.Location = new System.Drawing.Point(336, 102);
+            this.domUpDownFPGA.Name = "domUpDownFPGA";
+            this.domUpDownFPGA.Size = new System.Drawing.Size(40, 27);
+            this.domUpDownFPGA.TabIndex = 2;
+            this.domUpDownFPGA.Text = "0";
+            // 
             // btnFullVScan
             // 
-            this.btnFullVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFullVScan.Location = new System.Drawing.Point(301, 253);
+            this.btnFullVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFullVScan.Location = new System.Drawing.Point(276, 253);
             this.btnFullVScan.Name = "btnFullVScan";
-            this.btnFullVScan.Size = new System.Drawing.Size(100, 50);
+            this.btnFullVScan.Size = new System.Drawing.Size(125, 50);
             this.btnFullVScan.TabIndex = 1;
             this.btnFullVScan.Text = "SCAN";
             this.btnFullVScan.UseVisualStyleBackColor = true;
@@ -3626,13 +3746,6 @@ namespace TB_mu2e
             this.txtTrim4.Size = new System.Drawing.Size(91, 27);
             this.txtTrim4.TabIndex = 69;
             // 
-            // textBox17
-            // 
-            this.textBox17.Location = new System.Drawing.Point(649, 270);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(91, 27);
-            this.textBox17.TabIndex = 68;
-            // 
             // textBox16
             // 
             this.textBox16.Location = new System.Drawing.Point(369, 138);
@@ -3653,13 +3766,6 @@ namespace TB_mu2e
             this.txtTrim2.Name = "txtTrim2";
             this.txtTrim2.Size = new System.Drawing.Size(91, 27);
             this.txtTrim2.TabIndex = 61;
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(649, 105);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(91, 27);
-            this.textBox9.TabIndex = 60;
             // 
             // textBox8
             // 
@@ -4122,46 +4228,6 @@ namespace TB_mu2e
             this.label79.TabIndex = 41;
             this.label79.Text = "Bias 0";
             // 
-            // label80
-            // 
-            this.label80.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label80.AutoSize = true;
-            this.label80.Location = new System.Drawing.Point(574, 108);
-            this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(57, 20);
-            this.label80.TabIndex = 42;
-            this.label80.Text = "Bias 1";
-            // 
-            // label82
-            // 
-            this.label82.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label82.AutoSize = true;
-            this.label82.Location = new System.Drawing.Point(574, 174);
-            this.label82.Name = "label82";
-            this.label82.Size = new System.Drawing.Size(57, 20);
-            this.label82.TabIndex = 44;
-            this.label82.Text = "LED 0";
-            // 
-            // label83
-            // 
-            this.label83.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label83.AutoSize = true;
-            this.label83.Location = new System.Drawing.Point(574, 207);
-            this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(57, 20);
-            this.label83.TabIndex = 45;
-            this.label83.Text = "LED 1";
-            // 
-            // label84
-            // 
-            this.label84.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label84.AutoSize = true;
-            this.label84.Location = new System.Drawing.Point(574, 240);
-            this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(57, 20);
-            this.label84.TabIndex = 46;
-            this.label84.Text = "LED 2";
-            // 
             // label87
             // 
             this.label87.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -4182,16 +4248,6 @@ namespace TB_mu2e
             this.label88.TabIndex = 50;
             this.label88.Text = "00.0000";
             // 
-            // label90
-            // 
-            this.label90.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label90.AutoSize = true;
-            this.label90.Location = new System.Drawing.Point(746, 273);
-            this.label90.Name = "label90";
-            this.label90.Size = new System.Drawing.Size(67, 20);
-            this.label90.TabIndex = 52;
-            this.label90.Text = "00.0000";
-            // 
             // label91
             // 
             this.label91.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -4211,16 +4267,6 @@ namespace TB_mu2e
             this.label92.Size = new System.Drawing.Size(67, 20);
             this.label92.TabIndex = 54;
             this.label92.Text = "00.0000";
-            // 
-            // label81
-            // 
-            this.label81.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label81.AutoSize = true;
-            this.label81.Location = new System.Drawing.Point(574, 273);
-            this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(57, 20);
-            this.label81.TabIndex = 43;
-            this.label81.Text = "LED 3";
             // 
             // label89
             // 
@@ -4246,57 +4292,79 @@ namespace TB_mu2e
             this.txtTrim3.Size = new System.Drawing.Size(91, 27);
             this.txtTrim3.TabIndex = 63;
             // 
-            // timer1
+            // textBox17
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 200;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.textBox17.Location = new System.Drawing.Point(649, 270);
+            this.textBox17.Name = "textBox17";
+            this.textBox17.Size = new System.Drawing.Size(91, 27);
+            this.textBox17.TabIndex = 68;
             // 
-            // timerScopeBias
+            // label90
             // 
-            this.timerScopeBias.Interval = 55;
-            this.timerScopeBias.Tick += new System.EventHandler(this.timerScopeBias_Tick);
+            this.label90.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label90.AutoSize = true;
+            this.label90.Location = new System.Drawing.Point(746, 273);
+            this.label90.Name = "label90";
+            this.label90.Size = new System.Drawing.Size(67, 20);
+            this.label90.TabIndex = 52;
+            this.label90.Text = "00.0000";
             // 
-            // timerScopeTrim
+            // label81
             // 
-            this.timerScopeTrim.Interval = 50;
-            this.timerScopeTrim.Tick += new System.EventHandler(this.timerScopeTrim_Tick);
+            this.label81.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label81.AutoSize = true;
+            this.label81.Location = new System.Drawing.Point(574, 273);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(57, 20);
+            this.label81.TabIndex = 43;
+            this.label81.Text = "LED 3";
             // 
-            // openFileDialog1
+            // label84
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.label84.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label84.AutoSize = true;
+            this.label84.Location = new System.Drawing.Point(574, 240);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(57, 20);
+            this.label84.TabIndex = 46;
+            this.label84.Text = "LED 2";
             // 
-            // domUpDownFPGA
+            // label83
             // 
-            this.domUpDownFPGA.Items.Add("0");
-            this.domUpDownFPGA.Items.Add("1");
-            this.domUpDownFPGA.Items.Add("2");
-            this.domUpDownFPGA.Items.Add("3");
-            this.domUpDownFPGA.Location = new System.Drawing.Point(336, 102);
-            this.domUpDownFPGA.Name = "domUpDownFPGA";
-            this.domUpDownFPGA.Size = new System.Drawing.Size(40, 27);
-            this.domUpDownFPGA.TabIndex = 2;
-            this.domUpDownFPGA.Text = "0";
+            this.label83.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label83.AutoSize = true;
+            this.label83.Location = new System.Drawing.Point(574, 207);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(57, 20);
+            this.label83.TabIndex = 45;
+            this.label83.Text = "LED 1";
             // 
-            // label47
+            // label82
             // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(197, 4);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(204, 29);
-            this.label47.TabIndex = 3;
-            this.label47.Text = "Voltage Settings";
+            this.label82.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label82.AutoSize = true;
+            this.label82.Location = new System.Drawing.Point(574, 174);
+            this.label82.Name = "label82";
+            this.label82.Size = new System.Drawing.Size(57, 20);
+            this.label82.TabIndex = 44;
+            this.label82.Text = "LED 0";
             // 
-            // label85
+            // textBox9
             // 
-            this.label85.AutoSize = true;
-            this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label85.Location = new System.Drawing.Point(331, 74);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(70, 25);
-            this.label85.TabIndex = 4;
-            this.label85.Text = "FPGA";
+            this.textBox9.Location = new System.Drawing.Point(649, 105);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(91, 27);
+            this.textBox9.TabIndex = 60;
+            // 
+            // label80
+            // 
+            this.label80.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label80.AutoSize = true;
+            this.label80.Location = new System.Drawing.Point(574, 108);
+            this.label80.Name = "label80";
+            this.label80.Size = new System.Drawing.Size(57, 20);
+            this.label80.TabIndex = 42;
+            this.label80.Text = "Bias 1";
             // 
             // label86
             // 
@@ -4318,91 +4386,35 @@ namespace TB_mu2e
             this.label93.TabIndex = 81;
             this.label93.Text = "00.0000";
             // 
-            // label94
+            // timer1
             // 
-            this.label94.AutoSize = true;
-            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label94.Location = new System.Drawing.Point(236, 309);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(165, 29);
-            this.label94.TabIndex = 5;
-            this.label94.Text = "Scan Results";
-            this.label94.Click += new System.EventHandler(this.label94_Click);
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 200;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // listView1
+            // timerScopeBias
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Channel,
-            this.IsGood,
-            this.Gain,
-            this.Offset,
-            this.IsTested,
-            this.IsCalibrated,
-            this.MuxCurrent});
-            listViewGroup1.Header = "FPGA 0";
-            listViewGroup1.Name = "FPGA0";
-            listViewGroup2.Header = "FPGA 1";
-            listViewGroup2.Name = "FPGA1";
-            listViewGroup3.Header = "FPGA 2";
-            listViewGroup3.Name = "FPGA2";
-            listViewGroup4.Header = "FPGA 3";
-            listViewGroup4.Name = "FPGA3";
-            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3,
-            listViewGroup4});
-            this.listView1.Location = new System.Drawing.Point(407, 309);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(840, 300);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.timerScopeBias.Interval = 55;
+            this.timerScopeBias.Tick += new System.EventHandler(this.timerScopeBias_Tick);
             // 
-            // Channel
+            // timerScopeTrim
             // 
-            this.Channel.Text = "Channel";
-            this.Channel.Width = 80;
+            this.timerScopeTrim.Interval = 50;
+            this.timerScopeTrim.Tick += new System.EventHandler(this.timerScopeTrim_Tick);
             // 
-            // IsGood
+            // openFileDialog1
             // 
-            this.IsGood.Text = "Looks Good?";
-            this.IsGood.Width = 120;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // Gain
+            // button10
             // 
-            this.Gain.Text = "Gain";
-            this.Gain.Width = 80;
-            // 
-            // Offset
-            // 
-            this.Offset.Text = "Offset";
-            this.Offset.Width = 80;
-            // 
-            // MuxCurrent
-            // 
-            this.MuxCurrent.Text = "Mux Current (nA)";
-            this.MuxCurrent.Width = 150;
-            // 
-            // IsTested
-            // 
-            this.IsTested.Text = "Test Completed?";
-            this.IsTested.Width = 150;
-            // 
-            // IsCalibrated
-            // 
-            this.IsCalibrated.Text = "Calibrations Applied?";
-            this.IsCalibrated.Width = 178;
-            // 
-            // button9
-            // 
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(301, 559);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(100, 50);
-            this.button9.TabIndex = 7;
-            this.button9.Text = "SAVE";
-            this.button9.UseVisualStyleBackColor = true;
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button10.Location = new System.Drawing.Point(276, 197);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(125, 50);
+            this.button10.TabIndex = 8;
+            this.button10.Text = "MUX TEST";
+            this.button10.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
@@ -4852,5 +4864,6 @@ namespace TB_mu2e
         private System.Windows.Forms.ColumnHeader IsTested;
         private System.Windows.Forms.ColumnHeader IsCalibrated;
         private System.Windows.Forms.ColumnHeader MuxCurrent;
+        private System.Windows.Forms.Button button10;
     }
 }

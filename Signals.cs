@@ -169,6 +169,8 @@ namespace mu2e.FEB_Test_Jig
             public Measurements Vlow { get; set; }
             public double gain = 1;
             public double offset = 0;
+            public UInt16 gainInt = 32768;
+            public UInt16 offsetInt = 0;
             public bool isTested = false;
             public bool isCalibrated = false;
             public bool calibrationsLoaded = false;
@@ -186,10 +188,19 @@ namespace mu2e.FEB_Test_Jig
                 Tuple<double, double> fitParams = Fit.Line(voltageX, voltageY);
                 gain = fitParams.Item2;
                 offset = fitParams.Item1;
-                Int16 slopeInt = (Int16)(gain * 32768);
-                Int16 interceptInt = (Int16)(offset * 32768);
-                string slope = slopeInt.ToString("X");
-                string intercept = interceptInt.ToString("X");
+                gainInt = (UInt16)(fitParams.Item2 * 32768);
+                // offsetInt is a 12-bit 2's compliment integer.
+                // The sign needs to be reversed for it to be applied correctly.
+                if (offset >= 0)
+                {
+                    offsetInt = (UInt16)(fitParams.Item1 * 50);
+                }
+                else
+                {
+                    offsetInt = (UInt16)(4096 - fitParams.Item1 * 50);
+                }
+                string slope = gainInt.ToString("X");
+                string intercept = offsetInt.ToString("X");
             }
 
             public void Calibrate()
@@ -277,6 +288,8 @@ namespace mu2e.FEB_Test_Jig
             public Measurements Vlow { get; set; }
             public double gain = 1;
             public double offset = 0;
+            UInt16 gainInt = 32768;
+            UInt16 offsetInt = 0;
             public bool isTested = false;
             public bool isCalibrated = false;
             public bool calibrationsLoaded = false;
@@ -289,15 +302,25 @@ namespace mu2e.FEB_Test_Jig
 
             protected void doFit(Measurements hi, Measurements med, Measurements low)
             {
-                double[] voltageX = { Vhi.setting, Vmed.setting, Vlow.setting };
-                double[] voltageY = { Vhi.average, Vmed.average, Vlow.average };
+                // Voltages need to be shifted for calibration constants to be correct.
+                double[] voltageX = { Vhi.setting + 4.096, Vmed.setting + 4.096, Vlow.setting + 4.096 };
+                double[] voltageY = { Vhi.average + 4.096, Vmed.average + 4.096, Vlow.average + 4.096 };
                 Tuple<double, double> fitParams = Fit.Line(voltageX, voltageY);
                 gain = fitParams.Item2;
                 offset = fitParams.Item1;
-                Int16 slopeInt = (Int16)(gain * 32768);
-                Int16 interceptInt = (Int16)(offset * 32768);
-                string slope = slopeInt.ToString("X");
-                string intercept = interceptInt.ToString("X");
+                gainInt = (UInt16)(fitParams.Item2 * 32768);
+                // offsetInt is a 12-bit 2's compliment integer. 
+                // The sign needs to be reversed for it to be applied correctly.
+                if ( offset < 0 )
+                {
+                    offsetInt = (UInt16)(-fitParams.Item1 * 500);
+                }
+                else
+                {
+                    offsetInt = (UInt16)(4096 - fitParams.Item1 * 500);
+                }
+                string slope = gainInt.ToString("X");
+                string intercept = offsetInt.ToString("X");
             }
 
             public void Calibrate()
@@ -335,7 +358,7 @@ namespace mu2e.FEB_Test_Jig
         protected override void GetVoltageSetting()
         {
             base.GetVoltageSetting();
-            Mu2e_Register.ReadReg(ref register, myClient);
+            Mu2e_Register.ReadReg(ref register, myClient, "drd");
             UInt32 regval = register.val;
             _voltageSetting = ((double)regval - 2048) / 500;
         }
@@ -350,7 +373,7 @@ namespace mu2e.FEB_Test_Jig
             {
                 myMeasurements.Invalidate((int)(Math.Abs(vSet - _voltageSetting)) * 50);
                 UInt32 regval = (UInt32)(vSet * 500 + 2048);
-                Mu2e_Register.WriteReg(regval, ref register, myClient);
+                Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
                 _voltageSetting = vSet;
             }
         }
@@ -380,7 +403,7 @@ namespace mu2e.FEB_Test_Jig
         protected override void GetVoltageSetting()
         {
             base.GetVoltageSetting();
-            Mu2e_Register.ReadReg(ref register, myClient);
+            Mu2e_Register.ReadReg(ref register, myClient, "drd");
             UInt32 regval = register.val;
             _voltageSetting = (double)regval / 50;
         }
@@ -395,7 +418,7 @@ namespace mu2e.FEB_Test_Jig
             {
                 myMeasurements.Invalidate((int)(Math.Abs(vSet - _voltageSetting)) * 50);
                 UInt32 regval = (UInt32)(vSet * 50);
-                Mu2e_Register.WriteReg(regval, ref register, myClient);
+                Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
                 _voltageSetting = vSet;
             }
         }
@@ -424,7 +447,7 @@ namespace mu2e.FEB_Test_Jig
         protected override void GetVoltageSetting()
         {
             base.GetVoltageSetting();
-            Mu2e_Register.ReadReg(ref register, myClient);
+            Mu2e_Register.ReadReg(ref register, myClient, "drd");
             UInt32 regval = register.val;
             _voltageSetting = (double)regval / 300;
         }
@@ -439,7 +462,7 @@ namespace mu2e.FEB_Test_Jig
             {
                 myMeasurements.Invalidate((int)(Math.Abs(vSet - _voltageSetting)) * 50);
                 UInt32 regval = (UInt32)(vSet * 300);
-                Mu2e_Register.WriteReg(regval, ref register, myClient);
+                Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
                 _voltageSetting = vSet;
             }
         }

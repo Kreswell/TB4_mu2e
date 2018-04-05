@@ -64,7 +64,7 @@ namespace TB_mu2e
         private mu2e_Event DispEvent;
         private bool DebugLogging;
 
-        public Mu2e_FEB_client myFEBclient = PP.FEB1;
+        public Mu2e_FEB_client myFEBclient = new Mu2e_FEB_client();
         FEB myFEB = new FEB();
 
         double vScopeBias;
@@ -91,6 +91,7 @@ namespace TB_mu2e
         {
             InitializeComponent();
 
+            myFEBclient = PP.FEB1;
             myFEB.FEBclient = myFEBclient;
             myFEB.BuildHDMIsignalDB();
 
@@ -3165,7 +3166,7 @@ namespace TB_mu2e
             //    ScopeTrim.OnVoltageChanged += ScopeTrimVoltageChanged;
             //    timerScopeTrim.Enabled = true;
             //}
-            
+
         }
 
         private void DMMVoltagesChanged(object sender, VoltageChangedEventsArgs e)
@@ -3766,102 +3767,119 @@ namespace TB_mu2e
         {
             ZeroAllVoltages();
 
-            //Get trim vHi and deltaV for mux current measurement.
-            for (int i = 0; i < 8; i++)
+            myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 65);
+            myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
+            foreach (BiasChannel biassig in myFEB.Biases)
             {
-                foreach (TrimSignal trimsig in myFEB.Trims)
-                {
-                    if (trimsig.signalIndex % 8 == i)
-                    {
-                        trimsig.voltageSetting = 4;
-                    }
-                }
-                foreach (TrimSignal trimsig in myFEB.Trims)
-                {
-                    if (trimsig.signalIndex % 8 == i)
-                    {
-                        trimsig.myMeasurements.GetMeasurement(5);
-                        trimsig.calibration.Vhi = trimsig.SaveMeasurements(); 
-                    }
-                }
-                myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
-                foreach (TrimSignal trimsig in myFEB.Trims)
-                {
-                    if (trimsig.signalIndex % 8 == i)
-                    {
-                        foreach (BiasChannel biassig in myFEB.Biases)
-                        {
-                            if (biassig.myAFE == trimsig.myAFE)
-                            {
-                                double deltaV = trimsig.myMeasurements.averageValue - biassig.averageValue;
-                                trimsig.muxCurrent = deltaV * 100; //Current is in nA, measured across 10M resistor.
-                            }
-                        }
-                        ZeroAllVoltages();
-                    }
-                }
-
-                //Finish trim calibration voltage measurements.
-                myFEB.GetVoltages(FEB.GetVoltageTypes.AllTrim);
-                foreach (TrimSignal trimsig in myFEB.Trims)
-                {
-                    trimsig.myMeasurements.GetMeasurement(5);
-                    trimsig.calibration.Vmed = trimsig.SaveMeasurements();
-                }
-
-                myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, -4);
-                myFEB.GetVoltages(FEB.GetVoltageTypes.AllTrim);
-                foreach (TrimSignal trimsig in myFEB.Trims)
-                {
-                    trimsig.myMeasurements.GetMeasurement(5);
-                    trimsig.calibration.Vlow = trimsig.SaveMeasurements();
-                    trimsig.calibration.DoCalibrationFit();
-                }
-
-                myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 0);
-
-                //Do bias calibration voltage measurements.
-                myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 65);
-                myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
-                foreach (BiasChannel biassig in myFEB.Biases)
-                {
-                    biassig.GetMeasurement(5);
-                    biassig.calibration.Vhi = biassig.SaveMeasurements();
-                }
-
-                myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 35);
-                myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
-                foreach (BiasChannel biassig in myFEB.Biases)
-                {
-                    biassig.GetMeasurement(5);
-                    biassig.calibration.Vmed = biassig.SaveMeasurements();
-                }
-
-                myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 5);
-                myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
-                foreach (BiasChannel biassig in myFEB.Biases)
-                {
-                    biassig.GetMeasurement(5);
-                    biassig.calibration.Vlow = biassig.SaveMeasurements();
-                    biassig.calibration.DoCalibrationFit();
-                }
-
-                ZeroAllVoltages();
-
-                //Check that all channels look good.
-                myFEB.SetVoltages(FEB.GetVoltageTypes.AllLED, 2);
-                myFEB.GetVoltages(FEB.GetVoltageTypes.AllLED);
-                foreach (VoltageSignal vLED in myFEB.LEDs)
-                {
-                    vLED.myMeasurements.GetMeasurement(1);
-                    if (Math.Abs(vLED.voltageSetting - vLED.myMeasurements.averageValue) > 1)
-                    {
-                        vLED.isBad = true;
-                    }
-                }
-
-                ZeroAllVoltages();
+                biassig.GetMeasurement(5);
+                biassig.calibration.Vmed = biassig.SaveMeasurements();
             }
+
+            myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 35);
+            myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
+            foreach (BiasChannel biassig in myFEB.Biases)
+            {
+                biassig.GetMeasurement(5);
+                biassig.calibration.Vmed = biassig.SaveMeasurements();
+            }
+
+            myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 5);
+            myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
+            foreach (BiasChannel biassig in myFEB.Biases)
+            {
+                biassig.GetMeasurement(5);
+                biassig.calibration.Vlow = biassig.SaveMeasurements();
+                biassig.calibration.DoCalibrationFit();
+            }
+
+            ZeroAllVoltages();
+
+            //Get trim vHi and deltaV for mux current measurement.
+            //for (int i = 0; i < 8; i++)
+            //{
+            //    foreach (TrimSignal trimsig in myFEB.Trims)
+            //    {
+            //        if (trimsig.signalIndex % 8 == i)
+            //        {
+            //            trimsig.voltageSetting = 4;
+            //        }
+            //    }
+            //    foreach (TrimSignal trimsig in myFEB.Trims)
+            //    {
+            //        if (trimsig.signalIndex % 8 == i)
+            //        {
+            //            trimsig.myMeasurements.GetMeasurement(5);
+            //            trimsig.calibration.Vhi = trimsig.SaveMeasurements();
+            //        }
+            //    }
+            //    myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
+            //    foreach (TrimSignal trimsig in myFEB.Trims)
+            //    {
+            //        if (trimsig.signalIndex % 8 == i)
+            //        {
+            //            foreach (BiasChannel biassig in myFEB.Biases)
+            //            {
+            //                if (biassig.myAFE == trimsig.myAFE)
+            //                {
+            //                    double deltaV = trimsig.myMeasurements.averageValue - biassig.averageValue;
+            //                    trimsig.muxCurrent = deltaV * 100; //Current is in nA, measured across 10M resistor.
+            //                }
+            //            }
+            //            ZeroAllVoltages();
+            //        }
+            //    }
+            //}
+
+            myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, -4);
+            myFEB.GetVoltages(FEB.GetVoltageTypes.AllTrim);
+            foreach (TrimSignal trimsig in myFEB.Trims)
+            {
+                trimsig.myMeasurements.GetMeasurement(5);
+                trimsig.calibration.Vlow = trimsig.SaveMeasurements();
+            }
+
+            ZeroAllVoltages();
+
+            myFEB.GetVoltages(FEB.GetVoltageTypes.AllTrim);
+            foreach (TrimSignal trimsig in myFEB.Trims)
+            {
+                trimsig.myMeasurements.GetMeasurement(5);
+                trimsig.calibration.Vmed = trimsig.SaveMeasurements();
+            }
+
+            myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, -4);
+            myFEB.GetVoltages(FEB.GetVoltageTypes.AllTrim);
+            foreach (TrimSignal trimsig in myFEB.Trims)
+            {
+                trimsig.myMeasurements.GetMeasurement(5);
+                trimsig.calibration.Vlow = trimsig.SaveMeasurements();
+                trimsig.calibration.DoCalibrationFit();
+            }
+
+            myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 0);
+
+            //Do bias calibration voltage measurements.
+            myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 65);
+            myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
+            foreach (BiasChannel biassig in myFEB.Biases)
+            {
+                biassig.GetMeasurement(5);
+                biassig.calibration.Vhi = biassig.SaveMeasurements();
+            }
+
+            //Check that all channels look good.
+            myFEB.SetVoltages(FEB.GetVoltageTypes.AllLED, 2);
+            myFEB.GetVoltages(FEB.GetVoltageTypes.AllLED);
+            foreach (VoltageSignal vLED in myFEB.LEDs)
+            {
+                vLED.myMeasurements.GetMeasurement(1);
+                if (Math.Abs(vLED.voltageSetting - vLED.myMeasurements.averageValue) > 1)
+                {
+                    vLED.isBad = true;
+                }
+            }
+
+            ZeroAllVoltages();
         }
 
         private void label94_Click(object sender, EventArgs e)
