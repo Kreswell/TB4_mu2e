@@ -3765,6 +3765,8 @@ namespace TB_mu2e
 
         private void btnFullVScan_Click(object sender, EventArgs e)
         {
+            btnFullVScan.Text = "SCANNING...";
+
             ZeroAllVoltages();
 
             myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 65);
@@ -3781,6 +3783,11 @@ namespace TB_mu2e
             {
                 biassig.GetMeasurement(5);
                 biassig.calibration.Vmed = biassig.SaveMeasurements();
+            }
+            foreach (TrimSignal trimsig in myFEB.Trims)
+            {
+                trimsig.muxCalibCurrent = PP.FEB1.ReadA0((int)trimsig.myFPGA_ID, (int)trimsig.signalIndex);
+                trimsig.muxCalibrate();
             }
 
             myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 5);
@@ -3880,6 +3887,26 @@ namespace TB_mu2e
             }
 
             ZeroAllVoltages();
+
+            btnFullVScan.Text = "SCAN";
+            btnFullVScan.BackColor = Color.Green;
+        }
+
+        private void btnMuxTest_Click(object sender, EventArgs e)
+        {
+            btnMuxTest.Text = "SCANNING...";
+
+            // TODO: Set a variable in TekScope or VoltageSignal (TrimSignal) to test mode
+            // which makes it not actually read the signal from the DMM.
+
+            foreach (TrimSignal trimsig in myFEB.Trims)
+            {
+                trimsig.muxCurrent = PP.FEB1.ReadA0((int)trimsig.myFPGA_ID, (int)trimsig.signalIndex);
+                trimsig.muxIsTested = true;
+            }
+
+            btnMuxTest.BackColor = Color.Green;
+            btnMuxTest.Text = "MUX TEST";
         }
 
         private void label94_Click(object sender, EventArgs e)

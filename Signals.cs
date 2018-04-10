@@ -378,6 +378,17 @@ namespace mu2e.FEB_Test_Jig
             }
         }
         public double muxCurrent { get; set; }
+        public double muxCalibCurrent { get; set; }
+        public bool muxIsTested = false;
+        public bool muxIsCalibrated = false;
+        public void muxCalibrate()
+        {  // TODO: confirm that this is the correct way to calibrate the current.
+            if (muxIsTested && !muxIsCalibrated)
+            {
+                muxCurrent = 0.0000035 / muxCalibCurrent;
+                muxIsCalibrated = true;
+            }
+        }
     }
 
     public class BiasSignal : VoltageSignal

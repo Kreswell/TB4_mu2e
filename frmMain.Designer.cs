@@ -305,6 +305,7 @@ namespace TB_mu2e
             this.chkBoxJ11Hist = new System.Windows.Forms.CheckBox();
             this.label32 = new System.Windows.Forms.Label();
             this.CalibPType = new System.Windows.Forms.TabPage();
+            this.btnMuxTest = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.Channel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -401,7 +402,6 @@ namespace TB_mu2e
             this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
             this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button10 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabRUN.SuspendLayout();
@@ -3419,7 +3419,7 @@ namespace TB_mu2e
             // 
             // CalibPType
             // 
-            this.CalibPType.Controls.Add(this.button10);
+            this.CalibPType.Controls.Add(this.btnMuxTest);
             this.CalibPType.Controls.Add(this.button9);
             this.CalibPType.Controls.Add(this.listView1);
             this.CalibPType.Controls.Add(this.label94);
@@ -3434,6 +3434,17 @@ namespace TB_mu2e
             this.CalibPType.TabIndex = 11;
             this.CalibPType.Text = "Prototype Calibration";
             this.CalibPType.UseVisualStyleBackColor = true;
+            // 
+            // btnMuxTest
+            // 
+            this.btnMuxTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMuxTest.Location = new System.Drawing.Point(276, 197);
+            this.btnMuxTest.Name = "btnMuxTest";
+            this.btnMuxTest.Size = new System.Drawing.Size(125, 50);
+            this.btnMuxTest.TabIndex = 8;
+            this.btnMuxTest.Text = "MUX TEST";
+            this.btnMuxTest.UseVisualStyleBackColor = true;
+            this.btnMuxTest.Click += new System.EventHandler(this.btnMuxTest_Click);
             // 
             // button9
             // 
@@ -4406,16 +4417,6 @@ namespace TB_mu2e
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // button10
-            // 
-            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.Location = new System.Drawing.Point(276, 197);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(125, 50);
-            this.button10.TabIndex = 8;
-            this.button10.Text = "MUX TEST";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -4864,6 +4865,6 @@ namespace TB_mu2e
         private System.Windows.Forms.ColumnHeader IsTested;
         private System.Windows.Forms.ColumnHeader IsCalibrated;
         private System.Windows.Forms.ColumnHeader MuxCurrent;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button btnMuxTest;
     }
 }
