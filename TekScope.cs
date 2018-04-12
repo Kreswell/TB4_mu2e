@@ -39,7 +39,7 @@ namespace mu2e.FEB_Test_Jig
         /// <summary>
         /// likely not needed. This is asserted when the read command is completed. This is exposed publicly only for testing.
         /// </summary>
-        public static  event EventHandler<readArgs> ReadComplete;
+        public static event EventHandler<readArgs> ReadComplete;
         /// <summary>
         /// is asserted when the scope connection changes
         /// </summary>
@@ -47,7 +47,7 @@ namespace mu2e.FEB_Test_Jig
         /// <summary>
         /// returns the voltage measurement after a call to GetVoltage(channelNumber)
         /// </summary>
-        public static  event EventHandler<VoltageChangedEventsArgs> OnVoltageChanged;
+        public static event EventHandler<VoltageChangedEventsArgs> OnVoltageChanged;
         /// <summary>
         /// Is returned as a VoltageChangedEventArg.voltage when GetVoltage(channelNumber) is called when no scope is attached
         /// <para>This can be used for testing with out scopes attached</para>
@@ -127,12 +127,12 @@ namespace mu2e.FEB_Test_Jig
         /// Starts a new scope instance but does not attempt to open the scope for use.
         /// <para>Call OpenScope to start communications.</para>
         /// </summary>
-   //     public static TekScope()
-    //    {
+        //     public static TekScope()
+        //    {
 
-            //  assignDMMchannels();
-   //         OpenScope(scopeName);
-   //     }
+        //  assignDMMchannels();
+        //         OpenScope(scopeName);
+        //     }
 
         /// <summary>
         /// Starts a new scope instance and attempts to open the scope for use.
@@ -143,11 +143,11 @@ namespace mu2e.FEB_Test_Jig
         /// <param name="lastResourceString">Optional. If blank, a dialog will allow the user to select a scope from the available scope resources. 
         /// <para>if used, this is a tektronix scope resource string identifying a specific scope that is known to be connected.</para>
         /// </param>
-    /*    public TekScope(string scopeName, string lastResourceString = null)
-        {
-            //  assignDMMchannels();
-            OpenScope(scopeName, lastResourceString);
-        }*/
+        /*    public TekScope(string scopeName, string lastResourceString = null)
+            {
+                //  assignDMMchannels();
+                OpenScope(scopeName, lastResourceString);
+            }*/
         // --- Constructors
 
         public static void Dispose()
@@ -158,8 +158,8 @@ namespace mu2e.FEB_Test_Jig
             }
         }
 
-      //  public static  bool OpenScope(string name, string lastResourceString = "ASRL1::INSTR")
-            public static bool OpenScope()
+        //  public static  bool OpenScope(string name, string lastResourceString = "ASRL1::INSTR")
+        public static bool OpenScope()
         {
             bool open = false;
             string lastResourceString = "ASRL1::INSTR";
@@ -245,7 +245,7 @@ namespace mu2e.FEB_Test_Jig
         /// Close this scope instance. 
         /// <para>OnConnectedStateChanged will assert with isConnected = false</para>
         /// </summary>
-        public static  void closeScope()
+        public static void closeScope()
         {
             if (!inTestMode)
             {
@@ -255,7 +255,7 @@ namespace mu2e.FEB_Test_Jig
         }
 
 
-        internal static  void write(string command)
+        internal static void write(string command)
         {
             try
             {
@@ -591,49 +591,49 @@ namespace mu2e.FEB_Test_Jig
             //  simpleReadWrite("FETCh?");
         }
 
-/*
-        /// <summary>
-        /// Requests all 6 voltage measurements for the specified FEB HDMI channel.
-        /// <para>The voltage measurement is returned on onVoltageChanged event</para>
-        /// <para>onVoltageChanged returns double[6] showing all 6 HDMI values in the order Trim0-Trim3, Bias, LED</para>
-        /// <para>If inTestMode=true then onVoltageChanged is asserted with VoltageChangedEventArgs.Voltage = voltageDefaultValue</para>
-        /// </summary>
-        /// <param name="channelNumber">the integer number 0-15, of the FEB HDMI channel to read</param>
-        internal void GetVoltage(int HDMIchannelNumber = 0)
-        {
-            if (inTestMode)
-            {
-                VoltageChangedEventsArgs VoltArgs = new VoltageChangedEventsArgs();
-                if (OnVoltageChanged != null)
-                    VoltArgs.HDMIchannel = HDMIchannelNumber;
-                OnVoltageChanged(this, VoltArgs);
-                return;
-            }
+        /*
+                /// <summary>
+                /// Requests all 6 voltage measurements for the specified FEB HDMI channel.
+                /// <para>The voltage measurement is returned on onVoltageChanged event</para>
+                /// <para>onVoltageChanged returns double[6] showing all 6 HDMI values in the order Trim0-Trim3, Bias, LED</para>
+                /// <para>If inTestMode=true then onVoltageChanged is asserted with VoltageChangedEventArgs.Voltage = voltageDefaultValue</para>
+                /// </summary>
+                /// <param name="channelNumber">the integer number 0-15, of the FEB HDMI channel to read</param>
+                internal void GetVoltage(int HDMIchannelNumber = 0)
+                {
+                    if (inTestMode)
+                    {
+                        VoltageChangedEventsArgs VoltArgs = new VoltageChangedEventsArgs();
+                        if (OnVoltageChanged != null)
+                            VoltArgs.HDMIchannel = HDMIchannelNumber;
+                        OnVoltageChanged(this, VoltArgs);
+                        return;
+                    }
 
-            if (HDMIchannelNumber < 0 || HDMIchannelNumber > 15)
-                throw new Exception(scopeName + ": GetVoltage. channel number " + HDMIchannelNumber + " is out of bounds. Must be 0-15");
+                    if (HDMIchannelNumber < 0 || HDMIchannelNumber > 15)
+                        throw new Exception(scopeName + ": GetVoltage. channel number " + HDMIchannelNumber + " is out of bounds. Must be 0-15");
 
-            // For assistance with DMM VISA See: 
-            //https://www.keysight.com/upload/cmc_upload/All/iols_15_5_visa_users_guide.pdf
-            //https://literature.cdn.keysight.com/litweb/pdf/34972-90001.pdf?id=1837993
-            //https://www.keysight.com/upload/cmc_upload/All/34970-90003_users.pdf * best for programming
-            //http://instructor.physics.lsa.umich.edu/adv-labs/Tools_Resources/HP%2034970A%20quick%20reference%20guide.pdf
-            //http://literature.cdn.keysight.com/litweb/pdf/5989-6338EN.pdf
-            string range = FEB.HDMIs[HDMIchannelNumber].Trim0.myDmmId + ":" + FEB.HDMIs[HDMIchannelNumber].LED.myDmmId;
+                    // For assistance with DMM VISA See: 
+                    //https://www.keysight.com/upload/cmc_upload/All/iols_15_5_visa_users_guide.pdf
+                    //https://literature.cdn.keysight.com/litweb/pdf/34972-90001.pdf?id=1837993
+                    //https://www.keysight.com/upload/cmc_upload/All/34970-90003_users.pdf * best for programming
+                    //http://instructor.physics.lsa.umich.edu/adv-labs/Tools_Resources/HP%2034970A%20quick%20reference%20guide.pdf
+                    //http://literature.cdn.keysight.com/litweb/pdf/5989-6338EN.pdf
+                    string range = FEB.HDMIs[HDMIchannelNumber].Trim0.myDmmId + ":" + FEB.HDMIs[HDMIchannelNumber].LED.myDmmId;
 
-            /*           bool useAsync = false;
-                       if (useAsync == true) //use asyncornous read and write. This worked for the Tek scope but fails now that the DMM is reading ranges.
-                       {
-                           write("MEASure:VOLTage:DC? (@" + range + ")\n"); // AUTO ,MAX, (@101)"); //,316)");
-                           WriteComplete += readVoltage;
-                       }
-                       else //use Sync read and write Added Jan 2017 Stephen to avoid errors with ivi.VISA
-                       { */ 
-                       /*
-            simpleReadWrite("MEASure:VOLTage:DC? (@" + range + ")\n");
-            //   }
-        }
-        */
+                    /*           bool useAsync = false;
+                               if (useAsync == true) //use asyncornous read and write. This worked for the Tek scope but fails now that the DMM is reading ranges.
+                               {
+                                   write("MEASure:VOLTage:DC? (@" + range + ")\n"); // AUTO ,MAX, (@101)"); //,316)");
+                                   WriteComplete += readVoltage;
+                               }
+                               else //use Sync read and write Added Jan 2017 Stephen to avoid errors with ivi.VISA
+                               { */
+        /*
+simpleReadWrite("MEASure:VOLTage:DC? (@" + range + ")\n");
+//   }
+}
+*/
 
         private static void simpleReadWrite(string command)
         {
@@ -665,7 +665,7 @@ namespace mu2e.FEB_Test_Jig
             }
         }
 
-        private static  void readVoltage(object sender, EventArgs e)
+        private static void readVoltage(object sender, EventArgs e)
         {
             WriteComplete -= readVoltage;
             ReadComplete += parseVoltage;
@@ -673,7 +673,7 @@ namespace mu2e.FEB_Test_Jig
         }
 
 
-        private static  void parseVoltage(object sender, readArgs e)
+        private static void parseVoltage(object sender, readArgs e)
         {
             VoltageChangedEventsArgs VoltArgs = new VoltageChangedEventsArgs();
             try
@@ -696,17 +696,17 @@ namespace mu2e.FEB_Test_Jig
             OnVoltageChanged?.Invoke(null, VoltArgs);
         }
 
-        private static  string RemoveCommonEscapeSequences(string s)
+        private static string RemoveCommonEscapeSequences(string s)
         {
             return (s != null) ? s.Replace("\\n", "").Replace("\n", "").Replace("\\r", "").Replace("\r", "") : s;
         }
 
-        private static  string ReplaceCommonEscapeSequences(string s)
+        private static string ReplaceCommonEscapeSequences(string s)
         {
             return (s != null) ? s.Replace("\\n", "\n").Replace("\\r", "\r") : s;
         }
 
-        private static  string InsertCommonEscapeSequences(string s)
+        private static string InsertCommonEscapeSequences(string s)
         {
             return (s != null) ? s.Replace("\n", "\\n").Replace("\r", "\\r") : s;
         }
@@ -718,7 +718,7 @@ namespace mu2e.FEB_Test_Jig
         }
     }
 
-    
+
 
     public class DMM
     {

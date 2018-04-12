@@ -3895,9 +3895,10 @@ namespace TB_mu2e
         private void btnMuxTest_Click(object sender, EventArgs e)
         {
             btnMuxTest.Text = "SCANNING...";
+            bool startingMode = TekScope.inTestMode;
+            TekScope.inTestMode = true;
 
-            // TODO: Set a variable in TekScope or VoltageSignal (TrimSignal) to test mode
-            // which makes it not actually read the signal from the DMM.
+            myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, -2);
 
             foreach (TrimSignal trimsig in myFEB.Trims)
             {
@@ -3905,6 +3906,9 @@ namespace TB_mu2e
                 trimsig.muxIsTested = true;
             }
 
+            myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 0);
+
+            TekScope.inTestMode = startingMode;
             btnMuxTest.BackColor = Color.Green;
             btnMuxTest.Text = "MUX TEST";
         }
@@ -3912,6 +3916,11 @@ namespace TB_mu2e
         private void label94_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnUpdateV_Click(object sender, EventArgs e)
+        {
+            int fpga = (int)upDnFPGA.Value;
         }
     }
 

@@ -305,6 +305,7 @@ namespace TB_mu2e
             this.chkBoxJ11Hist = new System.Windows.Forms.CheckBox();
             this.label32 = new System.Windows.Forms.Label();
             this.CalibPType = new System.Windows.Forms.TabPage();
+            this.btnUpdateV = new System.Windows.Forms.Button();
             this.btnMuxTest = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -318,7 +319,6 @@ namespace TB_mu2e
             this.label94 = new System.Windows.Forms.Label();
             this.label85 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
-            this.domUpDownFPGA = new System.Windows.Forms.DomainUpDown();
             this.btnFullVScan = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox28 = new System.Windows.Forms.TextBox();
@@ -402,6 +402,7 @@ namespace TB_mu2e
             this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
             this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.upDnFPGA = new System.Windows.Forms.NumericUpDown();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabRUN.SuspendLayout();
@@ -434,6 +435,7 @@ namespace TB_mu2e
             this.tabHist.SuspendLayout();
             this.CalibPType.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.upDnFPGA)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -3419,13 +3421,14 @@ namespace TB_mu2e
             // 
             // CalibPType
             // 
+            this.CalibPType.Controls.Add(this.upDnFPGA);
+            this.CalibPType.Controls.Add(this.btnUpdateV);
             this.CalibPType.Controls.Add(this.btnMuxTest);
             this.CalibPType.Controls.Add(this.button9);
             this.CalibPType.Controls.Add(this.listView1);
             this.CalibPType.Controls.Add(this.label94);
             this.CalibPType.Controls.Add(this.label85);
             this.CalibPType.Controls.Add(this.label47);
-            this.CalibPType.Controls.Add(this.domUpDownFPGA);
             this.CalibPType.Controls.Add(this.btnFullVScan);
             this.CalibPType.Controls.Add(this.tableLayoutPanel1);
             this.CalibPType.Location = new System.Drawing.Point(4, 32);
@@ -3434,6 +3437,17 @@ namespace TB_mu2e
             this.CalibPType.TabIndex = 11;
             this.CalibPType.Text = "Prototype Calibration";
             this.CalibPType.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdateV
+            // 
+            this.btnUpdateV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateV.Location = new System.Drawing.Point(276, 141);
+            this.btnUpdateV.Name = "btnUpdateV";
+            this.btnUpdateV.Size = new System.Drawing.Size(125, 50);
+            this.btnUpdateV.TabIndex = 9;
+            this.btnUpdateV.Text = "UPDATE";
+            this.btnUpdateV.UseVisualStyleBackColor = true;
+            this.btnUpdateV.Click += new System.EventHandler(this.btnUpdateV_Click);
             // 
             // btnMuxTest
             // 
@@ -3551,18 +3565,6 @@ namespace TB_mu2e
             this.label47.Size = new System.Drawing.Size(204, 29);
             this.label47.TabIndex = 3;
             this.label47.Text = "Voltage Settings";
-            // 
-            // domUpDownFPGA
-            // 
-            this.domUpDownFPGA.Items.Add("0");
-            this.domUpDownFPGA.Items.Add("1");
-            this.domUpDownFPGA.Items.Add("2");
-            this.domUpDownFPGA.Items.Add("3");
-            this.domUpDownFPGA.Location = new System.Drawing.Point(336, 102);
-            this.domUpDownFPGA.Name = "domUpDownFPGA";
-            this.domUpDownFPGA.Size = new System.Drawing.Size(40, 27);
-            this.domUpDownFPGA.TabIndex = 2;
-            this.domUpDownFPGA.Text = "0";
             // 
             // btnFullVScan
             // 
@@ -4417,6 +4419,20 @@ namespace TB_mu2e
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // upDnFPGA
+            // 
+            this.upDnFPGA.AutoSize = true;
+            this.upDnFPGA.InterceptArrowKeys = false;
+            this.upDnFPGA.Location = new System.Drawing.Point(336, 102);
+            this.upDnFPGA.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.upDnFPGA.Name = "upDnFPGA";
+            this.upDnFPGA.Size = new System.Drawing.Size(56, 27);
+            this.upDnFPGA.TabIndex = 11;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -4482,6 +4498,7 @@ namespace TB_mu2e
             this.CalibPType.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.upDnFPGA)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4851,7 +4868,6 @@ namespace TB_mu2e
         private System.Windows.Forms.TextBox txtTrim0;
         private System.Windows.Forms.TextBox txtTrim3;
         private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.DomainUpDown domUpDownFPGA;
         private System.Windows.Forms.Label label85;
         private System.Windows.Forms.Label label94;
         private System.Windows.Forms.Label label86;
@@ -4866,5 +4882,7 @@ namespace TB_mu2e
         private System.Windows.Forms.ColumnHeader IsCalibrated;
         private System.Windows.Forms.ColumnHeader MuxCurrent;
         private System.Windows.Forms.Button btnMuxTest;
+        private System.Windows.Forms.Button btnUpdateV;
+        private System.Windows.Forms.NumericUpDown upDnFPGA;
     }
 }

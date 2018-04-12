@@ -371,7 +371,10 @@ namespace mu2e.FEB_Test_Jig
             }
             if (vSet != _voltageSetting)
             {
-                myMeasurements.Invalidate((int)(Math.Abs(vSet - _voltageSetting)) * 50);
+                if (!TekScope.inTestMode)
+                {
+                    myMeasurements.Invalidate((int)(Math.Abs(vSet - _voltageSetting)) * 50);
+                }
                 UInt32 regval = (UInt32)(vSet * 500 + 2048);
                 Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
                 _voltageSetting = vSet;
@@ -427,7 +430,10 @@ namespace mu2e.FEB_Test_Jig
             }
             if (vSet != _voltageSetting)
             {
-                myMeasurements.Invalidate((int)(Math.Abs(vSet - _voltageSetting)) * 50);
+                if (!TekScope.inTestMode)
+                {
+                    myMeasurements.Invalidate((int)(Math.Abs(vSet - _voltageSetting)) * 50);
+                }
                 UInt32 regval = (UInt32)(vSet * 50);
                 Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
                 _voltageSetting = vSet;
@@ -471,7 +477,10 @@ namespace mu2e.FEB_Test_Jig
             }
             if (vSet != _voltageSetting)
             {
-                myMeasurements.Invalidate((int)(Math.Abs(vSet - _voltageSetting)) * 50);
+                if (!TekScope.inTestMode)
+                {
+                    myMeasurements.Invalidate((int)(Math.Abs(vSet - _voltageSetting)) * 50);
+                }
                 UInt32 regval = (UInt32)(vSet * 300);
                 Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
                 _voltageSetting = vSet;
