@@ -93,7 +93,7 @@ namespace TB_mu2e
 
             myFEBclient = PP.FEB1;
             myFEB.FEBclient = myFEBclient;
-            myFEB.BuildHDMIsignalDB();
+            //myFEB.BuildHDMIsignalDB();
 
             btnFEB1.BackColor = SystemColors.Control;
             lblMessage.Text = msg1Conn + "\n" + msg2Conn;
@@ -710,6 +710,7 @@ namespace TB_mu2e
                 if (comm.name.Contains("FECC")) { }
                 lblMessage.Text = DateTime.Now + " -> " + comm.m_prop;
                 //VoltageSignal.myClient = myFEBclient.client;
+                myFEB.BuildHDMIsignalDB();
             }
         }
 
@@ -838,14 +839,14 @@ namespace TB_mu2e
 
         private void btnRegWRITE_Click(object sender, EventArgs e)
         {
-            Mu2e_FEB_client myFEBclient = null;
+            //Mu2e_FEB_client myFEBclient = null;
             int i = this.tabControl.SelectedIndex;
             if (tabControl.SelectedTab.Text.Contains("FEB"))
             {
-                if (_ActiveFEB == 1)
-                { myFEBclient = PP.FEB1; }
-                if (_ActiveFEB == 2)
-                { myFEBclient = PP.FEB2; }
+                //if (_ActiveFEB == 1)
+                //{ myFEBclient = PP.FEB1; }
+                //if (_ActiveFEB == 2)
+                //{ myFEBclient = PP.FEB2; }
 
                 ushort fpga_num = Convert.ToUInt16(udFPGA.Value);
                 for (int j = 0; j < num_reg; j++)
@@ -901,14 +902,14 @@ namespace TB_mu2e
 
         private void btnSpillREAD_Click(object sender, EventArgs e)
         {
-            Mu2e_FEB_client myFEBclient = null;
+            //Mu2e_FEB_client myFEBclient = null;
             int i = this.tabControl.SelectedIndex;
             if (tabControl.SelectedTab.Text.Contains("FEB"))
             {
-                if (_ActiveFEB == 1)
-                { myFEBclient = PP.FEB1; }
-                if (_ActiveFEB == 2)
-                { myFEBclient = PP.FEB2; }
+                //if (_ActiveFEB == 1)
+                //{ myFEBclient = PP.FEB1; }
+                //if (_ActiveFEB == 2)
+                //{ myFEBclient = PP.FEB2; }
 
 
                 ushort fpga_num = Convert.ToUInt16(udFPGA.Value);
@@ -928,14 +929,14 @@ namespace TB_mu2e
 
         private void btnSpillWRITE_Click(object sender, EventArgs e)
         {
-            Mu2e_FEB_client myFEBclient = null;
+            //Mu2e_FEB_client myFEBclient = null;
             int i = this.tabControl.SelectedIndex;
             if (tabControl.SelectedTab.Text.Contains("FEB"))
             {
-                if (_ActiveFEB == 1)
-                { myFEBclient = PP.FEB1; }
-                if (_ActiveFEB == 2)
-                { myFEBclient = PP.FEB2; }
+                //if (_ActiveFEB == 1)
+                //{ myFEBclient = PP.FEB1; }
+                //if (_ActiveFEB == 2)
+                //{ myFEBclient = PP.FEB2; }
 
 
                 ushort fpga_num = Convert.ToUInt16(udFPGA.Value);
@@ -1031,7 +1032,7 @@ namespace TB_mu2e
         {
             //zedFEB1.GraphPane.CurveList.Clear();
             listBox1.ClearSelected();
-            Mu2e_FEB_client myFEBclient = new Mu2e_FEB_client();
+            //Mu2e_FEB_client myFEBclient = new Mu2e_FEB_client();
             switch (_ActiveFEB)
             {
                 case 1:
@@ -1795,9 +1796,9 @@ namespace TB_mu2e
             int FPGA_index = (int)udFPGA.Value;
             uint chan = 0;
             Mu2e_Register mux_reg = new Mu2e_Register();
-            Mu2e_FEB_client myFEBclient = new Mu2e_FEB_client();
-            if (_ActiveFEB == 1) { myFEBclient = PP.FEB1; }
-            if (_ActiveFEB == 2) { myFEBclient = PP.FEB2; }
+            //Mu2e_FEB_client myFEBclient = new Mu2e_FEB_client();
+            //if (_ActiveFEB == 1) { myFEBclient = PP.FEB1; }
+            //if (_ActiveFEB == 2) { myFEBclient = PP.FEB2; }
             chan = (uint)udChan.Value;
             mux_reg.fpga_index = (ushort)FPGA_index;
             if (myFEBclient != null)
@@ -2263,14 +2264,14 @@ namespace TB_mu2e
 
         private void updateVoltage()
         {
-            Mu2e_FEB_client myFEBclient = null;
+            //Mu2e_FEB_client myFEBclient = null;
             double v;
-            if (_ActiveFEB == 1)
-            { myFEBclient = PP.FEB1; }
-            else if (_ActiveFEB == 2)
-            { myFEBclient = PP.FEB2; }
-            else
-            { MessageBox.Show("No FEB active"); return; }
+            //if (_ActiveFEB == 1)
+            //{ myFEBclient = PP.FEB1; }
+            //else if (_ActiveFEB == 2)
+            //{ myFEBclient = PP.FEB2; }
+            //else
+            //{ MessageBox.Show("No FEB active"); return; }
 
             //DMM.GetVoltage(ActiveHdmiChannel.channel);
 
@@ -2307,14 +2308,14 @@ namespace TB_mu2e
 
         private void btnDacWrite_Click(object sender, EventArgs e)
         {
-            Mu2e_FEB_client myFEBclient = null;
+            //Mu2e_FEB_client myFEBclient = null;
 
-            if (_ActiveFEB == 1)
-            { myFEBclient = PP.FEB1; }
-            else if (_ActiveFEB == 2)
-            { myFEBclient = PP.FEB2; }
-            else
-            { MessageBox.Show("No FEB active"); return; }
+            //if (_ActiveFEB == 1)
+            //{ myFEBclient = PP.FEB1; }
+            //else if (_ActiveFEB == 2)
+            //{ myFEBclient = PP.FEB2; }
+            //else
+            //{ MessageBox.Show("No FEB active"); return; }
 
             double v;
             UInt32 vInt;
@@ -2347,10 +2348,10 @@ namespace TB_mu2e
 
         private void btnDacScan_Click(object sender, EventArgs e)
         {
-            Mu2e_FEB_client myFEBclient = null;
+            //Mu2e_FEB_client myFEBclient = null;
             double v;
 
-            myFEBclient = PP.FEB1;
+            //myFEBclient = PP.FEB1;
             UInt32 vInt;
 
             v = 65;
