@@ -247,7 +247,9 @@ namespace mu2e.FEB_Test_Jig
         {
             get
             {
-                GetVoltageSetting();
+                // Don't get the setting from the register.
+                // Put a check in SetVoltageSetting to see if the register matches voltageSetting.
+                //GetVoltageSetting();
                 return _voltageSetting;
             }
             set
@@ -255,7 +257,8 @@ namespace mu2e.FEB_Test_Jig
                 SetVoltageSetting(value);
             }
         }
-        protected virtual void GetVoltageSetting() { }
+
+        //protected virtual void GetVoltageSetting() { }
         public virtual void SetVoltageSetting(double vSet) { }
         public SignalMeasurement myMeasurements = new SignalMeasurement();
         public Calibration calibration = new Calibration();
@@ -355,25 +358,30 @@ namespace mu2e.FEB_Test_Jig
             register = reg;
         }
 
-        protected override void GetVoltageSetting()
-        {
-            base.GetVoltageSetting();
-            Mu2e_Register.ReadReg(ref register, myClient, "drd");
-            UInt32 regval = register.val;
-            _voltageSetting = ((double)regval - 2048) / 500;
-        }
+        //protected override void GetVoltageSetting()
+        //{
+        //    base.GetVoltageSetting();
+        //    Mu2e_Register.ReadReg(ref register, myClient, "drd");
+        //    UInt32 regval = register.val;
+        //    _voltageSetting = ((double)regval - 2048) / 500;
+        //}
         public override void SetVoltageSetting(double vSet)
         {
             base.SetVoltageSetting(vSet);
+
             if (vSet < -4.096 || vSet > 4.096)
             {
                 throw new ArgumentOutOfRangeException($"Voltage setting {vSet} not between -4.096 and 4.096 Volts.");
             }
-            if (vSet != _voltageSetting)
+
+            Mu2e_Register.ReadReg(ref register, myClient, "drd");
+            double vReg = ((double)register.val - 2048) / 500;
+
+            if (Math.Abs(vSet - vReg) > 0.01)
             {
                 if (!TekScope.inTestMode)
                 {
-                    myMeasurements.Invalidate((int)(Math.Abs(vSet - _voltageSetting)) * 50);
+                    myMeasurements.Invalidate((int)(Math.Abs(vSet - vReg)) * 50);
                 }
                 UInt32 regval = (UInt32)(vSet * 500 + 2048);
                 Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
@@ -414,13 +422,13 @@ namespace mu2e.FEB_Test_Jig
             register = reg;
         }
 
-        protected override void GetVoltageSetting()
-        {
-            base.GetVoltageSetting();
-            Mu2e_Register.ReadReg(ref register, myClient, "drd");
-            UInt32 regval = register.val;
-            _voltageSetting = (double)regval / 50;
-        }
+        //protected override void GetVoltageSetting()
+        //{
+        //    base.GetVoltageSetting();
+        //    Mu2e_Register.ReadReg(ref register, myClient, "drd");
+        //    UInt32 regval = register.val;
+        //    _voltageSetting = (double)regval / 50;
+        //}
         public override void SetVoltageSetting(double vSet)
         {
             base.SetVoltageSetting(vSet);
@@ -428,11 +436,15 @@ namespace mu2e.FEB_Test_Jig
             {
                 throw new ArgumentOutOfRangeException($"Voltage setting {vSet} not between 0 and 81.92 Volts.");
             }
-            if (vSet != _voltageSetting)
+
+            Mu2e_Register.ReadReg(ref register, myClient, "drd");            
+            double vReg = (double)register.val / 50;
+
+            if (Math.Abs(vSet - vReg) > 0.01)
             {
                 if (!TekScope.inTestMode)
                 {
-                    myMeasurements.Invalidate((int)(Math.Abs(vSet - _voltageSetting)) * 50);
+                    myMeasurements.Invalidate((int)(Math.Abs(vSet - vReg)) * 50);
                 }
                 UInt32 regval = (UInt32)(vSet * 50);
                 Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
@@ -461,25 +473,30 @@ namespace mu2e.FEB_Test_Jig
             register = reg;
         }
 
-        protected override void GetVoltageSetting()
-        {
-            base.GetVoltageSetting();
-            Mu2e_Register.ReadReg(ref register, myClient, "drd");
-            UInt32 regval = register.val;
-            _voltageSetting = (double)regval / 300;
-        }
+        //protected override void GetVoltageSetting()
+        //{
+        //    base.GetVoltageSetting();
+        //    Mu2e_Register.ReadReg(ref register, myClient, "drd");
+        //    UInt32 regval = register.val;
+        //    _voltageSetting = (double)regval / 300;
+        //}
         public override void SetVoltageSetting(double vSet)
         {
             base.SetVoltageSetting(vSet);
+
             if (vSet < 0 || vSet > 13.65)
             {
                 throw new ArgumentOutOfRangeException($"Voltage setting {vSet} not between 0 and 13.65 Volts.");
             }
-            if (vSet != _voltageSetting)
+
+            Mu2e_Register.ReadReg(ref register, myClient, "drd");
+            double vReg = (double)register.val / 300;
+
+            if (Math.Abs(vSet - vReg) > 0.01)
             {
                 if (!TekScope.inTestMode)
                 {
-                    myMeasurements.Invalidate((int)(Math.Abs(vSet - _voltageSetting)) * 50);
+                    myMeasurements.Invalidate((int)(Math.Abs(vSet - vReg)) * 50);
                 }
                 UInt32 regval = (UInt32)(vSet * 300);
                 Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
