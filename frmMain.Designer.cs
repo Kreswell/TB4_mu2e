@@ -305,21 +305,9 @@ namespace TB_mu2e
             this.chkBoxJ11Hist = new System.Windows.Forms.CheckBox();
             this.label32 = new System.Windows.Forms.Label();
             this.CalibPType = new System.Windows.Forms.TabPage();
-            this.btnUpdateV = new System.Windows.Forms.Button();
-            this.btnMuxTest = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.Channel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.IsGood = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Gain = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Offset = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.IsTested = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.IsCalibrated = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.MuxCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label94 = new System.Windows.Forms.Label();
-            this.label85 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.btnFullVScan = new System.Windows.Forms.Button();
+            this.label95 = new System.Windows.Forms.Label();
+            this.txtVSet = new System.Windows.Forms.TextBox();
+            this.upDnFPGA = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.txtTrim7 = new System.Windows.Forms.TextBox();
@@ -364,14 +352,6 @@ namespace TB_mu2e
             this.label60 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
-            this.label70 = new System.Windows.Forms.Label();
             this.label71 = new System.Windows.Forms.Label();
             this.label72 = new System.Windows.Forms.Label();
             this.label73 = new System.Windows.Forms.Label();
@@ -398,11 +378,35 @@ namespace TB_mu2e
             this.label80 = new System.Windows.Forms.Label();
             this.label86 = new System.Windows.Forms.Label();
             this.label93 = new System.Windows.Forms.Label();
+            this.label63 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
+            this.btnUpdateV = new System.Windows.Forms.Button();
+            this.btnMuxTest = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.FPGA = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Channel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.HDMI = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Setting = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Measurement = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.IsCalibrated = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Gain = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Offset = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MuxCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label94 = new System.Windows.Forms.Label();
+            this.label85 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.btnFullVScan = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
             this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.upDnFPGA = new System.Windows.Forms.NumericUpDown();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabRUN.SuspendLayout();
@@ -434,8 +438,8 @@ namespace TB_mu2e
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.tabHist.SuspendLayout();
             this.CalibPType.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDnFPGA)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -3421,7 +3425,10 @@ namespace TB_mu2e
             // 
             // CalibPType
             // 
+            this.CalibPType.Controls.Add(this.label95);
+            this.CalibPType.Controls.Add(this.txtVSet);
             this.CalibPType.Controls.Add(this.upDnFPGA);
+            this.CalibPType.Controls.Add(this.tableLayoutPanel1);
             this.CalibPType.Controls.Add(this.btnUpdateV);
             this.CalibPType.Controls.Add(this.btnMuxTest);
             this.CalibPType.Controls.Add(this.button9);
@@ -3430,7 +3437,6 @@ namespace TB_mu2e
             this.CalibPType.Controls.Add(this.label85);
             this.CalibPType.Controls.Add(this.label47);
             this.CalibPType.Controls.Add(this.btnFullVScan);
-            this.CalibPType.Controls.Add(this.tableLayoutPanel1);
             this.CalibPType.Location = new System.Drawing.Point(4, 32);
             this.CalibPType.Name = "CalibPType";
             this.CalibPType.Size = new System.Drawing.Size(1255, 665);
@@ -3438,148 +3444,40 @@ namespace TB_mu2e
             this.CalibPType.Text = "Prototype Calibration";
             this.CalibPType.UseVisualStyleBackColor = true;
             // 
-            // btnUpdateV
+            // label95
             // 
-            this.btnUpdateV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateV.Location = new System.Drawing.Point(276, 141);
-            this.btnUpdateV.Name = "btnUpdateV";
-            this.btnUpdateV.Size = new System.Drawing.Size(125, 50);
-            this.btnUpdateV.TabIndex = 9;
-            this.btnUpdateV.Text = "UPDATE";
-            this.btnUpdateV.UseVisualStyleBackColor = true;
-            this.btnUpdateV.Click += new System.EventHandler(this.btnUpdateV_Click);
+            this.label95.AutoSize = true;
+            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label95.Location = new System.Drawing.Point(580, 518);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(208, 25);
+            this.label95.TabIndex = 12;
+            this.label95.Text = "New Voltage Setting";
             // 
-            // btnMuxTest
+            // txtVSet
             // 
-            this.btnMuxTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMuxTest.Location = new System.Drawing.Point(276, 197);
-            this.btnMuxTest.Name = "btnMuxTest";
-            this.btnMuxTest.Size = new System.Drawing.Size(125, 50);
-            this.btnMuxTest.TabIndex = 8;
-            this.btnMuxTest.Text = "MUX TEST";
-            this.btnMuxTest.UseVisualStyleBackColor = true;
-            this.btnMuxTest.Click += new System.EventHandler(this.btnMuxTest_Click);
+            this.txtVSet.Location = new System.Drawing.Point(794, 519);
+            this.txtVSet.Name = "txtVSet";
+            this.txtVSet.Size = new System.Drawing.Size(100, 27);
+            this.txtVSet.TabIndex = 11;
+            this.txtVSet.Leave += new System.EventHandler(this.txtVSet_Leave);
             // 
-            // button9
+            // upDnFPGA
             // 
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(301, 559);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(100, 50);
-            this.button9.TabIndex = 7;
-            this.button9.Text = "SAVE";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Channel,
-            this.IsGood,
-            this.Gain,
-            this.Offset,
-            this.IsTested,
-            this.IsCalibrated,
-            this.MuxCurrent});
-            listViewGroup1.Header = "FPGA 0";
-            listViewGroup1.Name = "FPGA0";
-            listViewGroup2.Header = "FPGA 1";
-            listViewGroup2.Name = "FPGA1";
-            listViewGroup3.Header = "FPGA 2";
-            listViewGroup3.Name = "FPGA2";
-            listViewGroup4.Header = "FPGA 3";
-            listViewGroup4.Name = "FPGA3";
-            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3,
-            listViewGroup4});
-            this.listView1.Location = new System.Drawing.Point(407, 309);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(840, 300);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // Channel
-            // 
-            this.Channel.Text = "Channel";
-            this.Channel.Width = 80;
-            // 
-            // IsGood
-            // 
-            this.IsGood.Text = "Looks Good?";
-            this.IsGood.Width = 120;
-            // 
-            // Gain
-            // 
-            this.Gain.Text = "Gain";
-            this.Gain.Width = 80;
-            // 
-            // Offset
-            // 
-            this.Offset.Text = "Offset";
-            this.Offset.Width = 80;
-            // 
-            // IsTested
-            // 
-            this.IsTested.Text = "Test Completed?";
-            this.IsTested.Width = 150;
-            // 
-            // IsCalibrated
-            // 
-            this.IsCalibrated.Text = "Calibrations Applied?";
-            this.IsCalibrated.Width = 178;
-            // 
-            // MuxCurrent
-            // 
-            this.MuxCurrent.Text = "Mux Current (nA)";
-            this.MuxCurrent.Width = 150;
-            // 
-            // label94
-            // 
-            this.label94.AutoSize = true;
-            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label94.Location = new System.Drawing.Point(236, 309);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(165, 29);
-            this.label94.TabIndex = 5;
-            this.label94.Text = "Scan Results";
-            this.label94.Click += new System.EventHandler(this.label94_Click);
-            // 
-            // label85
-            // 
-            this.label85.AutoSize = true;
-            this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label85.Location = new System.Drawing.Point(331, 74);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(70, 25);
-            this.label85.TabIndex = 4;
-            this.label85.Text = "FPGA";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(197, 4);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(204, 29);
-            this.label47.TabIndex = 3;
-            this.label47.Text = "Voltage Settings";
-            // 
-            // btnFullVScan
-            // 
-            this.btnFullVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFullVScan.Location = new System.Drawing.Point(276, 253);
-            this.btnFullVScan.Name = "btnFullVScan";
-            this.btnFullVScan.Size = new System.Drawing.Size(125, 50);
-            this.btnFullVScan.TabIndex = 1;
-            this.btnFullVScan.Text = "SCAN";
-            this.btnFullVScan.UseVisualStyleBackColor = true;
-            this.btnFullVScan.Click += new System.EventHandler(this.btnFullVScan_Click);
+            this.upDnFPGA.Location = new System.Drawing.Point(538, 516);
+            this.upDnFPGA.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.upDnFPGA.Name = "upDnFPGA";
+            this.upDnFPGA.Size = new System.Drawing.Size(36, 27);
+            this.upDnFPGA.TabIndex = 10;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tableLayoutPanel1.AutoScroll = true;
             this.tableLayoutPanel1.ColumnCount = 9;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 86F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
@@ -3633,14 +3531,6 @@ namespace TB_mu2e
             this.tableLayoutPanel1.Controls.Add(this.label60, 2, 6);
             this.tableLayoutPanel1.Controls.Add(this.label61, 2, 7);
             this.tableLayoutPanel1.Controls.Add(this.label62, 2, 8);
-            this.tableLayoutPanel1.Controls.Add(this.label63, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label64, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label65, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label66, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label67, 3, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label68, 3, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label69, 3, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label70, 3, 8);
             this.tableLayoutPanel1.Controls.Add(this.label71, 5, 1);
             this.tableLayoutPanel1.Controls.Add(this.label72, 5, 2);
             this.tableLayoutPanel1.Controls.Add(this.label73, 5, 3);
@@ -3667,9 +3557,17 @@ namespace TB_mu2e
             this.tableLayoutPanel1.Controls.Add(this.label80, 6, 3);
             this.tableLayoutPanel1.Controls.Add(this.label86, 8, 3);
             this.tableLayoutPanel1.Controls.Add(this.label93, 8, 4);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(407, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label63, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.label64, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.label65, 0, 11);
+            this.tableLayoutPanel1.Controls.Add(this.label66, 0, 12);
+            this.tableLayoutPanel1.Controls.Add(this.label67, 0, 13);
+            this.tableLayoutPanel1.Controls.Add(this.label68, 0, 14);
+            this.tableLayoutPanel1.Controls.Add(this.label69, 0, 15);
+            this.tableLayoutPanel1.Controls.Add(this.label70, 0, 16);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(413, 15);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 9;
+            this.tableLayoutPanel1.RowCount = 97;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
@@ -3679,7 +3577,95 @@ namespace TB_mu2e
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(840, 300);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(831, 141);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // textBox28
@@ -4070,87 +4056,6 @@ namespace TB_mu2e
             this.label62.TabIndex = 24;
             this.label62.Text = "00.0000";
             // 
-            // label63
-            // 
-            this.label63.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(294, 42);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(57, 20);
-            this.label63.TabIndex = 25;
-            this.label63.Text = "Trim 8";
-            // 
-            // label64
-            // 
-            this.label64.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(294, 75);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(57, 20);
-            this.label64.TabIndex = 26;
-            this.label64.Text = "Trim 9";
-            // 
-            // label65
-            // 
-            this.label65.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(290, 108);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(66, 20);
-            this.label65.TabIndex = 27;
-            this.label65.Text = "Trim 10";
-            // 
-            // label66
-            // 
-            this.label66.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label66.AutoEllipsis = true;
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(290, 141);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(66, 20);
-            this.label66.TabIndex = 28;
-            this.label66.Text = "Trim 11";
-            // 
-            // label67
-            // 
-            this.label67.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(290, 174);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(66, 20);
-            this.label67.TabIndex = 29;
-            this.label67.Text = "Trim 12";
-            // 
-            // label68
-            // 
-            this.label68.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(290, 207);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(66, 20);
-            this.label68.TabIndex = 30;
-            this.label68.Text = "Trim 13";
-            // 
-            // label69
-            // 
-            this.label69.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(290, 240);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(66, 20);
-            this.label69.TabIndex = 31;
-            this.label69.Text = "Trim 14";
-            // 
-            // label70
-            // 
-            this.label70.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(290, 273);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(66, 20);
-            this.label70.TabIndex = 32;
-            this.label70.Text = "Trim 15";
-            // 
             // label71
             // 
             this.label71.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -4399,6 +4304,237 @@ namespace TB_mu2e
             this.label93.TabIndex = 81;
             this.label93.Text = "00.0000";
             // 
+            // label63
+            // 
+            this.label63.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(14, 306);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(57, 20);
+            this.label63.TabIndex = 25;
+            this.label63.Text = "Trim 8";
+            // 
+            // label64
+            // 
+            this.label64.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(14, 339);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(57, 20);
+            this.label64.TabIndex = 26;
+            this.label64.Text = "Trim 9";
+            // 
+            // label65
+            // 
+            this.label65.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(10, 372);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(66, 20);
+            this.label65.TabIndex = 27;
+            this.label65.Text = "Trim 10";
+            // 
+            // label66
+            // 
+            this.label66.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label66.AutoEllipsis = true;
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(10, 405);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(66, 20);
+            this.label66.TabIndex = 28;
+            this.label66.Text = "Trim 11";
+            // 
+            // label67
+            // 
+            this.label67.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(10, 438);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(66, 20);
+            this.label67.TabIndex = 29;
+            this.label67.Text = "Trim 12";
+            // 
+            // label68
+            // 
+            this.label68.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(10, 471);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(66, 20);
+            this.label68.TabIndex = 30;
+            this.label68.Text = "Trim 13";
+            // 
+            // label69
+            // 
+            this.label69.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(10, 504);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(66, 20);
+            this.label69.TabIndex = 31;
+            this.label69.Text = "Trim 14";
+            // 
+            // label70
+            // 
+            this.label70.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(10, 537);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(66, 20);
+            this.label70.TabIndex = 32;
+            this.label70.Text = "Trim 15";
+            // 
+            // btnUpdateV
+            // 
+            this.btnUpdateV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateV.Location = new System.Drawing.Point(269, 87);
+            this.btnUpdateV.Name = "btnUpdateV";
+            this.btnUpdateV.Size = new System.Drawing.Size(125, 50);
+            this.btnUpdateV.TabIndex = 9;
+            this.btnUpdateV.Text = "UPDATE";
+            this.btnUpdateV.UseVisualStyleBackColor = true;
+            this.btnUpdateV.Click += new System.EventHandler(this.btnUpdateV_Click);
+            // 
+            // btnMuxTest
+            // 
+            this.btnMuxTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMuxTest.Location = new System.Drawing.Point(269, 153);
+            this.btnMuxTest.Name = "btnMuxTest";
+            this.btnMuxTest.Size = new System.Drawing.Size(125, 50);
+            this.btnMuxTest.TabIndex = 8;
+            this.btnMuxTest.Text = "MUX TEST";
+            this.btnMuxTest.UseVisualStyleBackColor = true;
+            this.btnMuxTest.Click += new System.EventHandler(this.btnMuxTest_Click);
+            // 
+            // button9
+            // 
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.Location = new System.Drawing.Point(311, 565);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(100, 50);
+            this.button9.TabIndex = 7;
+            this.button9.Text = "SAVE";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.FPGA,
+            this.Channel,
+            this.HDMI,
+            this.Setting,
+            this.Measurement,
+            this.IsCalibrated,
+            this.Gain,
+            this.Offset,
+            this.MuxCurrent});
+            listViewGroup1.Header = "FPGA 0";
+            listViewGroup1.Name = "fpga0";
+            listViewGroup2.Header = "FPGA 1";
+            listViewGroup2.Name = "fpga1";
+            listViewGroup3.Header = "FPGA 2";
+            listViewGroup3.Name = "fpga2";
+            listViewGroup4.Header = "FPGA 3";
+            listViewGroup4.Name = "fpga3";
+            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3,
+            listViewGroup4});
+            this.listView1.Location = new System.Drawing.Point(467, 206);
+            this.listView1.MultiSelect = false;
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(780, 300);
+            this.listView1.TabIndex = 6;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
+            // 
+            // FPGA
+            // 
+            this.FPGA.Text = "FPGA";
+            this.FPGA.Width = 0;
+            // 
+            // Channel
+            // 
+            this.Channel.Text = "Channel";
+            this.Channel.Width = 80;
+            // 
+            // HDMI
+            // 
+            this.HDMI.Text = "HDMI";
+            // 
+            // Setting
+            // 
+            this.Setting.Text = "Setting";
+            this.Setting.Width = 70;
+            // 
+            // Measurement
+            // 
+            this.Measurement.Text = "Measurement";
+            this.Measurement.Width = 120;
+            // 
+            // IsCalibrated
+            // 
+            this.IsCalibrated.Text = "Calibrations Applied?";
+            this.IsCalibrated.Width = 180;
+            // 
+            // Gain
+            // 
+            this.Gain.Text = "Gain";
+            // 
+            // Offset
+            // 
+            this.Offset.Text = "Offset";
+            // 
+            // MuxCurrent
+            // 
+            this.MuxCurrent.Text = "Mux Current (nA)";
+            this.MuxCurrent.Width = 150;
+            // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label94.Location = new System.Drawing.Point(264, 369);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(165, 29);
+            this.label94.TabIndex = 5;
+            this.label94.Text = "Scan Results";
+            this.label94.Click += new System.EventHandler(this.label94_Click);
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label85.Location = new System.Drawing.Point(462, 514);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(70, 25);
+            this.label85.TabIndex = 4;
+            this.label85.Text = "FPGA";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(197, 4);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(204, 29);
+            this.label47.TabIndex = 3;
+            this.label47.Text = "Voltage Settings";
+            // 
+            // btnFullVScan
+            // 
+            this.btnFullVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFullVScan.Location = new System.Drawing.Point(269, 222);
+            this.btnFullVScan.Name = "btnFullVScan";
+            this.btnFullVScan.Size = new System.Drawing.Size(125, 50);
+            this.btnFullVScan.TabIndex = 1;
+            this.btnFullVScan.Text = "SCAN";
+            this.btnFullVScan.UseVisualStyleBackColor = true;
+            this.btnFullVScan.Click += new System.EventHandler(this.btnFullVScan_Click);
+            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -4418,20 +4554,6 @@ namespace TB_mu2e
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // upDnFPGA
-            // 
-            this.upDnFPGA.AutoSize = true;
-            this.upDnFPGA.InterceptArrowKeys = false;
-            this.upDnFPGA.Location = new System.Drawing.Point(336, 102);
-            this.upDnFPGA.Maximum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.upDnFPGA.Name = "upDnFPGA";
-            this.upDnFPGA.Size = new System.Drawing.Size(56, 27);
-            this.upDnFPGA.TabIndex = 11;
             // 
             // frmMain
             // 
@@ -4496,9 +4618,9 @@ namespace TB_mu2e
             this.tabHist.PerformLayout();
             this.CalibPType.ResumeLayout(false);
             this.CalibPType.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.upDnFPGA)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.upDnFPGA)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4817,7 +4939,6 @@ namespace TB_mu2e
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Label label62;
-        private System.Windows.Forms.Label label63;
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.Label label66;
@@ -4875,14 +4996,19 @@ namespace TB_mu2e
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader Channel;
-        private System.Windows.Forms.ColumnHeader IsGood;
         private System.Windows.Forms.ColumnHeader Gain;
         private System.Windows.Forms.ColumnHeader Offset;
-        private System.Windows.Forms.ColumnHeader IsTested;
         private System.Windows.Forms.ColumnHeader IsCalibrated;
         private System.Windows.Forms.ColumnHeader MuxCurrent;
         private System.Windows.Forms.Button btnMuxTest;
         private System.Windows.Forms.Button btnUpdateV;
+        private System.Windows.Forms.ColumnHeader Setting;
+        private System.Windows.Forms.ColumnHeader Measurement;
+        private System.Windows.Forms.ColumnHeader FPGA;
+        private System.Windows.Forms.ColumnHeader HDMI;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Label label95;
+        private System.Windows.Forms.TextBox txtVSet;
         private System.Windows.Forms.NumericUpDown upDnFPGA;
     }
 }

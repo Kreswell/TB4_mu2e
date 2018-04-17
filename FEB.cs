@@ -156,7 +156,6 @@ namespace mu2e.FEB_Test_Jig
             ushort myFPGA = 0;
             int vcount = 0;
 
-
             TcpClient client = FEBclient.client;
             List<Mu2e_Register> arrReg = FEBclient.arrReg;
 

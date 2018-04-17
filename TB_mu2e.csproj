@@ -191,6 +191,14 @@
     <EmbeddedResource Include="SelectResource.resx">
       <DependentUpon>SelectResource.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="frmMain.datasource" />
+    <None Include="mu2e.FEB_Test_Jig.BiasChannel.datasource" />
+    <None Include="mu2e.FEB_Test_Jig.BiasSignal.datasource" />
+    <None Include="mu2e.FEB_Test_Jig.FEB.datasource" />
+    <None Include="mu2e.FEB_Test_Jig.LEDsignal.datasource" />
+    <None Include="mu2e.FEB_Test_Jig.TekScope.datasource" />
+    <None Include="mu2e.FEB_Test_Jig.TrimSignal.datasource" />
+    <None Include="mu2e.FEB_Test_Jig.VoltageSignal.datasource" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -255,6 +255,8 @@ namespace mu2e.FEB_Test_Jig
             set
             {
                 SetVoltageSetting(value);
+                if (Math.Abs(myMeasurements.averageValue - _voltageSetting) > 0.5)
+                { isBad = true; }
             }
         }
 
@@ -392,11 +394,12 @@ namespace mu2e.FEB_Test_Jig
         public double muxCalibCurrent { get; set; }
         public bool muxIsTested = false;
         public bool muxIsCalibrated = false;
+        public bool muxIsBad = false;
         public void muxCalibrate()
         {  // TODO: confirm that this is the correct way to calibrate the current.
             if (muxIsTested && !muxIsCalibrated)
             {
-                muxCurrent = 0.0000035 / muxCalibCurrent;
+                muxCurrent = muxCurrent * 0.0000035 / muxCalibCurrent;
                 muxIsCalibrated = true;
             }
         }

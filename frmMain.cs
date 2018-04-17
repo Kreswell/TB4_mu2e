@@ -711,6 +711,7 @@ namespace TB_mu2e
                 lblMessage.Text = DateTime.Now + " -> " + comm.m_prop;
                 //VoltageSignal.myClient = myFEBclient.client;
                 myFEB.BuildHDMIsignalDB();
+                buildListView();
             }
         }
 
@@ -3878,9 +3879,93 @@ namespace TB_mu2e
 
         }
 
+        private void buildListView()
+        {
+            if (listView1.Items == null)
+            {
+                string[] listString = new string[8];
+                foreach (TrimSignal trimsig in myFEB.Trims)
+                {
+                    listString = null;
+
+                    listString[0] = "Trim" + trimsig.signalIndex.ToString();
+                    listString[1] = trimsig.myHDMI.ToString();
+                    listString[2] = trimsig.voltageSetting.ToString();
+                    listString[3] = trimsig.myMeasurements.averageValue.ToString();
+                    listString[4] = trimsig.calibration.isCalibrated.ToString();
+                    listString[5] = trimsig.calibration.gain.ToString();
+                    listString[6] = trimsig.calibration.offset.ToString();
+                    listString[7] = trimsig.muxCalibCurrent.ToString();
+
+                    ListViewItem listRow = new ListViewItem(listString);
+                    listRow.Group = listView1.Groups[trimsig.myFPGA_ID];
+                    listView1.Items.Add(listRow);
+                    if (trimsig.isBad)
+                    { listRow.SubItems[4].BackColor = Color.Red; }
+                }
+
+                foreach (BiasChannel biassig in myFEB.Biases)
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        listString = null;
+
+                        listString[0] = "Bias" + biassig.Biases[i].signalIndex.ToString();
+                        listString[1] = biassig.Biases[i].myHDMI.ToString();
+                        listString[2] = biassig.voltageSetting.ToString();
+                        listString[3] = biassig.Biases[i].myMeasurements.averageValue.ToString();
+                        listString[4] = biassig.calibration.isCalibrated.ToString();
+                        listString[5] = biassig.calibration.gain.ToString();
+                        listString[6] = biassig.calibration.offset.ToString();
+                        listString[7] = "";
+
+                        ListViewItem listRow = new ListViewItem(listString);
+                        listRow.Group = listView1.Groups[biassig.Biases[i].myFPGA_ID];
+                        listView1.Items.Add(listRow);
+                        if (biassig.Biases[i].isBad)
+                        { listRow.SubItems[4].BackColor = Color.Red; }
+                    }
+                }
+
+                foreach (LEDsignal ledsig in myFEB.LEDs)
+                {
+                    listString = null;
+
+                    listString[0] = "LED" + ledsig.signalIndex.ToString();
+                    listString[1] = ledsig.myHDMI.ToString();
+                    listString[2] = ledsig.voltageSetting.ToString();
+                    listString[3] = ledsig.myMeasurements.averageValue.ToString();
+                    listString[4] = ledsig.calibration.isCalibrated.ToString();
+                    listString[5] = ledsig.calibration.gain.ToString();
+                    listString[6] = ledsig.calibration.offset.ToString();
+                    listString[7] = "";
+
+                    ListViewItem listRow = new ListViewItem(listString);
+                    listRow.Group = listView1.Groups[ledsig.myFPGA_ID];
+                    listView1.Items.Add(listRow);
+                    if (ledsig.isBad)
+                    { listRow.SubItems[4].BackColor = Color.Red; }
+                }
+            }
+            listView1.Sort();
+        }
+
         private void btnUpdateV_Click(object sender, EventArgs e)
         {
-            int fpga = (int)upDnFPGA.Value;
+
+        }
+
+        private void listView1_ItemActivate(object sender, EventArgs e)
+        {
+            txtVSet.Text = listView1.SelectedItems[0].SubItems[3].Text;
+        }
+
+        private void txtVSet_Leave(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems[0] != null)
+            {
+                listView1.SelectedItems[0].SubItems[3].Text = txtVSet.Text;
+            }
         }
     }
 
