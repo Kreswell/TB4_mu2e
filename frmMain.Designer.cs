@@ -390,7 +390,6 @@ namespace TB_mu2e
             this.btnMuxTest = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.FPGA = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Channel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.HDMI = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Setting = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -4420,7 +4419,6 @@ namespace TB_mu2e
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.FPGA,
             this.Channel,
             this.HDMI,
             this.Setting,
@@ -4449,12 +4447,8 @@ namespace TB_mu2e
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.listView1_AfterLabelEdit);
             this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
-            // 
-            // FPGA
-            // 
-            this.FPGA.Text = "FPGA";
-            this.FPGA.Width = 0;
             // 
             // Channel
             // 
@@ -5004,7 +4998,6 @@ namespace TB_mu2e
         private System.Windows.Forms.Button btnUpdateV;
         private System.Windows.Forms.ColumnHeader Setting;
         private System.Windows.Forms.ColumnHeader Measurement;
-        private System.Windows.Forms.ColumnHeader FPGA;
         private System.Windows.Forms.ColumnHeader HDMI;
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.Label label95;
