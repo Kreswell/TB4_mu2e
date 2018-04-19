@@ -234,6 +234,7 @@ namespace mu2e.FEB_Test_Jig
         public int myAFE_ID { get; set; } //Bias
         public UInt16 signalIndex { get; set; } //0-3 for trims, 1,2 for AFE (Bias), 0-16 for LEDs 
         public SignalType signalType = SignalType.Trim;
+        public string name { get; set; }
 
         public Mu2e_Register register = new Mu2e_Register();
         public virtual void SetRegister() { }

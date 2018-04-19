@@ -3962,7 +3962,7 @@ namespace TB_mu2e
 
         private void listView1_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
-            string newSetting = e.Label.
+
         }
     }
 
