@@ -3886,7 +3886,7 @@ namespace TB_mu2e
             {
                 Array.Clear(listString, 0, 8);
 
-                listString[0] = "Trim" + trimsig.signalIndex.ToString();
+                listString[0] = trimsig.name;
                 listString[1] = trimsig.myHDMI_ID.ToString();
                 listString[2] = trimsig.voltageSetting.ToString();
                 listString[3] = trimsig.myMeasurements.averageValue.ToString();
@@ -3908,7 +3908,7 @@ namespace TB_mu2e
                 {
                     Array.Clear(listString, 0, 8);
 
-                    listString[0] = "Bias" + biassig.Biases[i].signalIndex.ToString();
+                    listString[0] = biassig.Biases[i].name;
                     listString[1] = biassig.Biases[i].myHDMI_ID.ToString();
                     listString[2] = biassig.voltageSetting.ToString();
                     listString[3] = biassig.Biases[i].myMeasurements.averageValue.ToString();
@@ -3929,7 +3929,7 @@ namespace TB_mu2e
             {
                 Array.Clear(listString, 0, 8);
 
-                listString[0] = "LED" + ledsig.signalIndex.ToString();
+                listString[0] = ledsig.name;
                 listString[1] = ledsig.myHDMI_ID.ToString();
                 listString[2] = ledsig.voltageSetting.ToString();
                 listString[3] = ledsig.myMeasurements.averageValue.ToString();
@@ -3956,13 +3956,33 @@ namespace TB_mu2e
         {
         }
 
-        private void txtVSet_Leave(object sender, EventArgs e)
-        {
-        }
-
         private void listView1_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
 
+        }
+
+        VoltageSignal activeVoltageSignal = new VoltageSignal();
+
+        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            activeVoltageSignal = null;
+            foreach (VoltageSignal vsig in myFEB.Voltages)
+            {
+                if (vsig.name == e.Item.Name)
+                {
+                    activeVoltageSignal = vsig;
+                    txtVSet.Text = vsig.ToString();
+                }
+                
+            }
+        }
+
+        private void txtVSet_Leave(object sender, EventArgs e)
+        {
+            if (activeVoltageSignal != null)
+            {
+                activeVoltageSignal.SetVoltageSetting(Convert.ToDouble(txtVSet.Text));
+            }
         }
     }
 

@@ -4449,6 +4449,7 @@ namespace TB_mu2e
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.listView1_AfterLabelEdit);
             this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
+            this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
             // 
             // Channel
             // 
