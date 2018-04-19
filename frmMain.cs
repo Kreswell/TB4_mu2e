@@ -3966,14 +3966,14 @@ namespace TB_mu2e
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             activeVoltageSignal = null;
-            foreach (VoltageSignal vsig in myFEB.Voltages)
+            for (int i = 0; i < 96; i++)
             {
-                if (vsig.name == e.Item.Name)
+                if (myFEB.Voltages[i].name == e.Item.Text)
                 {
-                    activeVoltageSignal = vsig;
-                    txtVSet.Text = vsig.ToString();
+                    activeVoltageSignal = myFEB.Voltages[i];
+                    txtVSet.Text = myFEB.Voltages[i].voltageSetting.ToString();
                 }
-                
+
             }
         }
 
@@ -3983,6 +3983,7 @@ namespace TB_mu2e
             {
                 activeVoltageSignal.SetVoltageSetting(Convert.ToDouble(txtVSet.Text));
             }
+            else { }
         }
     }
 
