@@ -710,7 +710,11 @@ namespace TB_mu2e
                 if (comm.name.Contains("FECC")) { }
                 lblMessage.Text = DateTime.Now + " -> " + comm.m_prop;
                 //VoltageSignal.myClient = myFEBclient.client;
+
+                // Initialize the VoltagSignal objects, set all voltages to 0, 
+                // acquire an initial set of measurements, and fill the display.
                 myFEB.BuildHDMIsignalDB();
+                ZeroAllVoltages();
                 buildListView();
             }
         }
@@ -3899,7 +3903,7 @@ namespace TB_mu2e
                 listRow.Group = listView1.Groups[trimsig.myFPGA_ID];
                 listView1.Items.Add(listRow);
                 if (trimsig.isBad)
-                { listRow.SubItems[4].BackColor = Color.Red; }
+                { listRow.SubItems[3].BackColor = Color.Red; }
             }
 
             foreach (BiasChannel biassig in myFEB.Biases)
@@ -3921,7 +3925,7 @@ namespace TB_mu2e
                     listRow.Group = listView1.Groups[biassig.Biases[i].myFPGA_ID];
                     listView1.Items.Add(listRow);
                     if (biassig.Biases[i].isBad)
-                    { listRow.SubItems[4].BackColor = Color.Red; }
+                    { listRow.SubItems[3].BackColor = Color.Red; }
                 }
             }
 
@@ -3942,7 +3946,7 @@ namespace TB_mu2e
                 listRow.Group = listView1.Groups[ledsig.myFPGA_ID];
                 listView1.Items.Add(listRow);
                 if (ledsig.isBad)
-                { listRow.SubItems[4].BackColor = Color.Red; }
+                { listRow.SubItems[3].BackColor = Color.Red; }
             }
             listView1.Sort();
         }
@@ -3982,8 +3986,23 @@ namespace TB_mu2e
             if (activeVoltageSignal != null)
             {
                 activeVoltageSignal.SetVoltageSetting(Convert.ToDouble(txtVSet.Text));
+                updateListVoltage(activeVoltageSignal);
             }
             else { }
+        }
+
+        private void updateListVoltage(VoltageSignal vsig)
+        {
+            foreach (ListViewItem LVitem in listView1.Items)
+            {
+                if (LVitem.Name == vsig.name)
+                {
+                    LVitem.SubItems[2].Text = vsig.voltageSetting.ToString();
+                    LVitem.SubItems[3].Text = vsig.myMeasurements.averageValue.ToString();
+                    if (vsig.isBad)
+                    { LVitem.SubItems[3].BackColor = Color.Red; }
+                }
+            }
         }
     }
 

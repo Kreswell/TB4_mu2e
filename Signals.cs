@@ -226,7 +226,11 @@ namespace mu2e.FEB_Test_Jig
 
         public TcpClient myClient { get; set; }
         public List<Mu2e_Register> regList { get; set; }
+
         public bool isBad = false;
+
+        //Boolean to know whether an initial measurement has been taken when first connected.
+        public bool initVmeas = false;
 
         public int myHDMI_ID { get; set; }
         public HDMIchan myHDMI;
@@ -380,8 +384,9 @@ namespace mu2e.FEB_Test_Jig
             Mu2e_Register.ReadReg(ref register, myClient, "drd");
             double vReg = ((double)register.val - 2048) / 500;
 
-            if (Math.Abs(vSet - vReg) > 0.01)
-            {
+            if (Math.Abs(vSet - vReg) > 0.01 || !initVmeas)
+            { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
+                initVmeas = true;
                 if (!TekScope.inTestMode)
                 {
                     myMeasurements.Invalidate((int)(Math.Abs(vSet - vReg)) * 50);
@@ -444,8 +449,9 @@ namespace mu2e.FEB_Test_Jig
             Mu2e_Register.ReadReg(ref register, myClient, "drd");            
             double vReg = (double)register.val / 50;
 
-            if (Math.Abs(vSet - vReg) > 0.01)
-            {
+            if (Math.Abs(vSet - vReg) > 0.01 || !initVmeas)
+            { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
+                initVmeas = true;
                 if (!TekScope.inTestMode)
                 {
                     myMeasurements.Invalidate((int)(Math.Abs(vSet - vReg)) * 50);
@@ -496,8 +502,9 @@ namespace mu2e.FEB_Test_Jig
             Mu2e_Register.ReadReg(ref register, myClient, "drd");
             double vReg = (double)register.val / 300;
 
-            if (Math.Abs(vSet - vReg) > 0.01)
-            {
+            if (Math.Abs(vSet - vReg) > 0.01 || !initVmeas)
+            { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
+                initVmeas = true;
                 if (!TekScope.inTestMode)
                 {
                     myMeasurements.Invalidate((int)(Math.Abs(vSet - vReg)) * 50);
