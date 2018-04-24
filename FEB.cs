@@ -185,7 +185,7 @@ namespace mu2e.FEB_Test_Jig
                     newTrim.myClient = client;
                     newTrim.regList = arrReg;
                     newTrim.SetRegister();
-                    newTrim.name = "Trim" + newTrim.myFPGA_ID.ToString() + newTrim.signalIndex.ToString("00");
+                    newTrim.name = "Trim." + newTrim.myFPGA_ID.ToString() + "." + newTrim.signalIndex.ToString("00");
 
                     HDMIs[chan].Trims[idx] = newTrim; //build the HDMIs entry
                     Trims.Add(HDMIs[chan].Trims[idx]); //Add it to the trims while its here
@@ -204,7 +204,7 @@ namespace mu2e.FEB_Test_Jig
                 newBias.myClient = client;
                 newBias.regList = arrReg;
                 newBias.SetRegister();
-                newBias.name = "Bias[" + (chan % 2).ToString() + "]" + newBias.myFPGA_ID.ToString() + newBias.signalIndex.ToString("00");
+                newBias.name = "Bias[" + (chan % 2).ToString() + "]." + newBias.myFPGA_ID.ToString() + "." + newBias.signalIndex.ToString("00");
 
 
                 //Cant add it to the Biases because this is generating BiasSignals and Biases is for BiasChannel i.e each BiasChannel Biases has 2 BiasSignals 
@@ -224,7 +224,7 @@ namespace mu2e.FEB_Test_Jig
                 newLED.myClient = client;
                 newLED.regList = arrReg;
                 newLED.SetRegister();
-                newLED.name = "LED" + newLED.myFPGA_ID.ToString() + newLED.signalIndex.ToString("00");
+                newLED.name = "LED." + newLED.myFPGA_ID.ToString() + "." + newLED.signalIndex.ToString("00");
 
                 HDMIs[chan].LED = newLED;               // build the HDMIs entry
                 LEDs.Add(HDMIs[chan].LED);              //Add it to the LEDs while its here

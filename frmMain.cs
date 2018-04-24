@@ -3892,8 +3892,8 @@ namespace TB_mu2e
 
                 listString[0] = trimsig.name;
                 listString[1] = trimsig.myHDMI_ID.ToString();
-                listString[2] = trimsig.voltageSetting.ToString();
-                listString[3] = trimsig.myMeasurements.averageValue.ToString();
+                listString[2] = trimsig.voltageSetting.ToString("F3");
+                listString[3] = trimsig.myMeasurements.averageValue.ToString("F");
                 listString[4] = trimsig.calibration.isCalibrated.ToString();
                 listString[5] = trimsig.calibration.gain.ToString();
                 listString[6] = trimsig.calibration.offset.ToString();
@@ -3914,8 +3914,8 @@ namespace TB_mu2e
 
                     listString[0] = biassig.Biases[i].name;
                     listString[1] = biassig.Biases[i].myHDMI_ID.ToString();
-                    listString[2] = biassig.voltageSetting.ToString();
-                    listString[3] = biassig.Biases[i].myMeasurements.averageValue.ToString();
+                    listString[2] = biassig.voltageSetting.ToString("F3");
+                    listString[3] = biassig.Biases[i].myMeasurements.averageValue.ToString("F");
                     listString[4] = biassig.calibration.isCalibrated.ToString();
                     listString[5] = biassig.calibration.gain.ToString();
                     listString[6] = biassig.calibration.offset.ToString();
@@ -3935,8 +3935,8 @@ namespace TB_mu2e
 
                 listString[0] = ledsig.name;
                 listString[1] = ledsig.myHDMI_ID.ToString();
-                listString[2] = ledsig.voltageSetting.ToString();
-                listString[3] = ledsig.myMeasurements.averageValue.ToString();
+                listString[2] = ledsig.voltageSetting.ToString("F3");
+                listString[3] = ledsig.myMeasurements.averageValue.ToString("F");
                 listString[4] = ledsig.calibration.isCalibrated.ToString();
                 listString[5] = ledsig.calibration.gain.ToString();
                 listString[6] = ledsig.calibration.offset.ToString();

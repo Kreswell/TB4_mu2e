@@ -99,6 +99,9 @@ namespace mu2e.FEB_Test_Jig
             Biases[1] = new BiasSignal();
         }
 
+        public int myFPGA_ID { get { return Biases[0].myFPGA_ID; } }
+        public int signalIndex { get { return Biases[0].signalIndex; } }
+
         public double voltageSetting
         {
             get
