@@ -250,23 +250,24 @@ namespace mu2e.FEB_Test_Jig
         {
         }
 
-        protected double _voltageSetting;
-        public double voltageSetting
-        {
-            get
-            {
-                // Don't get the setting from the register.
-                // Put a check in SetVoltageSetting to see if the register matches voltageSetting.
-                //GetVoltageSetting();
-                return _voltageSetting;
-            }
-            set
-            {
-                SetVoltageSetting(value);
-                if (Math.Abs(myMeasurements.averageValue - _voltageSetting) > 0.5)
-                { isBad = true; }
-            }
-        }
+        //protected double _voltageSetting;
+        //public double voltageSetting
+        //{
+        //    get
+        //    {
+        //        // Don't get the setting from the register.
+        //        // Put a check in SetVoltageSetting to see if the register matches voltageSetting.
+        //        //GetVoltageSetting();
+        //        return _voltageSetting;
+        //    }
+        //    set
+        //    {
+        //        SetVoltageSetting(value);
+        //        if (Math.Abs(myMeasurements.averageValue - _voltageSetting) > 0.5)
+        //        { isBad = true; }
+        //    }
+        //}
+        public virtual double voltageSetting { get; set; }
 
         //protected virtual void GetVoltageSetting() { }
         public virtual void SetVoltageSetting(double vSet) { }
@@ -276,7 +277,7 @@ namespace mu2e.FEB_Test_Jig
         public Measurements SaveMeasurements()
         {
             Measurements measurement;
-            measurement.setting = _voltageSetting;
+            measurement.setting = voltageSetting;
             measurement.min = myMeasurements.minValue;
             measurement.max = myMeasurements.maxValue;
             measurement.average = myMeasurements.averageValue;
@@ -375,30 +376,63 @@ namespace mu2e.FEB_Test_Jig
         //    UInt32 regval = register.val;
         //    _voltageSetting = ((double)regval - 2048) / 500;
         //}
-        public override void SetVoltageSetting(double vSet)
+
+        //public override void SetVoltageSetting(double vSet)
+        //{
+        //    base.SetVoltageSetting(vSet);
+
+        //    if (vSet < -4.096 || vSet > 4.096)
+        //    {
+        //        throw new ArgumentOutOfRangeException($"Voltage setting {vSet} not between -4.096 and 4.096 Volts.");
+        //    }
+
+        //    Mu2e_Register.ReadReg(ref register, myClient, "drd");
+        //    double vReg = ((double)register.val - 2048) / 500;
+
+        //    if (Math.Abs(vSet - vReg) > 0.01 || !initVmeas)
+        //    { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
+        //        initVmeas = true;
+        //        if (!TekScope.inTestMode)
+        //        {
+        //            myMeasurements.Invalidate((int)(Math.Abs(vSet - vReg)) * 50);
+        //        }
+        //        UInt32 regval = (UInt32)(vSet * 500 + 2048);
+        //        Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+        //        voltageSetting = vSet;
+        //    }
+        //}
+
+        public override double voltageSetting
         {
-            base.SetVoltageSetting(vSet);
-
-            if (vSet < -4.096 || vSet > 4.096)
+            get
             {
-                throw new ArgumentOutOfRangeException($"Voltage setting {vSet} not between -4.096 and 4.096 Volts.");
+                Mu2e_Register.ReadReg(ref register, myClient, "drd");
+                UInt32 regval = register.val;
+                double vSet = ((double)regval - 2048) / 500;
+                return vSet;
             }
+            set
+            {
+                double vInit = voltageSetting;
+                double vSet = value;
+                //Impose ceiling/floor on setting values.
+                vSet = (vSet > -4.096) ? vSet : -4.096;
+                vSet = (vSet < 4.095) ? vSet : 4.095;
 
-            Mu2e_Register.ReadReg(ref register, myClient, "drd");
-            double vReg = ((double)register.val - 2048) / 500;
-
-            if (Math.Abs(vSet - vReg) > 0.01 || !initVmeas)
-            { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
-                initVmeas = true;
-                if (!TekScope.inTestMode)
-                {
-                    myMeasurements.Invalidate((int)(Math.Abs(vSet - vReg)) * 50);
+                if (Math.Abs(vSet - vInit) > 0.01 || !initVmeas)
+                { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
+                    initVmeas = true;
+                    if (!TekScope.inTestMode)
+                    {
+                        myMeasurements.Invalidate((int)(Math.Abs(vSet - vInit)) * 50);
+                    }
+                    UInt32 regval = (UInt32)(vSet * 500 + 2048);
+                    Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+                    voltageSetting = vSet;
                 }
-                UInt32 regval = (UInt32)(vSet * 500 + 2048);
-                Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
-                _voltageSetting = vSet;
             }
         }
+
         public double muxCurrent { get; set; }
         public double muxCalibCurrent { get; set; }
         public bool muxIsTested = false;
@@ -441,29 +475,61 @@ namespace mu2e.FEB_Test_Jig
         //    UInt32 regval = register.val;
         //    _voltageSetting = (double)regval / 50;
         //}
-        public override void SetVoltageSetting(double vSet)
+        //public override void SetVoltageSetting(double vSet)
+        //{
+        //    base.SetVoltageSetting(vSet);
+        //    if (vSet < 0 || vSet > 81.92)
+        //    {
+        //        throw new ArgumentOutOfRangeException($"Voltage setting {vSet} not between 0 and 81.92 Volts.");
+        //    }
+
+        //    Mu2e_Register.ReadReg(ref register, myClient, "drd");            
+        //    double vReg = (double)register.val / 50;
+
+        //    if (Math.Abs(vSet - vReg) > 0.01 || !initVmeas)
+        //    { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
+        //        initVmeas = true;
+        //        if (!TekScope.inTestMode)
+        //        {
+        //            myMeasurements.Invalidate((int)(Math.Abs(vSet - vReg)) * 50);
+        //        }
+        //        UInt32 regval = (UInt32)(vSet * 50);
+        //        Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+        //        _voltageSetting = vSet;
+        //    }
+        //}
+
+        public override double voltageSetting
         {
-            base.SetVoltageSetting(vSet);
-            if (vSet < 0 || vSet > 81.92)
+            get
             {
-                throw new ArgumentOutOfRangeException($"Voltage setting {vSet} not between 0 and 81.92 Volts.");
+                Mu2e_Register.ReadReg(ref register, myClient, "drd");
+                UInt32 regval = register.val;
+                double vSet = (double)regval / 50;
+                return vSet;
             }
+            set
+            {
+                double vInit = voltageSetting;
+                double vSet = value;
+                //Impose ceiling/floor on setting values.
+                vSet = (vSet > 0) ? vSet : 0;
+                vSet = (vSet < 81.91) ? vSet : 81.91;
 
-            Mu2e_Register.ReadReg(ref register, myClient, "drd");            
-            double vReg = (double)register.val / 50;
-
-            if (Math.Abs(vSet - vReg) > 0.01 || !initVmeas)
-            { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
-                initVmeas = true;
-                if (!TekScope.inTestMode)
-                {
-                    myMeasurements.Invalidate((int)(Math.Abs(vSet - vReg)) * 50);
+                if (Math.Abs(vSet - vInit) > 0.001 || !initVmeas)
+                { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
+                    initVmeas = true;
+                    if (!TekScope.inTestMode)
+                    {
+                        myMeasurements.Invalidate((int)(Math.Abs(vSet - vInit)) * 50);
+                    }
+                    UInt32 regval = (UInt32)(vSet * 50);
+                    Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+                    voltageSetting = vSet;
                 }
-                UInt32 regval = (UInt32)(vSet * 50);
-                Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
-                _voltageSetting = vSet;
             }
         }
+
         public HDMIchan[] HDMI = new HDMIchan[2];
     }
 
@@ -493,28 +559,59 @@ namespace mu2e.FEB_Test_Jig
         //    UInt32 regval = register.val;
         //    _voltageSetting = (double)regval / 300;
         //}
-        public override void SetVoltageSetting(double vSet)
+        //public override void SetVoltageSetting(double vSet)
+        //{
+        //    base.SetVoltageSetting(vSet);
+
+        //    if (vSet < 0 || vSet > 13.65)
+        //    {
+        //        throw new ArgumentOutOfRangeException($"Voltage setting {vSet} not between 0 and 13.65 Volts.");
+        //    }
+
+        //    Mu2e_Register.ReadReg(ref register, myClient, "drd");
+        //    double vReg = (double)register.val / 300;
+
+        //    if (Math.Abs(vSet - vReg) > 0.001 || !initVmeas)
+        //    { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
+        //        initVmeas = true;
+        //        if (!TekScope.inTestMode)
+        //        {
+        //            myMeasurements.Invalidate((int)(Math.Abs(vSet - vReg)) * 50);
+        //        }
+        //        UInt32 regval = (UInt32)(vSet * 300);
+        //        Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+        //        _voltageSetting = vSet;
+        //    }
+        //}
+
+        public override double voltageSetting
         {
-            base.SetVoltageSetting(vSet);
-
-            if (vSet < 0 || vSet > 13.65)
+            get
             {
-                throw new ArgumentOutOfRangeException($"Voltage setting {vSet} not between 0 and 13.65 Volts.");
+                Mu2e_Register.ReadReg(ref register, myClient, "drd");
+                UInt32 regval = register.val;
+                double vSet = (double)regval * 17/4700;
+                return vSet;
             }
+            set
+            {
+                double vInit = voltageSetting;
+                double vSet = value;
+                //Impose ceiling/floor on setting values.
+                vSet = (vSet < 14.81) ? vSet : 14.81;
+                vSet = (vSet > 0) ? vSet : 0;
 
-            Mu2e_Register.ReadReg(ref register, myClient, "drd");
-            double vReg = (double)register.val / 300;
-
-            if (Math.Abs(vSet - vReg) > 0.01 || !initVmeas)
-            { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
-                initVmeas = true;
-                if (!TekScope.inTestMode)
-                {
-                    myMeasurements.Invalidate((int)(Math.Abs(vSet - vReg)) * 50);
+                if (Math.Abs(vSet - vInit) > 0.001 || !initVmeas)
+                { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
+                    initVmeas = true;
+                    if (!TekScope.inTestMode)
+                    {
+                        myMeasurements.Invalidate((int)(Math.Abs(vSet - vInit)) * 50);
+                    }
+                    UInt32 regval = (UInt32)(vSet * 4700/17);
+                    Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+                    voltageSetting = vSet;
                 }
-                UInt32 regval = (UInt32)(vSet * 300);
-                Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
-                _voltageSetting = vSet;
             }
         }
     }
