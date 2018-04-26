@@ -183,7 +183,6 @@ namespace TB_mu2e
             this.txtSN = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.DAC_Voltages = new System.Windows.Forms.GroupBox();
-            this.btnZeroVoltages = new System.Windows.Forms.Button();
             this.txtMuxI3 = new System.Windows.Forms.TextBox();
             this.txtMuxI2 = new System.Windows.Forms.TextBox();
             this.txtMuxI1 = new System.Windows.Forms.TextBox();
@@ -305,6 +304,8 @@ namespace TB_mu2e
             this.chkBoxJ11Hist = new System.Windows.Forms.CheckBox();
             this.label32 = new System.Windows.Forms.Label();
             this.CalibPType = new System.Windows.Forms.TabPage();
+            this.btnZeroVoltages = new System.Windows.Forms.Button();
+            this.btnUpdateList = new System.Windows.Forms.Button();
             this.lblSelectedChan = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
             this.txtVSet = new System.Windows.Forms.TextBox();
@@ -404,6 +405,8 @@ namespace TB_mu2e
             this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
             this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.UpDnSamples = new System.Windows.Forms.NumericUpDown();
+            this.lblScanSamples = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabRUN.SuspendLayout();
@@ -436,6 +439,7 @@ namespace TB_mu2e
             this.tabHist.SuspendLayout();
             this.CalibPType.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UpDnSamples)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -2132,7 +2136,6 @@ namespace TB_mu2e
             // 
             // DAC_Voltages
             // 
-            this.DAC_Voltages.Controls.Add(this.btnZeroVoltages);
             this.DAC_Voltages.Controls.Add(this.txtMuxI3);
             this.DAC_Voltages.Controls.Add(this.txtMuxI2);
             this.DAC_Voltages.Controls.Add(this.txtMuxI1);
@@ -2198,16 +2201,6 @@ namespace TB_mu2e
             this.DAC_Voltages.TabIndex = 0;
             this.DAC_Voltages.TabStop = false;
             this.DAC_Voltages.Text = "DAC Voltages";
-            // 
-            // btnZeroVoltages
-            // 
-            this.btnZeroVoltages.Location = new System.Drawing.Point(299, 244);
-            this.btnZeroVoltages.Name = "btnZeroVoltages";
-            this.btnZeroVoltages.Size = new System.Drawing.Size(93, 29);
-            this.btnZeroVoltages.TabIndex = 99;
-            this.btnZeroVoltages.Text = "Zero All";
-            this.btnZeroVoltages.UseVisualStyleBackColor = true;
-            this.btnZeroVoltages.Click += new System.EventHandler(this.btnZeroVoltages_Click);
             // 
             // txtMuxI3
             // 
@@ -3421,6 +3414,10 @@ namespace TB_mu2e
             // 
             // CalibPType
             // 
+            this.CalibPType.Controls.Add(this.lblScanSamples);
+            this.CalibPType.Controls.Add(this.UpDnSamples);
+            this.CalibPType.Controls.Add(this.btnZeroVoltages);
+            this.CalibPType.Controls.Add(this.btnUpdateList);
             this.CalibPType.Controls.Add(this.lblSelectedChan);
             this.CalibPType.Controls.Add(this.label95);
             this.CalibPType.Controls.Add(this.txtVSet);
@@ -3438,11 +3435,33 @@ namespace TB_mu2e
             this.CalibPType.Text = "Prototype Calibration";
             this.CalibPType.UseVisualStyleBackColor = true;
             // 
+            // btnZeroVoltages
+            // 
+            this.btnZeroVoltages.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZeroVoltages.Location = new System.Drawing.Point(1123, 512);
+            this.btnZeroVoltages.Name = "btnZeroVoltages";
+            this.btnZeroVoltages.Size = new System.Drawing.Size(124, 36);
+            this.btnZeroVoltages.TabIndex = 15;
+            this.btnZeroVoltages.Text = "ZERO ALL";
+            this.btnZeroVoltages.UseVisualStyleBackColor = true;
+            this.btnZeroVoltages.Click += new System.EventHandler(this.btnZeroVoltages_Click);
+            // 
+            // btnUpdateList
+            // 
+            this.btnUpdateList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateList.Location = new System.Drawing.Point(942, 512);
+            this.btnUpdateList.Name = "btnUpdateList";
+            this.btnUpdateList.Size = new System.Drawing.Size(124, 36);
+            this.btnUpdateList.TabIndex = 14;
+            this.btnUpdateList.Text = "UPDATE";
+            this.btnUpdateList.UseVisualStyleBackColor = true;
+            this.btnUpdateList.Click += new System.EventHandler(this.btnUpdateList_Click);
+            // 
             // lblSelectedChan
             // 
             this.lblSelectedChan.AutoSize = true;
             this.lblSelectedChan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectedChan.Location = new System.Drawing.Point(676, 515);
+            this.lblSelectedChan.Location = new System.Drawing.Point(676, 518);
             this.lblSelectedChan.Name = "lblSelectedChan";
             this.lblSelectedChan.Size = new System.Drawing.Size(154, 25);
             this.lblSelectedChan.TabIndex = 13;
@@ -3452,7 +3471,7 @@ namespace TB_mu2e
             // 
             this.label95.AutoSize = true;
             this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label95.Location = new System.Drawing.Point(462, 515);
+            this.label95.Location = new System.Drawing.Point(462, 518);
             this.label95.Name = "label95";
             this.label95.Size = new System.Drawing.Size(208, 25);
             this.label95.TabIndex = 12;
@@ -3464,7 +3483,6 @@ namespace TB_mu2e
             this.txtVSet.Name = "txtVSet";
             this.txtVSet.Size = new System.Drawing.Size(100, 27);
             this.txtVSet.TabIndex = 11;
-            this.txtVSet.TextChanged += new System.EventHandler(this.txtVSet_TextChanged);
             // 
             // tableLayoutPanel1
             // 
@@ -4477,7 +4495,6 @@ namespace TB_mu2e
             this.label94.Size = new System.Drawing.Size(165, 29);
             this.label94.TabIndex = 5;
             this.label94.Text = "Scan Results";
-            this.label94.Click += new System.EventHandler(this.label94_Click);
             // 
             // label47
             // 
@@ -4492,7 +4509,7 @@ namespace TB_mu2e
             // btnFullVScan
             // 
             this.btnFullVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFullVScan.Location = new System.Drawing.Point(269, 222);
+            this.btnFullVScan.Location = new System.Drawing.Point(136, 275);
             this.btnFullVScan.Name = "btnFullVScan";
             this.btnFullVScan.Size = new System.Drawing.Size(125, 50);
             this.btnFullVScan.TabIndex = 1;
@@ -4519,6 +4536,32 @@ namespace TB_mu2e
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // UpDnSamples
+            // 
+            this.UpDnSamples.Location = new System.Drawing.Point(267, 298);
+            this.UpDnSamples.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.UpDnSamples.Name = "UpDnSamples";
+            this.UpDnSamples.Size = new System.Drawing.Size(60, 27);
+            this.UpDnSamples.TabIndex = 16;
+            this.UpDnSamples.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // lblScanSamples
+            // 
+            this.lblScanSamples.AutoSize = true;
+            this.lblScanSamples.Location = new System.Drawing.Point(267, 275);
+            this.lblScanSamples.Name = "lblScanSamples";
+            this.lblScanSamples.Size = new System.Drawing.Size(169, 20);
+            this.lblScanSamples.TabIndex = 17;
+            this.lblScanSamples.Text = "Samples per Channel";
             // 
             // frmMain
             // 
@@ -4585,6 +4628,7 @@ namespace TB_mu2e
             this.CalibPType.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UpDnSamples)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4869,7 +4913,6 @@ namespace TB_mu2e
         private System.Windows.Forms.CheckBox chkBoxJ12Hist;
         private System.Windows.Forms.CheckBox chkBoxJ11Hist;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Button btnZeroVoltages;
         private System.Windows.Forms.TextBox txtMuxI3;
         private System.Windows.Forms.TextBox txtMuxI2;
         private System.Windows.Forms.TextBox txtMuxI1;
@@ -4971,5 +5014,9 @@ namespace TB_mu2e
         private System.Windows.Forms.Label label95;
         private System.Windows.Forms.TextBox txtVSet;
         private System.Windows.Forms.Label lblSelectedChan;
+        private System.Windows.Forms.Button btnUpdateList;
+        private System.Windows.Forms.Button btnZeroVoltages;
+        private System.Windows.Forms.Label lblScanSamples;
+        private System.Windows.Forms.NumericUpDown UpDnSamples;
     }
 }

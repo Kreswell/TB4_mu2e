@@ -418,7 +418,7 @@ namespace mu2e.FEB_Test_Jig
                     }
                     UInt32 regval = (UInt32)(vSet * 500 + 2048);
                     Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
-                    voltageSetting = vSet;
+                    _voltageSetting = vSet;
                 }
             }
         }
@@ -516,7 +516,7 @@ namespace mu2e.FEB_Test_Jig
                     }
                     UInt32 regval = (UInt32)(vSet * 50);
                     Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
-                    voltageSetting = vSet;
+                    _voltageSetting = vSet;
                 }
             }
         }
@@ -602,7 +602,7 @@ namespace mu2e.FEB_Test_Jig
                     }
                     UInt32 regval = (UInt32)(vSet * 4700/17);
                     Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
-                    voltageSetting = vSet;
+                    _voltageSetting = vSet;
                 }
             }
         }

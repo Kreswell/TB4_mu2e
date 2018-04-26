@@ -3746,31 +3746,15 @@ namespace TB_mu2e
         {
             myFEB.SetVoltages(FEB.GetVoltageTypes.AllVoltages, 0);
             myFEB.GetVoltages(FEB.GetVoltageTypes.AllVoltages);
-        }
-
-        private void btnZeroVoltages_Click(object sender, EventArgs e)
-        {
-            ZeroAllVoltages();
-            //Mu2e_FEB_client myFEBclient = null;
-
-            //if (_ActiveFEB == 1)
-            //{ myFEBclient = PP.FEB1; }
-            //else if (_ActiveFEB == 2)
-            //{ myFEBclient = PP.FEB2; }
-            //else
-            //{ MessageBox.Show("No FEB active"); return; }
-
-            //Mu2e_Register.WriteReg(0, ref rBias, ref myFEBclient.client);
-            //Mu2e_Register.WriteReg(0, ref rLed, ref myFEBclient.client);
-            //Mu2e_Register.WriteReg(2048, ref rTrim0, ref myFEBclient.client);
-            //Mu2e_Register.WriteReg(2048, ref rTrim1, ref myFEBclient.client);
-            //Mu2e_Register.WriteReg(2048, ref rTrim2, ref myFEBclient.client);
-            //Mu2e_Register.WriteReg(2048, ref rTrim3, ref myFEBclient.client);
-            //updateVoltage();
+            foreach (VoltageSignal vsig in myFEB.Voltages)
+            {
+                updateListVoltage(vsig);
+            }
         }
 
         private void btnFullVScan_Click(object sender, EventArgs e)
         {
+            int numSamples = (int)UpDnSamples.Value;
             btnFullVScan.Text = "SCANNING...";
             Application.DoEvents();
 
@@ -3780,16 +3764,24 @@ namespace TB_mu2e
             //myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
             foreach (BiasChannel biassig in myFEB.Biases)
             {
-                biassig.GetMeasurement(5);
+                biassig.GetMeasurement(numSamples);
                 biassig.calibration.Vhi = biassig.SaveMeasurements();
+                for (int i = 0; i < 2; i++)
+                {
+                    updateListVoltage(biassig.Biases[i]);
+                }
             }
 
             myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 35);
             //myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
             foreach (BiasChannel biassig in myFEB.Biases)
             {
-                biassig.GetMeasurement(5);
+                biassig.GetMeasurement(numSamples);
                 biassig.calibration.Vmed = biassig.SaveMeasurements();
+                for (int i = 0; i < 2; i++)
+                {
+                    updateListVoltage(biassig.Biases[i]);
+                }
             }
             foreach (TrimSignal trimsig in myFEB.Trims)
             {
@@ -3801,8 +3793,13 @@ namespace TB_mu2e
             //myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
             foreach (BiasChannel biassig in myFEB.Biases)
             {
-                biassig.GetMeasurement(5);
+                biassig.GetMeasurement(numSamples);
                 biassig.calibration.Vlow = biassig.SaveMeasurements();
+                for (int i = 0; i < 2; i++)
+                {
+                    updateListVoltage(biassig.Biases[i]);
+                }
+
                 biassig.calibration.DoCalibrationFit();
             }
 
@@ -3814,24 +3811,27 @@ namespace TB_mu2e
             //myFEB.GetVoltages(FEB.GetVoltageTypes.AllTrim);
             foreach (TrimSignal trimsig in myFEB.Trims)
             {
-                trimsig.myMeasurements.GetMeasurement(5);
+                trimsig.myMeasurements.GetMeasurement(numSamples);
                 trimsig.calibration.Vlow = trimsig.SaveMeasurements();
+                updateListVoltage(trimsig);
             }
 
             myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 0);
             //myFEB.GetVoltages(FEB.GetVoltageTypes.AllTrim);
             foreach (TrimSignal trimsig in myFEB.Trims)
             {
-                trimsig.myMeasurements.GetMeasurement(5);
+                trimsig.myMeasurements.GetMeasurement(numSamples);
                 trimsig.calibration.Vmed = trimsig.SaveMeasurements();
+                updateListVoltage(trimsig);
             }
 
             myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, -4);
             //myFEB.GetVoltages(FEB.GetVoltageTypes.AllTrim);
             foreach (TrimSignal trimsig in myFEB.Trims)
             {
-                trimsig.myMeasurements.GetMeasurement(5);
+                trimsig.myMeasurements.GetMeasurement(numSamples);
                 trimsig.calibration.Vlow = trimsig.SaveMeasurements();
+                updateListVoltage(trimsig);
                 trimsig.calibration.DoCalibrationFit();
             }
 
@@ -3847,10 +3847,15 @@ namespace TB_mu2e
                 {
                     vLED.isBad = true;
                 }
+                updateListVoltage(vLED);
             }
 
             myFEB.SetVoltages(FEB.GetVoltageTypes.AllLED, 0);
             //ZeroAllVoltages();
+            foreach (VoltageSignal vsig in myFEB.LEDs)
+            {
+                updateListVoltage(vsig);
+            }
 
             btnFullVScan.Text = "SCAN";
             btnFullVScan.BackColor = Color.Green;
@@ -3869,18 +3874,18 @@ namespace TB_mu2e
             {
                 trimsig.muxCurrent = PP.FEB1.ReadA0((int)trimsig.myFPGA_ID, (int)trimsig.signalIndex);
                 trimsig.muxIsTested = true;
+                updateListVoltage(trimsig);
             }
 
             myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 0);
+            foreach (VoltageSignal vsig in myFEB.Trims)
+            {
+                updateListVoltage(vsig);
+            }
 
             TekScope.inTestMode = startingMode;
             btnMuxTest.BackColor = Color.Green;
             btnMuxTest.Text = "MUX TEST";
-        }
-
-        private void label94_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void buildListView()
@@ -3972,17 +3977,18 @@ namespace TB_mu2e
         {
             foreach (ListViewItem LVitem in listView1.Items)
             {
-                if (LVitem.Name == vsig.name)
+                if (LVitem.Text == vsig.name)
                 {
                     LVitem.SubItems[2].Text = vsig.voltageSetting.ToString();
                     LVitem.SubItems[3].Text = vsig.myMeasurements.averageValue.ToString();
                     if (vsig.isBad)
                     { LVitem.SubItems[3].BackColor = Color.Red; }
+                    Application.DoEvents();
                 }
             }
         }
 
-        private void txtVSet_TextChanged(object sender, EventArgs e)
+        private void btnUpdateList_Click(object sender, EventArgs e)
         {
             if (activeVoltageSignal != null)
             {
@@ -3990,6 +3996,11 @@ namespace TB_mu2e
                 updateListVoltage(activeVoltageSignal);
             }
             else { }
+        }
+
+        private void btnZeroVoltages_Click(object sender, EventArgs e)
+        {
+            ZeroAllVoltages();
         }
     }
 
