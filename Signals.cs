@@ -250,27 +250,16 @@ namespace mu2e.FEB_Test_Jig
         {
         }
 
-        //protected double _voltageSetting;
-        //public double voltageSetting
-        //{
-        //    get
-        //    {
-        //        // Don't get the setting from the register.
-        //        // Put a check in SetVoltageSetting to see if the register matches voltageSetting.
-        //        //GetVoltageSetting();
-        //        return _voltageSetting;
-        //    }
-        //    set
-        //    {
-        //        SetVoltageSetting(value);
-        //        if (Math.Abs(myMeasurements.averageValue - _voltageSetting) > 0.5)
-        //        { isBad = true; }
-        //    }
-        //}
-        public virtual double voltageSetting { get; set; }
+        protected double _voltageSetting;
+        public virtual double voltageSetting
+        {
+            get
+            {
+                return _voltageSetting;
+            }
+            set { }
+        }
 
-        //protected virtual void GetVoltageSetting() { }
-        public virtual void SetVoltageSetting(double vSet) { }
         public SignalMeasurement myMeasurements = new SignalMeasurement();
         public Calibration calibration = new Calibration();
 
@@ -406,20 +395,21 @@ namespace mu2e.FEB_Test_Jig
         {
             get
             {
-                Mu2e_Register.ReadReg(ref register, myClient, "drd");
-                UInt32 regval = register.val;
-                double vSet = ((double)regval - 2048) / 500;
-                return vSet;
+                //Mu2e_Register.ReadReg(ref register, myClient, "drd");
+                //UInt32 regval = register.val;
+                //double vSet = ((double)regval - 2048) / 500;
+                //return vSet;
+                return _voltageSetting;
             }
             set
             {
-                double vInit = voltageSetting;
+                double vInit = _voltageSetting;
                 double vSet = value;
                 //Impose ceiling/floor on setting values.
                 vSet = (vSet > -4.096) ? vSet : -4.096;
                 vSet = (vSet < 4.095) ? vSet : 4.095;
 
-                if (Math.Abs(vSet - vInit) > 0.01 || !initVmeas)
+                if (Math.Abs(vSet - vInit) > 0.001 || !initVmeas)
                 { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
                     initVmeas = true;
                     if (!TekScope.inTestMode)
@@ -503,14 +493,15 @@ namespace mu2e.FEB_Test_Jig
         {
             get
             {
-                Mu2e_Register.ReadReg(ref register, myClient, "drd");
-                UInt32 regval = register.val;
-                double vSet = (double)regval / 50;
-                return vSet;
+                //Mu2e_Register.ReadReg(ref register, myClient, "drd");
+                //UInt32 regval = register.val;
+                //double vSet = (double)regval / 50;
+                //return vSet;
+                return _voltageSetting;
             }
             set
             {
-                double vInit = voltageSetting;
+                double vInit = _voltageSetting;
                 double vSet = value;
                 //Impose ceiling/floor on setting values.
                 vSet = (vSet > 0) ? vSet : 0;
@@ -588,10 +579,11 @@ namespace mu2e.FEB_Test_Jig
         {
             get
             {
-                Mu2e_Register.ReadReg(ref register, myClient, "drd");
-                UInt32 regval = register.val;
-                double vSet = (double)regval * 17/4700;
-                return vSet;
+                //Mu2e_Register.ReadReg(ref register, myClient, "drd");
+                //UInt32 regval = register.val;
+                //double vSet = (double)regval * 17/4700;
+                //return vSet;
+                return _voltageSetting;
             }
             set
             {

@@ -3985,7 +3985,7 @@ namespace TB_mu2e
         {
             if (activeVoltageSignal != null)
             {
-                activeVoltageSignal.SetVoltageSetting(Convert.ToDouble(txtVSet.Text));
+                activeVoltageSignal.voltageSetting = Convert.ToDouble(txtVSet.Text);
                 updateListVoltage(activeVoltageSignal);
             }
             else { }
