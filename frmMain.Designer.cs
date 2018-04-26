@@ -305,9 +305,9 @@ namespace TB_mu2e
             this.chkBoxJ11Hist = new System.Windows.Forms.CheckBox();
             this.label32 = new System.Windows.Forms.Label();
             this.CalibPType = new System.Windows.Forms.TabPage();
+            this.lblSelectedChan = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
             this.txtVSet = new System.Windows.Forms.TextBox();
-            this.upDnFPGA = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.txtTrim7 = new System.Windows.Forms.TextBox();
@@ -386,7 +386,6 @@ namespace TB_mu2e
             this.label68 = new System.Windows.Forms.Label();
             this.label69 = new System.Windows.Forms.Label();
             this.label70 = new System.Windows.Forms.Label();
-            this.btnUpdateV = new System.Windows.Forms.Button();
             this.btnMuxTest = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -399,7 +398,6 @@ namespace TB_mu2e
             this.Offset = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MuxCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label94 = new System.Windows.Forms.Label();
-            this.label85 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.btnFullVScan = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -437,7 +435,6 @@ namespace TB_mu2e
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.tabHist.SuspendLayout();
             this.CalibPType.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.upDnFPGA)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -3424,16 +3421,14 @@ namespace TB_mu2e
             // 
             // CalibPType
             // 
+            this.CalibPType.Controls.Add(this.lblSelectedChan);
             this.CalibPType.Controls.Add(this.label95);
             this.CalibPType.Controls.Add(this.txtVSet);
-            this.CalibPType.Controls.Add(this.upDnFPGA);
             this.CalibPType.Controls.Add(this.tableLayoutPanel1);
-            this.CalibPType.Controls.Add(this.btnUpdateV);
             this.CalibPType.Controls.Add(this.btnMuxTest);
             this.CalibPType.Controls.Add(this.button9);
             this.CalibPType.Controls.Add(this.listView1);
             this.CalibPType.Controls.Add(this.label94);
-            this.CalibPType.Controls.Add(this.label85);
             this.CalibPType.Controls.Add(this.label47);
             this.CalibPType.Controls.Add(this.btnFullVScan);
             this.CalibPType.Location = new System.Drawing.Point(4, 32);
@@ -3443,11 +3438,21 @@ namespace TB_mu2e
             this.CalibPType.Text = "Prototype Calibration";
             this.CalibPType.UseVisualStyleBackColor = true;
             // 
+            // lblSelectedChan
+            // 
+            this.lblSelectedChan.AutoSize = true;
+            this.lblSelectedChan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectedChan.Location = new System.Drawing.Point(676, 515);
+            this.lblSelectedChan.Name = "lblSelectedChan";
+            this.lblSelectedChan.Size = new System.Drawing.Size(154, 25);
+            this.lblSelectedChan.TabIndex = 13;
+            this.lblSelectedChan.Text = "None Selected";
+            // 
             // label95
             // 
             this.label95.AutoSize = true;
             this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label95.Location = new System.Drawing.Point(580, 518);
+            this.label95.Location = new System.Drawing.Point(462, 515);
             this.label95.Name = "label95";
             this.label95.Size = new System.Drawing.Size(208, 25);
             this.label95.TabIndex = 12;
@@ -3455,23 +3460,11 @@ namespace TB_mu2e
             // 
             // txtVSet
             // 
-            this.txtVSet.Location = new System.Drawing.Point(794, 519);
+            this.txtVSet.Location = new System.Drawing.Point(836, 516);
             this.txtVSet.Name = "txtVSet";
             this.txtVSet.Size = new System.Drawing.Size(100, 27);
             this.txtVSet.TabIndex = 11;
-            this.txtVSet.Leave += new System.EventHandler(this.txtVSet_Leave);
-            // 
-            // upDnFPGA
-            // 
-            this.upDnFPGA.Location = new System.Drawing.Point(538, 516);
-            this.upDnFPGA.Maximum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.upDnFPGA.Name = "upDnFPGA";
-            this.upDnFPGA.Size = new System.Drawing.Size(36, 27);
-            this.upDnFPGA.TabIndex = 10;
+            this.txtVSet.TextChanged += new System.EventHandler(this.txtVSet_TextChanged);
             // 
             // tableLayoutPanel1
             // 
@@ -4384,17 +4377,6 @@ namespace TB_mu2e
             this.label70.TabIndex = 32;
             this.label70.Text = "Trim 15";
             // 
-            // btnUpdateV
-            // 
-            this.btnUpdateV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateV.Location = new System.Drawing.Point(269, 87);
-            this.btnUpdateV.Name = "btnUpdateV";
-            this.btnUpdateV.Size = new System.Drawing.Size(125, 50);
-            this.btnUpdateV.TabIndex = 9;
-            this.btnUpdateV.Text = "UPDATE";
-            this.btnUpdateV.UseVisualStyleBackColor = true;
-            this.btnUpdateV.Click += new System.EventHandler(this.btnUpdateV_Click);
-            // 
             // btnMuxTest
             // 
             this.btnMuxTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4447,8 +4429,6 @@ namespace TB_mu2e
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.listView1_AfterLabelEdit);
-            this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
             this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
             // 
             // Channel
@@ -4498,16 +4478,6 @@ namespace TB_mu2e
             this.label94.TabIndex = 5;
             this.label94.Text = "Scan Results";
             this.label94.Click += new System.EventHandler(this.label94_Click);
-            // 
-            // label85
-            // 
-            this.label85.AutoSize = true;
-            this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label85.Location = new System.Drawing.Point(462, 514);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(70, 25);
-            this.label85.TabIndex = 4;
-            this.label85.Text = "FPGA";
             // 
             // label47
             // 
@@ -4613,7 +4583,6 @@ namespace TB_mu2e
             this.tabHist.PerformLayout();
             this.CalibPType.ResumeLayout(false);
             this.CalibPType.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.upDnFPGA)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -4984,7 +4953,6 @@ namespace TB_mu2e
         private System.Windows.Forms.TextBox txtTrim0;
         private System.Windows.Forms.TextBox txtTrim3;
         private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.Label label85;
         private System.Windows.Forms.Label label94;
         private System.Windows.Forms.Label label86;
         private System.Windows.Forms.Label label93;
@@ -4996,13 +4964,12 @@ namespace TB_mu2e
         private System.Windows.Forms.ColumnHeader IsCalibrated;
         private System.Windows.Forms.ColumnHeader MuxCurrent;
         private System.Windows.Forms.Button btnMuxTest;
-        private System.Windows.Forms.Button btnUpdateV;
         private System.Windows.Forms.ColumnHeader Setting;
         private System.Windows.Forms.ColumnHeader Measurement;
         private System.Windows.Forms.ColumnHeader HDMI;
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.Label label95;
         private System.Windows.Forms.TextBox txtVSet;
-        private System.Windows.Forms.NumericUpDown upDnFPGA;
+        private System.Windows.Forms.Label lblSelectedChan;
     }
 }

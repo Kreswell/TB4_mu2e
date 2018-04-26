@@ -3951,20 +3951,6 @@ namespace TB_mu2e
             listView1.Sort();
         }
 
-        private void btnUpdateV_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_ItemActivate(object sender, EventArgs e)
-        {
-        }
-
-        private void listView1_AfterLabelEdit(object sender, LabelEditEventArgs e)
-        {
-
-        }
-
         VoltageSignal activeVoltageSignal = new VoltageSignal();
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -3976,19 +3962,10 @@ namespace TB_mu2e
                 {
                     activeVoltageSignal = myFEB.Voltages[i];
                     txtVSet.Text = myFEB.Voltages[i].voltageSetting.ToString();
+                    lblSelectedChan.Text = activeVoltageSignal.name;
                 }
 
             }
-        }
-
-        private void txtVSet_Leave(object sender, EventArgs e)
-        {
-            if (activeVoltageSignal != null)
-            {
-                activeVoltageSignal.voltageSetting = Convert.ToDouble(txtVSet.Text);
-                updateListVoltage(activeVoltageSignal);
-            }
-            else { }
         }
 
         private void updateListVoltage(VoltageSignal vsig)
@@ -4003,6 +3980,16 @@ namespace TB_mu2e
                     { LVitem.SubItems[3].BackColor = Color.Red; }
                 }
             }
+        }
+
+        private void txtVSet_TextChanged(object sender, EventArgs e)
+        {
+            if (activeVoltageSignal != null)
+            {
+                activeVoltageSignal.voltageSetting = Convert.ToDouble(txtVSet.Text);
+                updateListVoltage(activeVoltageSignal);
+            }
+            else { }
         }
     }
 
