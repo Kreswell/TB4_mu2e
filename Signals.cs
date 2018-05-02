@@ -417,7 +417,10 @@ namespace mu2e.FEB_Test_Jig
                         myMeasurements.Invalidate((int)(Math.Abs(vSet - vInit)) * 50);
                     }
                     UInt32 regval = (UInt32)(vSet * 500 + 2048);
-                    Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+                    //dwr does not seem to be working on the current preproduction board.
+                    //Calibrations will not be properly applied to writes.
+                    //Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+                    Mu2e_Register.WriteReg(regval, ref register, myClient);
                     _voltageSetting = vSet;
                 }
             }
@@ -515,7 +518,10 @@ namespace mu2e.FEB_Test_Jig
                         myMeasurements.Invalidate((int)(Math.Abs(vSet - vInit)) * 50);
                     }
                     UInt32 regval = (UInt32)(vSet * 50);
-                    Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+                    //dwr does not seem to be working on the current preproduction board.
+                    //Calibrations will not be properly applied to writes.
+                    //Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+                    Mu2e_Register.WriteReg(regval, ref register, myClient);
                     _voltageSetting = vSet;
                 }
             }
@@ -601,7 +607,10 @@ namespace mu2e.FEB_Test_Jig
                         myMeasurements.Invalidate((int)(Math.Abs(vSet - vInit)) * 50);
                     }
                     UInt32 regval = (UInt32)(vSet * 4700/17);
-                    Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+                    //dwr does not seem to be working on the current preproduction board.
+                    //Calibrations will not be properly applied to writes.
+                    //Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+                    Mu2e_Register.WriteReg(regval, ref register, myClient);
                     _voltageSetting = vSet;
                 }
             }
