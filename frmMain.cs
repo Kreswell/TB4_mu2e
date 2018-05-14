@@ -714,7 +714,7 @@ namespace TB_mu2e
                 // Initialize the VoltagSignal objects, set all voltages to 0, 
                 // acquire an initial set of measurements, and fill the display.
                 myFEB.BuildHDMIsignalDB();
-                ZeroAllVoltages();
+                //ZeroAllVoltages();
                 buildListView();
             }
         }
@@ -3890,7 +3890,7 @@ namespace TB_mu2e
                     //break;
                 }
             }
-            trimsig.myMeasurements.measurements.Clear();
+            trimsig.myMeasurements.clear();
             trimsig.myMeasurements.GetMeasurement(numMeas);
             trimsig.myMeasurements.isUpToDate = true;
             updateListVoltage(trimsig);
@@ -3913,7 +3913,7 @@ namespace TB_mu2e
                     //break;
                 }
             }
-            ledsig.myMeasurements.measurements.Clear();
+            ledsig.myMeasurements.clear();
             ledsig.myMeasurements.GetMeasurement(numMeas);
             ledsig.myMeasurements.isUpToDate = true;
             updateListVoltage(ledsig);
@@ -3936,7 +3936,7 @@ namespace TB_mu2e
                     //break;
                 }
             }
-            biassig.myMeasurements.measurements.Clear();
+            biassig.myMeasurements.clear();
             biassig.myMeasurements.GetMeasurement(numMeas);
             biassig.myMeasurements.isUpToDate = true;
             updateListVoltage(biassig);
@@ -4180,6 +4180,8 @@ namespace TB_mu2e
             string[] listString = new string[8];
             foreach (TrimSignal trimsig in myFEB.Trims)
             {
+                GetVoltageMeasurement(trimsig, 1);
+
                 Array.Clear(listString, 0, 8);
 
                 listString[0] = trimsig.name;
@@ -4202,6 +4204,8 @@ namespace TB_mu2e
             {
                 for (int i = 0; i < 2; i++)
                 {
+                    GetVoltageMeasurement(biassig, 1);
+
                     Array.Clear(listString, 0, 8);
 
                     listString[0] = biassig.Biases[i].name;
@@ -4223,6 +4227,8 @@ namespace TB_mu2e
 
             foreach (LEDsignal ledsig in myFEB.LEDs)
             {
+                GetVoltageMeasurement(ledsig, 1);
+
                 Array.Clear(listString, 0, 8);
 
                 listString[0] = ledsig.name;
@@ -4240,6 +4246,7 @@ namespace TB_mu2e
                 if (ledsig.isBad)
                 { listRow.SubItems[3].BackColor = Color.Red; }
             }
+
             listView1.Sort();
         }
 
