@@ -283,9 +283,9 @@ namespace TB_mu2e
             Mu2e_Register reg_trig_count;
             Mu2e_Register.FindAddr(0x67, ref arrReg, out reg_trig_count);
 
-            Mu2e_Register.ReadReg(ref reg_spill_state, client);
-            Mu2e_Register.ReadReg(ref reg_spill_num, client);
-            Mu2e_Register.ReadReg(ref reg_trig_count, client);
+            Mu2e_Register.ReadReg(ref reg_spill_state, ref client);
+            Mu2e_Register.ReadReg(ref reg_spill_num, ref client);
+            Mu2e_Register.ReadReg(ref reg_trig_count, ref client);
 
             spill_state = reg_spill_state.val;
             spill_num=reg_spill_num.val;
@@ -329,22 +329,22 @@ namespace TB_mu2e
                     switch (CMB_num)
                     {
                         case 0:
-                            Mu2e_Register.WriteReg(1, ref CMB_set, client);
+                            Mu2e_Register.WriteReg(1, ref CMB_set, ref client);
                             break;
                         case 1:
-                            Mu2e_Register.WriteReg(2, ref CMB_set, client);
+                            Mu2e_Register.WriteReg(2, ref CMB_set, ref client);
                             break;
                         case 2:
-                            Mu2e_Register.WriteReg(4, ref CMB_set, client);
+                            Mu2e_Register.WriteReg(4, ref CMB_set, ref client);
                             break;
                         case 3:
-                            Mu2e_Register.WriteReg(8, ref CMB_set, client);
+                            Mu2e_Register.WriteReg(8, ref CMB_set, ref client);
                             break;
                         default:
-                            Mu2e_Register.WriteReg(1, ref CMB_set, client);
+                            Mu2e_Register.WriteReg(1, ref CMB_set, ref client);
                             break;
                     }
-                    Mu2e_Register.WriteReg(0x200, ref CMB_cmnd, client);
+                    Mu2e_Register.WriteReg(0x200, ref CMB_cmnd, ref client);
 
                     SendStr("rdi 26");
                     string t = "";
