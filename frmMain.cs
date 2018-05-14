@@ -3742,7 +3742,10 @@ namespace TB_mu2e
             //Must be done in frmMain due to TCP client issues.
             //Gets value from register and sets value in trimsig if different.
             double vsig = trimsig.voltageSetting;
-            Mu2e_Register.ReadReg(ref trimsig.register, ref myFEBclient.client);
+            Mu2e_Register reg = new Mu2e_Register();
+            Mu2e_Register.FindAddr((ushort)(48 + trimsig.signalIndex), ref myFEBclient.arrReg, out reg);
+            reg.fpga_index = trimsig.myFPGA_ID;
+            Mu2e_Register.ReadReg(ref reg, ref myFEBclient.client);
             double vreg = ((double)trimsig.register.val - 2048) / 500;
             if (vreg != vsig)
             {
@@ -3756,7 +3759,10 @@ namespace TB_mu2e
             //Must be done in frmMain due to TCP client issues.
             //Gets value from register and sets value in ledsig if different.
             double vsig = ledsig.voltageSetting;
-            Mu2e_Register.ReadReg(ref ledsig.register, ref myFEBclient.client);
+            Mu2e_Register reg = new Mu2e_Register();
+            Mu2e_Register.FindAddr((ushort)(64 + ledsig.signalIndex), ref myFEBclient.arrReg, out reg);
+            reg.fpga_index = ledsig.myFPGA_ID;
+            Mu2e_Register.ReadReg(ref reg, ref myFEBclient.client);
             double vreg = (double)ledsig.register.val * 17 / 4700;
             if (vreg != vsig)
             {
@@ -3769,8 +3775,10 @@ namespace TB_mu2e
         {
             //Must be done in frmMain due to TCP client issues.
             //Gets value from register and sets value in trimsig if different.
-            Mu2e_Register reg = biaschan.register;
             double vsig = biaschan.voltageSetting;
+            Mu2e_Register reg = new Mu2e_Register();
+            Mu2e_Register.FindAddr((ushort)(68 + biaschan.signalIndex), ref myFEBclient.arrReg, out reg);
+            reg.fpga_index = biaschan.myFPGA_ID;
             Mu2e_Register.ReadReg(ref reg, ref myFEBclient.client);
             double vreg = (double)reg.val / 50;
             if (vreg != vsig)
@@ -3787,13 +3795,15 @@ namespace TB_mu2e
             //Impose ceiling/floor on setting values.
             regvalnew = (regvalnew > 0) ? regvalnew : 0;
             regvalnew = (regvalnew < 4096) ? regvalnew : 4095;
-
-            Mu2e_Register.ReadReg(ref trimsig.register, ref myFEBclient.client);
-            uint regvalold = trimsig.register.val;
+            Mu2e_Register reg = new Mu2e_Register();
+            Mu2e_Register.FindAddr((ushort)(48 + trimsig.signalIndex), ref myFEBclient.arrReg, out reg);
+            reg.fpga_index = trimsig.myFPGA_ID;
+            Mu2e_Register.ReadReg(ref reg, ref myFEBclient.client);
+            uint regvalold = reg.val;
 
             if (regvalnew != regvalold)
             {
-                Mu2e_Register.WriteReg(regvalnew, ref trimsig.register, ref myFEBclient.client);
+                Mu2e_Register.WriteReg(regvalnew, ref reg, ref myFEBclient.client);
                 //Invalidate for 1ms per 20mV (rounded up) to allow for ramping.
                 int invalTime = (int)(Math.Abs(regvalold - regvalnew) / 10 + 1);
                 trimsig.myMeasurements.Invalidate(invalTime);
@@ -3808,13 +3818,15 @@ namespace TB_mu2e
             //Impose ceiling/floor on setting values.
             regvalnew = (regvalnew > 0) ? regvalnew : 0;
             regvalnew = (regvalnew < 4096) ? regvalnew : 4095;
-
-            Mu2e_Register.ReadReg(ref ledsig.register, ref myFEBclient.client);
+            Mu2e_Register reg = new Mu2e_Register();
+            Mu2e_Register.FindAddr((ushort)(64 + ledsig.signalIndex), ref myFEBclient.arrReg, out reg);
+            reg.fpga_index = ledsig.myFPGA_ID;
+            Mu2e_Register.ReadReg(ref reg, ref myFEBclient.client);
             uint regvalold = ledsig.register.val;
 
             if (regvalnew != regvalold)
             {
-                Mu2e_Register.WriteReg(regvalnew, ref ledsig.register, ref myFEBclient.client);
+                Mu2e_Register.WriteReg(regvalnew, ref reg, ref myFEBclient.client);
                 //Invalidate for 1ms per 20mV (rounded up) to allow for ramping.
                 int invalTime = (int)(Math.Abs(regvalold - regvalnew) * 17 / 94 + 1);
                 ledsig.myMeasurements.Invalidate(invalTime);
@@ -3829,13 +3841,15 @@ namespace TB_mu2e
             //Impose ceiling/floor on setting values.
             regvalnew = (regvalnew > 0) ? regvalnew : 0;
             regvalnew = (regvalnew < 4096) ? regvalnew : 4095;
-
-            Mu2e_Register.ReadReg(ref biassig.register, ref myFEBclient.client);
+            Mu2e_Register reg = new Mu2e_Register();
+            Mu2e_Register.FindAddr((ushort)(68 + biassig.signalIndex), ref myFEBclient.arrReg, out reg);
+            reg.fpga_index = biassig.myFPGA_ID;
+            Mu2e_Register.ReadReg(ref reg, ref myFEBclient.client);
             uint regvalold = biassig.register.val;
 
             if (regvalnew != regvalold)
             {
-                Mu2e_Register.WriteReg(regvalnew, ref biassig.register, ref myFEBclient.client);
+                Mu2e_Register.WriteReg(regvalnew, ref reg, ref myFEBclient.client);
                 //Invalidate for 1ms per 20mV (rounded up) to allow for ramping.
                 int invalTime = (int)(Math.Abs(regvalold - regvalnew) + 1);
                 biassig.myMeasurements.Invalidate(invalTime);
