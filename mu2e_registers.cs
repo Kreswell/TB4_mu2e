@@ -674,7 +674,7 @@ namespace TB_mu2e
         }
 
         // The optional readType allows for voltage registers to use "drd" to apply calibrations. 
-        public static void ReadReg(ref Mu2e_Register reg, TcpClient myClient, string readType = "rd")
+        public static void ReadReg(ref Mu2e_Register reg, ref TcpClient myClient, string readType = "rd")
         {
             ushort addr = (ushort)(reg.addr + (reg.fpga_index * reg.fpga_offset_mult));
             ushort upper_addr = (ushort)(reg.upper_addr + (reg.fpga_index * reg.fpga_offset_mult));
@@ -749,7 +749,7 @@ namespace TB_mu2e
         }
 
         //The optional writeType allows for "dwr" to be used for voltage registers to apply calibrations.
-        public static void WriteReg(UInt32 v, ref Mu2e_Register reg, TcpClient myClient, string writeType = "wr")
+        public static void WriteReg(UInt32 v, ref Mu2e_Register reg, ref TcpClient myClient, string writeType = "wr")
         {
             ushort addr = (ushort)(reg.addr + (reg.fpga_index * reg.fpga_offset_mult));
             ushort upper_addr = (ushort)(reg.upper_addr + (reg.fpga_index * reg.fpga_offset_mult));
