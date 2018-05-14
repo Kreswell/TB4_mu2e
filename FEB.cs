@@ -338,6 +338,9 @@ namespace mu2e.FEB_Test_Jig
         public List<double> measurements;
         public double sum;
 
+        //Stores whether voltageSetting in VoltageSignal() has been updated to match most recent measurement.
+        public bool isUpToDate = false;
+
         public SignalMeasurement()
         {
             clear();

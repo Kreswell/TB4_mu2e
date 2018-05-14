@@ -1820,7 +1820,6 @@ namespace TB_mu2e
             this.txtI.Size = new System.Drawing.Size(55, 24);
             this.txtI.TabIndex = 62;
             this.txtI.Text = "0.000";
-            this.txtI.TextChanged += new System.EventHandler(this.txtI_TextChanged);
             // 
             // txtV
             // 

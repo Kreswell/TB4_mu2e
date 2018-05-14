@@ -3737,18 +3737,271 @@ namespace TB_mu2e
             Application.DoEvents();
         }
 
-        private void txtI_TextChanged(object sender, EventArgs e)
+        void GetVoltageSetting(TrimSignal trimsig)
         {
+            //Must be done in frmMain due to TCP client issues.
+            //Gets value from register and sets value in trimsig if different.
+            double vsig = trimsig.voltageSetting;
+            Mu2e_Register.ReadReg(ref trimsig.register, myFEBclient.client);
+            double vreg = ((double)trimsig.register.val - 2048) / 500;
+            if (vreg != vsig)
+            {
+                trimsig.voltageSetting = vreg;
+                trimsig.myMeasurements.isUpToDate = false;
+            }
+        }
 
+        void GetVoltageSetting(LEDsignal ledsig)
+        {
+            //Must be done in frmMain due to TCP client issues.
+            //Gets value from register and sets value in ledsig if different.
+            double vsig = ledsig.voltageSetting;
+            Mu2e_Register.ReadReg(ref ledsig.register, myFEBclient.client);
+            double vreg = (double)ledsig.register.val * 17 / 4700;
+            if (vreg != vsig)
+            {
+                ledsig.voltageSetting = vreg;
+                ledsig.myMeasurements.isUpToDate = false;
+            }
+        }
+
+        void GetVoltageSetting(BiasChannel biaschan)
+        {
+            //Must be done in frmMain due to TCP client issues.
+            //Gets value from register and sets value in trimsig if different.
+            Mu2e_Register reg = biaschan.register;
+            double vsig = biaschan.voltageSetting;
+            Mu2e_Register.ReadReg(ref reg, myFEBclient.client);
+            double vreg = (double)reg.val / 50;
+            if (vreg != vsig)
+            {
+                biaschan.voltageSetting = vreg;
+                biaschan.Biases[0].myMeasurements.isUpToDate = false;
+                biaschan.Biases[1].myMeasurements.isUpToDate = false;
+            }
+        }
+
+        void SetVoltage(TrimSignal trimsig, double vset)
+        {
+            uint regvalnew = (uint)(vset * 500 + 2048);
+            //Impose ceiling/floor on setting values.
+            regvalnew = (regvalnew > 0) ? regvalnew : 0;
+            regvalnew = (regvalnew < 4096) ? regvalnew : 4095;
+
+            Mu2e_Register.ReadReg(ref trimsig.register, myFEBclient.client);
+            uint regvalold = trimsig.register.val;
+
+            if (regvalnew != regvalold)
+            {
+                Mu2e_Register.WriteReg(regvalnew, ref trimsig.register, myFEBclient.client);
+                //Invalidate for 1ms per 20mV (rounded up) to allow for ramping.
+                int invalTime = (int)(Math.Abs(regvalold - regvalnew) / 10 + 1);
+                trimsig.myMeasurements.Invalidate(invalTime);
+                trimsig.voltageSetting = vset;
+                trimsig.myMeasurements.isUpToDate = false;               
+            }
+        }
+
+        void SetVoltage(LEDsignal ledsig, double vset)
+        {
+            uint regvalnew = (uint)(vset * 4700 / 17);
+            //Impose ceiling/floor on setting values.
+            regvalnew = (regvalnew > 0) ? regvalnew : 0;
+            regvalnew = (regvalnew < 4096) ? regvalnew : 4095;
+
+            Mu2e_Register.ReadReg(ref ledsig.register, myFEBclient.client);
+            uint regvalold = ledsig.register.val;
+
+            if (regvalnew != regvalold)
+            {
+                Mu2e_Register.WriteReg(regvalnew, ref ledsig.register, myFEBclient.client);
+                //Invalidate for 1ms per 20mV (rounded up) to allow for ramping.
+                int invalTime = (int)(Math.Abs(regvalold - regvalnew) * 17 / 94 + 1);
+                ledsig.myMeasurements.Invalidate(invalTime);
+                ledsig.voltageSetting = vset;
+                ledsig.myMeasurements.isUpToDate = false;
+            }
+        }
+
+        void SetVoltage(BiasSignal biassig, double vset)
+        {
+            uint regvalnew = (uint)(vset * 50);
+            //Impose ceiling/floor on setting values.
+            regvalnew = (regvalnew > 0) ? regvalnew : 0;
+            regvalnew = (regvalnew < 4096) ? regvalnew : 4095;
+
+            Mu2e_Register.ReadReg(ref biassig.register, myFEBclient.client);
+            uint regvalold = biassig.register.val;
+
+            if (regvalnew != regvalold)
+            {
+                Mu2e_Register.WriteReg(regvalnew, ref biassig.register, myFEBclient.client);
+                //Invalidate for 1ms per 20mV (rounded up) to allow for ramping.
+                int invalTime = (int)(Math.Abs(regvalold - regvalnew) + 1);
+                biassig.myMeasurements.Invalidate(invalTime);
+                biassig.voltageSetting = vset;
+                biassig.myMeasurements.isUpToDate = false;
+            }
+        }
+
+        void SetVoltage(BiasChannel biaschan, double vset)
+        {
+            BiasSignal bias0 = biaschan.Biases[0];
+            BiasSignal bias1 = biaschan.Biases[1];
+
+            SetVoltage(bias0, vset);
+            SetVoltage(bias1, vset);
+            //uint regvalnew = (uint)(vset * 50);
+            ////Impose ceiling/floor on setting values.
+            //regvalnew = (regvalnew > 0) ? regvalnew : 0;
+            //regvalnew = (regvalnew < 4096) ? regvalnew : 4095;
+
+            //Mu2e_Register reg = biaschan.register;
+            //Mu2e_Register.ReadReg(ref reg, myFEBclient.client);
+            //uint regvalold = biaschan.register.val;
+
+            //if (regvalnew != regvalold)
+            //{
+            //    Mu2e_Register.WriteReg(regvalnew, ref reg, myFEBclient.client);
+            //    //Invalidate for 1ms per 20mV (rounded up) to allow for ramping.
+            //    int invalTime = (int)(Math.Abs(regvalold - regvalnew) + 1);
+            //    biaschan.Biases[0].myMeasurements.Invalidate(invalTime);
+            //    biaschan.Biases[1].myMeasurements.Invalidate(invalTime);
+            //    biaschan.voltageSetting = vset;
+            //    biaschan.Biases[0].myMeasurements.isUpToDate = false;
+            //    biaschan.Biases[1].myMeasurements.isUpToDate = false;
+            //}
+        }
+
+        void GetVoltageMeasurement(TrimSignal trimsig, int numMeas, int timeCount = 410)
+        {   //timeCount should be the voltage difference * 50. Initialized at max possible voltage diff.
+            int checkCount = 0;
+            while (!trimsig.myMeasurements.isValid)
+            {   //Wait until either it becomes valid, or max time is reached.
+                if (checkCount < timeCount)
+                {
+                    checkCount++;
+                    System.Threading.Thread.Sleep(1);
+                    Application.DoEvents();
+                }
+                else
+                {
+                    trimsig.myMeasurements.isValid = true;
+                    //break;
+                }
+            }
+            trimsig.myMeasurements.measurements.Clear();
+            trimsig.myMeasurements.GetMeasurement(numMeas);
+            trimsig.myMeasurements.isUpToDate = true;
+            updateListVoltage(trimsig);
+        }
+
+        void GetVoltageMeasurement(LEDsignal ledsig, int numMeas, int timeCount = 741)
+        {   //timeCount should be the voltage difference * 50. Initialized at max possible voltage diff.
+            int checkCount = 0;
+            while (!ledsig.myMeasurements.isValid)
+            {   //Wait until either it becomes valid, or max time is reached.
+                if (checkCount < timeCount)
+                {
+                    checkCount++;
+                    System.Threading.Thread.Sleep(1);
+                    Application.DoEvents();
+                }
+                else
+                {
+                    ledsig.myMeasurements.isValid = true;
+                    //break;
+                }
+            }
+            ledsig.myMeasurements.measurements.Clear();
+            ledsig.myMeasurements.GetMeasurement(numMeas);
+            ledsig.myMeasurements.isUpToDate = true;
+            updateListVoltage(ledsig);
+        }
+
+        void GetVoltageMeasurement(BiasSignal biassig, int numMeas, int timeCount = 3900)
+        {   //timeCount should be the voltage difference * 50. Initialized at max possible voltage diff.
+            int checkCount = 0;
+            while (!biassig.myMeasurements.isValid)
+            {   //Wait until either it becomes valid, or max time is reached.
+                if (checkCount < timeCount)
+                {
+                    checkCount++;
+                    System.Threading.Thread.Sleep(1);
+                    Application.DoEvents();
+                }
+                else
+                {
+                    biassig.myMeasurements.isValid = true;
+                    //break;
+                }
+            }
+            biassig.myMeasurements.measurements.Clear();
+            biassig.myMeasurements.GetMeasurement(numMeas);
+            biassig.myMeasurements.isUpToDate = true;
+            updateListVoltage(biassig);
+        }
+
+        void GetVoltageMeasurement(BiasChannel biaschan, int numMeas, int timeCount = 3900)
+        {
+            BiasSignal bias0 = biaschan.Biases[0];
+            BiasSignal bias1 = biaschan.Biases[1];
+            GetVoltageMeasurement(bias0, numMeas, timeCount);
+            GetVoltageMeasurement(bias1, numMeas, 0);
+            //timeCount should be the voltage difference * 50. Initialized at max possible voltage diff.
+            //int checkCount = 0;
+            //while (!biaschan.Biases[0].myMeasurements.isValid || !biaschan.Biases[1].myMeasurements.isValid)
+            //{   //Wait until either it becomes valid, or max time is reached.
+            //    if (checkCount < timeCount)
+            //    {
+            //        checkCount++;
+            //        System.Threading.Thread.Sleep(1);
+            //        Application.DoEvents();
+            //    }
+            //    else
+            //    {
+            //        biaschan.Biases[0].myMeasurements.isValid = true;
+            //        biaschan.Biases[1].myMeasurements.isValid = true;
+            //        //break;
+            //    }
+            //}
+            //biaschan.Biases[0].myMeasurements.measurements.Clear();
+            //biaschan.Biases[1].myMeasurements.measurements.Clear();
+            //biaschan.GetMeasurement(numMeas);
+            //biaschan.Biases[0].myMeasurements.isUpToDate = true;
+            //biaschan.Biases[1].myMeasurements.isUpToDate = true;
+            //updateListVoltage(biaschan.Biases[0]);
+            //updateListVoltage(biaschan.Biases[1]);
         }
 
         private void ZeroAllVoltages()
         {
-            myFEB.SetVoltages(FEB.GetVoltageTypes.AllVoltages, 0);
-            myFEB.GetVoltages(FEB.GetVoltageTypes.AllVoltages);
-            foreach (VoltageSignal vsig in myFEB.Voltages)
+            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllVoltages, 0);
+            //myFEB.GetVoltages(FEB.GetVoltageTypes.AllVoltages);
+            //foreach (VoltageSignal vsig in myFEB.Voltages)
+            //{
+            //    updateListVoltage(vsig);
+            //}
+
+            foreach (BiasChannel biaschan in myFEB.Biases)
             {
-                updateListVoltage(vsig);
+                SetVoltage(biaschan, 0);
+                GetVoltageMeasurement(biaschan, 1);
+                Application.DoEvents();
+            }
+
+            foreach (TrimSignal trimsig in myFEB.Trims)
+            {
+                SetVoltage(trimsig, 0);
+                GetVoltageMeasurement(trimsig, 1);
+                Application.DoEvents();
+            }
+
+            foreach (LEDsignal ledsig in myFEB.LEDs)
+            {
+                SetVoltage(ledsig, 0);
+                GetVoltageMeasurement(ledsig, 1);
+                Application.DoEvents();
             }
         }
 
@@ -3760,23 +4013,27 @@ namespace TB_mu2e
 
             ZeroAllVoltages();
 
-            myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 65);
+            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 65);
             //myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
             foreach (BiasChannel biassig in myFEB.Biases)
             {
-                biassig.GetMeasurement(numSamples);
-                biassig.calibration.Vhi = biassig.SaveMeasurements();
+                //biassig.GetMeasurement(numSamples);
+                //biassig.calibration.Vhi = biassig.SaveMeasurements();
+                SetVoltage(biassig, 65);
+                GetVoltageMeasurement(biassig, numSamples, 3250);
                 for (int i = 0; i < 2; i++)
                 {
                     updateListVoltage(biassig.Biases[i]);
                 }
             }
 
-            myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 35);
+            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 35);
             //myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
             foreach (BiasChannel biassig in myFEB.Biases)
             {
-                biassig.GetMeasurement(numSamples);
+                //biassig.GetMeasurement(numSamples);
+                SetVoltage(biassig, 35);
+                GetVoltageMeasurement(biassig, numSamples, 1500);
                 biassig.calibration.Vmed = biassig.SaveMeasurements();
                 for (int i = 0; i < 2; i++)
                 {
@@ -3789,11 +4046,13 @@ namespace TB_mu2e
                 trimsig.muxCalibrate();
             }
 
-            myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 5);
+            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 5);
             //myFEB.GetVoltages(FEB.GetVoltageTypes.AllBias);
             foreach (BiasChannel biassig in myFEB.Biases)
             {
-                biassig.GetMeasurement(numSamples);
+                //biassig.GetMeasurement(numSamples);
+                SetVoltage(biassig, 5);
+                GetVoltageMeasurement(biassig, numSamples, 1500);
                 biassig.calibration.Vlow = biassig.SaveMeasurements();
                 for (int i = 0; i < 2; i++)
                 {
@@ -3803,59 +4062,84 @@ namespace TB_mu2e
                 biassig.calibration.DoCalibrationFit();
             }
 
-            myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 0);
+            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 0);
+            foreach (BiasChannel biassig in myFEB.Biases)
+            {
+                //biassig.GetMeasurement(numSamples);
+                //biassig.calibration.Vhi = biassig.SaveMeasurements();
+                SetVoltage(biassig, 0);
+                GetVoltageMeasurement(biassig, 1, 250);
+                for (int i = 0; i < 2; i++)
+                {
+                    updateListVoltage(biassig.Biases[i]);
+                }
+            }
 
             //ZeroAllVoltages();
 
-            myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 4);
+            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 4);
             //myFEB.GetVoltages(FEB.GetVoltageTypes.AllTrim);
             foreach (TrimSignal trimsig in myFEB.Trims)
             {
-                trimsig.myMeasurements.GetMeasurement(numSamples);
+                //trimsig.myMeasurements.GetMeasurement(numSamples);
+                SetVoltage(trimsig, 4);
+                GetVoltageMeasurement(trimsig, numSamples, 200);
                 trimsig.calibration.Vlow = trimsig.SaveMeasurements();
                 updateListVoltage(trimsig);
             }
 
-            myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 0);
+            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, -4);
             //myFEB.GetVoltages(FEB.GetVoltageTypes.AllTrim);
             foreach (TrimSignal trimsig in myFEB.Trims)
             {
-                trimsig.myMeasurements.GetMeasurement(numSamples);
-                trimsig.calibration.Vmed = trimsig.SaveMeasurements();
-                updateListVoltage(trimsig);
-            }
-
-            myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, -4);
-            //myFEB.GetVoltages(FEB.GetVoltageTypes.AllTrim);
-            foreach (TrimSignal trimsig in myFEB.Trims)
-            {
-                trimsig.myMeasurements.GetMeasurement(numSamples);
+                //trimsig.myMeasurements.GetMeasurement(numSamples);
+                SetVoltage(trimsig, -4);
+                GetVoltageMeasurement(trimsig, numSamples, 400);
                 trimsig.calibration.Vlow = trimsig.SaveMeasurements();
                 updateListVoltage(trimsig);
                 trimsig.calibration.DoCalibrationFit();
             }
 
-            myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 0);
+            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 0);
+            //myFEB.GetVoltages(FEB.GetVoltageTypes.AllTrim);
+            foreach (TrimSignal trimsig in myFEB.Trims)
+            {
+                //trimsig.myMeasurements.GetMeasurement(numSamples);
+                SetVoltage(trimsig, 0);
+                GetVoltageMeasurement(trimsig, numSamples, 200);
+                trimsig.calibration.Vmed = trimsig.SaveMeasurements();
+                updateListVoltage(trimsig);
+            }
 
             //Check that all channels look good.
-            myFEB.SetVoltages(FEB.GetVoltageTypes.AllLED, 2);
+            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllLED, 2);
             //myFEB.GetVoltages(FEB.GetVoltageTypes.AllLED);
-            foreach (VoltageSignal vLED in myFEB.LEDs)
+            foreach (LEDsignal ledsig in myFEB.LEDs)
             {
-                vLED.myMeasurements.GetMeasurement(1);
-                if (Math.Abs(vLED.voltageSetting - vLED.myMeasurements.averageValue) > 1)
+                //vLED.myMeasurements.GetMeasurement(1);
+                SetVoltage(ledsig, 12);
+                GetVoltageMeasurement(ledsig, 1, 600);
+                if (Math.Abs(ledsig.voltageSetting - ledsig.myMeasurements.averageValue) > 1)
                 {
-                    vLED.isBad = true;
+                    ledsig.isBad = true;
                 }
-                updateListVoltage(vLED);
+                updateListVoltage(ledsig);
             }
 
-            myFEB.SetVoltages(FEB.GetVoltageTypes.AllLED, 0);
-            //ZeroAllVoltages();
-            foreach (VoltageSignal vsig in myFEB.LEDs)
+            foreach (LEDsignal ledsig in myFEB.LEDs)
             {
-                updateListVoltage(vsig);
+                //vLED.myMeasurements.GetMeasurement(1);
+                SetVoltage(ledsig, 0);
+                GetVoltageMeasurement(ledsig, 1, 600);
+                updateListVoltage(ledsig);
             }
+
+            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllLED, 0);
+            //ZeroAllVoltages();
+            //foreach (VoltageSignal vsig in myFEB.LEDs)
+            //{
+            //    updateListVoltage(vsig);
+            //}
 
             btnFullVScan.Text = "SCAN";
             btnFullVScan.BackColor = Color.Green;
@@ -3868,19 +4152,22 @@ namespace TB_mu2e
             bool startingMode = TekScope.inTestMode;
             TekScope.inTestMode = true;
 
-            myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, -2);
+            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, -2);
 
             foreach (TrimSignal trimsig in myFEB.Trims)
             {
+                SetVoltage(trimsig, -2);
                 trimsig.muxCurrent = PP.FEB1.ReadA0((int)trimsig.myFPGA_ID, (int)trimsig.signalIndex);
                 trimsig.muxIsTested = true;
-                updateListVoltage(trimsig);
+                //updateListVoltage(trimsig);
             }
 
-            myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 0);
-            foreach (VoltageSignal vsig in myFEB.Trims)
+            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 0);
+            foreach (TrimSignal trimsig in myFEB.Trims)
             {
-                updateListVoltage(vsig);
+                SetVoltage(trimsig, 0);
+                GetVoltageMeasurement(trimsig, 1, 100);
+                updateListVoltage(trimsig);
             }
 
             TekScope.inTestMode = startingMode;
@@ -3992,7 +4279,24 @@ namespace TB_mu2e
         {
             if (activeVoltageSignal != null)
             {
-                activeVoltageSignal.voltageSetting = Convert.ToDouble(txtVSet.Text);
+                double vset = Convert.ToDouble(txtVSet.Text);
+                if (activeVoltageSignal is TrimSignal)
+                {
+                    SetVoltage((TrimSignal)activeVoltageSignal, vset);
+                    GetVoltageMeasurement((TrimSignal)activeVoltageSignal, 1);
+                }
+                else if (activeVoltageSignal is BiasSignal)
+                {
+                    SetVoltage((BiasSignal)activeVoltageSignal, vset);
+                    GetVoltageMeasurement((BiasSignal)activeVoltageSignal, 1);
+                }
+                else if (activeVoltageSignal is LEDsignal)
+                {
+                    SetVoltage((LEDsignal)activeVoltageSignal, vset);
+                    GetVoltageMeasurement((LEDsignal)activeVoltageSignal, 1);
+                }
+                else { }
+
                 updateListVoltage(activeVoltageSignal);
             }
             else { }

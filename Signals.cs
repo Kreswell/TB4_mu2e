@@ -101,6 +101,7 @@ namespace mu2e.FEB_Test_Jig
 
         public int myFPGA_ID { get { return Biases[0].myFPGA_ID; } }
         public int signalIndex { get { return Biases[0].signalIndex; } }
+        public Mu2e_Register register { get { return Biases[0].register; } }
 
         public double voltageSetting
         {
@@ -251,14 +252,15 @@ namespace mu2e.FEB_Test_Jig
         }
 
         protected double _voltageSetting;
-        public virtual double voltageSetting
-        {
-            get
-            {
-                return _voltageSetting;
-            }
-            set { }
-        }
+        //public virtual double voltageSetting
+        //{
+        //    get
+        //    {
+        //        return _voltageSetting;
+        //    }
+        //    set { }
+        //}
+        public double voltageSetting { get; set; }
 
         public SignalMeasurement myMeasurements = new SignalMeasurement();
         public Calibration calibration = new Calibration();
@@ -391,40 +393,40 @@ namespace mu2e.FEB_Test_Jig
         //    }
         //}
 
-        public override double voltageSetting
-        {
-            get
-            {
-                //Mu2e_Register.ReadReg(ref register, myClient, "drd");
-                //UInt32 regval = register.val;
-                //double vSet = ((double)regval - 2048) / 500;
-                //return vSet;
-                return _voltageSetting;
-            }
-            set
-            {
-                double vInit = _voltageSetting;
-                double vSet = value;
-                //Impose ceiling/floor on setting values.
-                vSet = (vSet > -4.096) ? vSet : -4.096;
-                vSet = (vSet < 4.095) ? vSet : 4.095;
+        //public override double voltageSetting
+        //{
+        //    get
+        //    {
+        //        //Mu2e_Register.ReadReg(ref register, myClient, "drd");
+        //        //UInt32 regval = register.val;
+        //        //double vSet = ((double)regval - 2048) / 500;
+        //        //return vSet;
+        //        return _voltageSetting;
+        //    }
+        //    set
+        //    {
+        //        double vInit = _voltageSetting;
+        //        double vSet = value;
+        //        //Impose ceiling/floor on setting values.
+        //        vSet = (vSet > -4.096) ? vSet : -4.096;
+        //        vSet = (vSet < 4.095) ? vSet : 4.095;
 
-                if (Math.Abs(vSet - vInit) > 0.001 || !initVmeas)
-                { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
-                    initVmeas = true;
-                    if (!TekScope.inTestMode)
-                    {
-                        myMeasurements.Invalidate((int)(Math.Abs(vSet - vInit)) * 50);
-                    }
-                    UInt32 regval = (UInt32)(vSet * 500 + 2048);
-                    //dwr does not seem to be working on the current preproduction board.
-                    //Calibrations will not be properly applied to writes.
-                    //Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
-                    Mu2e_Register.WriteReg(regval, ref register, myClient);
-                    _voltageSetting = vSet;
-                }
-            }
-        }
+        //        if (Math.Abs(vSet - vInit) > 0.001 || !initVmeas)
+        //        { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
+        //            initVmeas = true;
+        //            if (!TekScope.inTestMode)
+        //            {
+        //                myMeasurements.Invalidate((int)(Math.Abs(vSet - vInit)) * 50);
+        //            }
+        //            UInt32 regval = (UInt32)(vSet * 500 + 2048);
+        //            //dwr does not seem to be working on the current preproduction board.
+        //            //Calibrations will not be properly applied to writes.
+        //            //Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+        //            Mu2e_Register.WriteReg(regval, ref register, myClient);
+        //            _voltageSetting = vSet;
+        //        }
+        //    }
+        //}
 
         public double muxCurrent { get; set; }
         public double muxCalibCurrent { get; set; }
@@ -492,40 +494,40 @@ namespace mu2e.FEB_Test_Jig
         //    }
         //}
 
-        public override double voltageSetting
-        {
-            get
-            {
-                //Mu2e_Register.ReadReg(ref register, myClient, "drd");
-                //UInt32 regval = register.val;
-                //double vSet = (double)regval / 50;
-                //return vSet;
-                return _voltageSetting;
-            }
-            set
-            {
-                double vInit = _voltageSetting;
-                double vSet = value;
-                //Impose ceiling/floor on setting values.
-                vSet = (vSet > 0) ? vSet : 0;
-                vSet = (vSet < 81.91) ? vSet : 81.91;
+        //public override double voltageSetting
+        //{
+        //    get
+        //    {
+        //        //Mu2e_Register.ReadReg(ref register, myClient, "drd");
+        //        //UInt32 regval = register.val;
+        //        //double vSet = (double)regval / 50;
+        //        //return vSet;
+        //        return _voltageSetting;
+        //    }
+        //    set
+        //    {
+        //        double vInit = _voltageSetting;
+        //        double vSet = value;
+        //        //Impose ceiling/floor on setting values.
+        //        vSet = (vSet > 0) ? vSet : 0;
+        //        vSet = (vSet < 81.91) ? vSet : 81.91;
 
-                if (Math.Abs(vSet - vInit) > 0.001 || !initVmeas)
-                { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
-                    initVmeas = true;
-                    if (!TekScope.inTestMode)
-                    {
-                        myMeasurements.Invalidate((int)(Math.Abs(vSet - vInit)) * 50);
-                    }
-                    UInt32 regval = (UInt32)(vSet * 50);
-                    //dwr does not seem to be working on the current preproduction board.
-                    //Calibrations will not be properly applied to writes.
-                    //Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
-                    Mu2e_Register.WriteReg(regval, ref register, myClient);
-                    _voltageSetting = vSet;
-                }
-            }
-        }
+        //        if (Math.Abs(vSet - vInit) > 0.001 || !initVmeas)
+        //        { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
+        //            initVmeas = true;
+        //            if (!TekScope.inTestMode)
+        //            {
+        //                myMeasurements.Invalidate((int)(Math.Abs(vSet - vInit)) * 50);
+        //            }
+        //            UInt32 regval = (UInt32)(vSet * 50);
+        //            //dwr does not seem to be working on the current preproduction board.
+        //            //Calibrations will not be properly applied to writes.
+        //            //Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+        //            Mu2e_Register.WriteReg(regval, ref register, myClient);
+        //            _voltageSetting = vSet;
+        //        }
+        //    }
+        //}
 
         public HDMIchan[] HDMI = new HDMIchan[2];
     }
@@ -581,40 +583,40 @@ namespace mu2e.FEB_Test_Jig
         //    }
         //}
 
-        public override double voltageSetting
-        {
-            get
-            {
-                //Mu2e_Register.ReadReg(ref register, myClient, "drd");
-                //UInt32 regval = register.val;
-                //double vSet = (double)regval * 17/4700;
-                //return vSet;
-                return _voltageSetting;
-            }
-            set
-            {
-                double vInit = voltageSetting;
-                double vSet = value;
-                //Impose ceiling/floor on setting values.
-                vSet = (vSet < 14.81) ? vSet : 14.81;
-                vSet = (vSet > 0) ? vSet : 0;
+        //public override double voltageSetting
+        //{
+        //    get
+        //    {
+        //        //Mu2e_Register.ReadReg(ref register, myClient, "drd");
+        //        //UInt32 regval = register.val;
+        //        //double vSet = (double)regval * 17/4700;
+        //        //return vSet;
+        //        return _voltageSetting;
+        //    }
+        //    set
+        //    {
+        //        double vInit = voltageSetting;
+        //        double vSet = value;
+        //        //Impose ceiling/floor on setting values.
+        //        vSet = (vSet < 14.81) ? vSet : 14.81;
+        //        vSet = (vSet > 0) ? vSet : 0;
 
-                if (Math.Abs(vSet - vInit) > 0.001 || !initVmeas)
-                { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
-                    initVmeas = true;
-                    if (!TekScope.inTestMode)
-                    {
-                        myMeasurements.Invalidate((int)(Math.Abs(vSet - vInit)) * 50);
-                    }
-                    UInt32 regval = (UInt32)(vSet * 4700/17);
-                    //dwr does not seem to be working on the current preproduction board.
-                    //Calibrations will not be properly applied to writes.
-                    //Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
-                    Mu2e_Register.WriteReg(regval, ref register, myClient);
-                    _voltageSetting = vSet;
-                }
-            }
-        }
+        //        if (Math.Abs(vSet - vInit) > 0.001 || !initVmeas)
+        //        { //To save time, a measurement is only take if the setting is changed or if none has been taken yet.
+        //            initVmeas = true;
+        //            if (!TekScope.inTestMode)
+        //            {
+        //                myMeasurements.Invalidate((int)(Math.Abs(vSet - vInit)) * 50);
+        //            }
+        //            UInt32 regval = (UInt32)(vSet * 4700/17);
+        //            //dwr does not seem to be working on the current preproduction board.
+        //            //Calibrations will not be properly applied to writes.
+        //            //Mu2e_Register.WriteReg(regval, ref register, myClient, "dwr");
+        //            Mu2e_Register.WriteReg(regval, ref register, myClient);
+        //            _voltageSetting = vSet;
+        //        }
+        //    }
+        //}
     }
 
 
