@@ -723,7 +723,7 @@ simpleReadWrite("MEASure:VOLTage:DC? (@" + range + ")\n");
     public class DMM
     {
         public int myDMMchannel = 0;
-        public int myDmmVoltRange = 1;
+        public int myDmmVoltRange = 100;
     }
 
     public class readArgs : EventArgs

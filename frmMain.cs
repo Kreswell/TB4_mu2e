@@ -3791,7 +3791,7 @@ namespace TB_mu2e
 
         void SetVoltage(TrimSignal trimsig, double vset)
         {
-            uint regvalnew = (uint)(vset * 500 + 2048);
+            int regvalnew = (int)(vset * 500 + 2048);
             //Impose ceiling/floor on setting values.
             regvalnew = (regvalnew > 0) ? regvalnew : 0;
             regvalnew = (regvalnew < 4096) ? regvalnew : 4095;
@@ -3799,22 +3799,23 @@ namespace TB_mu2e
             Mu2e_Register.FindAddr((ushort)(48 + trimsig.signalIndex), ref myFEBclient.arrReg, out reg);
             reg.fpga_index = trimsig.myFPGA_ID;
             Mu2e_Register.ReadReg(ref reg, ref myFEBclient.client);
-            uint regvalold = reg.val;
+            int regvalold = (int)reg.val;
 
             if (regvalnew != regvalold)
             {
-                Mu2e_Register.WriteReg(regvalnew, ref reg, ref myFEBclient.client);
+                Mu2e_Register.WriteReg((uint)regvalnew, ref reg, ref myFEBclient.client);
                 //Invalidate for 1ms per 20mV (rounded up) to allow for ramping.
                 int invalTime = (int)(Math.Abs(regvalold - regvalnew) / 10 + 1);
+                invalTime = invalTime < 4096 ? invalTime : 4095;
                 trimsig.myMeasurements.Invalidate(invalTime);
                 trimsig.voltageSetting = vset;
-                trimsig.myMeasurements.isUpToDate = false;               
+                trimsig.myMeasurements.isUpToDate = false;
             }
         }
 
         void SetVoltage(LEDsignal ledsig, double vset)
         {
-            uint regvalnew = (uint)(vset * 4700 / 17);
+            int regvalnew = (int)(vset * 4700 / 17);
             //Impose ceiling/floor on setting values.
             regvalnew = (regvalnew > 0) ? regvalnew : 0;
             regvalnew = (regvalnew < 4096) ? regvalnew : 4095;
@@ -3822,13 +3823,14 @@ namespace TB_mu2e
             Mu2e_Register.FindAddr((ushort)(64 + ledsig.signalIndex), ref myFEBclient.arrReg, out reg);
             reg.fpga_index = ledsig.myFPGA_ID;
             Mu2e_Register.ReadReg(ref reg, ref myFEBclient.client);
-            uint regvalold = ledsig.register.val;
+            int regvalold = (int)ledsig.register.val;
 
             if (regvalnew != regvalold)
             {
-                Mu2e_Register.WriteReg(regvalnew, ref reg, ref myFEBclient.client);
+                Mu2e_Register.WriteReg((uint)regvalnew, ref reg, ref myFEBclient.client);
                 //Invalidate for 1ms per 20mV (rounded up) to allow for ramping.
                 int invalTime = (int)(Math.Abs(regvalold - regvalnew) * 17 / 94 + 1);
+                invalTime = invalTime < 4096 ? invalTime : 4095;
                 ledsig.myMeasurements.Invalidate(invalTime);
                 ledsig.voltageSetting = vset;
                 ledsig.myMeasurements.isUpToDate = false;
@@ -3837,7 +3839,7 @@ namespace TB_mu2e
 
         void SetVoltage(BiasSignal biassig, double vset)
         {
-            uint regvalnew = (uint)(vset * 50);
+            int regvalnew = (int)(vset * 50);
             //Impose ceiling/floor on setting values.
             regvalnew = (regvalnew > 0) ? regvalnew : 0;
             regvalnew = (regvalnew < 4096) ? regvalnew : 4095;
@@ -3845,13 +3847,14 @@ namespace TB_mu2e
             Mu2e_Register.FindAddr((ushort)(68 + biassig.signalIndex), ref myFEBclient.arrReg, out reg);
             reg.fpga_index = biassig.myFPGA_ID;
             Mu2e_Register.ReadReg(ref reg, ref myFEBclient.client);
-            uint regvalold = biassig.register.val;
+            int regvalold = (int)biassig.register.val;
 
             if (regvalnew != regvalold)
             {
-                Mu2e_Register.WriteReg(regvalnew, ref reg, ref myFEBclient.client);
+                Mu2e_Register.WriteReg((uint)regvalnew, ref reg, ref myFEBclient.client);
                 //Invalidate for 1ms per 20mV (rounded up) to allow for ramping.
                 int invalTime = (int)(Math.Abs(regvalold - regvalnew) + 1);
+                invalTime = invalTime < 4096 ? invalTime : 4095;
                 biassig.myMeasurements.Invalidate(invalTime);
                 biassig.voltageSetting = vset;
                 biassig.myMeasurements.isUpToDate = false;
@@ -4194,6 +4197,7 @@ namespace TB_mu2e
             string[] listString = new string[8];
             foreach (TrimSignal trimsig in myFEB.Trims)
             {
+                GetVoltageSetting(trimsig);
                 GetVoltageMeasurement(trimsig, 1);
 
                 Array.Clear(listString, 0, 8);
@@ -4216,10 +4220,10 @@ namespace TB_mu2e
 
             foreach (BiasChannel biassig in myFEB.Biases)
             {
+                GetVoltageSetting(biassig);
+                GetVoltageMeasurement(biassig, 1);
                 for (int i = 0; i < 2; i++)
                 {
-                    GetVoltageMeasurement(biassig, 1);
-
                     Array.Clear(listString, 0, 8);
 
                     listString[0] = biassig.Biases[i].name;
@@ -4241,6 +4245,7 @@ namespace TB_mu2e
 
             foreach (LEDsignal ledsig in myFEB.LEDs)
             {
+                GetVoltageSetting(ledsig);
                 GetVoltageMeasurement(ledsig, 1);
 
                 Array.Clear(listString, 0, 8);
