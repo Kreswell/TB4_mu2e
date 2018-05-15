@@ -156,7 +156,7 @@ namespace mu2e.FEB_Test_Jig
             ushort myFPGA = 0;
             int vcount = 0;
 
-            TcpClient client = FEBclient.client;
+            //TcpClient client = FEBclient.client;
             List<Mu2e_Register> arrReg = FEBclient.arrReg;
 
             //Main for loop builds the arrays for HDMIs, Trims, Biases, LEDs, and Voltages
@@ -182,7 +182,7 @@ namespace mu2e.FEB_Test_Jig
                     newTrim.myAFE_ID = myAFE;
                     newTrim.myFPGA_ID = myFPGA;
                     newTrim.signalIndex = (ushort)((chan*4 + idx) % 16);
-                    newTrim.myClient = client;
+                    //newTrim.myClient = client;
                     newTrim.regList = arrReg;
                     newTrim.SetRegister();
                     newTrim.name = "Trim." + newTrim.myFPGA_ID.ToString() + "." + newTrim.signalIndex.ToString("00");
@@ -201,9 +201,11 @@ namespace mu2e.FEB_Test_Jig
                 newBias.myAFE_ID = myAFE;
                 newBias.myFPGA_ID = myFPGA;
                 newBias.signalIndex = (ushort)((chan % 4) / 2);
-                newBias.myClient = client;
+                //newBias.myClient = client;
                 newBias.regList = arrReg;
                 newBias.SetRegister();
+                newBias.name = "Bias[" + (chan % 2).ToString() + "]." + newBias.myFPGA_ID.ToString() + "." + newBias.signalIndex.ToString("00");
+
 
 
                 //Cant add it to the Biases because this is generating BiasSignals and Biases is for BiasChannel i.e each BiasChannel Biases has 2 BiasSignals 
@@ -220,7 +222,7 @@ namespace mu2e.FEB_Test_Jig
                 newLED.myAFE_ID = myAFE;
                 newLED.myFPGA_ID = myFPGA;
                 newLED.signalIndex = (ushort)(chan % 4);
-                newLED.myClient = client;
+                //newLED.myClient = client;
                 newLED.regList = arrReg;
                 newLED.SetRegister();
                 newLED.name = "LED." + newLED.myFPGA_ID.ToString() + "." + newLED.signalIndex.ToString("00");
@@ -233,19 +235,17 @@ namespace mu2e.FEB_Test_Jig
             //build the biasChannels and the AFEs
             BiasChannel newBiasChan;
             AFE newAFE;
-            for (int chan = 0; chan < 16; chan++)
+            for (int afe = 0; afe < 8; afe++)
             {
                 // load the Biases. 8 biases per FEB
                 newBiasChan = new BiasChannel();
                 newAFE = new AFE();
 
-                newBiasChan.myAFE_ID = (int)(chan / 2);
-                newBiasChan.Biases[0] = HDMIs[chan].Bias;
-                newBiasChan.Biases[0].name = "Bias[0]." + newBiasChan.Biases[0].myFPGA_ID.ToString() + "." + newBiasChan.Biases[0].signalIndex.ToString("00");
+                newBiasChan.myAFE_ID = (int)(afe);
+                newBiasChan.Biases[0] = HDMIs[2*afe].Bias;
                 //  newAFE.HDMIs[0] = HDMIs[chan++]; // load the HDMIs into the AFEs
 
-                newBiasChan.Biases[1] = HDMIs[chan].Bias;
-                newBiasChan.Biases[1].name = "Bias[1]." + newBiasChan.Biases[1].myFPGA_ID.ToString() + "." + newBiasChan.Biases[1].signalIndex.ToString("00");
+                newBiasChan.Biases[1] = HDMIs[2*afe+1].Bias;
                 //  newAFE.HDMIs[1] = HDMIs[chan];
 
                 Biases.Add(newBiasChan);
