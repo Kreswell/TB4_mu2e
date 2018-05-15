@@ -352,7 +352,7 @@ namespace mu2e.FEB_Test_Jig
             base.SetRegister();
             if (signalIndex < 0 || signalIndex > 15)
             {
-                throw new IndexOutOfRangeException($"FPGA value of {signalIndex} is out of range for Trim signal.");
+                throw new IndexOutOfRangeException($"Signal index of {signalIndex} is out of range for Trim signal.");
             }
             Mu2e_Register reg = regList.Find(r => r.name == "BIAS_DAC_CH" + signalIndex.ToString());
             //Mu2e_Register.FindName("BIAS_DAC_CH" + signalIndex.ToString(), ref _regList, out reg);
@@ -455,7 +455,7 @@ namespace mu2e.FEB_Test_Jig
             base.SetRegister();
             if (signalIndex < 0 || signalIndex > 1)
             {
-                throw new IndexOutOfRangeException($"FPGA value of {signalIndex} is out of range for Bias signal.");
+                throw new IndexOutOfRangeException($"Signal index of {signalIndex} is out of range for Bias signal.");
             }
             Mu2e_Register reg = regList.Find(r => r.name == "BIAS_BUS_DAC" + signalIndex.ToString());
             //Mu2e_Register.FindName("BIAS_BUS_DAC" + signalIndex.ToString(), ref _regList, out reg);
@@ -543,7 +543,7 @@ namespace mu2e.FEB_Test_Jig
             base.SetRegister();
             if (signalIndex < 0 || signalIndex > 3)
             {
-                throw new IndexOutOfRangeException($"FPGA value of {signalIndex} is out of range for LED signal.");
+                throw new IndexOutOfRangeException($"Signal index of {signalIndex} is out of range for LED signal.");
             }
             Mu2e_Register reg = regList.Find(r => r.name == "LED_INTENSITY_DAC_CH" + signalIndex.ToString());
             //Mu2e_Register.FindName("LED_INTENSITY_DAC_CH" + signalIndex.ToString(), ref _regList, out reg);

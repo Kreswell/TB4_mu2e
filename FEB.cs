@@ -204,7 +204,6 @@ namespace mu2e.FEB_Test_Jig
                 newBias.myClient = client;
                 newBias.regList = arrReg;
                 newBias.SetRegister();
-                newBias.name = "Bias[" + (chan % 2).ToString() + "]." + newBias.myFPGA_ID.ToString() + "." + newBias.signalIndex.ToString("00");
 
 
                 //Cant add it to the Biases because this is generating BiasSignals and Biases is for BiasChannel i.e each BiasChannel Biases has 2 BiasSignals 
@@ -242,9 +241,11 @@ namespace mu2e.FEB_Test_Jig
 
                 newBiasChan.myAFE_ID = (int)(chan / 2);
                 newBiasChan.Biases[0] = HDMIs[chan].Bias;
+                newBiasChan.Biases[0].name = "Bias[0]." + newBiasChan.Biases[0].myFPGA_ID.ToString() + "." + newBiasChan.Biases[0].signalIndex.ToString("00");
                 //  newAFE.HDMIs[0] = HDMIs[chan++]; // load the HDMIs into the AFEs
 
                 newBiasChan.Biases[1] = HDMIs[chan].Bias;
+                newBiasChan.Biases[1].name = "Bias[1]." + newBiasChan.Biases[1].myFPGA_ID.ToString() + "." + newBiasChan.Biases[1].signalIndex.ToString("00");
                 //  newAFE.HDMIs[1] = HDMIs[chan];
 
                 Biases.Add(newBiasChan);
