@@ -7,6 +7,7 @@ using System.Linq;
 using System.Media;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 using ZedGraph;
 
 namespace TB_mu2e
@@ -4024,6 +4025,8 @@ namespace TB_mu2e
 
         private void btnFullVScan_Click(object sender, EventArgs e)
         {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
             int numSamples = (int)UpDnSamples.Value;
             btnFullVScan.Text = "SCANNING...";
             Application.DoEvents();
@@ -4160,10 +4163,17 @@ namespace TB_mu2e
 
             btnFullVScan.Text = "SCAN";
             btnFullVScan.BackColor = Color.Green;
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}",
+                ts.Minutes, ts.Seconds, ts.Milliseconds);
+            lblScanTime.Text = elapsedTime;
         }
 
         private void btnMuxTest_Click(object sender, EventArgs e)
         {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
             btnMuxTest.Text = "SCANNING...";
             Application.DoEvents();
             bool startingMode = TekScope.inTestMode;
@@ -4190,6 +4200,11 @@ namespace TB_mu2e
             TekScope.inTestMode = startingMode;
             btnMuxTest.BackColor = Color.Green;
             btnMuxTest.Text = "MUX TEST";
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}",
+                ts.Minutes, ts.Seconds, ts.Milliseconds);
+            lblMuxTime.Text = elapsedTime;
         }
 
         private void buildListView()
@@ -4270,10 +4285,12 @@ namespace TB_mu2e
         }
 
         VoltageSignal activeVoltageSignal = new VoltageSignal();
+        VoltageSignal otherBias = new VoltageSignal();
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             activeVoltageSignal = null;
+            otherBias = null;
             for (int i = 0; i < 96; i++)
             {
                 if (myFEB.Voltages[i].name == e.Item.Text)
@@ -4282,7 +4299,15 @@ namespace TB_mu2e
                     txtVSet.Text = myFEB.Voltages[i].voltageSetting.ToString();
                     lblSelectedChan.Text = activeVoltageSignal.name;
                 }
-
+                if (myFEB.Voltages[i].name.Contains("Bias[0]"))
+                {
+                    otherBias = myFEB.Voltages[i + 1];
+                }
+                else if (myFEB.Voltages[i].name.Contains("Bias[1]"))
+                {
+                    otherBias = myFEB.Voltages[i - 1];
+                }
+                else { }
             }
         }
 
@@ -4290,8 +4315,11 @@ namespace TB_mu2e
         {
             foreach (ListViewItem LVitem in listView1.Items)
             {
-                if (LVitem.Text == vsig.name)
-                {
+                if ( ( vsig is BiasSignal &&
+                        LVitem.Text.Substring(6) == vsig.name.Substring(6)) ||
+                        LVitem.Text == vsig.name
+                    ) //Gets either "Bias[0]..." or "Bias[1]..." if it's a bias
+                { 
                     LVitem.SubItems[2].Text = vsig.voltageSetting.ToString();
                     LVitem.SubItems[3].Text = vsig.myMeasurements.averageValue.ToString();
                     if (vsig.isBad)
@@ -4315,6 +4343,11 @@ namespace TB_mu2e
                 {
                     SetVoltage((BiasSignal)activeVoltageSignal, vset);
                     GetVoltageMeasurement((BiasSignal)activeVoltageSignal, 1);
+                    if (otherBias != null)
+                    {
+                        SetVoltage((BiasSignal)otherBias, vset);
+                        GetVoltageMeasurement((BiasSignal)otherBias, 1);
+                    }
                 }
                 else if (activeVoltageSignal is LEDsignal)
                 {

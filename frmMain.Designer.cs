@@ -328,6 +328,8 @@ namespace TB_mu2e
             this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
             this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.lblScanTime = new System.Windows.Forms.Label();
+            this.lblMuxTime = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabRUN.SuspendLayout();
@@ -3333,6 +3335,8 @@ namespace TB_mu2e
             // 
             // CalibPType
             // 
+            this.CalibPType.Controls.Add(this.lblMuxTime);
+            this.CalibPType.Controls.Add(this.lblScanTime);
             this.CalibPType.Controls.Add(this.lblScanSamples);
             this.CalibPType.Controls.Add(this.UpDnSamples);
             this.CalibPType.Controls.Add(this.btnZeroVoltages);
@@ -3558,6 +3562,24 @@ namespace TB_mu2e
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // lblScanTime
+            // 
+            this.lblScanTime.AutoSize = true;
+            this.lblScanTime.Location = new System.Drawing.Point(268, 206);
+            this.lblScanTime.Name = "lblScanTime";
+            this.lblScanTime.Size = new System.Drawing.Size(171, 20);
+            this.lblScanTime.TabIndex = 18;
+            this.lblScanTime.Text = "Scan Time: 00:00.000";
+            // 
+            // lblMuxTime
+            // 
+            this.lblMuxTime.AutoSize = true;
+            this.lblMuxTime.Location = new System.Drawing.Point(268, 318);
+            this.lblMuxTime.Name = "lblMuxTime";
+            this.lblMuxTime.Size = new System.Drawing.Size(171, 20);
+            this.lblMuxTime.TabIndex = 19;
+            this.lblMuxTime.Text = "Scan Time: 00:00.000";
             // 
             // frmMain
             // 
@@ -3933,5 +3955,7 @@ namespace TB_mu2e
         private System.Windows.Forms.Button btnZeroVoltages;
         private System.Windows.Forms.Label lblScanSamples;
         private System.Windows.Forms.NumericUpDown UpDnSamples;
+        private System.Windows.Forms.Label lblMuxTime;
+        private System.Windows.Forms.Label lblScanTime;
     }
 }
