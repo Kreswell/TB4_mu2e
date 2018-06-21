@@ -293,8 +293,8 @@ namespace mu2e.FEB_Test_Jig
             public Measurements Vlow { get; set; }
             public double gain = 1;
             public double offset = 0;
-            UInt16 gainInt = 32768;
-            UInt16 offsetInt = 0;
+            public UInt16 gainInt = 32768;
+            public UInt16 offsetInt = 0;
             public bool isTested = false;
             public bool isCalibrated = false;
             public bool calibrationsLoaded = false;

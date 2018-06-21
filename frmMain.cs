@@ -4167,7 +4167,7 @@ namespace TB_mu2e
             TimeSpan ts = stopWatch.Elapsed;
             string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}",
                 ts.Minutes, ts.Seconds, ts.Milliseconds);
-            lblScanTime.Text = elapsedTime;
+            lblScanTime.Text = "Scan time: " + elapsedTime;
         }
 
         private void btnMuxTest_Click(object sender, EventArgs e)
@@ -4204,7 +4204,7 @@ namespace TB_mu2e
             TimeSpan ts = stopWatch.Elapsed;
             string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}",
                 ts.Minutes, ts.Seconds, ts.Milliseconds);
-            lblMuxTime.Text = elapsedTime;
+            lblMuxTime.Text = "Scan time: " + elapsedTime;
         }
 
         private void buildListView()
@@ -4220,7 +4220,7 @@ namespace TB_mu2e
                 listString[0] = trimsig.name;
                 listString[1] = trimsig.myHDMI_ID.ToString();
                 listString[2] = trimsig.voltageSetting.ToString("F3");
-                listString[3] = trimsig.myMeasurements.averageValue.ToString("F");
+                listString[3] = trimsig.myMeasurements.averageValue.ToString("F4");
                 listString[4] = trimsig.calibration.isCalibrated.ToString();
                 listString[5] = trimsig.calibration.gain.ToString();
                 listString[6] = trimsig.calibration.offset.ToString();
@@ -4244,7 +4244,7 @@ namespace TB_mu2e
                     listString[0] = biassig.Biases[i].name;
                     listString[1] = biassig.Biases[i].myHDMI_ID.ToString();
                     listString[2] = biassig.voltageSetting.ToString("F3");
-                    listString[3] = biassig.Biases[i].myMeasurements.averageValue.ToString("F");
+                    listString[3] = biassig.Biases[i].myMeasurements.averageValue.ToString("F4");
                     listString[4] = biassig.calibration.isCalibrated.ToString();
                     listString[5] = biassig.calibration.gain.ToString();
                     listString[6] = biassig.calibration.offset.ToString();
@@ -4268,7 +4268,7 @@ namespace TB_mu2e
                 listString[0] = ledsig.name;
                 listString[1] = ledsig.myHDMI_ID.ToString();
                 listString[2] = ledsig.voltageSetting.ToString("F3");
-                listString[3] = ledsig.myMeasurements.averageValue.ToString("F");
+                listString[3] = ledsig.myMeasurements.averageValue.ToString("F4");
                 listString[4] = ledsig.calibration.isCalibrated.ToString();
                 listString[5] = ledsig.calibration.gain.ToString();
                 listString[6] = ledsig.calibration.offset.ToString();
@@ -4320,8 +4320,16 @@ namespace TB_mu2e
                         LVitem.Text == vsig.name
                     ) //Gets either "Bias[0]..." or "Bias[1]..." if it's a bias
                 { 
-                    LVitem.SubItems[2].Text = vsig.voltageSetting.ToString();
-                    LVitem.SubItems[3].Text = vsig.myMeasurements.averageValue.ToString();
+                    LVitem.SubItems[2].Text = vsig.voltageSetting.ToString("F3");
+                    LVitem.SubItems[3].Text = vsig.myMeasurements.averageValue.ToString("F4");
+                    LVitem.SubItems[4].Text = vsig.calibration.isCalibrated.ToString();
+                    LVitem.SubItems[5].Text = vsig.calibration.gain.ToString();
+                    LVitem.SubItems[6].Text = vsig.calibration.offset.ToString();
+                    if (vsig is TrimSignal)
+                    {
+                        TrimSignal trimsig = (TrimSignal)vsig;
+                        LVitem.SubItems[7].Text = trimsig.muxCalibCurrent.ToString();
+                    }
                     if (vsig.isBad)
                     { LVitem.SubItems[3].BackColor = Color.Red; }
                     Application.DoEvents();
@@ -4364,6 +4372,93 @@ namespace TB_mu2e
         private void btnZeroVoltages_Click(object sender, EventArgs e)
         {
             ZeroAllVoltages();
+        }
+
+        private void btnSaveVScan_Click(object sender, EventArgs e)
+        {
+            bool DoSave = true;
+
+            for (int i = 0; i < 96; i++)
+            {
+                if (!myFEB.Voltages[i].calibration.isTested)
+                {
+                    DialogResult result = MessageBox.Show("Channel " + myFEB.Voltages[i].name + " appears to be untested. Save anyway?", "", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No) { DoSave = false; }
+                }
+            }
+
+            if (DoSave)
+            {
+                string dirName = "c://data//";
+                string hName = "";
+                DateTime testDate = DateTime.Now;
+
+                hName += "FEBdsf_";
+                hName += txtSN.Text;
+                hName += "_";
+                hName += testDate.ToString("yyyyMMdd");
+                hName = dirName + hName + ".dsf";
+                StreamWriter sw = new StreamWriter(hName);
+
+                foreach (BiasChannel biaschan in myFEB.Biases)
+                {
+                    string biasAddr = "";
+                    if (biaschan.calibration.isTested)
+                    {
+                        biasAddr += (biaschan.myFPGA_ID * 4).ToString("X");
+                        switch (biaschan.signalIndex)
+                        {
+                            case 0:
+                                biasAddr += "44";
+                                break;
+                            case 1:
+                                biasAddr += "45";
+                                break;
+                            default:
+                                break;
+                        }
+                        sw.WriteLine
+                            ("dsf " 
+                            + biasAddr 
+                            + " " 
+                            + biaschan.calibration.gainInt.ToString("X") 
+                            + ", " 
+                            + biaschan.calibration.offsetInt.ToString("X"));
+                    }
+                }
+                foreach (TrimSignal trimsig in myFEB.Trims)
+                {
+                    string trimAddr = "";
+                    if (trimsig.calibration.isTested)
+                    {
+                        trimAddr += (trimsig.myFPGA_ID * 4).ToString("X");
+                        trimAddr += "3";
+                        trimAddr += trimsig.signalIndex.ToString("X");
+                        sw.WriteLine
+                            ("dsf "
+                            + trimAddr
+                            + " "
+                            + trimsig.calibration.gainInt.ToString("X")
+                            + ", "
+                            + trimsig.calibration.offsetInt.ToString("X"));
+                    }
+                }
+                sw.Close();
+
+                //string fName = "";
+                //fName += "HVtestVals_";
+                //fName += txtSN.Text;
+                //hName += "_";
+                //hName += testDate.ToString("yyyyMMdd");
+                //fName = dirName + fName + ".txt";
+                //StreamWriter swf = new StreamWriter(fName);
+
+                //string comments = txtCalibComments.Text;
+                //string hdmi = "";
+                //swf.WriteLine(comments);
+
+                
+            }
         }
     }
 
