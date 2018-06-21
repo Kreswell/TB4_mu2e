@@ -4285,7 +4285,7 @@ namespace TB_mu2e
         }
 
         VoltageSignal activeVoltageSignal = new VoltageSignal();
-        VoltageSignal otherBias = new VoltageSignal();
+        BiasSignal otherBias = new BiasSignal();
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
@@ -4301,11 +4301,11 @@ namespace TB_mu2e
                 }
                 if (myFEB.Voltages[i].name.Contains("Bias[0]"))
                 {
-                    otherBias = myFEB.Voltages[i + 1];
+                    otherBias = (BiasSignal)myFEB.Voltages[i + 1];
                 }
                 else if (myFEB.Voltages[i].name.Contains("Bias[1]"))
                 {
-                    otherBias = myFEB.Voltages[i - 1];
+                    otherBias = (BiasSignal)myFEB.Voltages[i - 1];
                 }
                 else { }
             }
@@ -4353,8 +4353,8 @@ namespace TB_mu2e
                     GetVoltageMeasurement((BiasSignal)activeVoltageSignal, 1);
                     if (otherBias != null)
                     {
-                        SetVoltage((BiasSignal)otherBias, vset);
-                        GetVoltageMeasurement((BiasSignal)otherBias, 1);
+                        SetVoltage(otherBias, vset);
+                        GetVoltageMeasurement(otherBias, 1);
                     }
                 }
                 else if (activeVoltageSignal is LEDsignal)

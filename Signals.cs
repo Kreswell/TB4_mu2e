@@ -107,14 +107,15 @@ namespace mu2e.FEB_Test_Jig
         {
             get
             {
-                if (Biases[0].voltageSetting != Biases[1].voltageSetting)
-                {
-                    throw new Exception($"Voltage settings for {Biases[0]} and {Biases[1]} do not match!");
-                }
-                else
-                {
-                    return Biases[0].voltageSetting;
-                }
+                return Biases[0].voltageSetting;
+                //if (Biases[0].voltageSetting != Biases[1].voltageSetting)
+                //{
+                //    throw new Exception($"Voltage settings for {Biases[0]} and {Biases[1]} do not match!");
+                //}
+                //else
+                //{
+                //    return Biases[0].voltageSetting;
+                //}
             }
             set
             {
