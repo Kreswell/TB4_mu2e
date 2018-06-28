@@ -102,6 +102,7 @@ namespace mu2e.FEB_Test_Jig
         public ushort myFPGA_ID { get { return Biases[0].myFPGA_ID; } }
         public int signalIndex { get { return Biases[0].signalIndex; } }
         public Mu2e_Register register { get { return Biases[0].register; } }
+        public string name { get { return "Bias" + Biases[0].name.Substring(9); } }
 
         public double voltageSetting
         {
@@ -168,7 +169,6 @@ namespace mu2e.FEB_Test_Jig
 
         public class Calibration
         {
-
             public Measurements Vhi { get; set; }
             public Measurements Vmed { get; set; }
             public Measurements Vlow { get; set; }
@@ -182,7 +182,7 @@ namespace mu2e.FEB_Test_Jig
 
             public void DoCalibrationFit()
             {
-                doFit(Vhi, Vmed, Vlow);
+                doFit(Vhi, Vmed, Vlow);               
                 isTested = true;
             }
 
@@ -216,6 +216,20 @@ namespace mu2e.FEB_Test_Jig
                     isCalibrated = true;
                 }
             }
+        }
+
+        public void SaveBiasCalibrations()
+        {
+            Biases[0].calibration.gain = calibration.gain;
+            Biases[1].calibration.gain = calibration.gain;
+            Biases[0].calibration.offset = calibration.offset;
+            Biases[1].calibration.offset = calibration.offset;
+            Biases[0].calibration.gainInt = calibration.gainInt;
+            Biases[1].calibration.gainInt = calibration.gainInt;
+            Biases[0].calibration.offsetInt = calibration.offsetInt;
+            Biases[1].calibration.offsetInt = calibration.offsetInt;
+            Biases[0].calibration.isTested = calibration.isTested;
+            Biases[1].calibration.isTested = calibration.isTested;
         }
     }
 

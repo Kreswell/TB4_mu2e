@@ -31,10 +31,10 @@ namespace TB_mu2e
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("FPGA 0", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("FPGA 1", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("FPGA 2", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("FPGA 3", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("FPGA 0", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("FPGA 1", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("FPGA 2", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("FPGA 3", System.Windows.Forms.HorizontalAlignment.Left);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFEB1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -175,6 +175,102 @@ namespace TB_mu2e
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblWCmessage = new System.Windows.Forms.Label();
             this.btnWC = new System.Windows.Forms.Button();
+            this.tabIV = new System.Windows.Forms.TabPage();
+            this.label33 = new System.Windows.Forms.Label();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label38 = new System.Windows.Forms.Label();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.button18 = new System.Windows.Forms.Button();
+            this.labelTempIV = new System.Windows.Forms.Label();
+            this.btnSelHiIV = new System.Windows.Forms.Button();
+            this.btnSelLowIV = new System.Windows.Forms.Button();
+            this.label34 = new System.Windows.Forms.Label();
+            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.chkBoxJ19IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ20IV = new System.Windows.Forms.CheckBox();
+            this.btnIVScan = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.chkBoxJ21IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ22IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ23IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ24IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ25IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ26IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ15IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ16IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ17IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ18IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ13IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ14IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ12IV = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ11IV = new System.Windows.Forms.CheckBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.zedGraphIV = new ZedGraph.ZedGraphControl();
+            this.tabHist = new System.Windows.Forms.TabPage();
+            this.button19 = new System.Windows.Forms.Button();
+            this.labelTempHist = new System.Windows.Forms.Label();
+            this.zedGraphHisto = new ZedGraph.ZedGraphControl();
+            this.label30 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.btnSelHiHist = new System.Windows.Forms.Button();
+            this.btnSelLowHist = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.chkBoxJ19Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ20Hist = new System.Windows.Forms.CheckBox();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.chkBoxJ21Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ22Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ23Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ24Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ25Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ26Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ15Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ16Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ17Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ18Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ13Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ14Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ12Hist = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ11Hist = new System.Windows.Forms.CheckBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.CalibPType = new System.Windows.Forms.TabPage();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.btnSaveDB = new System.Windows.Forms.Button();
+            this.btnCalibrate = new System.Windows.Forms.Button();
+            this.btnBuildListView = new System.Windows.Forms.Button();
+            this.lblMuxTime = new System.Windows.Forms.Label();
+            this.lblScanTime = new System.Windows.Forms.Label();
+            this.lblScanSamples = new System.Windows.Forms.Label();
+            this.UpDnSamples = new System.Windows.Forms.NumericUpDown();
+            this.btnZeroVoltages = new System.Windows.Forms.Button();
+            this.btnUpdateList = new System.Windows.Forms.Button();
+            this.lblSelectedChan = new System.Windows.Forms.Label();
+            this.label95 = new System.Windows.Forms.Label();
+            this.txtVSet = new System.Windows.Forms.TextBox();
+            this.btnMuxTest = new System.Windows.Forms.Button();
+            this.btnSaveVScan = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.Channel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.HDMI = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Setting = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Measurement = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.IsCalibrated = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Gain = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Offset = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MuxCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label47 = new System.Windows.Forms.Label();
+            this.btnFullVScan = new System.Windows.Forms.Button();
+            this.label37 = new System.Windows.Forms.Label();
             this.tabFEBtest = new System.Windows.Forms.TabPage();
             this.button5 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -242,94 +338,11 @@ namespace TB_mu2e
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.txtBiasSet0 = new System.Windows.Forms.TextBox();
-            this.tabIV = new System.Windows.Forms.TabPage();
-            this.label33 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.label38 = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.button18 = new System.Windows.Forms.Button();
-            this.labelTempIV = new System.Windows.Forms.Label();
-            this.btnSelHiIV = new System.Windows.Forms.Button();
-            this.btnSelLowIV = new System.Windows.Forms.Button();
-            this.label34 = new System.Windows.Forms.Label();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.chkBoxJ19IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ20IV = new System.Windows.Forms.CheckBox();
-            this.btnIVScan = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.chkBoxJ21IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ22IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ23IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ24IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ25IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ26IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ15IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ16IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ17IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ18IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ13IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ14IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ12IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ11IV = new System.Windows.Forms.CheckBox();
-            this.label35 = new System.Windows.Forms.Label();
-            this.zedGraphIV = new ZedGraph.ZedGraphControl();
-            this.tabHist = new System.Windows.Forms.TabPage();
-            this.button19 = new System.Windows.Forms.Button();
-            this.labelTempHist = new System.Windows.Forms.Label();
-            this.zedGraphHisto = new ZedGraph.ZedGraphControl();
-            this.label30 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.btnSelHiHist = new System.Windows.Forms.Button();
-            this.btnSelLowHist = new System.Windows.Forms.Button();
-            this.label31 = new System.Windows.Forms.Label();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.chkBoxJ19Hist = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ20Hist = new System.Windows.Forms.CheckBox();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.chkBoxJ21Hist = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ22Hist = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ23Hist = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ24Hist = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ25Hist = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ26Hist = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ15Hist = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ16Hist = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ17Hist = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ18Hist = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ13Hist = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ14Hist = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ12Hist = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ11Hist = new System.Windows.Forms.CheckBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.CalibPType = new System.Windows.Forms.TabPage();
-            this.lblMuxTime = new System.Windows.Forms.Label();
-            this.lblScanTime = new System.Windows.Forms.Label();
-            this.lblScanSamples = new System.Windows.Forms.Label();
-            this.UpDnSamples = new System.Windows.Forms.NumericUpDown();
-            this.btnZeroVoltages = new System.Windows.Forms.Button();
-            this.btnUpdateList = new System.Windows.Forms.Button();
-            this.lblSelectedChan = new System.Windows.Forms.Label();
-            this.label95 = new System.Windows.Forms.Label();
-            this.txtVSet = new System.Windows.Forms.TextBox();
-            this.btnMuxTest = new System.Windows.Forms.Button();
-            this.btnSaveVScan = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.Channel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.HDMI = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Setting = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Measurement = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.IsCalibrated = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Gain = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Offset = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.MuxCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label47 = new System.Windows.Forms.Label();
-            this.btnFullVScan = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
             this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabRUN.SuspendLayout();
@@ -354,14 +367,14 @@ namespace TB_mu2e
             this.groupBoxConn.SuspendLayout();
             this.tabWC.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.tabFEBtest.SuspendLayout();
-            this.DAC_Voltages.SuspendLayout();
             this.tabIV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.tabHist.SuspendLayout();
             this.CalibPType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpDnSamples)).BeginInit();
+            this.tabFEBtest.SuspendLayout();
+            this.DAC_Voltages.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -1980,668 +1993,6 @@ namespace TB_mu2e
             this.btnWC.Text = "WC";
             this.btnWC.UseVisualStyleBackColor = true;
             // 
-            // tabFEBtest
-            // 
-            this.tabFEBtest.Controls.Add(this.button5);
-            this.tabFEBtest.Controls.Add(this.label9);
-            this.tabFEBtest.Controls.Add(this.btnConnectScope);
-            this.tabFEBtest.Controls.Add(this.btnSnSave);
-            this.tabFEBtest.Controls.Add(this.txtSN);
-            this.tabFEBtest.Controls.Add(this.label26);
-            this.tabFEBtest.Controls.Add(this.DAC_Voltages);
-            this.tabFEBtest.Location = new System.Drawing.Point(4, 32);
-            this.tabFEBtest.Name = "tabFEBtest";
-            this.tabFEBtest.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFEBtest.Size = new System.Drawing.Size(1255, 665);
-            this.tabFEBtest.TabIndex = 8;
-            this.tabFEBtest.Text = "Calibration (OLD)";
-            this.tabFEBtest.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(107, 472);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(219, 35);
-            this.button5.TabIndex = 67;
-            this.button5.Text = "UPDATE TEMPERATURE";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(103, 158);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 20);
-            this.label9.TabIndex = 66;
-            this.label9.Text = "label9";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
-            // 
-            // btnConnectScope
-            // 
-            this.btnConnectScope.Location = new System.Drawing.Point(359, 43);
-            this.btnConnectScope.Name = "btnConnectScope";
-            this.btnConnectScope.Size = new System.Drawing.Size(183, 37);
-            this.btnConnectScope.TabIndex = 9;
-            this.btnConnectScope.Text = "CONNECT SCOPE";
-            this.btnConnectScope.UseVisualStyleBackColor = true;
-            this.btnConnectScope.Click += new System.EventHandler(this.btnConnectScope_Click);
-            // 
-            // btnSnSave
-            // 
-            this.btnSnSave.Location = new System.Drawing.Point(431, 6);
-            this.btnSnSave.Name = "btnSnSave";
-            this.btnSnSave.Size = new System.Drawing.Size(111, 31);
-            this.btnSnSave.TabIndex = 8;
-            this.btnSnSave.Text = "SAVE";
-            this.btnSnSave.UseVisualStyleBackColor = true;
-            this.btnSnSave.Click += new System.EventHandler(this.btnSnSave_Click);
-            // 
-            // txtSN
-            // 
-            this.txtSN.Location = new System.Drawing.Point(210, 8);
-            this.txtSN.Name = "txtSN";
-            this.txtSN.Size = new System.Drawing.Size(215, 27);
-            this.txtSN.TabIndex = 5;
-            this.txtSN.TextChanged += new System.EventHandler(this.txtSN_TextChanged);
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.label26.Location = new System.Drawing.Point(92, 6);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(112, 31);
-            this.label26.TabIndex = 4;
-            this.label26.Text = "FEB SN";
-            // 
-            // DAC_Voltages
-            // 
-            this.DAC_Voltages.Controls.Add(this.txtMuxI3);
-            this.DAC_Voltages.Controls.Add(this.txtMuxI2);
-            this.DAC_Voltages.Controls.Add(this.txtMuxI1);
-            this.DAC_Voltages.Controls.Add(this.txtMuxI0);
-            this.DAC_Voltages.Controls.Add(this.label36);
-            this.DAC_Voltages.Controls.Add(this.btnLoadCalib);
-            this.DAC_Voltages.Controls.Add(this.txtTrim3Int);
-            this.DAC_Voltages.Controls.Add(this.txtTrim3Slope);
-            this.DAC_Voltages.Controls.Add(this.txtTrim2Int);
-            this.DAC_Voltages.Controls.Add(this.txtTrim2Slope);
-            this.DAC_Voltages.Controls.Add(this.txtTrim1Int);
-            this.DAC_Voltages.Controls.Add(this.txtTrim1Slope);
-            this.DAC_Voltages.Controls.Add(this.txtTrim0Int);
-            this.DAC_Voltages.Controls.Add(this.txtTrim0Slope);
-            this.DAC_Voltages.Controls.Add(this.txtBiasInt);
-            this.DAC_Voltages.Controls.Add(this.txtBiasSlope);
-            this.DAC_Voltages.Controls.Add(this.label29);
-            this.DAC_Voltages.Controls.Add(this.label28);
-            this.DAC_Voltages.Controls.Add(this.label25);
-            this.DAC_Voltages.Controls.Add(this.txtCalibComments);
-            this.DAC_Voltages.Controls.Add(this.btnDacSave);
-            this.DAC_Voltages.Controls.Add(this.btnJ26);
-            this.DAC_Voltages.Controls.Add(this.btnDacScan);
-            this.DAC_Voltages.Controls.Add(this.btnJ25);
-            this.DAC_Voltages.Controls.Add(this.btnJ24);
-            this.DAC_Voltages.Controls.Add(this.btnDacWrite);
-            this.DAC_Voltages.Controls.Add(this.btnJ23);
-            this.DAC_Voltages.Controls.Add(this.btnJ22);
-            this.DAC_Voltages.Controls.Add(this.btnJ21);
-            this.DAC_Voltages.Controls.Add(this.txtTrimRB3);
-            this.DAC_Voltages.Controls.Add(this.btnJ20);
-            this.DAC_Voltages.Controls.Add(this.txtTrimRB2);
-            this.DAC_Voltages.Controls.Add(this.btnJ19);
-            this.DAC_Voltages.Controls.Add(this.txtTrimRB1);
-            this.DAC_Voltages.Controls.Add(this.btnJ18);
-            this.DAC_Voltages.Controls.Add(this.txtTrimRB0);
-            this.DAC_Voltages.Controls.Add(this.btnJ17);
-            this.DAC_Voltages.Controls.Add(this.txtLEDRB0);
-            this.DAC_Voltages.Controls.Add(this.btnJ16);
-            this.DAC_Voltages.Controls.Add(this.txtBiasRB0);
-            this.DAC_Voltages.Controls.Add(this.btnJ15);
-            this.DAC_Voltages.Controls.Add(this.btnJ14);
-            this.DAC_Voltages.Controls.Add(this.label23);
-            this.DAC_Voltages.Controls.Add(this.btnJ13);
-            this.DAC_Voltages.Controls.Add(this.label22);
-            this.DAC_Voltages.Controls.Add(this.btnJ12);
-            this.DAC_Voltages.Controls.Add(this.label21);
-            this.DAC_Voltages.Controls.Add(this.btnJ11);
-            this.DAC_Voltages.Controls.Add(this.label16);
-            this.DAC_Voltages.Controls.Add(this.label15);
-            this.DAC_Voltages.Controls.Add(this.label14);
-            this.DAC_Voltages.Controls.Add(this.txtTrimSet3);
-            this.DAC_Voltages.Controls.Add(this.txtTrimSet2);
-            this.DAC_Voltages.Controls.Add(this.txtTrimSet1);
-            this.DAC_Voltages.Controls.Add(this.txtTrimSet0);
-            this.DAC_Voltages.Controls.Add(this.txtLEDSet0);
-            this.DAC_Voltages.Controls.Add(this.label13);
-            this.DAC_Voltages.Controls.Add(this.label12);
-            this.DAC_Voltages.Controls.Add(this.txtBiasSet0);
-            this.DAC_Voltages.Location = new System.Drawing.Point(557, 6);
-            this.DAC_Voltages.Name = "DAC_Voltages";
-            this.DAC_Voltages.Size = new System.Drawing.Size(692, 606);
-            this.DAC_Voltages.TabIndex = 0;
-            this.DAC_Voltages.TabStop = false;
-            this.DAC_Voltages.Text = "DAC Voltages";
-            // 
-            // txtMuxI3
-            // 
-            this.txtMuxI3.Location = new System.Drawing.Point(583, 211);
-            this.txtMuxI3.Name = "txtMuxI3";
-            this.txtMuxI3.Size = new System.Drawing.Size(76, 27);
-            this.txtMuxI3.TabIndex = 98;
-            // 
-            // txtMuxI2
-            // 
-            this.txtMuxI2.Location = new System.Drawing.Point(583, 178);
-            this.txtMuxI2.Name = "txtMuxI2";
-            this.txtMuxI2.Size = new System.Drawing.Size(76, 27);
-            this.txtMuxI2.TabIndex = 97;
-            // 
-            // txtMuxI1
-            // 
-            this.txtMuxI1.Location = new System.Drawing.Point(583, 145);
-            this.txtMuxI1.Name = "txtMuxI1";
-            this.txtMuxI1.Size = new System.Drawing.Size(76, 27);
-            this.txtMuxI1.TabIndex = 96;
-            // 
-            // txtMuxI0
-            // 
-            this.txtMuxI0.Location = new System.Drawing.Point(583, 112);
-            this.txtMuxI0.Name = "txtMuxI0";
-            this.txtMuxI0.Size = new System.Drawing.Size(76, 27);
-            this.txtMuxI0.TabIndex = 95;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(579, 23);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(101, 20);
-            this.label36.TabIndex = 94;
-            this.label36.Text = "Mux Current";
-            // 
-            // btnLoadCalib
-            // 
-            this.btnLoadCalib.Location = new System.Drawing.Point(364, 458);
-            this.btnLoadCalib.Name = "btnLoadCalib";
-            this.btnLoadCalib.Size = new System.Drawing.Size(195, 43);
-            this.btnLoadCalib.TabIndex = 93;
-            this.btnLoadCalib.Text = "LOAD CALIBRATIONS";
-            this.btnLoadCalib.UseVisualStyleBackColor = true;
-            this.btnLoadCalib.Click += new System.EventHandler(this.btnLoadCalib_Click);
-            // 
-            // txtTrim3Int
-            // 
-            this.txtTrim3Int.Location = new System.Drawing.Point(483, 211);
-            this.txtTrim3Int.Name = "txtTrim3Int";
-            this.txtTrim3Int.Size = new System.Drawing.Size(76, 27);
-            this.txtTrim3Int.TabIndex = 92;
-            // 
-            // txtTrim3Slope
-            // 
-            this.txtTrim3Slope.Location = new System.Drawing.Point(401, 211);
-            this.txtTrim3Slope.Name = "txtTrim3Slope";
-            this.txtTrim3Slope.Size = new System.Drawing.Size(76, 27);
-            this.txtTrim3Slope.TabIndex = 91;
-            // 
-            // txtTrim2Int
-            // 
-            this.txtTrim2Int.Location = new System.Drawing.Point(483, 178);
-            this.txtTrim2Int.Name = "txtTrim2Int";
-            this.txtTrim2Int.Size = new System.Drawing.Size(76, 27);
-            this.txtTrim2Int.TabIndex = 90;
-            // 
-            // txtTrim2Slope
-            // 
-            this.txtTrim2Slope.Location = new System.Drawing.Point(401, 178);
-            this.txtTrim2Slope.Name = "txtTrim2Slope";
-            this.txtTrim2Slope.Size = new System.Drawing.Size(76, 27);
-            this.txtTrim2Slope.TabIndex = 89;
-            // 
-            // txtTrim1Int
-            // 
-            this.txtTrim1Int.Location = new System.Drawing.Point(483, 145);
-            this.txtTrim1Int.Name = "txtTrim1Int";
-            this.txtTrim1Int.Size = new System.Drawing.Size(76, 27);
-            this.txtTrim1Int.TabIndex = 88;
-            // 
-            // txtTrim1Slope
-            // 
-            this.txtTrim1Slope.Location = new System.Drawing.Point(401, 145);
-            this.txtTrim1Slope.Name = "txtTrim1Slope";
-            this.txtTrim1Slope.Size = new System.Drawing.Size(76, 27);
-            this.txtTrim1Slope.TabIndex = 87;
-            // 
-            // txtTrim0Int
-            // 
-            this.txtTrim0Int.Location = new System.Drawing.Point(483, 112);
-            this.txtTrim0Int.Name = "txtTrim0Int";
-            this.txtTrim0Int.Size = new System.Drawing.Size(76, 27);
-            this.txtTrim0Int.TabIndex = 86;
-            // 
-            // txtTrim0Slope
-            // 
-            this.txtTrim0Slope.Location = new System.Drawing.Point(401, 112);
-            this.txtTrim0Slope.Name = "txtTrim0Slope";
-            this.txtTrim0Slope.Size = new System.Drawing.Size(76, 27);
-            this.txtTrim0Slope.TabIndex = 85;
-            // 
-            // txtBiasInt
-            // 
-            this.txtBiasInt.Location = new System.Drawing.Point(483, 46);
-            this.txtBiasInt.Name = "txtBiasInt";
-            this.txtBiasInt.Size = new System.Drawing.Size(76, 27);
-            this.txtBiasInt.TabIndex = 84;
-            // 
-            // txtBiasSlope
-            // 
-            this.txtBiasSlope.Location = new System.Drawing.Point(401, 46);
-            this.txtBiasSlope.Name = "txtBiasSlope";
-            this.txtBiasSlope.Size = new System.Drawing.Size(76, 27);
-            this.txtBiasSlope.TabIndex = 83;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(479, 23);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(74, 20);
-            this.label29.TabIndex = 82;
-            this.label29.Text = "Intercept";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(397, 23);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(51, 20);
-            this.label28.TabIndex = 81;
-            this.label28.Text = "Slope";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(137, 291);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(90, 20);
-            this.label25.TabIndex = 80;
-            this.label25.Text = "Comments";
-            // 
-            // txtCalibComments
-            // 
-            this.txtCalibComments.Location = new System.Drawing.Point(141, 314);
-            this.txtCalibComments.Multiline = true;
-            this.txtCalibComments.Name = "txtCalibComments";
-            this.txtCalibComments.Size = new System.Drawing.Size(418, 138);
-            this.txtCalibComments.TabIndex = 79;
-            // 
-            // btnDacSave
-            // 
-            this.btnDacSave.Location = new System.Drawing.Point(141, 458);
-            this.btnDacSave.Name = "btnDacSave";
-            this.btnDacSave.Size = new System.Drawing.Size(148, 43);
-            this.btnDacSave.TabIndex = 78;
-            this.btnDacSave.Text = "SAVE";
-            this.btnDacSave.UseVisualStyleBackColor = true;
-            this.btnDacSave.Click += new System.EventHandler(this.btnDacSave_Click);
-            // 
-            // btnJ26
-            // 
-            this.btnJ26.BackColor = System.Drawing.Color.Silver;
-            this.btnJ26.Location = new System.Drawing.Point(6, 566);
-            this.btnJ26.Name = "btnJ26";
-            this.btnJ26.Size = new System.Drawing.Size(75, 30);
-            this.btnJ26.TabIndex = 15;
-            this.btnJ26.Text = "J26";
-            this.btnJ26.UseVisualStyleBackColor = false;
-            this.btnJ26.Click += new System.EventHandler(this.btnJ26_Click);
-            // 
-            // btnDacScan
-            // 
-            this.btnDacScan.Location = new System.Drawing.Point(460, 244);
-            this.btnDacScan.Name = "btnDacScan";
-            this.btnDacScan.Size = new System.Drawing.Size(93, 29);
-            this.btnDacScan.TabIndex = 77;
-            this.btnDacScan.Text = "SCAN";
-            this.btnDacScan.UseVisualStyleBackColor = true;
-            this.btnDacScan.Click += new System.EventHandler(this.btnDacScan_Click);
-            // 
-            // btnJ25
-            // 
-            this.btnJ25.BackColor = System.Drawing.Color.Silver;
-            this.btnJ25.Location = new System.Drawing.Point(6, 530);
-            this.btnJ25.Name = "btnJ25";
-            this.btnJ25.Size = new System.Drawing.Size(75, 30);
-            this.btnJ25.TabIndex = 14;
-            this.btnJ25.Text = "J25";
-            this.btnJ25.UseVisualStyleBackColor = false;
-            this.btnJ25.Click += new System.EventHandler(this.btnJ25_Click);
-            // 
-            // btnJ24
-            // 
-            this.btnJ24.BackColor = System.Drawing.Color.Silver;
-            this.btnJ24.Location = new System.Drawing.Point(6, 494);
-            this.btnJ24.Name = "btnJ24";
-            this.btnJ24.Size = new System.Drawing.Size(75, 30);
-            this.btnJ24.TabIndex = 13;
-            this.btnJ24.Text = "J24";
-            this.btnJ24.UseVisualStyleBackColor = false;
-            this.btnJ24.Click += new System.EventHandler(this.btnJ24_Click);
-            // 
-            // btnDacWrite
-            // 
-            this.btnDacWrite.Location = new System.Drawing.Point(200, 244);
-            this.btnDacWrite.Name = "btnDacWrite";
-            this.btnDacWrite.Size = new System.Drawing.Size(93, 29);
-            this.btnDacWrite.TabIndex = 69;
-            this.btnDacWrite.Text = "SET";
-            this.btnDacWrite.UseVisualStyleBackColor = true;
-            this.btnDacWrite.Click += new System.EventHandler(this.btnDacWrite_Click);
-            // 
-            // btnJ23
-            // 
-            this.btnJ23.BackColor = System.Drawing.Color.Silver;
-            this.btnJ23.Location = new System.Drawing.Point(6, 458);
-            this.btnJ23.Name = "btnJ23";
-            this.btnJ23.Size = new System.Drawing.Size(75, 30);
-            this.btnJ23.TabIndex = 12;
-            this.btnJ23.Text = "J23";
-            this.btnJ23.UseVisualStyleBackColor = false;
-            this.btnJ23.Click += new System.EventHandler(this.btnJ23_Click);
-            // 
-            // btnJ22
-            // 
-            this.btnJ22.BackColor = System.Drawing.Color.Silver;
-            this.btnJ22.Location = new System.Drawing.Point(6, 422);
-            this.btnJ22.Name = "btnJ22";
-            this.btnJ22.Size = new System.Drawing.Size(75, 30);
-            this.btnJ22.TabIndex = 11;
-            this.btnJ22.Text = "J22";
-            this.btnJ22.UseVisualStyleBackColor = false;
-            this.btnJ22.Click += new System.EventHandler(this.btnJ22_Click);
-            // 
-            // btnJ21
-            // 
-            this.btnJ21.BackColor = System.Drawing.Color.Silver;
-            this.btnJ21.Location = new System.Drawing.Point(6, 386);
-            this.btnJ21.Name = "btnJ21";
-            this.btnJ21.Size = new System.Drawing.Size(75, 30);
-            this.btnJ21.TabIndex = 10;
-            this.btnJ21.Text = "J21";
-            this.btnJ21.UseVisualStyleBackColor = false;
-            this.btnJ21.Click += new System.EventHandler(this.btnJ21_Click);
-            // 
-            // txtTrimRB3
-            // 
-            this.txtTrimRB3.Location = new System.Drawing.Point(286, 211);
-            this.txtTrimRB3.Name = "txtTrimRB3";
-            this.txtTrimRB3.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimRB3.TabIndex = 21;
-            // 
-            // btnJ20
-            // 
-            this.btnJ20.BackColor = System.Drawing.Color.Silver;
-            this.btnJ20.Location = new System.Drawing.Point(6, 350);
-            this.btnJ20.Name = "btnJ20";
-            this.btnJ20.Size = new System.Drawing.Size(75, 30);
-            this.btnJ20.TabIndex = 9;
-            this.btnJ20.Text = "J20";
-            this.btnJ20.UseVisualStyleBackColor = false;
-            this.btnJ20.Click += new System.EventHandler(this.btnJ20_Click);
-            // 
-            // txtTrimRB2
-            // 
-            this.txtTrimRB2.Location = new System.Drawing.Point(286, 178);
-            this.txtTrimRB2.Name = "txtTrimRB2";
-            this.txtTrimRB2.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimRB2.TabIndex = 20;
-            // 
-            // btnJ19
-            // 
-            this.btnJ19.BackColor = System.Drawing.Color.Silver;
-            this.btnJ19.Location = new System.Drawing.Point(6, 314);
-            this.btnJ19.Name = "btnJ19";
-            this.btnJ19.Size = new System.Drawing.Size(75, 30);
-            this.btnJ19.TabIndex = 8;
-            this.btnJ19.Text = "J19";
-            this.btnJ19.UseVisualStyleBackColor = false;
-            this.btnJ19.Click += new System.EventHandler(this.btnJ19_Click);
-            // 
-            // txtTrimRB1
-            // 
-            this.txtTrimRB1.Location = new System.Drawing.Point(286, 145);
-            this.txtTrimRB1.Name = "txtTrimRB1";
-            this.txtTrimRB1.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimRB1.TabIndex = 19;
-            // 
-            // btnJ18
-            // 
-            this.btnJ18.BackColor = System.Drawing.Color.Silver;
-            this.btnJ18.Location = new System.Drawing.Point(6, 278);
-            this.btnJ18.Name = "btnJ18";
-            this.btnJ18.Size = new System.Drawing.Size(75, 30);
-            this.btnJ18.TabIndex = 7;
-            this.btnJ18.Text = "J18";
-            this.btnJ18.UseVisualStyleBackColor = false;
-            this.btnJ18.Click += new System.EventHandler(this.btnJ18_Click);
-            // 
-            // txtTrimRB0
-            // 
-            this.txtTrimRB0.Location = new System.Drawing.Point(286, 112);
-            this.txtTrimRB0.Name = "txtTrimRB0";
-            this.txtTrimRB0.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimRB0.TabIndex = 18;
-            this.txtTrimRB0.TextChanged += new System.EventHandler(this.txtTrimRB0_TextChanged);
-            // 
-            // btnJ17
-            // 
-            this.btnJ17.BackColor = System.Drawing.Color.Silver;
-            this.btnJ17.Location = new System.Drawing.Point(6, 242);
-            this.btnJ17.Name = "btnJ17";
-            this.btnJ17.Size = new System.Drawing.Size(75, 30);
-            this.btnJ17.TabIndex = 6;
-            this.btnJ17.Text = "J17";
-            this.btnJ17.UseVisualStyleBackColor = false;
-            this.btnJ17.Click += new System.EventHandler(this.btnJ17_Click);
-            // 
-            // txtLEDRB0
-            // 
-            this.txtLEDRB0.Location = new System.Drawing.Point(286, 79);
-            this.txtLEDRB0.Name = "txtLEDRB0";
-            this.txtLEDRB0.Size = new System.Drawing.Size(76, 27);
-            this.txtLEDRB0.TabIndex = 17;
-            // 
-            // btnJ16
-            // 
-            this.btnJ16.BackColor = System.Drawing.Color.Silver;
-            this.btnJ16.Location = new System.Drawing.Point(6, 206);
-            this.btnJ16.Name = "btnJ16";
-            this.btnJ16.Size = new System.Drawing.Size(75, 30);
-            this.btnJ16.TabIndex = 5;
-            this.btnJ16.Text = "J16";
-            this.btnJ16.UseVisualStyleBackColor = false;
-            this.btnJ16.Click += new System.EventHandler(this.btnJ16_Click);
-            // 
-            // txtBiasRB0
-            // 
-            this.txtBiasRB0.Location = new System.Drawing.Point(286, 46);
-            this.txtBiasRB0.Name = "txtBiasRB0";
-            this.txtBiasRB0.Size = new System.Drawing.Size(76, 27);
-            this.txtBiasRB0.TabIndex = 16;
-            this.txtBiasRB0.TextChanged += new System.EventHandler(this.txtBiasRB0_TextChanged);
-            // 
-            // btnJ15
-            // 
-            this.btnJ15.BackColor = System.Drawing.Color.Silver;
-            this.btnJ15.Location = new System.Drawing.Point(6, 170);
-            this.btnJ15.Name = "btnJ15";
-            this.btnJ15.Size = new System.Drawing.Size(75, 30);
-            this.btnJ15.TabIndex = 4;
-            this.btnJ15.Text = "J15";
-            this.btnJ15.UseVisualStyleBackColor = false;
-            this.btnJ15.Click += new System.EventHandler(this.btnJ15_Click);
-            // 
-            // btnJ14
-            // 
-            this.btnJ14.BackColor = System.Drawing.Color.Silver;
-            this.btnJ14.Location = new System.Drawing.Point(6, 134);
-            this.btnJ14.Name = "btnJ14";
-            this.btnJ14.Size = new System.Drawing.Size(75, 30);
-            this.btnJ14.TabIndex = 3;
-            this.btnJ14.Text = "J14";
-            this.btnJ14.UseVisualStyleBackColor = false;
-            this.btnJ14.Click += new System.EventHandler(this.btnJ14_Click);
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(282, 23);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(102, 20);
-            this.label23.TabIndex = 15;
-            this.label23.Text = "READBACK";
-            // 
-            // btnJ13
-            // 
-            this.btnJ13.BackColor = System.Drawing.Color.Silver;
-            this.btnJ13.Location = new System.Drawing.Point(6, 98);
-            this.btnJ13.Name = "btnJ13";
-            this.btnJ13.Size = new System.Drawing.Size(75, 30);
-            this.btnJ13.TabIndex = 2;
-            this.btnJ13.Text = "J13";
-            this.btnJ13.UseVisualStyleBackColor = false;
-            this.btnJ13.Click += new System.EventHandler(this.btnJ13_Click);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(196, 23);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(80, 20);
-            this.label22.TabIndex = 14;
-            this.label22.Text = "SETTING";
-            // 
-            // btnJ12
-            // 
-            this.btnJ12.BackColor = System.Drawing.Color.Silver;
-            this.btnJ12.Location = new System.Drawing.Point(6, 62);
-            this.btnJ12.Name = "btnJ12";
-            this.btnJ12.Size = new System.Drawing.Size(75, 30);
-            this.btnJ12.TabIndex = 1;
-            this.btnJ12.Text = "J12";
-            this.btnJ12.UseVisualStyleBackColor = false;
-            this.btnJ12.Click += new System.EventHandler(this.btnJ12_Click);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(137, 214);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(57, 20);
-            this.label21.TabIndex = 13;
-            this.label21.Text = "Trim 3";
-            // 
-            // btnJ11
-            // 
-            this.btnJ11.BackColor = System.Drawing.Color.Silver;
-            this.btnJ11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnJ11.Location = new System.Drawing.Point(6, 26);
-            this.btnJ11.Name = "btnJ11";
-            this.btnJ11.Size = new System.Drawing.Size(75, 30);
-            this.btnJ11.TabIndex = 0;
-            this.btnJ11.Text = "J11";
-            this.btnJ11.UseVisualStyleBackColor = false;
-            this.btnJ11.Click += new System.EventHandler(this.btnJ11_Click);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(137, 178);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(57, 20);
-            this.label16.TabIndex = 12;
-            this.label16.Text = "Trim 2";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(137, 148);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(57, 20);
-            this.label15.TabIndex = 11;
-            this.label15.Text = "Trim 1";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(137, 115);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(57, 20);
-            this.label14.TabIndex = 10;
-            this.label14.Text = "Trim 0";
-            // 
-            // txtTrimSet3
-            // 
-            this.txtTrimSet3.Location = new System.Drawing.Point(200, 211);
-            this.txtTrimSet3.Name = "txtTrimSet3";
-            this.txtTrimSet3.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimSet3.TabIndex = 9;
-            this.txtTrimSet3.TextChanged += new System.EventHandler(this.txtTrimSet3_TextChanged);
-            // 
-            // txtTrimSet2
-            // 
-            this.txtTrimSet2.Location = new System.Drawing.Point(200, 178);
-            this.txtTrimSet2.Name = "txtTrimSet2";
-            this.txtTrimSet2.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimSet2.TabIndex = 8;
-            // 
-            // txtTrimSet1
-            // 
-            this.txtTrimSet1.Location = new System.Drawing.Point(200, 145);
-            this.txtTrimSet1.Name = "txtTrimSet1";
-            this.txtTrimSet1.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimSet1.TabIndex = 7;
-            // 
-            // txtTrimSet0
-            // 
-            this.txtTrimSet0.Location = new System.Drawing.Point(200, 112);
-            this.txtTrimSet0.Name = "txtTrimSet0";
-            this.txtTrimSet0.Size = new System.Drawing.Size(76, 27);
-            this.txtTrimSet0.TabIndex = 6;
-            // 
-            // txtLEDSet0
-            // 
-            this.txtLEDSet0.Location = new System.Drawing.Point(200, 79);
-            this.txtLEDSet0.Name = "txtLEDSet0";
-            this.txtLEDSet0.Size = new System.Drawing.Size(76, 27);
-            this.txtLEDSet0.TabIndex = 5;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(151, 82);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(43, 20);
-            this.label13.TabIndex = 4;
-            this.label13.Text = "LED";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(151, 49);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(43, 20);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "Bias";
-            // 
-            // txtBiasSet0
-            // 
-            this.txtBiasSet0.Location = new System.Drawing.Point(200, 46);
-            this.txtBiasSet0.Name = "txtBiasSet0";
-            this.txtBiasSet0.Size = new System.Drawing.Size(76, 27);
-            this.txtBiasSet0.TabIndex = 1;
-            this.txtBiasSet0.TextChanged += new System.EventHandler(this.txtBiasSet1_TextChanged);
-            // 
             // tabIV
             // 
             this.tabIV.Controls.Add(this.label33);
@@ -3335,6 +2686,17 @@ namespace TB_mu2e
             // 
             // CalibPType
             // 
+            this.CalibPType.Controls.Add(this.label46);
+            this.CalibPType.Controls.Add(this.label45);
+            this.CalibPType.Controls.Add(this.label44);
+            this.CalibPType.Controls.Add(this.label43);
+            this.CalibPType.Controls.Add(this.label42);
+            this.CalibPType.Controls.Add(this.label41);
+            this.CalibPType.Controls.Add(this.label40);
+            this.CalibPType.Controls.Add(this.label39);
+            this.CalibPType.Controls.Add(this.btnSaveDB);
+            this.CalibPType.Controls.Add(this.btnCalibrate);
+            this.CalibPType.Controls.Add(this.btnBuildListView);
             this.CalibPType.Controls.Add(this.lblMuxTime);
             this.CalibPType.Controls.Add(this.lblScanTime);
             this.CalibPType.Controls.Add(this.lblScanSamples);
@@ -3349,6 +2711,7 @@ namespace TB_mu2e
             this.CalibPType.Controls.Add(this.listView1);
             this.CalibPType.Controls.Add(this.label47);
             this.CalibPType.Controls.Add(this.btnFullVScan);
+            this.CalibPType.Controls.Add(this.label37);
             this.CalibPType.Location = new System.Drawing.Point(4, 32);
             this.CalibPType.Name = "CalibPType";
             this.CalibPType.Size = new System.Drawing.Size(1255, 665);
@@ -3356,28 +2719,141 @@ namespace TB_mu2e
             this.CalibPType.Text = "Calibration";
             this.CalibPType.UseVisualStyleBackColor = true;
             // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Location = new System.Drawing.Point(7, 482);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(311, 50);
+            this.label46.TabIndex = 31;
+            this.label46.Text = "9.    (Optional) Load calibration file \r\n       and re-run test (step 5).";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(7, 438);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(28, 25);
+            this.label45.TabIndex = 30;
+            this.label45.Text = "8.";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(7, 387);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(28, 25);
+            this.label44.TabIndex = 29;
+            this.label44.Text = "7.";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(7, 342);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(292, 25);
+            this.label43.TabIndex = 28;
+            this.label43.Text = "6.    Check the results.    -------->";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(7, 276);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(28, 25);
+            this.label42.TabIndex = 27;
+            this.label42.Text = "5.";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(7, 225);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(28, 25);
+            this.label41.TabIndex = 26;
+            this.label41.Text = "4.";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(7, 180);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(404, 25);
+            this.label40.TabIndex = 25;
+            this.label40.Text = "3.    Connect the HDMI cables from the DMM.";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(7, 115);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(28, 25);
+            this.label39.TabIndex = 24;
+            this.label39.Text = "2.";
+            // 
+            // btnSaveDB
+            // 
+            this.btnSaveDB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveDB.Location = new System.Drawing.Point(41, 431);
+            this.btnSaveDB.Name = "btnSaveDB";
+            this.btnSaveDB.Size = new System.Drawing.Size(209, 38);
+            this.btnSaveDB.TabIndex = 23;
+            this.btnSaveDB.Text = "Save Database File";
+            this.btnSaveDB.UseVisualStyleBackColor = true;
+            // 
+            // btnCalibrate
+            // 
+            this.btnCalibrate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalibrate.Location = new System.Drawing.Point(1020, 9);
+            this.btnCalibrate.Name = "btnCalibrate";
+            this.btnCalibrate.Size = new System.Drawing.Size(227, 40);
+            this.btnCalibrate.TabIndex = 21;
+            this.btnCalibrate.Text = "Load Calibrations";
+            this.btnCalibrate.UseVisualStyleBackColor = true;
+            // 
+            // btnBuildListView
+            // 
+            this.btnBuildListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuildListView.Location = new System.Drawing.Point(41, 218);
+            this.btnBuildListView.Name = "btnBuildListView";
+            this.btnBuildListView.Size = new System.Drawing.Size(219, 38);
+            this.btnBuildListView.TabIndex = 20;
+            this.btnBuildListView.Text = "Initialize Voltage List";
+            this.btnBuildListView.UseVisualStyleBackColor = true;
+            this.btnBuildListView.Click += new System.EventHandler(this.btnBuildListView_Click);
+            // 
             // lblMuxTime
             // 
             this.lblMuxTime.AutoSize = true;
-            this.lblMuxTime.Location = new System.Drawing.Point(260, 318);
+            this.lblMuxTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMuxTime.Location = new System.Drawing.Point(37, 149);
             this.lblMuxTime.Name = "lblMuxTime";
-            this.lblMuxTime.Size = new System.Drawing.Size(171, 20);
+            this.lblMuxTime.Size = new System.Drawing.Size(151, 18);
             this.lblMuxTime.TabIndex = 19;
             this.lblMuxTime.Text = "Scan Time: 00:00.000";
             // 
             // lblScanTime
             // 
             this.lblScanTime.AutoSize = true;
-            this.lblScanTime.Location = new System.Drawing.Point(260, 206);
+            this.lblScanTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanTime.Location = new System.Drawing.Point(37, 310);
             this.lblScanTime.Name = "lblScanTime";
-            this.lblScanTime.Size = new System.Drawing.Size(171, 20);
+            this.lblScanTime.Size = new System.Drawing.Size(151, 18);
             this.lblScanTime.TabIndex = 18;
             this.lblScanTime.Text = "Scan Time: 00:00.000";
             // 
             // lblScanSamples
             // 
             this.lblScanSamples.AutoSize = true;
-            this.lblScanSamples.Location = new System.Drawing.Point(260, 153);
+            this.lblScanSamples.Location = new System.Drawing.Point(197, 269);
             this.lblScanSamples.Name = "lblScanSamples";
             this.lblScanSamples.Size = new System.Drawing.Size(169, 20);
             this.lblScanSamples.TabIndex = 17;
@@ -3385,17 +2861,17 @@ namespace TB_mu2e
             // 
             // UpDnSamples
             // 
-            this.UpDnSamples.Location = new System.Drawing.Point(264, 176);
+            this.UpDnSamples.Location = new System.Drawing.Point(201, 292);
             this.UpDnSamples.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.UpDnSamples.Name = "UpDnSamples";
-            this.UpDnSamples.Size = new System.Drawing.Size(60, 27);
+            this.UpDnSamples.Size = new System.Drawing.Size(54, 27);
             this.UpDnSamples.TabIndex = 16;
             this.UpDnSamples.Value = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
             0});
@@ -3403,7 +2879,7 @@ namespace TB_mu2e
             // btnZeroVoltages
             // 
             this.btnZeroVoltages.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnZeroVoltages.Location = new System.Drawing.Point(1123, 550);
+            this.btnZeroVoltages.Location = new System.Drawing.Point(1123, 586);
             this.btnZeroVoltages.Name = "btnZeroVoltages";
             this.btnZeroVoltages.Size = new System.Drawing.Size(124, 36);
             this.btnZeroVoltages.TabIndex = 15;
@@ -3414,7 +2890,7 @@ namespace TB_mu2e
             // btnUpdateList
             // 
             this.btnUpdateList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateList.Location = new System.Drawing.Point(912, 550);
+            this.btnUpdateList.Location = new System.Drawing.Point(912, 586);
             this.btnUpdateList.Name = "btnUpdateList";
             this.btnUpdateList.Size = new System.Drawing.Size(124, 36);
             this.btnUpdateList.TabIndex = 14;
@@ -3426,7 +2902,7 @@ namespace TB_mu2e
             // 
             this.lblSelectedChan.AutoSize = true;
             this.lblSelectedChan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectedChan.Location = new System.Drawing.Point(646, 556);
+            this.lblSelectedChan.Location = new System.Drawing.Point(646, 592);
             this.lblSelectedChan.Name = "lblSelectedChan";
             this.lblSelectedChan.Size = new System.Drawing.Size(154, 25);
             this.lblSelectedChan.TabIndex = 13;
@@ -3436,7 +2912,7 @@ namespace TB_mu2e
             // 
             this.label95.AutoSize = true;
             this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label95.Location = new System.Drawing.Point(432, 556);
+            this.label95.Location = new System.Drawing.Point(432, 592);
             this.label95.Name = "label95";
             this.label95.Size = new System.Drawing.Size(208, 25);
             this.label95.TabIndex = 12;
@@ -3444,30 +2920,30 @@ namespace TB_mu2e
             // 
             // txtVSet
             // 
-            this.txtVSet.Location = new System.Drawing.Point(806, 557);
+            this.txtVSet.Location = new System.Drawing.Point(806, 590);
             this.txtVSet.Name = "txtVSet";
             this.txtVSet.Size = new System.Drawing.Size(100, 27);
             this.txtVSet.TabIndex = 11;
             // 
             // btnMuxTest
             // 
-            this.btnMuxTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMuxTest.Location = new System.Drawing.Point(264, 265);
+            this.btnMuxTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMuxTest.Location = new System.Drawing.Point(41, 108);
             this.btnMuxTest.Name = "btnMuxTest";
-            this.btnMuxTest.Size = new System.Drawing.Size(125, 50);
+            this.btnMuxTest.Size = new System.Drawing.Size(203, 38);
             this.btnMuxTest.TabIndex = 8;
-            this.btnMuxTest.Text = "MUX TEST";
+            this.btnMuxTest.Text = "Calibrate Mux Test";
             this.btnMuxTest.UseVisualStyleBackColor = true;
             this.btnMuxTest.Click += new System.EventHandler(this.btnMuxTest_Click);
             // 
             // btnSaveVScan
             // 
-            this.btnSaveVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveVScan.Location = new System.Drawing.Point(264, 494);
+            this.btnSaveVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveVScan.Location = new System.Drawing.Point(41, 380);
             this.btnSaveVScan.Name = "btnSaveVScan";
-            this.btnSaveVScan.Size = new System.Drawing.Size(100, 50);
+            this.btnSaveVScan.Size = new System.Drawing.Size(191, 38);
             this.btnSaveVScan.TabIndex = 7;
-            this.btnSaveVScan.Text = "SAVE";
+            this.btnSaveVScan.Text = "Save Calibrations";
             this.btnSaveVScan.UseVisualStyleBackColor = true;
             this.btnSaveVScan.Click += new System.EventHandler(this.btnSaveVScan_Click);
             // 
@@ -3482,23 +2958,23 @@ namespace TB_mu2e
             this.Gain,
             this.Offset,
             this.MuxCurrent});
-            listViewGroup5.Header = "FPGA 0";
-            listViewGroup5.Name = "fpga0";
-            listViewGroup6.Header = "FPGA 1";
-            listViewGroup6.Name = "fpga1";
-            listViewGroup7.Header = "FPGA 2";
-            listViewGroup7.Name = "fpga2";
-            listViewGroup8.Header = "FPGA 3";
-            listViewGroup8.Name = "fpga3";
+            listViewGroup9.Header = "FPGA 0";
+            listViewGroup9.Name = "fpga0";
+            listViewGroup10.Header = "FPGA 1";
+            listViewGroup10.Name = "fpga1";
+            listViewGroup11.Header = "FPGA 2";
+            listViewGroup11.Name = "fpga2";
+            listViewGroup12.Header = "FPGA 3";
+            listViewGroup12.Name = "fpga3";
             this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup5,
-            listViewGroup6,
-            listViewGroup7,
-            listViewGroup8});
-            this.listView1.Location = new System.Drawing.Point(437, 44);
+            listViewGroup9,
+            listViewGroup10,
+            listViewGroup11,
+            listViewGroup12});
+            this.listView1.Location = new System.Drawing.Point(437, 55);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(810, 500);
+            this.listView1.Size = new System.Drawing.Size(810, 525);
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -3545,7 +3021,7 @@ namespace TB_mu2e
             // 
             this.label47.AutoSize = true;
             this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(438, 12);
+            this.label47.Location = new System.Drawing.Point(432, 15);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(204, 29);
             this.label47.TabIndex = 3;
@@ -3553,14 +3029,687 @@ namespace TB_mu2e
             // 
             // btnFullVScan
             // 
-            this.btnFullVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFullVScan.Location = new System.Drawing.Point(264, 100);
+            this.btnFullVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFullVScan.Location = new System.Drawing.Point(41, 269);
             this.btnFullVScan.Name = "btnFullVScan";
-            this.btnFullVScan.Size = new System.Drawing.Size(125, 50);
+            this.btnFullVScan.Size = new System.Drawing.Size(150, 38);
             this.btnFullVScan.TabIndex = 1;
-            this.btnFullVScan.Text = "SCAN";
+            this.btnFullVScan.Text = "Voltage Scan";
             this.btnFullVScan.UseVisualStyleBackColor = true;
             this.btnFullVScan.Click += new System.EventHandler(this.btnFullVScan_Click);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(7, 55);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(382, 50);
+            this.label37.TabIndex = 22;
+            this.label37.Text = "1.    Make sure the FEB is connected\r\n       but the HDMI cables are disconnected" +
+    ".";
+            // 
+            // tabFEBtest
+            // 
+            this.tabFEBtest.Controls.Add(this.button5);
+            this.tabFEBtest.Controls.Add(this.label9);
+            this.tabFEBtest.Controls.Add(this.btnConnectScope);
+            this.tabFEBtest.Controls.Add(this.btnSnSave);
+            this.tabFEBtest.Controls.Add(this.txtSN);
+            this.tabFEBtest.Controls.Add(this.label26);
+            this.tabFEBtest.Controls.Add(this.DAC_Voltages);
+            this.tabFEBtest.Location = new System.Drawing.Point(4, 32);
+            this.tabFEBtest.Name = "tabFEBtest";
+            this.tabFEBtest.Padding = new System.Windows.Forms.Padding(3);
+            this.tabFEBtest.Size = new System.Drawing.Size(1255, 665);
+            this.tabFEBtest.TabIndex = 8;
+            this.tabFEBtest.Text = "Calibration (OLD)";
+            this.tabFEBtest.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(107, 472);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(219, 35);
+            this.button5.TabIndex = 67;
+            this.button5.Text = "UPDATE TEMPERATURE";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(103, 158);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(53, 20);
+            this.label9.TabIndex = 66;
+            this.label9.Text = "label9";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
+            // 
+            // btnConnectScope
+            // 
+            this.btnConnectScope.Location = new System.Drawing.Point(359, 43);
+            this.btnConnectScope.Name = "btnConnectScope";
+            this.btnConnectScope.Size = new System.Drawing.Size(183, 37);
+            this.btnConnectScope.TabIndex = 9;
+            this.btnConnectScope.Text = "CONNECT SCOPE";
+            this.btnConnectScope.UseVisualStyleBackColor = true;
+            this.btnConnectScope.Click += new System.EventHandler(this.btnConnectScope_Click);
+            // 
+            // btnSnSave
+            // 
+            this.btnSnSave.Location = new System.Drawing.Point(431, 6);
+            this.btnSnSave.Name = "btnSnSave";
+            this.btnSnSave.Size = new System.Drawing.Size(111, 31);
+            this.btnSnSave.TabIndex = 8;
+            this.btnSnSave.Text = "SAVE";
+            this.btnSnSave.UseVisualStyleBackColor = true;
+            this.btnSnSave.Click += new System.EventHandler(this.btnSnSave_Click);
+            // 
+            // txtSN
+            // 
+            this.txtSN.Location = new System.Drawing.Point(210, 8);
+            this.txtSN.Name = "txtSN";
+            this.txtSN.Size = new System.Drawing.Size(215, 27);
+            this.txtSN.TabIndex = 5;
+            this.txtSN.TextChanged += new System.EventHandler(this.txtSN_TextChanged);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.label26.Location = new System.Drawing.Point(92, 6);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(112, 31);
+            this.label26.TabIndex = 4;
+            this.label26.Text = "FEB SN";
+            // 
+            // DAC_Voltages
+            // 
+            this.DAC_Voltages.Controls.Add(this.txtMuxI3);
+            this.DAC_Voltages.Controls.Add(this.txtMuxI2);
+            this.DAC_Voltages.Controls.Add(this.txtMuxI1);
+            this.DAC_Voltages.Controls.Add(this.txtMuxI0);
+            this.DAC_Voltages.Controls.Add(this.label36);
+            this.DAC_Voltages.Controls.Add(this.btnLoadCalib);
+            this.DAC_Voltages.Controls.Add(this.txtTrim3Int);
+            this.DAC_Voltages.Controls.Add(this.txtTrim3Slope);
+            this.DAC_Voltages.Controls.Add(this.txtTrim2Int);
+            this.DAC_Voltages.Controls.Add(this.txtTrim2Slope);
+            this.DAC_Voltages.Controls.Add(this.txtTrim1Int);
+            this.DAC_Voltages.Controls.Add(this.txtTrim1Slope);
+            this.DAC_Voltages.Controls.Add(this.txtTrim0Int);
+            this.DAC_Voltages.Controls.Add(this.txtTrim0Slope);
+            this.DAC_Voltages.Controls.Add(this.txtBiasInt);
+            this.DAC_Voltages.Controls.Add(this.txtBiasSlope);
+            this.DAC_Voltages.Controls.Add(this.label29);
+            this.DAC_Voltages.Controls.Add(this.label28);
+            this.DAC_Voltages.Controls.Add(this.label25);
+            this.DAC_Voltages.Controls.Add(this.txtCalibComments);
+            this.DAC_Voltages.Controls.Add(this.btnDacSave);
+            this.DAC_Voltages.Controls.Add(this.btnJ26);
+            this.DAC_Voltages.Controls.Add(this.btnDacScan);
+            this.DAC_Voltages.Controls.Add(this.btnJ25);
+            this.DAC_Voltages.Controls.Add(this.btnJ24);
+            this.DAC_Voltages.Controls.Add(this.btnDacWrite);
+            this.DAC_Voltages.Controls.Add(this.btnJ23);
+            this.DAC_Voltages.Controls.Add(this.btnJ22);
+            this.DAC_Voltages.Controls.Add(this.btnJ21);
+            this.DAC_Voltages.Controls.Add(this.txtTrimRB3);
+            this.DAC_Voltages.Controls.Add(this.btnJ20);
+            this.DAC_Voltages.Controls.Add(this.txtTrimRB2);
+            this.DAC_Voltages.Controls.Add(this.btnJ19);
+            this.DAC_Voltages.Controls.Add(this.txtTrimRB1);
+            this.DAC_Voltages.Controls.Add(this.btnJ18);
+            this.DAC_Voltages.Controls.Add(this.txtTrimRB0);
+            this.DAC_Voltages.Controls.Add(this.btnJ17);
+            this.DAC_Voltages.Controls.Add(this.txtLEDRB0);
+            this.DAC_Voltages.Controls.Add(this.btnJ16);
+            this.DAC_Voltages.Controls.Add(this.txtBiasRB0);
+            this.DAC_Voltages.Controls.Add(this.btnJ15);
+            this.DAC_Voltages.Controls.Add(this.btnJ14);
+            this.DAC_Voltages.Controls.Add(this.label23);
+            this.DAC_Voltages.Controls.Add(this.btnJ13);
+            this.DAC_Voltages.Controls.Add(this.label22);
+            this.DAC_Voltages.Controls.Add(this.btnJ12);
+            this.DAC_Voltages.Controls.Add(this.label21);
+            this.DAC_Voltages.Controls.Add(this.btnJ11);
+            this.DAC_Voltages.Controls.Add(this.label16);
+            this.DAC_Voltages.Controls.Add(this.label15);
+            this.DAC_Voltages.Controls.Add(this.label14);
+            this.DAC_Voltages.Controls.Add(this.txtTrimSet3);
+            this.DAC_Voltages.Controls.Add(this.txtTrimSet2);
+            this.DAC_Voltages.Controls.Add(this.txtTrimSet1);
+            this.DAC_Voltages.Controls.Add(this.txtTrimSet0);
+            this.DAC_Voltages.Controls.Add(this.txtLEDSet0);
+            this.DAC_Voltages.Controls.Add(this.label13);
+            this.DAC_Voltages.Controls.Add(this.label12);
+            this.DAC_Voltages.Controls.Add(this.txtBiasSet0);
+            this.DAC_Voltages.Location = new System.Drawing.Point(557, 6);
+            this.DAC_Voltages.Name = "DAC_Voltages";
+            this.DAC_Voltages.Size = new System.Drawing.Size(692, 606);
+            this.DAC_Voltages.TabIndex = 0;
+            this.DAC_Voltages.TabStop = false;
+            this.DAC_Voltages.Text = "DAC Voltages";
+            // 
+            // txtMuxI3
+            // 
+            this.txtMuxI3.Location = new System.Drawing.Point(583, 211);
+            this.txtMuxI3.Name = "txtMuxI3";
+            this.txtMuxI3.Size = new System.Drawing.Size(76, 27);
+            this.txtMuxI3.TabIndex = 98;
+            // 
+            // txtMuxI2
+            // 
+            this.txtMuxI2.Location = new System.Drawing.Point(583, 178);
+            this.txtMuxI2.Name = "txtMuxI2";
+            this.txtMuxI2.Size = new System.Drawing.Size(76, 27);
+            this.txtMuxI2.TabIndex = 97;
+            // 
+            // txtMuxI1
+            // 
+            this.txtMuxI1.Location = new System.Drawing.Point(583, 145);
+            this.txtMuxI1.Name = "txtMuxI1";
+            this.txtMuxI1.Size = new System.Drawing.Size(76, 27);
+            this.txtMuxI1.TabIndex = 96;
+            // 
+            // txtMuxI0
+            // 
+            this.txtMuxI0.Location = new System.Drawing.Point(583, 112);
+            this.txtMuxI0.Name = "txtMuxI0";
+            this.txtMuxI0.Size = new System.Drawing.Size(76, 27);
+            this.txtMuxI0.TabIndex = 95;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(579, 23);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(101, 20);
+            this.label36.TabIndex = 94;
+            this.label36.Text = "Mux Current";
+            // 
+            // btnLoadCalib
+            // 
+            this.btnLoadCalib.Location = new System.Drawing.Point(364, 458);
+            this.btnLoadCalib.Name = "btnLoadCalib";
+            this.btnLoadCalib.Size = new System.Drawing.Size(195, 43);
+            this.btnLoadCalib.TabIndex = 93;
+            this.btnLoadCalib.Text = "LOAD CALIBRATIONS";
+            this.btnLoadCalib.UseVisualStyleBackColor = true;
+            this.btnLoadCalib.Click += new System.EventHandler(this.btnLoadCalib_Click);
+            // 
+            // txtTrim3Int
+            // 
+            this.txtTrim3Int.Location = new System.Drawing.Point(483, 211);
+            this.txtTrim3Int.Name = "txtTrim3Int";
+            this.txtTrim3Int.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim3Int.TabIndex = 92;
+            // 
+            // txtTrim3Slope
+            // 
+            this.txtTrim3Slope.Location = new System.Drawing.Point(401, 211);
+            this.txtTrim3Slope.Name = "txtTrim3Slope";
+            this.txtTrim3Slope.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim3Slope.TabIndex = 91;
+            // 
+            // txtTrim2Int
+            // 
+            this.txtTrim2Int.Location = new System.Drawing.Point(483, 178);
+            this.txtTrim2Int.Name = "txtTrim2Int";
+            this.txtTrim2Int.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim2Int.TabIndex = 90;
+            // 
+            // txtTrim2Slope
+            // 
+            this.txtTrim2Slope.Location = new System.Drawing.Point(401, 178);
+            this.txtTrim2Slope.Name = "txtTrim2Slope";
+            this.txtTrim2Slope.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim2Slope.TabIndex = 89;
+            // 
+            // txtTrim1Int
+            // 
+            this.txtTrim1Int.Location = new System.Drawing.Point(483, 145);
+            this.txtTrim1Int.Name = "txtTrim1Int";
+            this.txtTrim1Int.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim1Int.TabIndex = 88;
+            // 
+            // txtTrim1Slope
+            // 
+            this.txtTrim1Slope.Location = new System.Drawing.Point(401, 145);
+            this.txtTrim1Slope.Name = "txtTrim1Slope";
+            this.txtTrim1Slope.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim1Slope.TabIndex = 87;
+            // 
+            // txtTrim0Int
+            // 
+            this.txtTrim0Int.Location = new System.Drawing.Point(483, 112);
+            this.txtTrim0Int.Name = "txtTrim0Int";
+            this.txtTrim0Int.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim0Int.TabIndex = 86;
+            // 
+            // txtTrim0Slope
+            // 
+            this.txtTrim0Slope.Location = new System.Drawing.Point(401, 112);
+            this.txtTrim0Slope.Name = "txtTrim0Slope";
+            this.txtTrim0Slope.Size = new System.Drawing.Size(76, 27);
+            this.txtTrim0Slope.TabIndex = 85;
+            // 
+            // txtBiasInt
+            // 
+            this.txtBiasInt.Location = new System.Drawing.Point(483, 46);
+            this.txtBiasInt.Name = "txtBiasInt";
+            this.txtBiasInt.Size = new System.Drawing.Size(76, 27);
+            this.txtBiasInt.TabIndex = 84;
+            // 
+            // txtBiasSlope
+            // 
+            this.txtBiasSlope.Location = new System.Drawing.Point(401, 46);
+            this.txtBiasSlope.Name = "txtBiasSlope";
+            this.txtBiasSlope.Size = new System.Drawing.Size(76, 27);
+            this.txtBiasSlope.TabIndex = 83;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(479, 23);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(74, 20);
+            this.label29.TabIndex = 82;
+            this.label29.Text = "Intercept";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(397, 23);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(51, 20);
+            this.label28.TabIndex = 81;
+            this.label28.Text = "Slope";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(137, 291);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(90, 20);
+            this.label25.TabIndex = 80;
+            this.label25.Text = "Comments";
+            // 
+            // txtCalibComments
+            // 
+            this.txtCalibComments.Location = new System.Drawing.Point(141, 314);
+            this.txtCalibComments.Multiline = true;
+            this.txtCalibComments.Name = "txtCalibComments";
+            this.txtCalibComments.Size = new System.Drawing.Size(418, 138);
+            this.txtCalibComments.TabIndex = 79;
+            // 
+            // btnDacSave
+            // 
+            this.btnDacSave.Location = new System.Drawing.Point(141, 458);
+            this.btnDacSave.Name = "btnDacSave";
+            this.btnDacSave.Size = new System.Drawing.Size(148, 43);
+            this.btnDacSave.TabIndex = 78;
+            this.btnDacSave.Text = "SAVE";
+            this.btnDacSave.UseVisualStyleBackColor = true;
+            this.btnDacSave.Click += new System.EventHandler(this.btnDacSave_Click);
+            // 
+            // btnJ26
+            // 
+            this.btnJ26.BackColor = System.Drawing.Color.Silver;
+            this.btnJ26.Location = new System.Drawing.Point(6, 566);
+            this.btnJ26.Name = "btnJ26";
+            this.btnJ26.Size = new System.Drawing.Size(75, 30);
+            this.btnJ26.TabIndex = 15;
+            this.btnJ26.Text = "J26";
+            this.btnJ26.UseVisualStyleBackColor = false;
+            this.btnJ26.Click += new System.EventHandler(this.btnJ26_Click);
+            // 
+            // btnDacScan
+            // 
+            this.btnDacScan.Location = new System.Drawing.Point(460, 244);
+            this.btnDacScan.Name = "btnDacScan";
+            this.btnDacScan.Size = new System.Drawing.Size(93, 29);
+            this.btnDacScan.TabIndex = 77;
+            this.btnDacScan.Text = "SCAN";
+            this.btnDacScan.UseVisualStyleBackColor = true;
+            this.btnDacScan.Click += new System.EventHandler(this.btnDacScan_Click);
+            // 
+            // btnJ25
+            // 
+            this.btnJ25.BackColor = System.Drawing.Color.Silver;
+            this.btnJ25.Location = new System.Drawing.Point(6, 530);
+            this.btnJ25.Name = "btnJ25";
+            this.btnJ25.Size = new System.Drawing.Size(75, 30);
+            this.btnJ25.TabIndex = 14;
+            this.btnJ25.Text = "J25";
+            this.btnJ25.UseVisualStyleBackColor = false;
+            this.btnJ25.Click += new System.EventHandler(this.btnJ25_Click);
+            // 
+            // btnJ24
+            // 
+            this.btnJ24.BackColor = System.Drawing.Color.Silver;
+            this.btnJ24.Location = new System.Drawing.Point(6, 494);
+            this.btnJ24.Name = "btnJ24";
+            this.btnJ24.Size = new System.Drawing.Size(75, 30);
+            this.btnJ24.TabIndex = 13;
+            this.btnJ24.Text = "J24";
+            this.btnJ24.UseVisualStyleBackColor = false;
+            this.btnJ24.Click += new System.EventHandler(this.btnJ24_Click);
+            // 
+            // btnDacWrite
+            // 
+            this.btnDacWrite.Location = new System.Drawing.Point(200, 244);
+            this.btnDacWrite.Name = "btnDacWrite";
+            this.btnDacWrite.Size = new System.Drawing.Size(93, 29);
+            this.btnDacWrite.TabIndex = 69;
+            this.btnDacWrite.Text = "SET";
+            this.btnDacWrite.UseVisualStyleBackColor = true;
+            this.btnDacWrite.Click += new System.EventHandler(this.btnDacWrite_Click);
+            // 
+            // btnJ23
+            // 
+            this.btnJ23.BackColor = System.Drawing.Color.Silver;
+            this.btnJ23.Location = new System.Drawing.Point(6, 458);
+            this.btnJ23.Name = "btnJ23";
+            this.btnJ23.Size = new System.Drawing.Size(75, 30);
+            this.btnJ23.TabIndex = 12;
+            this.btnJ23.Text = "J23";
+            this.btnJ23.UseVisualStyleBackColor = false;
+            this.btnJ23.Click += new System.EventHandler(this.btnJ23_Click);
+            // 
+            // btnJ22
+            // 
+            this.btnJ22.BackColor = System.Drawing.Color.Silver;
+            this.btnJ22.Location = new System.Drawing.Point(6, 422);
+            this.btnJ22.Name = "btnJ22";
+            this.btnJ22.Size = new System.Drawing.Size(75, 30);
+            this.btnJ22.TabIndex = 11;
+            this.btnJ22.Text = "J22";
+            this.btnJ22.UseVisualStyleBackColor = false;
+            this.btnJ22.Click += new System.EventHandler(this.btnJ22_Click);
+            // 
+            // btnJ21
+            // 
+            this.btnJ21.BackColor = System.Drawing.Color.Silver;
+            this.btnJ21.Location = new System.Drawing.Point(6, 386);
+            this.btnJ21.Name = "btnJ21";
+            this.btnJ21.Size = new System.Drawing.Size(75, 30);
+            this.btnJ21.TabIndex = 10;
+            this.btnJ21.Text = "J21";
+            this.btnJ21.UseVisualStyleBackColor = false;
+            this.btnJ21.Click += new System.EventHandler(this.btnJ21_Click);
+            // 
+            // txtTrimRB3
+            // 
+            this.txtTrimRB3.Location = new System.Drawing.Point(286, 211);
+            this.txtTrimRB3.Name = "txtTrimRB3";
+            this.txtTrimRB3.Size = new System.Drawing.Size(76, 27);
+            this.txtTrimRB3.TabIndex = 21;
+            // 
+            // btnJ20
+            // 
+            this.btnJ20.BackColor = System.Drawing.Color.Silver;
+            this.btnJ20.Location = new System.Drawing.Point(6, 350);
+            this.btnJ20.Name = "btnJ20";
+            this.btnJ20.Size = new System.Drawing.Size(75, 30);
+            this.btnJ20.TabIndex = 9;
+            this.btnJ20.Text = "J20";
+            this.btnJ20.UseVisualStyleBackColor = false;
+            this.btnJ20.Click += new System.EventHandler(this.btnJ20_Click);
+            // 
+            // txtTrimRB2
+            // 
+            this.txtTrimRB2.Location = new System.Drawing.Point(286, 178);
+            this.txtTrimRB2.Name = "txtTrimRB2";
+            this.txtTrimRB2.Size = new System.Drawing.Size(76, 27);
+            this.txtTrimRB2.TabIndex = 20;
+            // 
+            // btnJ19
+            // 
+            this.btnJ19.BackColor = System.Drawing.Color.Silver;
+            this.btnJ19.Location = new System.Drawing.Point(6, 314);
+            this.btnJ19.Name = "btnJ19";
+            this.btnJ19.Size = new System.Drawing.Size(75, 30);
+            this.btnJ19.TabIndex = 8;
+            this.btnJ19.Text = "J19";
+            this.btnJ19.UseVisualStyleBackColor = false;
+            this.btnJ19.Click += new System.EventHandler(this.btnJ19_Click);
+            // 
+            // txtTrimRB1
+            // 
+            this.txtTrimRB1.Location = new System.Drawing.Point(286, 145);
+            this.txtTrimRB1.Name = "txtTrimRB1";
+            this.txtTrimRB1.Size = new System.Drawing.Size(76, 27);
+            this.txtTrimRB1.TabIndex = 19;
+            // 
+            // btnJ18
+            // 
+            this.btnJ18.BackColor = System.Drawing.Color.Silver;
+            this.btnJ18.Location = new System.Drawing.Point(6, 278);
+            this.btnJ18.Name = "btnJ18";
+            this.btnJ18.Size = new System.Drawing.Size(75, 30);
+            this.btnJ18.TabIndex = 7;
+            this.btnJ18.Text = "J18";
+            this.btnJ18.UseVisualStyleBackColor = false;
+            this.btnJ18.Click += new System.EventHandler(this.btnJ18_Click);
+            // 
+            // txtTrimRB0
+            // 
+            this.txtTrimRB0.Location = new System.Drawing.Point(286, 112);
+            this.txtTrimRB0.Name = "txtTrimRB0";
+            this.txtTrimRB0.Size = new System.Drawing.Size(76, 27);
+            this.txtTrimRB0.TabIndex = 18;
+            this.txtTrimRB0.TextChanged += new System.EventHandler(this.txtTrimRB0_TextChanged);
+            // 
+            // btnJ17
+            // 
+            this.btnJ17.BackColor = System.Drawing.Color.Silver;
+            this.btnJ17.Location = new System.Drawing.Point(6, 242);
+            this.btnJ17.Name = "btnJ17";
+            this.btnJ17.Size = new System.Drawing.Size(75, 30);
+            this.btnJ17.TabIndex = 6;
+            this.btnJ17.Text = "J17";
+            this.btnJ17.UseVisualStyleBackColor = false;
+            this.btnJ17.Click += new System.EventHandler(this.btnJ17_Click);
+            // 
+            // txtLEDRB0
+            // 
+            this.txtLEDRB0.Location = new System.Drawing.Point(286, 79);
+            this.txtLEDRB0.Name = "txtLEDRB0";
+            this.txtLEDRB0.Size = new System.Drawing.Size(76, 27);
+            this.txtLEDRB0.TabIndex = 17;
+            // 
+            // btnJ16
+            // 
+            this.btnJ16.BackColor = System.Drawing.Color.Silver;
+            this.btnJ16.Location = new System.Drawing.Point(6, 206);
+            this.btnJ16.Name = "btnJ16";
+            this.btnJ16.Size = new System.Drawing.Size(75, 30);
+            this.btnJ16.TabIndex = 5;
+            this.btnJ16.Text = "J16";
+            this.btnJ16.UseVisualStyleBackColor = false;
+            this.btnJ16.Click += new System.EventHandler(this.btnJ16_Click);
+            // 
+            // txtBiasRB0
+            // 
+            this.txtBiasRB0.Location = new System.Drawing.Point(286, 46);
+            this.txtBiasRB0.Name = "txtBiasRB0";
+            this.txtBiasRB0.Size = new System.Drawing.Size(76, 27);
+            this.txtBiasRB0.TabIndex = 16;
+            this.txtBiasRB0.TextChanged += new System.EventHandler(this.txtBiasRB0_TextChanged);
+            // 
+            // btnJ15
+            // 
+            this.btnJ15.BackColor = System.Drawing.Color.Silver;
+            this.btnJ15.Location = new System.Drawing.Point(6, 170);
+            this.btnJ15.Name = "btnJ15";
+            this.btnJ15.Size = new System.Drawing.Size(75, 30);
+            this.btnJ15.TabIndex = 4;
+            this.btnJ15.Text = "J15";
+            this.btnJ15.UseVisualStyleBackColor = false;
+            this.btnJ15.Click += new System.EventHandler(this.btnJ15_Click);
+            // 
+            // btnJ14
+            // 
+            this.btnJ14.BackColor = System.Drawing.Color.Silver;
+            this.btnJ14.Location = new System.Drawing.Point(6, 134);
+            this.btnJ14.Name = "btnJ14";
+            this.btnJ14.Size = new System.Drawing.Size(75, 30);
+            this.btnJ14.TabIndex = 3;
+            this.btnJ14.Text = "J14";
+            this.btnJ14.UseVisualStyleBackColor = false;
+            this.btnJ14.Click += new System.EventHandler(this.btnJ14_Click);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(282, 23);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(102, 20);
+            this.label23.TabIndex = 15;
+            this.label23.Text = "READBACK";
+            // 
+            // btnJ13
+            // 
+            this.btnJ13.BackColor = System.Drawing.Color.Silver;
+            this.btnJ13.Location = new System.Drawing.Point(6, 98);
+            this.btnJ13.Name = "btnJ13";
+            this.btnJ13.Size = new System.Drawing.Size(75, 30);
+            this.btnJ13.TabIndex = 2;
+            this.btnJ13.Text = "J13";
+            this.btnJ13.UseVisualStyleBackColor = false;
+            this.btnJ13.Click += new System.EventHandler(this.btnJ13_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(196, 23);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(80, 20);
+            this.label22.TabIndex = 14;
+            this.label22.Text = "SETTING";
+            // 
+            // btnJ12
+            // 
+            this.btnJ12.BackColor = System.Drawing.Color.Silver;
+            this.btnJ12.Location = new System.Drawing.Point(6, 62);
+            this.btnJ12.Name = "btnJ12";
+            this.btnJ12.Size = new System.Drawing.Size(75, 30);
+            this.btnJ12.TabIndex = 1;
+            this.btnJ12.Text = "J12";
+            this.btnJ12.UseVisualStyleBackColor = false;
+            this.btnJ12.Click += new System.EventHandler(this.btnJ12_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(137, 214);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(57, 20);
+            this.label21.TabIndex = 13;
+            this.label21.Text = "Trim 3";
+            // 
+            // btnJ11
+            // 
+            this.btnJ11.BackColor = System.Drawing.Color.Silver;
+            this.btnJ11.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnJ11.Location = new System.Drawing.Point(6, 26);
+            this.btnJ11.Name = "btnJ11";
+            this.btnJ11.Size = new System.Drawing.Size(75, 30);
+            this.btnJ11.TabIndex = 0;
+            this.btnJ11.Text = "J11";
+            this.btnJ11.UseVisualStyleBackColor = false;
+            this.btnJ11.Click += new System.EventHandler(this.btnJ11_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(137, 178);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(57, 20);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "Trim 2";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(137, 148);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(57, 20);
+            this.label15.TabIndex = 11;
+            this.label15.Text = "Trim 1";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(137, 115);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(57, 20);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "Trim 0";
+            // 
+            // txtTrimSet3
+            // 
+            this.txtTrimSet3.Location = new System.Drawing.Point(200, 211);
+            this.txtTrimSet3.Name = "txtTrimSet3";
+            this.txtTrimSet3.Size = new System.Drawing.Size(76, 27);
+            this.txtTrimSet3.TabIndex = 9;
+            this.txtTrimSet3.TextChanged += new System.EventHandler(this.txtTrimSet3_TextChanged);
+            // 
+            // txtTrimSet2
+            // 
+            this.txtTrimSet2.Location = new System.Drawing.Point(200, 178);
+            this.txtTrimSet2.Name = "txtTrimSet2";
+            this.txtTrimSet2.Size = new System.Drawing.Size(76, 27);
+            this.txtTrimSet2.TabIndex = 8;
+            // 
+            // txtTrimSet1
+            // 
+            this.txtTrimSet1.Location = new System.Drawing.Point(200, 145);
+            this.txtTrimSet1.Name = "txtTrimSet1";
+            this.txtTrimSet1.Size = new System.Drawing.Size(76, 27);
+            this.txtTrimSet1.TabIndex = 7;
+            // 
+            // txtTrimSet0
+            // 
+            this.txtTrimSet0.Location = new System.Drawing.Point(200, 112);
+            this.txtTrimSet0.Name = "txtTrimSet0";
+            this.txtTrimSet0.Size = new System.Drawing.Size(76, 27);
+            this.txtTrimSet0.TabIndex = 6;
+            // 
+            // txtLEDSet0
+            // 
+            this.txtLEDSet0.Location = new System.Drawing.Point(200, 79);
+            this.txtLEDSet0.Name = "txtLEDSet0";
+            this.txtLEDSet0.Size = new System.Drawing.Size(76, 27);
+            this.txtLEDSet0.TabIndex = 5;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(151, 82);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(43, 20);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "LED";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(151, 49);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(43, 20);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Bias";
+            // 
+            // txtBiasSet0
+            // 
+            this.txtBiasSet0.Location = new System.Drawing.Point(200, 46);
+            this.txtBiasSet0.Name = "txtBiasSet0";
+            this.txtBiasSet0.Size = new System.Drawing.Size(76, 27);
+            this.txtBiasSet0.TabIndex = 1;
+            this.txtBiasSet0.TextChanged += new System.EventHandler(this.txtBiasSet1_TextChanged);
             // 
             // timer1
             // 
@@ -3581,6 +3730,14 @@ namespace TB_mu2e
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "\"dsf\"";
+            this.saveFileDialog1.Filter = "\"FEB calibration files (*.dsf)|*.dsf|All files (*.*)|*.*\"";
+            this.saveFileDialog1.FilterIndex = 2;
+            this.saveFileDialog1.InitialDirectory = "\"c:\\\\data\\\\\"";
+            this.saveFileDialog1.RestoreDirectory = true;
             // 
             // frmMain
             // 
@@ -3633,10 +3790,6 @@ namespace TB_mu2e
             this.tabWC.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            this.tabFEBtest.ResumeLayout(false);
-            this.tabFEBtest.PerformLayout();
-            this.DAC_Voltages.ResumeLayout(false);
-            this.DAC_Voltages.PerformLayout();
             this.tabIV.ResumeLayout(false);
             this.tabIV.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
@@ -3646,6 +3799,10 @@ namespace TB_mu2e
             this.CalibPType.ResumeLayout(false);
             this.CalibPType.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpDnSamples)).EndInit();
+            this.tabFEBtest.ResumeLayout(false);
+            this.tabFEBtest.PerformLayout();
+            this.DAC_Voltages.ResumeLayout(false);
+            this.DAC_Voltages.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3958,5 +4115,18 @@ namespace TB_mu2e
         private System.Windows.Forms.NumericUpDown UpDnSamples;
         private System.Windows.Forms.Label lblMuxTime;
         private System.Windows.Forms.Label lblScanTime;
+        private System.Windows.Forms.Button btnBuildListView;
+        private System.Windows.Forms.Button btnCalibrate;
+        private System.Windows.Forms.Button btnSaveDB;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

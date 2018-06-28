@@ -643,7 +643,7 @@ namespace TB_mu2e
                 }
                 else
                 {
-                    MuxIBox.BackColor = Color.Green;
+                    MuxIBox.BackColor = Color.LimeGreen;
                 }
             }
 
@@ -716,7 +716,7 @@ namespace TB_mu2e
                 // acquire an initial set of measurements, and fill the display.
                 myFEB.BuildHDMIsignalDB();
                 //ZeroAllVoltages();
-                buildListView();
+                //buildListView();
             }
         }
 
@@ -3911,6 +3911,10 @@ namespace TB_mu2e
             trimsig.myMeasurements.clear();
             trimsig.myMeasurements.GetMeasurement(numMeas);
             trimsig.myMeasurements.isUpToDate = true;
+            if (Math.Abs(trimsig.myMeasurements.averageValue - trimsig.voltageSetting) > 2)
+            {
+                trimsig.isBad = true;
+            }
             updateListVoltage(trimsig);
         }
 
@@ -3935,6 +3939,10 @@ namespace TB_mu2e
             ledsig.myMeasurements.GetMeasurement(numMeas);
             ledsig.myMeasurements.isUpToDate = true;
             updateListVoltage(ledsig);
+            if (Math.Abs(ledsig.myMeasurements.averageValue - ledsig.voltageSetting) > 5)
+            {
+                ledsig.isBad = true;
+            }
         }
 
         void GetVoltageMeasurement(BiasSignal biassig, int numMeas, int timeCount = 3900)
@@ -3958,6 +3966,10 @@ namespace TB_mu2e
             biassig.myMeasurements.GetMeasurement(numMeas);
             biassig.myMeasurements.isUpToDate = true;
             updateListVoltage(biassig);
+            if (Math.Abs(biassig.myMeasurements.averageValue - biassig.voltageSetting) > 10)
+            {
+                biassig.isBad = true;
+            }
         }
 
         void GetVoltageMeasurement(BiasChannel biaschan, int numMeas, int timeCount = 3900)
@@ -4025,6 +4037,15 @@ namespace TB_mu2e
 
         private void btnFullVScan_Click(object sender, EventArgs e)
         {
+            if (!VoltagesInitialized)
+            {
+                DialogResult result = MessageBox.Show("Voltages not initialized. Initialize now and continue scan?", "", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    buildListView();
+                }
+                else { return; }
+            }
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
             int numSamples = (int)UpDnSamples.Value;
@@ -4064,6 +4085,10 @@ namespace TB_mu2e
             {
                 trimsig.muxCalibCurrent = PP.FEB1.ReadA0((int)trimsig.myFPGA_ID, (int)trimsig.signalIndex);
                 trimsig.muxCalibrate();
+                if (trimsig.muxCalibCurrent > 60)
+                {
+                    trimsig.muxIsBad = true;
+                }
             }
 
             //myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 5);
@@ -4074,12 +4099,13 @@ namespace TB_mu2e
                 SetVoltage(biassig, 5);
                 GetVoltageMeasurement(biassig, numSamples, 1500);
                 biassig.calibration.Vlow = biassig.SaveMeasurements();
+
+                biassig.calibration.DoCalibrationFit();
+                biassig.SaveBiasCalibrations();
                 for (int i = 0; i < 2; i++)
                 {
                     updateListVoltage(biassig.Biases[i]);
                 }
-
-                biassig.calibration.DoCalibrationFit();
             }
 
             //myFEB.SetVoltages(FEB.GetVoltageTypes.AllBias, 0);
@@ -4162,7 +4188,7 @@ namespace TB_mu2e
             //}
 
             btnFullVScan.Text = "SCAN";
-            btnFullVScan.BackColor = Color.Green;
+            btnFullVScan.BackColor = Color.LimeGreen;
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
             string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}",
@@ -4194,11 +4220,11 @@ namespace TB_mu2e
             {
                 SetVoltage(trimsig, 0);
                 GetVoltageMeasurement(trimsig, 1, 100);
-                updateListVoltage(trimsig);
+                //updateListVoltage(trimsig);
             }
 
             TekScope.inTestMode = startingMode;
-            btnMuxTest.BackColor = Color.Green;
+            btnMuxTest.BackColor = Color.LimeGreen;
             btnMuxTest.Text = "MUX TEST";
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
@@ -4207,6 +4233,7 @@ namespace TB_mu2e
             lblMuxTime.Text = "Scan time: " + elapsedTime;
         }
 
+        bool VoltagesInitialized = false;
         private void buildListView()
         {
             string[] listString = new string[8];
@@ -4282,6 +4309,7 @@ namespace TB_mu2e
             }
 
             listView1.Sort();
+            VoltagesInitialized = true;
         }
 
         VoltageSignal activeVoltageSignal = new VoltageSignal();
@@ -4289,8 +4317,8 @@ namespace TB_mu2e
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            activeVoltageSignal = null;
-            otherBias = null;
+            //activeVoltageSignal = null;
+            //otherBias = null;
             for (int i = 0; i < 96; i++)
             {
                 if (myFEB.Voltages[i].name == e.Item.Text)
@@ -4299,13 +4327,13 @@ namespace TB_mu2e
                     txtVSet.Text = myFEB.Voltages[i].voltageSetting.ToString();
                     lblSelectedChan.Text = activeVoltageSignal.name;
                 }
-                if (myFEB.Voltages[i].name.Contains("Bias[0]"))
+                if (myFEB.Voltages[i].name.Contains("Bias[0]") && i < 90)
                 {
-                    otherBias = (BiasSignal)myFEB.Voltages[i + 1];
+                    otherBias = (BiasSignal)myFEB.Voltages[i + 6];
                 }
-                else if (myFEB.Voltages[i].name.Contains("Bias[1]"))
+                else if (myFEB.Voltages[i].name.Contains("Bias[1]") && i > 5)
                 {
-                    otherBias = (BiasSignal)myFEB.Voltages[i - 1];
+                    otherBias = (BiasSignal)myFEB.Voltages[i - 6];
                 }
                 else { }
             }
@@ -4315,11 +4343,11 @@ namespace TB_mu2e
         {
             foreach (ListViewItem LVitem in listView1.Items)
             {
-                if ( ( vsig is BiasSignal &&
+                if ((vsig is BiasSignal &&
                         LVitem.Text.Substring(6) == vsig.name.Substring(6)) ||
                         LVitem.Text == vsig.name
                     ) //Gets either "Bias[0]..." or "Bias[1]..." if it's a bias
-                { 
+                {
                     LVitem.SubItems[2].Text = vsig.voltageSetting.ToString("F3");
                     LVitem.SubItems[3].Text = vsig.myMeasurements.averageValue.ToString("F4");
                     LVitem.SubItems[4].Text = vsig.calibration.isCalibrated.ToString();
@@ -4329,6 +4357,10 @@ namespace TB_mu2e
                     {
                         TrimSignal trimsig = (TrimSignal)vsig;
                         LVitem.SubItems[7].Text = trimsig.muxCalibCurrent.ToString();
+                        if (trimsig.muxIsBad)
+                        {
+                            LVitem.SubItems[7].BackColor = Color.Red;
+                        }
                     }
                     if (vsig.isBad)
                     { LVitem.SubItems[3].BackColor = Color.Red; }
@@ -4376,89 +4408,97 @@ namespace TB_mu2e
 
         private void btnSaveVScan_Click(object sender, EventArgs e)
         {
-            bool DoSave = true;
-
-            for (int i = 0; i < 96; i++)
+            foreach (TrimSignal trim in myFEB.Trims)
             {
-                if (!myFEB.Voltages[i].calibration.isTested)
+                if (!trim.calibration.isTested)
                 {
-                    DialogResult result = MessageBox.Show("Channel " + myFEB.Voltages[i].name + " appears to be untested. Save anyway?", "", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.No) { DoSave = false; }
+                    DialogResult result = MessageBox.Show(trim.name + " appears to be untested. Save anyway?", "", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No) { return; }
+                }
+                if (trim.isBad)
+                {
+                    DialogResult result = MessageBox.Show(trim.name + " appears to be bad. Save anyway?", "", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No) { return; }
+                }
+            }
+            foreach (BiasChannel bias in myFEB.Biases)
+            {
+                if (!bias.calibration.isTested)
+                {
+                    DialogResult result = MessageBox.Show(bias.name + " appears to be untested. Save anyway?", "", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No) { return; }
+                }
+                if (bias.Biases[0].isBad || bias.Biases[1].isBad)
+                {
+                    DialogResult result = MessageBox.Show(bias.name + " appears to be bad. Save anyway?", "", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No) { return; }
                 }
             }
 
-            if (DoSave)
+            string testDate = DateTime.Now.ToString("yyyyMMdd");
+            string dsfFileName = "";
+            dsfFileName += "FEBdsf_";
+            dsfFileName += txtSN.Text;
+            dsfFileName += "_";
+            dsfFileName += testDate;
+            saveFileDialog1.FileName = dsfFileName;
+
+            saveFileDialog1.ShowDialog();
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string dirName = "c://data//";
-                string hName = "";
-                DateTime testDate = DateTime.Now;
-
-                hName += "FEBdsf_";
-                hName += txtSN.Text;
-                hName += "_";
-                hName += testDate.ToString("yyyyMMdd");
-                hName = dirName + hName + ".dsf";
-                StreamWriter sw = new StreamWriter(hName);
-
-                foreach (BiasChannel biaschan in myFEB.Biases)
+                using (StreamWriter dsfStream = new StreamWriter(saveFileDialog1.FileName))
                 {
-                    string biasAddr = "";
-                    if (biaschan.calibration.isTested)
+                    foreach (BiasChannel biaschan in myFEB.Biases)
                     {
-                        biasAddr += (biaschan.myFPGA_ID * 4).ToString("X");
-                        switch (biaschan.signalIndex)
+                        string biasAddr = "";
+                        if (biaschan.calibration.isTested)
                         {
-                            case 0:
-                                biasAddr += "44";
-                                break;
-                            case 1:
-                                biasAddr += "45";
-                                break;
-                            default:
-                                break;
+                            biasAddr += (biaschan.myFPGA_ID * 4).ToString("X");
+                            switch (biaschan.signalIndex)
+                            {
+                                case 0:
+                                    biasAddr += "44";
+                                    break;
+                                case 1:
+                                    biasAddr += "45";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            dsfStream.WriteLine
+                                ("dsf "
+                                + biasAddr
+                                + " "
+                                + biaschan.calibration.gainInt.ToString("X")
+                                + ", "
+                                + biaschan.calibration.offsetInt.ToString("X"));
                         }
-                        sw.WriteLine
-                            ("dsf " 
-                            + biasAddr 
-                            + " " 
-                            + biaschan.calibration.gainInt.ToString("X") 
-                            + ", " 
-                            + biaschan.calibration.offsetInt.ToString("X"));
                     }
-                }
-                foreach (TrimSignal trimsig in myFEB.Trims)
-                {
-                    string trimAddr = "";
-                    if (trimsig.calibration.isTested)
+                    foreach (TrimSignal trimsig in myFEB.Trims)
                     {
-                        trimAddr += (trimsig.myFPGA_ID * 4).ToString("X");
-                        trimAddr += "3";
-                        trimAddr += trimsig.signalIndex.ToString("X");
-                        sw.WriteLine
-                            ("dsf "
-                            + trimAddr
-                            + " "
-                            + trimsig.calibration.gainInt.ToString("X")
-                            + ", "
-                            + trimsig.calibration.offsetInt.ToString("X"));
+                        string trimAddr = "";
+                        if (trimsig.calibration.isTested)
+                        {
+                            trimAddr += (trimsig.myFPGA_ID * 4).ToString("X");
+                            trimAddr += "3";
+                            trimAddr += trimsig.signalIndex.ToString("X");
+                            dsfStream.WriteLine
+                                ("dsf "
+                                + trimAddr
+                                + " "
+                                + trimsig.calibration.gainInt.ToString("X")
+                                + ", "
+                                + trimsig.calibration.offsetInt.ToString("X"));
+                        }
                     }
+                    dsfStream.Close();
                 }
-                sw.Close();
-
-                //string fName = "";
-                //fName += "HVtestVals_";
-                //fName += txtSN.Text;
-                //hName += "_";
-                //hName += testDate.ToString("yyyyMMdd");
-                //fName = dirName + fName + ".txt";
-                //StreamWriter swf = new StreamWriter(fName);
-
-                //string comments = txtCalibComments.Text;
-                //string hdmi = "";
-                //swf.WriteLine(comments);
-
-                
             }
+        }
+
+        private void btnBuildListView_Click(object sender, EventArgs e)
+        {
+            buildListView();
         }
     }
 
