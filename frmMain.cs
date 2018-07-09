@@ -4187,6 +4187,69 @@ namespace TB_mu2e
             //    updateListVoltage(vsig);
             //}
 
+            DateTime testDate = DateTime.Now;
+            string measurementsFileName = "";
+            measurementsFileName += "HVtestVals_";
+            measurementsFileName += txtSN.Text;
+            measurementsFileName += "_";
+            measurementsFileName += testDate.ToString("yyyyMMdd");
+            //measurementsFileName = dirName + measurementsFileName + ".txt";
+            saveFileMeasurements.FileName = measurementsFileName;
+
+            saveFileMeasurements.ShowDialog();
+            if (saveFileMeasurements.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter measurementsStream = new StreamWriter(saveFileMeasurements.FileName))
+                {
+                    foreach (BiasChannel bias in myFEB.Biases)
+                    {
+                        measurementsStream.WriteLine(bias.name);
+                        measurementsStream.WriteLine("HV = 65V");
+                        foreach (double meas in bias.calibration.Vhi.measurementList)
+                        {
+                            measurementsStream.WriteLine(meas.ToString());
+                        }
+                        measurementsStream.WriteLine("HV = 35V");
+                        foreach (double meas in bias.calibration.Vmed.measurementList)
+                        {
+                            measurementsStream.WriteLine(meas.ToString());
+                        }
+                        measurementsStream.WriteLine("HV = 5V");
+                        foreach (double meas in bias.calibration.Vlow.measurementList)
+                        {
+                            measurementsStream.WriteLine(meas.ToString());
+                        }
+                        measurementsStream.WriteLine(
+                            "Gain: " + bias.calibration.gain.ToString() + 
+                            ", Offset: " + bias.calibration.offset.ToString());
+                    }
+                    foreach (TrimSignal trim in myFEB.Trims)
+                    {
+                        measurementsStream.WriteLine(trim.name);
+                        measurementsStream.WriteLine("HV = 4V");
+                        foreach (double meas in trim.calibration.Vhi.measurementList)
+                        {
+                            measurementsStream.WriteLine(meas.ToString());
+                        }
+                        measurementsStream.WriteLine("HV = 0V");
+                        foreach (double meas in trim.calibration.Vmed.measurementList)
+                        {
+                            measurementsStream.WriteLine(meas.ToString());
+                        }
+                        measurementsStream.WriteLine("HV = -4V");
+                        foreach (double meas in trim.calibration.Vlow.measurementList)
+                        {
+                            measurementsStream.WriteLine(meas.ToString());
+                        }
+                        measurementsStream.WriteLine(
+                            "Gain: " + trim.calibration.gain.ToString() +
+                            ", Offset: " + trim.calibration.offset.ToString());
+                    }
+                    measurementsStream.WriteLine("");
+                    measurementsStream.Close();
+                }
+            }
+
             btnFullVScan.Text = "SCAN";
             btnFullVScan.BackColor = Color.LimeGreen;
             stopWatch.Stop();
@@ -4415,7 +4478,7 @@ namespace TB_mu2e
                     DialogResult result = MessageBox.Show(trim.name + " appears to be untested. Save anyway?", "", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No) { return; }
                 }
-                if (trim.isBad)
+                if (trim.isBad || trim.muxIsBad)
                 {
                     DialogResult result = MessageBox.Show(trim.name + " appears to be bad. Save anyway?", "", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No) { return; }
@@ -4435,18 +4498,19 @@ namespace TB_mu2e
                 }
             }
 
-            string testDate = DateTime.Now.ToString("yyyyMMdd");
+            DateTime testDate = DateTime.Now;
+
             string dsfFileName = "";
             dsfFileName += "FEBdsf_";
             dsfFileName += txtSN.Text;
             dsfFileName += "_";
-            dsfFileName += testDate;
-            saveFileDialog1.FileName = dsfFileName;
+            dsfFileName += testDate.ToString("yyyyMMdd");
+            saveFileCalibrations.FileName = dsfFileName;
 
-            saveFileDialog1.ShowDialog();
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            saveFileCalibrations.ShowDialog();
+            if (saveFileCalibrations.ShowDialog() == DialogResult.OK)
             {
-                using (StreamWriter dsfStream = new StreamWriter(saveFileDialog1.FileName))
+                using (StreamWriter dsfStream = new StreamWriter(saveFileCalibrations.FileName))
                 {
                     foreach (BiasChannel biaschan in myFEB.Biases)
                     {
@@ -4491,6 +4555,7 @@ namespace TB_mu2e
                                 + trimsig.calibration.offsetInt.ToString("X"));
                         }
                     }
+                    dsfStream.WriteLine("");
                     dsfStream.Close();
                 }
             }
@@ -4499,6 +4564,62 @@ namespace TB_mu2e
         private void btnBuildListView_Click(object sender, EventArgs e)
         {
             buildListView();
+        }
+
+        private void btnSaveDB_Click(object sender, EventArgs e)
+        {
+            bool hasBadChannel = false;
+            if (txtHVTestComments.Text.Length < 1)
+            {
+                DialogResult result = MessageBox.Show("Please enter a comment before saving", "", MessageBoxButtons.OK);
+                if (result == DialogResult.OK) { return; }
+            }
+            foreach (TrimSignal trim in myFEB.Trims)
+            {
+                if (!trim.calibration.isTested)
+                {
+                    DialogResult result = MessageBox.Show(trim.name + " appears to be untested. Save anyway?", "", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No) { return; }
+                }
+                if (trim.isBad || trim.muxIsBad) { hasBadChannel = true; }
+            }
+            foreach (BiasChannel bias in myFEB.Biases)
+            {
+                if (!bias.calibration.isTested)
+                {
+                    DialogResult result = MessageBox.Show(bias.name + " appears to be untested. Save anyway?", "", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No) { return; }
+                }
+                if (bias.Biases[0].isBad || bias.Biases[1].isBad) { hasBadChannel = true; }
+            }
+
+            if (txtHVTestComments.Text == "All HV channels OK." && hasBadChannel)
+            {
+                DialogResult result = MessageBox.Show(
+                    "One or more of the HV channels is flagged as bad. Please change the comments to indicate this.",
+                    "", MessageBoxButtons.OK);
+                if (result == DialogResult.OK) { return; }
+            }
+
+            DateTime testDate = DateTime.Now;
+
+            string dbFileName = "";
+            dbFileName += "FEB_Database_";
+            dbFileName += txtSN.Text;
+            dbFileName += "_";
+            dbFileName += testDate.ToString("yyyyMMdd");
+            saveFileDB.FileName = dbFileName;
+
+            saveFileDB.ShowDialog();
+            if (saveFileDB.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter dbStream = new StreamWriter(saveFileDB.FileName))
+                {
+                    dbStream.WriteLine("# Feb Id, FEB Type, Test Date, Test Location, Comments");
+
+                    dbStream.Close();
+                }
+            }
         }
     }
 

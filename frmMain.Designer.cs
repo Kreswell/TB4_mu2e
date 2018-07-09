@@ -31,10 +31,10 @@ namespace TB_mu2e
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("FPGA 0", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("FPGA 1", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("FPGA 2", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("FPGA 3", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("FPGA 0", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("FPGA 1", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("FPGA 2", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("FPGA 3", System.Windows.Forms.HorizontalAlignment.Left);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFEB1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -237,8 +237,7 @@ namespace TB_mu2e
             this.chkBoxJ11Hist = new System.Windows.Forms.CheckBox();
             this.label32 = new System.Windows.Forms.Label();
             this.CalibPType = new System.Windows.Forms.TabPage();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
+            this.txtHVTestComments = new System.Windows.Forms.TextBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
@@ -259,6 +258,9 @@ namespace TB_mu2e
             this.txtVSet = new System.Windows.Forms.TextBox();
             this.btnMuxTest = new System.Windows.Forms.Button();
             this.btnSaveVScan = new System.Windows.Forms.Button();
+            this.label47 = new System.Windows.Forms.Label();
+            this.btnFullVScan = new System.Windows.Forms.Button();
+            this.label37 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.Channel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.HDMI = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -268,9 +270,6 @@ namespace TB_mu2e
             this.Gain = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Offset = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MuxCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label47 = new System.Windows.Forms.Label();
-            this.btnFullVScan = new System.Windows.Forms.Button();
-            this.label37 = new System.Windows.Forms.Label();
             this.tabFEBtest = new System.Windows.Forms.TabPage();
             this.button5 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -342,7 +341,9 @@ namespace TB_mu2e
             this.timerScopeBias = new System.Windows.Forms.Timer(this.components);
             this.timerScopeTrim = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.saveFileCalibrations = new System.Windows.Forms.SaveFileDialog();
+            this.saveFileMeasurements = new System.Windows.Forms.SaveFileDialog();
+            this.saveFileDB = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabRUN.SuspendLayout();
@@ -2686,8 +2687,7 @@ namespace TB_mu2e
             // 
             // CalibPType
             // 
-            this.CalibPType.Controls.Add(this.label46);
-            this.CalibPType.Controls.Add(this.label45);
+            this.CalibPType.Controls.Add(this.txtHVTestComments);
             this.CalibPType.Controls.Add(this.label44);
             this.CalibPType.Controls.Add(this.label43);
             this.CalibPType.Controls.Add(this.label42);
@@ -2708,10 +2708,10 @@ namespace TB_mu2e
             this.CalibPType.Controls.Add(this.txtVSet);
             this.CalibPType.Controls.Add(this.btnMuxTest);
             this.CalibPType.Controls.Add(this.btnSaveVScan);
-            this.CalibPType.Controls.Add(this.listView1);
             this.CalibPType.Controls.Add(this.label47);
             this.CalibPType.Controls.Add(this.btnFullVScan);
             this.CalibPType.Controls.Add(this.label37);
+            this.CalibPType.Controls.Add(this.listView1);
             this.CalibPType.Location = new System.Drawing.Point(4, 32);
             this.CalibPType.Name = "CalibPType";
             this.CalibPType.Size = new System.Drawing.Size(1255, 665);
@@ -2719,31 +2719,20 @@ namespace TB_mu2e
             this.CalibPType.Text = "Calibration";
             this.CalibPType.UseVisualStyleBackColor = true;
             // 
-            // label46
+            // txtHVTestComments
             // 
-            this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(7, 482);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(311, 50);
-            this.label46.TabIndex = 31;
-            this.label46.Text = "9.    (Optional) Load calibration file \r\n       and re-run test (step 5).";
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(7, 438);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(28, 25);
-            this.label45.TabIndex = 30;
-            this.label45.Text = "8.";
+            this.txtHVTestComments.Location = new System.Drawing.Point(41, 403);
+            this.txtHVTestComments.Multiline = true;
+            this.txtHVTestComments.Name = "txtHVTestComments";
+            this.txtHVTestComments.Size = new System.Drawing.Size(390, 126);
+            this.txtHVTestComments.TabIndex = 32;
+            this.txtHVTestComments.Text = "All HV channels OK.";
             // 
             // label44
             // 
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(7, 387);
+            this.label44.Location = new System.Drawing.Point(7, 550);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(28, 25);
             this.label44.TabIndex = 29;
@@ -2753,17 +2742,17 @@ namespace TB_mu2e
             // 
             this.label43.AutoSize = true;
             this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(7, 342);
+            this.label43.Location = new System.Drawing.Point(7, 350);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(292, 25);
+            this.label43.Size = new System.Drawing.Size(292, 50);
             this.label43.TabIndex = 28;
-            this.label43.Text = "6.    Check the results.    -------->";
+            this.label43.Text = "6.    Check the results.    -------->\r\n       Run comments:";
             // 
             // label42
             // 
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(7, 276);
+            this.label42.Location = new System.Drawing.Point(7, 275);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(28, 25);
             this.label42.TabIndex = 27;
@@ -2783,7 +2772,7 @@ namespace TB_mu2e
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(7, 180);
+            this.label40.Location = new System.Drawing.Point(7, 175);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(404, 25);
             this.label40.TabIndex = 25;
@@ -2793,7 +2782,7 @@ namespace TB_mu2e
             // 
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(7, 115);
+            this.label39.Location = new System.Drawing.Point(7, 125);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(28, 25);
             this.label39.TabIndex = 24;
@@ -2802,17 +2791,18 @@ namespace TB_mu2e
             // btnSaveDB
             // 
             this.btnSaveDB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveDB.Location = new System.Drawing.Point(41, 431);
+            this.btnSaveDB.Location = new System.Drawing.Point(238, 543);
             this.btnSaveDB.Name = "btnSaveDB";
-            this.btnSaveDB.Size = new System.Drawing.Size(209, 38);
+            this.btnSaveDB.Size = new System.Drawing.Size(146, 38);
             this.btnSaveDB.TabIndex = 23;
-            this.btnSaveDB.Text = "Save Database File";
+            this.btnSaveDB.Text = "Save DB File";
             this.btnSaveDB.UseVisualStyleBackColor = true;
+            this.btnSaveDB.Click += new System.EventHandler(this.btnSaveDB_Click);
             // 
             // btnCalibrate
             // 
             this.btnCalibrate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCalibrate.Location = new System.Drawing.Point(1020, 9);
+            this.btnCalibrate.Location = new System.Drawing.Point(1020, 7);
             this.btnCalibrate.Name = "btnCalibrate";
             this.btnCalibrate.Size = new System.Drawing.Size(227, 40);
             this.btnCalibrate.TabIndex = 21;
@@ -2834,7 +2824,7 @@ namespace TB_mu2e
             // 
             this.lblMuxTime.AutoSize = true;
             this.lblMuxTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMuxTime.Location = new System.Drawing.Point(37, 149);
+            this.lblMuxTime.Location = new System.Drawing.Point(250, 138);
             this.lblMuxTime.Name = "lblMuxTime";
             this.lblMuxTime.Size = new System.Drawing.Size(151, 18);
             this.lblMuxTime.TabIndex = 19;
@@ -2844,7 +2834,7 @@ namespace TB_mu2e
             // 
             this.lblScanTime.AutoSize = true;
             this.lblScanTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScanTime.Location = new System.Drawing.Point(37, 310);
+            this.lblScanTime.Location = new System.Drawing.Point(197, 280);
             this.lblScanTime.Name = "lblScanTime";
             this.lblScanTime.Size = new System.Drawing.Size(151, 18);
             this.lblScanTime.TabIndex = 18;
@@ -2853,15 +2843,15 @@ namespace TB_mu2e
             // lblScanSamples
             // 
             this.lblScanSamples.AutoSize = true;
-            this.lblScanSamples.Location = new System.Drawing.Point(197, 269);
+            this.lblScanSamples.Location = new System.Drawing.Point(37, 309);
             this.lblScanSamples.Name = "lblScanSamples";
-            this.lblScanSamples.Size = new System.Drawing.Size(169, 20);
+            this.lblScanSamples.Size = new System.Drawing.Size(174, 20);
             this.lblScanSamples.TabIndex = 17;
-            this.lblScanSamples.Text = "Samples per Channel";
+            this.lblScanSamples.Text = "Samples per Channel:";
             // 
             // UpDnSamples
             // 
-            this.UpDnSamples.Location = new System.Drawing.Point(201, 292);
+            this.UpDnSamples.Location = new System.Drawing.Point(217, 307);
             this.UpDnSamples.Minimum = new decimal(new int[] {
             1,
             0,
@@ -2928,7 +2918,7 @@ namespace TB_mu2e
             // btnMuxTest
             // 
             this.btnMuxTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMuxTest.Location = new System.Drawing.Point(41, 108);
+            this.btnMuxTest.Location = new System.Drawing.Point(41, 118);
             this.btnMuxTest.Name = "btnMuxTest";
             this.btnMuxTest.Size = new System.Drawing.Size(203, 38);
             this.btnMuxTest.TabIndex = 8;
@@ -2939,13 +2929,45 @@ namespace TB_mu2e
             // btnSaveVScan
             // 
             this.btnSaveVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveVScan.Location = new System.Drawing.Point(41, 380);
+            this.btnSaveVScan.Location = new System.Drawing.Point(41, 543);
             this.btnSaveVScan.Name = "btnSaveVScan";
             this.btnSaveVScan.Size = new System.Drawing.Size(191, 38);
             this.btnSaveVScan.TabIndex = 7;
             this.btnSaveVScan.Text = "Save Calibrations";
             this.btnSaveVScan.UseVisualStyleBackColor = true;
             this.btnSaveVScan.Click += new System.EventHandler(this.btnSaveVScan_Click);
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(432, 13);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(204, 29);
+            this.label47.TabIndex = 3;
+            this.label47.Text = "Voltage Settings";
+            // 
+            // btnFullVScan
+            // 
+            this.btnFullVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFullVScan.Location = new System.Drawing.Point(41, 268);
+            this.btnFullVScan.Name = "btnFullVScan";
+            this.btnFullVScan.Size = new System.Drawing.Size(150, 38);
+            this.btnFullVScan.TabIndex = 1;
+            this.btnFullVScan.Text = "Voltage Scan";
+            this.btnFullVScan.UseVisualStyleBackColor = true;
+            this.btnFullVScan.Click += new System.EventHandler(this.btnFullVScan_Click);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(7, 50);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(382, 50);
+            this.label37.TabIndex = 22;
+            this.label37.Text = "1.    Make sure the FEB is connected\r\n       but the HDMI cables are disconnected" +
+    ".";
             // 
             // listView1
             // 
@@ -2958,23 +2980,23 @@ namespace TB_mu2e
             this.Gain,
             this.Offset,
             this.MuxCurrent});
-            listViewGroup9.Header = "FPGA 0";
-            listViewGroup9.Name = "fpga0";
-            listViewGroup10.Header = "FPGA 1";
-            listViewGroup10.Name = "fpga1";
-            listViewGroup11.Header = "FPGA 2";
-            listViewGroup11.Name = "fpga2";
-            listViewGroup12.Header = "FPGA 3";
-            listViewGroup12.Name = "fpga3";
+            listViewGroup1.Header = "FPGA 0";
+            listViewGroup1.Name = "fpga0";
+            listViewGroup2.Header = "FPGA 1";
+            listViewGroup2.Name = "fpga1";
+            listViewGroup3.Header = "FPGA 2";
+            listViewGroup3.Name = "fpga2";
+            listViewGroup4.Header = "FPGA 3";
+            listViewGroup4.Name = "fpga3";
             this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup9,
-            listViewGroup10,
-            listViewGroup11,
-            listViewGroup12});
-            this.listView1.Location = new System.Drawing.Point(437, 55);
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3,
+            listViewGroup4});
+            this.listView1.Location = new System.Drawing.Point(437, 53);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(810, 525);
+            this.listView1.Size = new System.Drawing.Size(810, 527);
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -3016,38 +3038,6 @@ namespace TB_mu2e
             // 
             this.MuxCurrent.Text = "Mux Current (nA)";
             this.MuxCurrent.Width = 150;
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(432, 15);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(204, 29);
-            this.label47.TabIndex = 3;
-            this.label47.Text = "Voltage Settings";
-            // 
-            // btnFullVScan
-            // 
-            this.btnFullVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFullVScan.Location = new System.Drawing.Point(41, 269);
-            this.btnFullVScan.Name = "btnFullVScan";
-            this.btnFullVScan.Size = new System.Drawing.Size(150, 38);
-            this.btnFullVScan.TabIndex = 1;
-            this.btnFullVScan.Text = "Voltage Scan";
-            this.btnFullVScan.UseVisualStyleBackColor = true;
-            this.btnFullVScan.Click += new System.EventHandler(this.btnFullVScan_Click);
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(7, 55);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(382, 50);
-            this.label37.TabIndex = 22;
-            this.label37.Text = "1.    Make sure the FEB is connected\r\n       but the HDMI cables are disconnected" +
-    ".";
             // 
             // tabFEBtest
             // 
@@ -3731,13 +3721,27 @@ namespace TB_mu2e
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // saveFileDialog1
+            // saveFileCalibrations
             // 
-            this.saveFileDialog1.DefaultExt = "\"dsf\"";
-            this.saveFileDialog1.Filter = "\"FEB calibration files (*.dsf)|*.dsf|All files (*.*)|*.*\"";
-            this.saveFileDialog1.FilterIndex = 2;
-            this.saveFileDialog1.InitialDirectory = "\"c:\\\\data\\\\\"";
-            this.saveFileDialog1.RestoreDirectory = true;
+            this.saveFileCalibrations.DefaultExt = "\"dsf\"";
+            this.saveFileCalibrations.Filter = "\"FEB calibration files (*.dsf)|*.dsf|All files (*.*)|*.*\"";
+            this.saveFileCalibrations.FilterIndex = 2;
+            this.saveFileCalibrations.InitialDirectory = "\"c:\\\\data\\\\\"";
+            this.saveFileCalibrations.RestoreDirectory = true;
+            // 
+            // saveFileMeasurements
+            // 
+            this.saveFileMeasurements.DefaultExt = "\"txt\"";
+            this.saveFileMeasurements.FilterIndex = 2;
+            this.saveFileMeasurements.InitialDirectory = "\"c:\\\\data\\\\\"";
+            this.saveFileMeasurements.RestoreDirectory = true;
+            // 
+            // saveFileDB
+            // 
+            this.saveFileDB.DefaultExt = "\"csv\"";
+            this.saveFileDB.FilterIndex = 2;
+            this.saveFileDB.InitialDirectory = "\"c:\\\\data\\\\\"";
+            this.saveFileDB.RestoreDirectory = true;
             // 
             // frmMain
             // 
@@ -4119,14 +4123,15 @@ namespace TB_mu2e
         private System.Windows.Forms.Button btnCalibrate;
         private System.Windows.Forms.Button btnSaveDB;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileCalibrations;
+        private System.Windows.Forms.TextBox txtHVTestComments;
+        private System.Windows.Forms.SaveFileDialog saveFileMeasurements;
+        private System.Windows.Forms.SaveFileDialog saveFileDB;
     }
 }
