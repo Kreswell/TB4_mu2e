@@ -2746,7 +2746,7 @@ namespace TB_mu2e
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(292, 50);
             this.label43.TabIndex = 28;
-            this.label43.Text = "6.    Check the results.    -------->\r\n       Run comments:";
+            this.label43.Text = "6.    Check the results.    -------->\r\n       Comments:";
             // 
             // label42
             // 
@@ -2824,7 +2824,7 @@ namespace TB_mu2e
             // 
             this.lblMuxTime.AutoSize = true;
             this.lblMuxTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMuxTime.Location = new System.Drawing.Point(250, 138);
+            this.lblMuxTime.Location = new System.Drawing.Point(157, 130);
             this.lblMuxTime.Name = "lblMuxTime";
             this.lblMuxTime.Size = new System.Drawing.Size(151, 18);
             this.lblMuxTime.TabIndex = 19;
@@ -2920,9 +2920,9 @@ namespace TB_mu2e
             this.btnMuxTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMuxTest.Location = new System.Drawing.Point(41, 118);
             this.btnMuxTest.Name = "btnMuxTest";
-            this.btnMuxTest.Size = new System.Drawing.Size(203, 38);
+            this.btnMuxTest.Size = new System.Drawing.Size(110, 38);
             this.btnMuxTest.TabIndex = 8;
-            this.btnMuxTest.Text = "Calibrate Mux Test";
+            this.btnMuxTest.Text = "Mux Test";
             this.btnMuxTest.UseVisualStyleBackColor = true;
             this.btnMuxTest.Click += new System.EventHandler(this.btnMuxTest_Click);
             // 

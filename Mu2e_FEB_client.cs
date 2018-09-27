@@ -512,7 +512,6 @@ namespace TB_mu2e
         {
             if (_ClientOpen)
             {
-
                 if (TNETSocket.Available > 0)
                 {
                     Thread.Sleep(1);
@@ -638,6 +637,88 @@ namespace TB_mu2e
                 return count;
             }
             catch { return 0; }
+        }
+
+        public void MuxTestSetup()
+        {
+            SendStr("GAIN 8");
+            Thread.Sleep(20);
+            SendStr("WR 20 0");
+            Thread.Sleep(20);
+            SendStr("WR 420 0");
+            Thread.Sleep(20);
+            SendStr("WR 820 0");
+            Thread.Sleep(20);
+            SendStr("WR C20 0");
+            Thread.Sleep(20);
+        }
+
+        public void SetMux(int muxnum)
+        {
+            SendStr("MUX " + Convert.ToString(muxnum));
+            Thread.Sleep(20);
+        }
+
+        public double ReadMuxI_FPGA0(int ch)
+        {
+            string t;
+            int dt;
+            double adc;
+
+            SendStr("WR 20 1" + Convert.ToString(ch, 16));
+            Thread.Sleep(20);
+            ReadStr(out t, out dt, 100);
+            SendStr("A0 10");
+            Thread.Sleep(2000);
+            ReadStr(out t, out dt, 100);
+            char[] sep = new char[3];
+            sep[0] = ' ';
+            sep[1] = '\r';
+            sep[2] = '\n';
+            string[] tok = t.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+            if (tok[tok.Length - 2] != "avg")
+                throw new Exception($"Did not read the end of the return string for 'A0 10' command. The full string read is {t}.");
+            try { adc = Convert.ToDouble(tok[tok.Length - 3]); }
+            catch { adc = 0; }
+            //if (adc > 4.096) { adc = 8.192 - adc; }
+            double I = adc / 8 * 250;
+            SendStr("WR 20 0");
+            Thread.Sleep(20);
+            return I;
+        }
+
+        public double ReadMuxI_not0(int ch, int fpga)
+        {
+            string t;
+            int dt;
+            double adc;
+
+            //TODO: check that this gives 0,0,0,0,4,4,4,4,8,8,8,8,12,12,12,12.
+            int f1ch = (ch / 4) * 4;
+            SendStr("WR " + Convert.ToString(4 * fpga, 16) + "20 1" + Convert.ToString(f1ch, 16));
+            Thread.Sleep(20);
+            SendStr("WR 20 1" + Convert.ToString(ch % 4, 16));
+            Thread.Sleep(20);
+            ReadStr(out t, out dt, 100);
+            SendStr("A0 10");
+            Thread.Sleep(2000);
+            ReadStr(out t, out dt, 100);
+            char[] sep = new char[3];
+            sep[0] = ' ';
+            sep[1] = '\r';
+            sep[2] = '\n';
+            string[] tok = t.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+            if (tok[tok.Length - 2] != "avg")
+                throw new Exception($"Did not read the end of the return string for 'A0 10' command. The full string read is {t}.");
+            try { adc = Convert.ToDouble(tok[tok.Length - 3]); }
+            catch { adc = 0; }
+            //if (adc > 4.096) { adc = 8.192 - adc; }
+            double I = adc / 8 * 250;
+            SendStr("WR " + Convert.ToString(4 * fpga, 16) + "20 0");
+            Thread.Sleep(20);
+            SendStr("WR 20 0");
+            Thread.Sleep(20);
+            return I;
         }
 
         //static byte[] GetBytes(string str)

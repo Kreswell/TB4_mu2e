@@ -4265,26 +4265,43 @@ namespace TB_mu2e
             stopWatch.Start();
             btnMuxTest.Text = "SCANNING...";
             Application.DoEvents();
+
+            //Must be a power of 2.
+            //int gain = 8;
+            int stime = 20;
+
             bool startingMode = TekScope.inTestMode;
             TekScope.inTestMode = true;
 
-            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, -2);
+            myFEBclient.MuxTestSetup();
 
             foreach (TrimSignal trimsig in myFEB.Trims)
             {
                 SetVoltage(trimsig, -2);
-                trimsig.muxCurrent = PP.FEB1.ReadA0((int)trimsig.myFPGA_ID, (int)trimsig.signalIndex);
-                trimsig.muxIsTested = true;
-                //updateListVoltage(trimsig);
+
+                int fpga = trimsig.myFPGA_ID;
+                int ch = trimsig.signalIndex;
+
+                myFEBclient.SetMux(fpga);
+
+                if (fpga == 0)
+                {
+                    trimsig.muxCurrent = myFEBclient.ReadMuxI_FPGA0(ch);
+                    trimsig.muxIsTested = true;
+                }
+                else
+                {
+                    trimsig.muxCurrent = myFEBclient.ReadMuxI_not0(ch, fpga);
+                    trimsig.muxIsTested = true;
+                }
+
+                myFEBclient.SendStr("WR 20 0");
+                System.Threading.Thread.Sleep(stime);
+
+                SetVoltage(trimsig, 0);
             }
 
-            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllTrim, 0);
-            foreach (TrimSignal trimsig in myFEB.Trims)
-            {
-                SetVoltage(trimsig, 0);
-                GetVoltageMeasurement(trimsig, 1, 100);
-                //updateListVoltage(trimsig);
-            }
+            myFEBclient.MuxTestSetup();
 
             TekScope.inTestMode = startingMode;
             btnMuxTest.BackColor = Color.LimeGreen;
