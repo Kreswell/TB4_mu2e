@@ -389,7 +389,7 @@ namespace TB_mu2e
             if (_ClientOpen)
             {
                 string HistoStr = "";
-                string[] delimiters = new string[] { " ", "\r\n " };
+                string[] delimiters = new string[] { " ", "\r", "\n", ">" };
                 if (fpga == 0)
                 { fpgaPrefix = "0"; }
                 else if (fpga == 1)
@@ -409,6 +409,10 @@ namespace TB_mu2e
                 string[] SplitHistoStr = HistoStr.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < SplitHistoStr.Length/2; i++)
                 {
+                    if (SplitHistoStr[i].StartsWith(">"))
+                    {
+                        SplitHistoStr[i].Remove(0, 1);
+                    }
                     string UpperStr = "0";
                     string UpperStrShifted = "0";
                     string LowerStr = "0";

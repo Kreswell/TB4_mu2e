@@ -1440,6 +1440,7 @@ namespace TB_mu2e
             this.zedFEB1.ScrollMinY2 = 0D;
             this.zedFEB1.Size = new System.Drawing.Size(602, 448);
             this.zedFEB1.TabIndex = 60;
+            this.zedFEB1.Load += new System.EventHandler(this.zedFEB1_Load);
             // 
             // groupBoxSpillStat
             // 
@@ -2524,6 +2525,7 @@ namespace TB_mu2e
             this.button11.TabIndex = 89;
             this.button11.Text = "SCAN";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // button12
             // 

@@ -80,8 +80,8 @@ namespace TB_mu2e
         private bool ScopeTrimVoltageUpdated = false;
 
         List<string> ListSipm = new List<string>();
-        List<string> ListSipmIV = new List<string>();
-        List<string> ListSipmHisto = new List<string>();
+        //List<string> ListSipmIV = new List<string>();
+        //List<string> ListSipmHisto = new List<string>();
 
         public void AddConsoleMessage(string mess)
         {
@@ -1170,10 +1170,10 @@ namespace TB_mu2e
                 //loop over th
                 //zedFEB1.GraphPane.XAxis.Scale.Max = myHisto.max_thresh;
                 //zedFEB1.GraphPane.XAxis.Scale.Min = myHisto.min_thresh;
-                zedGraphHisto.GraphPane.XAxis.Scale.Max = 256;
-                zedGraphHisto.GraphPane.XAxis.Scale.Min = 0;
-                zedGraphHisto.GraphPane.YAxis.Scale.Max = 100;
-                zedGraphHisto.GraphPane.YAxis.Scale.Min = 0;
+                zedFEB1.GraphPane.XAxis.Scale.Max = 256;
+                zedFEB1.GraphPane.XAxis.Scale.Min = 0;
+                zedFEB1.GraphPane.YAxis.Scale.Max = 100;
+                zedFEB1.GraphPane.YAxis.Scale.Min = 0;
 
                 listBox1.DataSource = null;
                 ListSipm.Clear();
@@ -1383,39 +1383,39 @@ namespace TB_mu2e
 
         private void UpdateDisplay_IV(IV_curve myIV)
         {
-            zedGraphIV.GraphPane.CurveList.Clear();
+            zedFEB1.GraphPane.CurveList.Clear();
             if (chkLogY.Checked)
             {
                 if (myIV.min_I < 0)
-                { zedGraphIV.GraphPane.YAxis.Scale.Min = -2; }
+                { zedFEB1.GraphPane.YAxis.Scale.Min = -2; }
                 else if (Math.Round((double)(Math.Log10(myIV.min_I))) < -2)
-                { zedGraphIV.GraphPane.YAxis.Scale.Min = -2; }
+                { zedFEB1.GraphPane.YAxis.Scale.Min = -2; }
                 else
-                { zedGraphIV.GraphPane.YAxis.Scale.Min = Math.Round((double)(Math.Log10(myIV.min_I))) - .1; }
+                { zedFEB1.GraphPane.YAxis.Scale.Min = Math.Round((double)(Math.Log10(myIV.min_I))) - .1; }
 
-                zedGraphIV.GraphPane.YAxis.Scale.Max = Math.Round((double)(Math.Log10(myIV.max_I * 1000)), 0);
+                zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(Math.Log10(myIV.max_I * 1000)), 0);
 
-                if (zedGraphIV.GraphPane.YAxis.Scale.Max < 0.1) { zedGraphIV.GraphPane.YAxis.Scale.Max = 0.1; }
+                if (zedFEB1.GraphPane.YAxis.Scale.Max < 0.1) { zedFEB1.GraphPane.YAxis.Scale.Max = 0.1; }
 
-                zedGraphIV.GraphPane.AddCurve(myIV.chan.ToString(), myIV.loglist, Color.DarkRed, SymbolType.None);
-                zedGraphIV.GraphPane.YAxis.Scale.MajorStep = .1 * (double)(Math.Log10(myIV.max_I * 1000));
+                zedFEB1.GraphPane.AddCurve(myIV.chan.ToString(), myIV.loglist, Color.DarkRed, SymbolType.None);
+                zedFEB1.GraphPane.YAxis.Scale.MajorStep = .1 * (double)(Math.Log10(myIV.max_I * 1000));
             }
             else
             {
-                zedGraphIV.GraphPane.YAxis.Scale.Min = 0.0;
-                zedGraphIV.GraphPane.YAxis.Scale.Max = Math.Round((double)(myIV.max_I + 0.1 * (myIV.max_I - myIV.min_I)), 0);
-                zedGraphIV.GraphPane.AddCurve(myIV.chan.ToString(), myIV.list, Color.DarkRed, SymbolType.None);
+                zedFEB1.GraphPane.YAxis.Scale.Min = 0.0;
+                zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(myIV.max_I + 0.1 * (myIV.max_I - myIV.min_I)), 0);
+                zedFEB1.GraphPane.AddCurve(myIV.chan.ToString(), myIV.list, Color.DarkRed, SymbolType.None);
             }
             double s = Math.Round((double)(myIV.max_v - myIV.min_v) / 10.0, 0);
-            if (zedGraphIV.GraphPane.XAxis.Scale.MajorStep < s) { zedGraphIV.GraphPane.XAxis.Scale.MajorStep = s; }
-            zedGraphIV.GraphPane.XAxis.Scale.MinorStep = zedGraphIV.GraphPane.XAxis.Scale.MajorStep / 4;
-            zedGraphIV.GraphPane.XAxis.Scale.Min = (double)udStart.Value - .2;
-            zedGraphIV.GraphPane.XAxis.Scale.Max = (double)udStop.Value + .2;
+            if (zedFEB1.GraphPane.XAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.XAxis.Scale.MajorStep = s; }
+            zedFEB1.GraphPane.XAxis.Scale.MinorStep = zedFEB1.GraphPane.XAxis.Scale.MajorStep / 4;
+            zedFEB1.GraphPane.XAxis.Scale.Min = (double)udStart.Value - .2;
+            zedFEB1.GraphPane.XAxis.Scale.Max = (double)udStop.Value + .2;
 
             s = Math.Round((myIV.max_I - myIV.min_I) / 10.0, 0);
-            zedGraphIV.GraphPane.YAxis.Scale.MinorStep = zedGraphIV.GraphPane.YAxis.Scale.MajorStep / 4;
+            zedFEB1.GraphPane.YAxis.Scale.MinorStep = zedFEB1.GraphPane.YAxis.Scale.MajorStep / 4;
 
-            zedGraphIV.Invalidate(true);
+            zedFEB1.Invalidate(true);
             Application.DoEvents();
         }
 
@@ -1431,7 +1431,7 @@ namespace TB_mu2e
                 int SipmNum = Int32.Parse(SipmSel) - 1;
 
                 List<HISTO_curve> myHistoList = null;
-                zedGraphHisto.GraphPane.CurveList.Clear();
+                zedFEB1.GraphPane.CurveList.Clear();
 
                 myHistoList = PP.FEB1Histo;
                 //if (_ActiveFEB == 2) { myHistoList = PP.FEB2Histo; }
@@ -1442,27 +1442,27 @@ namespace TB_mu2e
                     {
                         if (chkLogY.Checked)
                         {
-                            zedGraphHisto.GraphPane.YAxis.Scale.Max = Math.Round((double)(Math.Log10(h1.max_count + 0.1 * (h1.max_count - h1.min_count))), 0);
-                            zedGraphHisto.GraphPane.AddCurve(h1.chan.ToString(), h1.loglist, Color.DarkRed, SymbolType.None);
+                            zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(Math.Log10(h1.max_count + 0.1 * (h1.max_count - h1.min_count))), 0);
+                            zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.loglist, Color.DarkRed, SymbolType.None);
                         }
                         else
                         {
-                            zedGraphHisto.GraphPane.YAxis.Scale.Max = Math.Round((double)(h1.max_count + 0.1 * (h1.max_count - h1.min_count)), 0);
+                            zedFEB1.GraphPane.YAxis.Scale.Max = Math.Round((double)(h1.max_count + 0.1 * (h1.max_count - h1.min_count)), 0);
                             //zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, this_color[h1.chan % 16], SymbolType.None);
-                            zedGraphHisto.GraphPane.AddCurve(h1.chan.ToString(), h1.list, Color.DarkBlue, SymbolType.None);
+                            zedFEB1.GraphPane.AddCurve(h1.chan.ToString(), h1.list, Color.DarkBlue, SymbolType.None);
                         }
                         double s = 0;
                         s = Math.Round((double)(h1.max_thresh - h1.min_thresh) / 10.0, 0);
-                        if (zedGraphHisto.GraphPane.XAxis.Scale.MajorStep < s) { zedGraphHisto.GraphPane.XAxis.Scale.MajorStep = s; }
-                        zedGraphHisto.GraphPane.XAxis.Scale.MinorStep = zedGraphHisto.GraphPane.XAxis.Scale.MajorStep / 4;
+                        if (zedFEB1.GraphPane.XAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.XAxis.Scale.MajorStep = s; }
+                        zedFEB1.GraphPane.XAxis.Scale.MinorStep = zedFEB1.GraphPane.XAxis.Scale.MajorStep / 4;
 
                         s = Math.Round((h1.max_count - h1.min_count) / 10.0, 0);
-                        if (zedGraphHisto.GraphPane.YAxis.Scale.MajorStep < s) { zedGraphHisto.GraphPane.YAxis.Scale.MajorStep = s; }
-                        zedGraphHisto.GraphPane.YAxis.Scale.MinorStep = zedGraphHisto.GraphPane.YAxis.Scale.MajorStep / 4;
+                        if (zedFEB1.GraphPane.YAxis.Scale.MajorStep < s) { zedFEB1.GraphPane.YAxis.Scale.MajorStep = s; }
+                        zedFEB1.GraphPane.YAxis.Scale.MinorStep = zedFEB1.GraphPane.YAxis.Scale.MajorStep / 4;
                     }
                 }
             }
-            zedGraphHisto.Invalidate(true);
+            zedFEB1.Invalidate(true);
             Application.DoEvents();
         }
 
@@ -3566,7 +3566,7 @@ namespace TB_mu2e
         {
             listBox3.ClearSelected();
             listBox3.DataSource = null;
-            ListSipmIV.Clear();
+            //ListSipmIV.Clear();
             //Mu2e_FEB_client myFEBclient = new Mu2e_FEB_client();
             //switch (_ActiveFEB)
             //{
@@ -4637,6 +4637,16 @@ namespace TB_mu2e
                     dbStream.Close();
                 }
             }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void zedFEB1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 
