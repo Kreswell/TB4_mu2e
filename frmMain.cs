@@ -1706,13 +1706,15 @@ namespace TB_mu2e
 
                 string hName = "";
                 string dirName = "c://data//";
+                DateTime testDate = DateTime.Now;
 
                 hName += "FEB_histo_";
                 hName += txtSN.Text;
+                hName += "_" + testDate.ToString("yyyyMMdd");
                 hName = dirName + hName + ".hist";
 
                 StreamWriter sw = new StreamWriter(hName);
-                sw.Write("-- created_time "); sw.WriteLine(DateTime.Now);
+                sw.Write("-- created_time "); sw.WriteLine(testDate.ToString());
                 sw.Write("-- board "); sw.WriteLine(txtSN.Text);
 
                 foreach (HISTO_curve h1 in myHistoList)
