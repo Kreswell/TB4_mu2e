@@ -407,7 +407,8 @@ namespace TB_mu2e
                 int rt = 0;
                 ReadStr(out HistoStr, out rt);
                 string[] SplitHistoStr = HistoStr.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-                for (int i = 0; i < SplitHistoStr.Length/2; i++)
+                int imax = SplitHistoStr.Length > 1024 ? 512 : SplitHistoStr.Length / 2;
+                for (int i = 0; i < imax; i++)
                 {
                     if (SplitHistoStr[i].StartsWith(">"))
                     {

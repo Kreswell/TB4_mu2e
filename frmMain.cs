@@ -710,13 +710,11 @@ namespace TB_mu2e
                 }
                 if (comm.name.Contains("FECC")) { }
                 lblMessage.Text = DateTime.Now + " -> " + comm.m_prop;
-                //VoltageSignal.myClient = myFEBclient.client;
 
                 // Initialize the VoltagSignal objects, set all voltages to 0, 
                 // acquire an initial set of measurements, and fill the display.
+                ZeroAllVoltages();
                 myFEB.BuildHDMIsignalDB();
-                //ZeroAllVoltages();
-                //buildListView();
             }
         }
 
@@ -1706,27 +1704,34 @@ namespace TB_mu2e
 
                 string hName = "";
                 string dirName = "c://data//";
+                string preamble = "";
+                string header = "";
                 DateTime testDate = DateTime.Now;
 
                 hName += "FEB_histo_";
                 hName += txtSN.Text;
                 hName += "_" + testDate.ToString("yyyyMMdd");
-                hName = dirName + hName + ".hist";
+                hName = dirName + hName + ".csv";
 
+                preamble += "-- serial number: " + txtSN.Text + "\n" + "-- tested on: " + testDate.ToString();
+                header += "Channel, V, I";
+                for (int i = 0; i < 512; i++)
+                {
+                    header += ", " + i.ToString();
+                }
                 StreamWriter sw = new StreamWriter(hName);
-                sw.Write("-- created_time "); sw.WriteLine(testDate.ToString());
-                sw.Write("-- board "); sw.WriteLine(txtSN.Text);
+                sw.WriteLine(preamble);
+                sw.WriteLine(header);
 
                 foreach (HISTO_curve h1 in myHistoList)
                 {
-                    sw.WriteLine("--------------");
-                    sw.Write("-- chan "); sw.WriteLine(h1.chan);
-                    sw.Write("-- V "); sw.WriteLine(h1.V);
-                    sw.Write("-- I "); sw.WriteLine(h1.I);
+                    string histoLine = "";
+                    histoLine += h1.chan.ToString() + ", " + h1.V.ToString() + ", " + h1.I.ToString();
                     foreach (PointPair p in h1.list)
                     {
-                        sw.WriteLine(p.X + "," + p.Y);
+                        histoLine += ", " + p.Y.ToString();
                     }
+                    sw.WriteLine(histoLine);
                 }
                 sw.Close();
             }
@@ -4006,32 +4011,51 @@ namespace TB_mu2e
             //updateListVoltage(biaschan.Biases[1]);
         }
 
+        bool VoltagesInitialized = false;
         private void ZeroAllVoltages()
         {
-            //myFEB.SetVoltages(FEB.GetVoltageTypes.AllVoltages, 0);
-            //myFEB.GetVoltages(FEB.GetVoltageTypes.AllVoltages);
-            //foreach (VoltageSignal vsig in myFEB.Voltages)
-            //{
-            //    updateListVoltage(vsig);
-            //}
+            if (VoltagesInitialized)
+            {
+                foreach (BiasChannel biaschan in myFEB.Biases)
+                {
+                    biaschan.Biases[0].myMeasurements.Invalidate((int)Math.Ceiling(biaschan.voltageSetting / 20));
+                    biaschan.Biases[1].myMeasurements.Invalidate((int)Math.Ceiling(biaschan.voltageSetting / 20));
+                }
+                foreach (TrimSignal trimsig in myFEB.Trims)
+                {
+                    trimsig.myMeasurements.Invalidate((int)Math.Ceiling(Math.Abs(trimsig.voltageSetting) / 20));
+                }
+                foreach (LEDsignal ledsig in myFEB.LEDs)
+                {
+                    ledsig.myMeasurements.Invalidate((int)Math.Ceiling(ledsig.voltageSetting / 20));
+                }
+            }
+            for (int fpga = 0; fpga < 4; fpga++)
+            {
+                PP.FEB1.SetV(0, fpga);
+                for (int i = 0; i < 16; i++)
+                {
+                    myFEBclient.SendStr("wr " + Convert.ToString(4 * fpga, 16) + "3" + Convert.ToString(i, 16) + " 800");
+                }
+            }
+        }
 
+        private void AcquireAllVoltages()
+        { 
             foreach (BiasChannel biaschan in myFEB.Biases)
             {
-                SetVoltage(biaschan, 0);
                 GetVoltageMeasurement(biaschan, 1);
                 Application.DoEvents();
             }
 
             foreach (TrimSignal trimsig in myFEB.Trims)
             {
-                SetVoltage(trimsig, 0);
                 GetVoltageMeasurement(trimsig, 1);
                 Application.DoEvents();
             }
 
             foreach (LEDsignal ledsig in myFEB.LEDs)
             {
-                SetVoltage(ledsig, 0);
                 GetVoltageMeasurement(ledsig, 1);
                 Application.DoEvents();
             }
@@ -4183,11 +4207,15 @@ namespace TB_mu2e
             }
 
             //myFEB.SetVoltages(FEB.GetVoltageTypes.AllLED, 0);
-            //ZeroAllVoltages();
-            //foreach (VoltageSignal vsig in myFEB.LEDs)
-            //{
-            //    updateListVoltage(vsig);
-            //}
+            ZeroAllVoltages();
+
+            btnFullVScan.Text = "SCAN";
+            btnFullVScan.BackColor = Color.LimeGreen;
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}",
+                ts.Minutes, ts.Seconds, ts.Milliseconds);
+            lblScanTime.Text = "Scan time: " + elapsedTime;
 
             DateTime testDate = DateTime.Now;
             string measurementsFileName = "";
@@ -4252,17 +4280,16 @@ namespace TB_mu2e
                 }
             }
 
-            btnFullVScan.Text = "SCAN";
-            btnFullVScan.BackColor = Color.LimeGreen;
-            stopWatch.Stop();
-            TimeSpan ts = stopWatch.Elapsed;
-            string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}",
-                ts.Minutes, ts.Seconds, ts.Milliseconds);
-            lblScanTime.Text = "Scan time: " + elapsedTime;
+            AcquireAllVoltages();
+            foreach (VoltageSignal vsig in myFEB.LEDs)
+            {
+                updateListVoltage(vsig);
+            }
         }
 
         private void btnMuxTest_Click(object sender, EventArgs e)
         {
+            ZeroAllVoltages();
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
             btnMuxTest.Text = "SCANNING...";
@@ -4278,9 +4305,11 @@ namespace TB_mu2e
             myFEBclient.MuxTestSetup();
 
             foreach (TrimSignal trimsig in myFEB.Trims)
+            { SetVoltage(trimsig, -2); }
+            foreach (TrimSignal trimsig in myFEB.Trims)
             {
-                SetVoltage(trimsig, -2);
-
+                //Wait 100ms to make sure voltages have ramped.
+                System.Threading.Thread.Sleep(100);
                 int fpga = trimsig.myFPGA_ID;
                 int ch = trimsig.signalIndex;
 
@@ -4299,10 +4328,9 @@ namespace TB_mu2e
 
                 myFEBclient.SendStr("WR 20 0");
                 System.Threading.Thread.Sleep(stime);
-
-                SetVoltage(trimsig, 0);
             }
 
+            ZeroAllVoltages();
             myFEBclient.MuxTestSetup();
 
             TekScope.inTestMode = startingMode;
@@ -4315,7 +4343,6 @@ namespace TB_mu2e
             lblMuxTime.Text = "Scan time: " + elapsedTime;
         }
 
-        bool VoltagesInitialized = false;
         private void buildListView()
         {
             string[] listString = new string[8];
