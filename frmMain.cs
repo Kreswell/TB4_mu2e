@@ -107,6 +107,8 @@ namespace TB_mu2e
             btnWC.Click += new System.EventHandler(this.button1_Click);
             btnWC.Tag = PP.WC; btnWC.Text = PP.WC.host_name_prop;
 
+            txtFEBAddress.Text = PP.FEB1.host_name_prop;
+
             console_label = new uConsole();
 
             chan_list.Add(btnJ11);
@@ -2459,13 +2461,6 @@ namespace TB_mu2e
 
         private void btnSnSave_Click(object sender, EventArgs e)
         {
-            //Mu2e_FEB_client myFEB = null;
-            //if (_ActiveFEB == 1)
-            //myFEBclient = PP.FEB1;
-            //if (_ActiveFEB == 2)
-            //{ myFEB = PP.FEB2; }
-
-
             myFEB.FEBserialNum = txtSN.Text;
         }
 
@@ -2965,8 +2960,8 @@ namespace TB_mu2e
                 string fName = "";
                 fName += "HVtestVals_";
                 fName += txtSN.Text;
-                hName += "_";
-                hName += testDate.ToString("yyyyMMdd");
+                fName += "_";
+                fName += testDate.ToString("yyyyMMdd");
                 fName = dirName + fName + ".txt";
                 StreamWriter swf = new StreamWriter(fName);
 
@@ -3439,32 +3434,6 @@ namespace TB_mu2e
 
         }
 
-        private void btnSelLowIV_Click(object sender, EventArgs e)
-        {
-            if (chkBoxJ11IV.Checked && chkBoxJ12IV.Checked && chkBoxJ13IV.Checked && chkBoxJ14IV.Checked && chkBoxJ15IV.Checked && chkBoxJ16IV.Checked && chkBoxJ17IV.Checked && chkBoxJ18IV.Checked)
-            {
-                chkBoxJ11IV.Checked = false;
-                chkBoxJ12IV.Checked = false;
-                chkBoxJ13IV.Checked = false;
-                chkBoxJ14IV.Checked = false;
-                chkBoxJ15IV.Checked = false;
-                chkBoxJ16IV.Checked = false;
-                chkBoxJ17IV.Checked = false;
-                chkBoxJ18IV.Checked = false;
-            }
-            else
-            {
-                chkBoxJ11IV.Checked = true;
-                chkBoxJ12IV.Checked = true;
-                chkBoxJ13IV.Checked = true;
-                chkBoxJ14IV.Checked = true;
-                chkBoxJ15IV.Checked = true;
-                chkBoxJ16IV.Checked = true;
-                chkBoxJ17IV.Checked = true;
-                chkBoxJ18IV.Checked = true;
-            }
-        }
-
         private void checkBox25_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -3522,43 +3491,10 @@ namespace TB_mu2e
             }
         }
 
-        private void btnSelHiIV_Click(object sender, EventArgs e)
-        {
-            if (chkBoxJ19IV.Checked && chkBoxJ20IV.Checked && chkBoxJ21IV.Checked && chkBoxJ22IV.Checked && chkBoxJ23IV.Checked && chkBoxJ24IV.Checked && chkBoxJ25IV.Checked && chkBoxJ26IV.Checked)
-            {
-                chkBoxJ19IV.Checked = false;
-                chkBoxJ20IV.Checked = false;
-                chkBoxJ21IV.Checked = false;
-                chkBoxJ22IV.Checked = false;
-                chkBoxJ23IV.Checked = false;
-                chkBoxJ24IV.Checked = false;
-                chkBoxJ25IV.Checked = false;
-                chkBoxJ26IV.Checked = false;
-            }
-            else
-            {
-                chkBoxJ19IV.Checked = true;
-                chkBoxJ20IV.Checked = true;
-                chkBoxJ21IV.Checked = true;
-                chkBoxJ22IV.Checked = true;
-                chkBoxJ23IV.Checked = true;
-                chkBoxJ24IV.Checked = true;
-                chkBoxJ25IV.Checked = true;
-                chkBoxJ26IV.Checked = true;
-            }
-        }
 
         private void label9_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void button18_Click(object sender, EventArgs e)
-        {
-            string cmb_reg;
-            myFEBclient.ReadCMB(out cmb_reg);
-            labelTempIV.Text = cmb_reg;
-            Application.DoEvents();
         }
 
         private void button19_Click(object sender, EventArgs e)
@@ -3566,182 +3502,6 @@ namespace TB_mu2e
             string cmb_reg;
             myFEBclient.ReadCMB(out cmb_reg);
             labelTempHist.Text = cmb_reg;
-            Application.DoEvents();
-        }
-
-        private void btnIVScan_Click(object sender, EventArgs e)
-        {
-            listBox3.ClearSelected();
-            listBox3.DataSource = null;
-            //ListSipmIV.Clear();
-            //Mu2e_FEB_client myFEBclient = new Mu2e_FEB_client();
-            //switch (_ActiveFEB)
-            //{
-            //    case 1:
-            //        myFEBclient = PP.FEB1;
-            //        break;
-            //    case 2:
-            //        myFEBclient = PP.FEB2;
-            //        break;
-            //}
-
-            if (btnScan.Text != "SCAN") { flgBreak = true; return; }
-
-            IV_curve myIV = new IV_curve();
-
-            myIV.min_v = (double)numericUpDown3.Value;
-            myIV.max_v = (double)numericUpDown2.Value;
-            for (uint i = 0; i < 64; i++)
-            {
-                bool CmbCheck = false;
-                uint sipm = i % 8;
-                uint sipm16 = i % 0x10;
-                UInt16 fpga = 0;
-                switch (i)
-                {
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                        if (chkBoxJ11IV.Checked) CmbCheck = true;
-                        fpga = 0;
-                        break;
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                        if (chkBoxJ12IV.Checked) CmbCheck = true;
-                        fpga = 0;
-                        break;
-                    case 8:
-                    case 9:
-                    case 10:
-                    case 11:
-                        if (chkBoxJ13IV.Checked) CmbCheck = true;
-                        fpga = 0;
-                        break;
-                    case 12:
-                    case 13:
-                    case 14:
-                    case 15:
-                        if (chkBoxJ14IV.Checked) CmbCheck = true;
-                        fpga = 0;
-                        break;
-                    case 16:
-                    case 17:
-                    case 18:
-                    case 19:
-                        if (chkBoxJ15IV.Checked) CmbCheck = true;
-                        fpga = 1;
-                        break;
-                    case 20:
-                    case 21:
-                    case 22:
-                    case 23:
-                        if (chkBoxJ16IV.Checked) CmbCheck = true;
-                        fpga = 1;
-                        break;
-                    case 24:
-                    case 25:
-                    case 26:
-                    case 27:
-                        if (chkBoxJ17IV.Checked) CmbCheck = true;
-                        fpga = 1;
-                        break;
-                    case 28:
-                    case 29:
-                    case 30:
-                    case 31:
-                        if (chkBoxJ18IV.Checked) CmbCheck = true;
-                        fpga = 1;
-                        break;
-                    case 32:
-                    case 33:
-                    case 34:
-                    case 35:
-                        if (chkBoxJ19IV.Checked) CmbCheck = true;
-                        fpga = 2;
-                        break;
-                    case 36:
-                    case 37:
-                    case 38:
-                    case 39:
-                        if (chkBoxJ20IV.Checked) CmbCheck = true;
-                        fpga = 2;
-                        break;
-                    case 40:
-                    case 41:
-                    case 42:
-                    case 43:
-                        if (chkBoxJ21IV.Checked) CmbCheck = true;
-                        fpga = 2;
-                        break;
-                    case 44:
-                    case 45:
-                    case 46:
-                    case 47:
-                        if (chkBoxJ22IV.Checked) CmbCheck = true;
-                        fpga = 2;
-                        break;
-                    case 48:
-                    case 49:
-                    case 50:
-                    case 51:
-                        if (chkBoxJ23IV.Checked) CmbCheck = true;
-                        fpga = 3;
-                        break;
-                    case 52:
-                    case 53:
-                    case 54:
-                    case 55:
-                        if (chkBoxJ24IV.Checked) CmbCheck = true;
-                        fpga = 3;
-                        break;
-                    case 56:
-                    case 57:
-                    case 58:
-                    case 59:
-                        if (chkBoxJ25IV.Checked) CmbCheck = true;
-                        fpga = 3;
-                        break;
-                    case 60:
-                    case 61:
-                    case 62:
-                    case 63:
-                        if (chkBoxJ26IV.Checked) CmbCheck = true;
-                        fpga = 3;
-                        break;
-                    default:
-                        break;
-                }
-                if (CmbCheck == false) continue;
-                double I = myFEBclient.ReadA0(fpga, (int)i);
-
-                myIV.chan = (Int32)i;
-                myIV.board = _ActiveFEB;
-                decimal v = numericUpDown3.Value;
-                while ((v < numericUpDown2.Value) & !flgBreak)
-                {
-                    Application.DoEvents();
-                    myIV.AddPoint((double)v, I);
-
-                    btnIVScan.Text = v.ToString("0.00") + "V";
-
-                    v += udInterval.Value / 1000;
-
-                    System.Threading.Thread.Sleep(10);
-                    Application.DoEvents();
-                }
-                if (_ActiveFEB == 1) { PP.FEB1IVs.Add(myIV); }
-                if (_ActiveFEB == 2) { PP.FEB2IVs.Add(myIV); }
-                v = numericUpDown3.Value;
-                btnBiasWRITE_Click(null, null);
-                if (myIV.saved == false) { myIV.Save(); }
-                myIV.saved = true;
-                myIV.saved_time = DateTime.Now;
-            }
-            btnIVScan.Text = "SCAN";
-            flgBreak = false;
             Application.DoEvents();
         }
 
@@ -4676,6 +4436,16 @@ namespace TB_mu2e
         private void zedFEB1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            btnConnectAll_Click(sender, e);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            PP.FEB1.host_name_prop = txtFEBAddress.Text;
         }
     }
 

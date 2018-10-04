@@ -42,61 +42,12 @@ namespace TB_mu2e
             this.lblWC = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabRUN = new System.Windows.Forms.TabPage();
-            this.lblRunLog = new System.Windows.Forms.Label();
-            this.lblEventCount = new System.Windows.Forms.Label();
-            this.groupBoxEvDisplay = new System.Windows.Forms.GroupBox();
-            this.btnDisplaySpill = new System.Windows.Forms.Button();
-            this.txtEvent = new System.Windows.Forms.TextBox();
-            this.btnNextDisp = new System.Windows.Forms.Button();
-            this.btnPrevDisp = new System.Windows.Forms.Button();
-            this.ud_VertMin = new System.Windows.Forms.NumericUpDown();
-            this.ud_VertMax = new System.Windows.Forms.NumericUpDown();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.btnOneSpill = new System.Windows.Forms.Button();
-            this.btnChangeName = new System.Windows.Forms.Button();
-            this.chkWC = new System.Windows.Forms.CheckBox();
-            this.chkFEB2 = new System.Windows.Forms.CheckBox();
-            this.chkFEB1 = new System.Windows.Forms.CheckBox();
-            this.chkFakeIt = new System.Windows.Forms.CheckBox();
-            this.lblWC_TotTrig = new System.Windows.Forms.Label();
-            this.lblFEB2_TotTrig = new System.Windows.Forms.Label();
-            this.lblFEB1_TotTrig = new System.Windows.Forms.Label();
-            this.lblWCSpill = new System.Windows.Forms.Label();
-            this.lblFEB2Spill = new System.Windows.Forms.Label();
-            this.lblSpillTime = new System.Windows.Forms.Label();
-            this.lblWCTrigNum = new System.Windows.Forms.Label();
-            this.lblFEB2TrigNum = new System.Windows.Forms.Label();
-            this.lblFEB1TrigNum = new System.Windows.Forms.Label();
-            this.lblFEB1Spill = new System.Windows.Forms.Label();
-            this.lblRunPrep = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblRunTime = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblSpillWC = new System.Windows.Forms.Label();
-            this.lblSpillFEB2 = new System.Windows.Forms.Label();
-            this.lblSpillFEB1 = new System.Windows.Forms.Label();
-            this.lblRunName = new System.Windows.Forms.Label();
-            this.btnStopRun = new System.Windows.Forms.Button();
-            this.btnStartRun = new System.Windows.Forms.Button();
-            this.btnPrepare = new System.Windows.Forms.Button();
-            this.btnConnectAll = new System.Windows.Forms.Button();
-            this.zg1 = new ZedGraph.ZedGraphControl();
-            this.tabConsole = new System.Windows.Forms.TabPage();
-            this.dbgWC = new System.Windows.Forms.Button();
-            this.dbgFEB2 = new System.Windows.Forms.Button();
-            this.dbgFEB1 = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.btnDebugLogging = new System.Windows.Forms.Button();
-            this.lblConsole_disp = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tabStart = new System.Windows.Forms.TabPage();
+            this.txtFEBAddress = new System.Windows.Forms.TextBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.label33 = new System.Windows.Forms.Label();
+            this.txtSN = new System.Windows.Forms.TextBox();
+            this.btnSnSave = new System.Windows.Forms.Button();
             this.tabFEB1 = new System.Windows.Forms.TabPage();
             this.label27 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -171,41 +122,6 @@ namespace TB_mu2e
             this.lblActive = new System.Windows.Forms.Label();
             this.btnFEB2 = new System.Windows.Forms.Button();
             this.btnFEB1 = new System.Windows.Forms.Button();
-            this.tabWC = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.lblWCmessage = new System.Windows.Forms.Label();
-            this.btnWC = new System.Windows.Forms.Button();
-            this.tabIV = new System.Windows.Forms.TabPage();
-            this.label33 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.label38 = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.button18 = new System.Windows.Forms.Button();
-            this.labelTempIV = new System.Windows.Forms.Label();
-            this.btnSelHiIV = new System.Windows.Forms.Button();
-            this.btnSelLowIV = new System.Windows.Forms.Button();
-            this.label34 = new System.Windows.Forms.Label();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.chkBoxJ19IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ20IV = new System.Windows.Forms.CheckBox();
-            this.btnIVScan = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.chkBoxJ21IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ22IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ23IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ24IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ25IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ26IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ15IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ16IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ17IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ18IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ13IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ14IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ12IV = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ11IV = new System.Windows.Forms.CheckBox();
-            this.label35 = new System.Windows.Forms.Label();
-            this.zedGraphIV = new ZedGraph.ZedGraphControl();
             this.tabHist = new System.Windows.Forms.TabPage();
             this.button19 = new System.Windows.Forms.Button();
             this.labelTempHist = new System.Windows.Forms.Label();
@@ -270,12 +186,69 @@ namespace TB_mu2e
             this.Gain = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Offset = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MuxCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabConsole = new System.Windows.Forms.TabPage();
+            this.dbgWC = new System.Windows.Forms.Button();
+            this.dbgFEB2 = new System.Windows.Forms.Button();
+            this.dbgFEB1 = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.btnDebugLogging = new System.Windows.Forms.Button();
+            this.lblConsole_disp = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tabRUN = new System.Windows.Forms.TabPage();
+            this.lblRunLog = new System.Windows.Forms.Label();
+            this.lblEventCount = new System.Windows.Forms.Label();
+            this.groupBoxEvDisplay = new System.Windows.Forms.GroupBox();
+            this.btnDisplaySpill = new System.Windows.Forms.Button();
+            this.txtEvent = new System.Windows.Forms.TextBox();
+            this.btnNextDisp = new System.Windows.Forms.Button();
+            this.btnPrevDisp = new System.Windows.Forms.Button();
+            this.ud_VertMin = new System.Windows.Forms.NumericUpDown();
+            this.ud_VertMax = new System.Windows.Forms.NumericUpDown();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.btnOneSpill = new System.Windows.Forms.Button();
+            this.btnChangeName = new System.Windows.Forms.Button();
+            this.chkWC = new System.Windows.Forms.CheckBox();
+            this.chkFEB2 = new System.Windows.Forms.CheckBox();
+            this.chkFEB1 = new System.Windows.Forms.CheckBox();
+            this.chkFakeIt = new System.Windows.Forms.CheckBox();
+            this.lblWC_TotTrig = new System.Windows.Forms.Label();
+            this.lblFEB2_TotTrig = new System.Windows.Forms.Label();
+            this.lblFEB1_TotTrig = new System.Windows.Forms.Label();
+            this.lblWCSpill = new System.Windows.Forms.Label();
+            this.lblFEB2Spill = new System.Windows.Forms.Label();
+            this.lblSpillTime = new System.Windows.Forms.Label();
+            this.lblWCTrigNum = new System.Windows.Forms.Label();
+            this.lblFEB2TrigNum = new System.Windows.Forms.Label();
+            this.lblFEB1TrigNum = new System.Windows.Forms.Label();
+            this.lblFEB1Spill = new System.Windows.Forms.Label();
+            this.lblRunPrep = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblRunTime = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblSpillWC = new System.Windows.Forms.Label();
+            this.lblSpillFEB2 = new System.Windows.Forms.Label();
+            this.lblSpillFEB1 = new System.Windows.Forms.Label();
+            this.lblRunName = new System.Windows.Forms.Label();
+            this.btnStopRun = new System.Windows.Forms.Button();
+            this.btnStartRun = new System.Windows.Forms.Button();
+            this.btnPrepare = new System.Windows.Forms.Button();
+            this.btnConnectAll = new System.Windows.Forms.Button();
+            this.zg1 = new ZedGraph.ZedGraphControl();
+            this.tabWC = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.lblWCmessage = new System.Windows.Forms.Label();
+            this.btnWC = new System.Windows.Forms.Button();
             this.tabFEBtest = new System.Windows.Forms.TabPage();
             this.button5 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.btnConnectScope = new System.Windows.Forms.Button();
-            this.btnSnSave = new System.Windows.Forms.Button();
-            this.txtSN = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.DAC_Voltages = new System.Windows.Forms.GroupBox();
             this.txtMuxI3 = new System.Windows.Forms.TextBox();
@@ -344,16 +317,11 @@ namespace TB_mu2e
             this.saveFileCalibrations = new System.Windows.Forms.SaveFileDialog();
             this.saveFileMeasurements = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDB = new System.Windows.Forms.SaveFileDialog();
+            this.button10 = new System.Windows.Forms.Button();
+            this.label34 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
-            this.tabRUN.SuspendLayout();
-            this.groupBoxEvDisplay.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMax)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.tabConsole.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.tabStart.SuspendLayout();
             this.tabFEB1.SuspendLayout();
             this.groupBoxSpillStat.SuspendLayout();
             this.groupBoxREG1.SuspendLayout();
@@ -366,14 +334,19 @@ namespace TB_mu2e
             this.panel1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBoxConn.SuspendLayout();
-            this.tabWC.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.tabIV.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.tabHist.SuspendLayout();
             this.CalibPType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpDnSamples)).BeginInit();
+            this.tabConsole.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.tabRUN.SuspendLayout();
+            this.groupBoxEvDisplay.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMax)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.tabWC.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.tabFEBtest.SuspendLayout();
             this.DAC_Voltages.SuspendLayout();
             this.SuspendLayout();
@@ -426,13 +399,13 @@ namespace TB_mu2e
             // tabControl
             // 
             this.tabControl.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.tabControl.Controls.Add(this.tabRUN);
-            this.tabControl.Controls.Add(this.tabConsole);
+            this.tabControl.Controls.Add(this.tabStart);
             this.tabControl.Controls.Add(this.tabFEB1);
-            this.tabControl.Controls.Add(this.tabWC);
-            this.tabControl.Controls.Add(this.tabIV);
             this.tabControl.Controls.Add(this.tabHist);
             this.tabControl.Controls.Add(this.CalibPType);
+            this.tabControl.Controls.Add(this.tabConsole);
+            this.tabControl.Controls.Add(this.tabRUN);
+            this.tabControl.Controls.Add(this.tabWC);
             this.tabControl.Controls.Add(this.tabFEBtest);
             this.tabControl.Location = new System.Drawing.Point(1, 12);
             this.tabControl.Name = "tabControl";
@@ -441,642 +414,67 @@ namespace TB_mu2e
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControl.TabIndex = 1;
             // 
-            // tabRUN
-            // 
-            this.tabRUN.Controls.Add(this.lblRunLog);
-            this.tabRUN.Controls.Add(this.lblEventCount);
-            this.tabRUN.Controls.Add(this.groupBoxEvDisplay);
-            this.tabRUN.Controls.Add(this.groupBox1);
-            this.tabRUN.Controls.Add(this.zg1);
-            this.tabRUN.Location = new System.Drawing.Point(4, 32);
-            this.tabRUN.Name = "tabRUN";
-            this.tabRUN.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRUN.Size = new System.Drawing.Size(1255, 665);
-            this.tabRUN.TabIndex = 0;
-            this.tabRUN.Text = "RUN";
-            this.tabRUN.UseVisualStyleBackColor = true;
-            // 
-            // lblRunLog
-            // 
-            this.lblRunLog.AutoSize = true;
-            this.lblRunLog.BackColor = System.Drawing.SystemColors.Info;
-            this.lblRunLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.150944F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRunLog.Location = new System.Drawing.Point(3, 459);
-            this.lblRunLog.MinimumSize = new System.Drawing.Size(1240, 180);
-            this.lblRunLog.Name = "lblRunLog";
-            this.lblRunLog.Size = new System.Drawing.Size(1240, 221);
-            this.lblRunLog.TabIndex = 3;
-            this.lblRunLog.Text = "run log text goes here\r\n1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n10\r\n11\r\n12";
-            // 
-            // lblEventCount
-            // 
-            this.lblEventCount.AutoEllipsis = true;
-            this.lblEventCount.AutoSize = true;
-            this.lblEventCount.Location = new System.Drawing.Point(7, 434);
-            this.lblEventCount.MaximumSize = new System.Drawing.Size(620, 20);
-            this.lblEventCount.Name = "lblEventCount";
-            this.lblEventCount.Size = new System.Drawing.Size(125, 20);
-            this.lblEventCount.TabIndex = 39;
-            this.lblEventCount.Text = "Spill xxx, yyy ev";
-            // 
-            // groupBoxEvDisplay
-            // 
-            this.groupBoxEvDisplay.Controls.Add(this.btnDisplaySpill);
-            this.groupBoxEvDisplay.Controls.Add(this.txtEvent);
-            this.groupBoxEvDisplay.Controls.Add(this.btnNextDisp);
-            this.groupBoxEvDisplay.Controls.Add(this.btnPrevDisp);
-            this.groupBoxEvDisplay.Controls.Add(this.ud_VertMin);
-            this.groupBoxEvDisplay.Controls.Add(this.ud_VertMax);
-            this.groupBoxEvDisplay.Location = new System.Drawing.Point(620, 340);
-            this.groupBoxEvDisplay.Name = "groupBoxEvDisplay";
-            this.groupBoxEvDisplay.Size = new System.Drawing.Size(623, 114);
-            this.groupBoxEvDisplay.TabIndex = 35;
-            this.groupBoxEvDisplay.TabStop = false;
-            this.groupBoxEvDisplay.Text = "EventDisplay";
-            // 
-            // btnDisplaySpill
-            // 
-            this.btnDisplaySpill.Location = new System.Drawing.Point(407, 78);
-            this.btnDisplaySpill.Name = "btnDisplaySpill";
-            this.btnDisplaySpill.Size = new System.Drawing.Size(102, 30);
-            this.btnDisplaySpill.TabIndex = 40;
-            this.btnDisplaySpill.Text = "DISPLAY";
-            this.btnDisplaySpill.UseVisualStyleBackColor = true;
-            this.btnDisplaySpill.Click += new System.EventHandler(this.btnDisplaySpill_Click);
-            // 
-            // txtEvent
-            // 
-            this.txtEvent.Location = new System.Drawing.Point(517, 40);
-            this.txtEvent.Name = "txtEvent";
-            this.txtEvent.Size = new System.Drawing.Size(44, 27);
-            this.txtEvent.TabIndex = 38;
-            // 
-            // btnNextDisp
-            // 
-            this.btnNextDisp.Location = new System.Drawing.Point(567, 37);
-            this.btnNextDisp.Name = "btnNextDisp";
-            this.btnNextDisp.Size = new System.Drawing.Size(50, 30);
-            this.btnNextDisp.TabIndex = 37;
-            this.btnNextDisp.Text = ">>>";
-            this.btnNextDisp.UseVisualStyleBackColor = true;
-            this.btnNextDisp.Click += new System.EventHandler(this.btnNextDisp_Click);
-            // 
-            // btnPrevDisp
-            // 
-            this.btnPrevDisp.Location = new System.Drawing.Point(466, 37);
-            this.btnPrevDisp.Name = "btnPrevDisp";
-            this.btnPrevDisp.Size = new System.Drawing.Size(50, 30);
-            this.btnPrevDisp.TabIndex = 36;
-            this.btnPrevDisp.Text = "<<<";
-            this.btnPrevDisp.UseVisualStyleBackColor = true;
-            this.btnPrevDisp.Click += new System.EventHandler(this.btnPrevDisp_Click);
-            // 
-            // ud_VertMin
-            // 
-            this.ud_VertMin.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.ud_VertMin.Location = new System.Drawing.Point(515, 73);
-            this.ud_VertMin.Maximum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.ud_VertMin.Minimum = new decimal(new int[] {
-            2500,
-            0,
-            0,
-            -2147483648});
-            this.ud_VertMin.Name = "ud_VertMin";
-            this.ud_VertMin.Size = new System.Drawing.Size(66, 27);
-            this.ud_VertMin.TabIndex = 35;
-            this.ud_VertMin.Value = new decimal(new int[] {
-            500,
-            0,
-            0,
-            -2147483648});
-            // 
-            // ud_VertMax
-            // 
-            this.ud_VertMax.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.ud_VertMax.Location = new System.Drawing.Point(515, 7);
-            this.ud_VertMax.Maximum = new decimal(new int[] {
-            2500,
-            0,
-            0,
-            0});
-            this.ud_VertMax.Name = "ud_VertMax";
-            this.ud_VertMax.Size = new System.Drawing.Size(66, 27);
-            this.ud_VertMax.TabIndex = 34;
-            this.ud_VertMax.Value = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.numericUpDown1);
-            this.groupBox1.Controls.Add(this.btnOneSpill);
-            this.groupBox1.Controls.Add(this.btnChangeName);
-            this.groupBox1.Controls.Add(this.chkWC);
-            this.groupBox1.Controls.Add(this.chkFEB2);
-            this.groupBox1.Controls.Add(this.chkFEB1);
-            this.groupBox1.Controls.Add(this.chkFakeIt);
-            this.groupBox1.Controls.Add(this.lblWC_TotTrig);
-            this.groupBox1.Controls.Add(this.lblFEB2_TotTrig);
-            this.groupBox1.Controls.Add(this.lblFEB1_TotTrig);
-            this.groupBox1.Controls.Add(this.lblWCSpill);
-            this.groupBox1.Controls.Add(this.lblFEB2Spill);
-            this.groupBox1.Controls.Add(this.lblSpillTime);
-            this.groupBox1.Controls.Add(this.lblWCTrigNum);
-            this.groupBox1.Controls.Add(this.lblFEB2TrigNum);
-            this.groupBox1.Controls.Add(this.lblFEB1TrigNum);
-            this.groupBox1.Controls.Add(this.lblFEB1Spill);
-            this.groupBox1.Controls.Add(this.lblRunPrep);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.lblRunTime);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.lblSpillWC);
-            this.groupBox1.Controls.Add(this.lblSpillFEB2);
-            this.groupBox1.Controls.Add(this.lblSpillFEB1);
-            this.groupBox1.Controls.Add(this.lblRunName);
-            this.groupBox1.Controls.Add(this.btnStopRun);
-            this.groupBox1.Controls.Add(this.btnStartRun);
-            this.groupBox1.Controls.Add(this.btnPrepare);
-            this.groupBox1.Controls.Add(this.btnConnectAll);
-            this.groupBox1.Location = new System.Drawing.Point(3, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(611, 418);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "RUN CONTROL";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(397, 94);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(141, 20);
-            this.label5.TabIndex = 34;
-            this.label5.Text = "Fake Spill Len (s)";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(534, 92);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(66, 27);
-            this.numericUpDown1.TabIndex = 33;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // btnOneSpill
-            // 
-            this.btnOneSpill.Location = new System.Drawing.Point(6, 144);
-            this.btnOneSpill.Name = "btnOneSpill";
-            this.btnOneSpill.Size = new System.Drawing.Size(260, 52);
-            this.btnOneSpill.TabIndex = 32;
-            this.btnOneSpill.Tag = "";
-            this.btnOneSpill.Text = "TAKE ONE SPILL";
-            this.btnOneSpill.UseVisualStyleBackColor = true;
-            this.btnOneSpill.Click += new System.EventHandler(this.btnOneSpill_Click);
-            // 
-            // btnChangeName
-            // 
-            this.btnChangeName.Location = new System.Drawing.Point(500, 34);
-            this.btnChangeName.Name = "btnChangeName";
-            this.btnChangeName.Size = new System.Drawing.Size(100, 33);
-            this.btnChangeName.TabIndex = 31;
-            this.btnChangeName.Tag = "";
-            this.btnChangeName.Text = "CHANGE";
-            this.btnChangeName.UseVisualStyleBackColor = true;
-            this.btnChangeName.Click += new System.EventHandler(this.btnChangeName_Click);
-            // 
-            // chkWC
-            // 
-            this.chkWC.AutoSize = true;
-            this.chkWC.Location = new System.Drawing.Point(440, 34);
-            this.chkWC.Name = "chkWC";
-            this.chkWC.Size = new System.Drawing.Size(59, 24);
-            this.chkWC.TabIndex = 30;
-            this.chkWC.Text = "WC";
-            this.chkWC.UseVisualStyleBackColor = true;
-            // 
-            // chkFEB2
-            // 
-            this.chkFEB2.AutoSize = true;
-            this.chkFEB2.Location = new System.Drawing.Point(365, 34);
-            this.chkFEB2.Name = "chkFEB2";
-            this.chkFEB2.Size = new System.Drawing.Size(73, 24);
-            this.chkFEB2.TabIndex = 29;
-            this.chkFEB2.Text = "FEB2";
-            this.chkFEB2.UseVisualStyleBackColor = true;
-            // 
-            // chkFEB1
-            // 
-            this.chkFEB1.AutoSize = true;
-            this.chkFEB1.Checked = true;
-            this.chkFEB1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFEB1.Location = new System.Drawing.Point(290, 34);
-            this.chkFEB1.Name = "chkFEB1";
-            this.chkFEB1.Size = new System.Drawing.Size(73, 24);
-            this.chkFEB1.TabIndex = 28;
-            this.chkFEB1.Text = "FEB1";
-            this.chkFEB1.UseVisualStyleBackColor = true;
-            // 
-            // chkFakeIt
-            // 
-            this.chkFakeIt.AutoSize = true;
-            this.chkFakeIt.Checked = true;
-            this.chkFakeIt.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFakeIt.Location = new System.Drawing.Point(290, 92);
-            this.chkFakeIt.Name = "chkFakeIt";
-            this.chkFakeIt.Size = new System.Drawing.Size(76, 24);
-            this.chkFakeIt.TabIndex = 27;
-            this.chkFakeIt.Text = "FakeIt";
-            this.chkFakeIt.UseVisualStyleBackColor = true;
-            this.chkFakeIt.CheckedChanged += new System.EventHandler(this.chkFakeIt_CheckedChanged);
-            // 
-            // lblWC_TotTrig
-            // 
-            this.lblWC_TotTrig.AutoSize = true;
-            this.lblWC_TotTrig.Location = new System.Drawing.Point(540, 305);
-            this.lblWC_TotTrig.Name = "lblWC_TotTrig";
-            this.lblWC_TotTrig.Size = new System.Drawing.Size(62, 20);
-            this.lblWC_TotTrig.TabIndex = 26;
-            this.lblWC_TotTrig.Text = "label14";
-            // 
-            // lblFEB2_TotTrig
-            // 
-            this.lblFEB2_TotTrig.AutoSize = true;
-            this.lblFEB2_TotTrig.Location = new System.Drawing.Point(483, 305);
-            this.lblFEB2_TotTrig.Name = "lblFEB2_TotTrig";
-            this.lblFEB2_TotTrig.Size = new System.Drawing.Size(62, 20);
-            this.lblFEB2_TotTrig.TabIndex = 25;
-            this.lblFEB2_TotTrig.Text = "label14";
-            // 
-            // lblFEB1_TotTrig
-            // 
-            this.lblFEB1_TotTrig.AutoSize = true;
-            this.lblFEB1_TotTrig.Location = new System.Drawing.Point(426, 305);
-            this.lblFEB1_TotTrig.Name = "lblFEB1_TotTrig";
-            this.lblFEB1_TotTrig.Size = new System.Drawing.Size(62, 20);
-            this.lblFEB1_TotTrig.TabIndex = 24;
-            this.lblFEB1_TotTrig.Text = "label14";
-            // 
-            // lblWCSpill
-            // 
-            this.lblWCSpill.AutoSize = true;
-            this.lblWCSpill.Location = new System.Drawing.Point(540, 276);
-            this.lblWCSpill.Name = "lblWCSpill";
-            this.lblWCSpill.Size = new System.Drawing.Size(62, 20);
-            this.lblWCSpill.TabIndex = 23;
-            this.lblWCSpill.Text = "label14";
-            // 
-            // lblFEB2Spill
-            // 
-            this.lblFEB2Spill.AutoSize = true;
-            this.lblFEB2Spill.Location = new System.Drawing.Point(483, 276);
-            this.lblFEB2Spill.Name = "lblFEB2Spill";
-            this.lblFEB2Spill.Size = new System.Drawing.Size(62, 20);
-            this.lblFEB2Spill.TabIndex = 22;
-            this.lblFEB2Spill.Text = "label14";
-            // 
-            // lblSpillTime
-            // 
-            this.lblSpillTime.AutoSize = true;
-            this.lblSpillTime.Location = new System.Drawing.Point(426, 368);
-            this.lblSpillTime.Name = "lblSpillTime";
-            this.lblSpillTime.Size = new System.Drawing.Size(95, 20);
-            this.lblSpillTime.TabIndex = 21;
-            this.lblSpillTime.Text = "lblSpillTime";
-            // 
-            // lblWCTrigNum
-            // 
-            this.lblWCTrigNum.AutoSize = true;
-            this.lblWCTrigNum.Location = new System.Drawing.Point(540, 334);
-            this.lblWCTrigNum.Name = "lblWCTrigNum";
-            this.lblWCTrigNum.Size = new System.Drawing.Size(53, 20);
-            this.lblWCTrigNum.TabIndex = 20;
-            this.lblWCTrigNum.Text = "label2";
-            // 
-            // lblFEB2TrigNum
-            // 
-            this.lblFEB2TrigNum.AutoSize = true;
-            this.lblFEB2TrigNum.Location = new System.Drawing.Point(483, 334);
-            this.lblFEB2TrigNum.Name = "lblFEB2TrigNum";
-            this.lblFEB2TrigNum.Size = new System.Drawing.Size(53, 20);
-            this.lblFEB2TrigNum.TabIndex = 19;
-            this.lblFEB2TrigNum.Text = "label2";
-            // 
-            // lblFEB1TrigNum
-            // 
-            this.lblFEB1TrigNum.AutoSize = true;
-            this.lblFEB1TrigNum.Location = new System.Drawing.Point(426, 334);
-            this.lblFEB1TrigNum.Name = "lblFEB1TrigNum";
-            this.lblFEB1TrigNum.Size = new System.Drawing.Size(53, 20);
-            this.lblFEB1TrigNum.TabIndex = 18;
-            this.lblFEB1TrigNum.Text = "label2";
-            // 
-            // lblFEB1Spill
-            // 
-            this.lblFEB1Spill.AutoSize = true;
-            this.lblFEB1Spill.Location = new System.Drawing.Point(426, 276);
-            this.lblFEB1Spill.Name = "lblFEB1Spill";
-            this.lblFEB1Spill.Size = new System.Drawing.Size(62, 20);
-            this.lblFEB1Spill.TabIndex = 17;
-            this.lblFEB1Spill.Text = "label14";
-            // 
-            // lblRunPrep
-            // 
-            this.lblRunPrep.AutoSize = true;
-            this.lblRunPrep.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.26415F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRunPrep.Location = new System.Drawing.Point(286, 119);
-            this.lblRunPrep.Name = "lblRunPrep";
-            this.lblRunPrep.Size = new System.Drawing.Size(85, 29);
-            this.lblRunPrep.TabIndex = 16;
-            this.lblRunPrep.Text = "Status";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(287, 334);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(113, 20);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Last Spill Trig";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(287, 305);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(120, 20);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Total Num Trig";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(287, 276);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(132, 20);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Total Num Spills";
-            // 
-            // lblRunTime
-            // 
-            this.lblRunTime.AutoSize = true;
-            this.lblRunTime.Location = new System.Drawing.Point(426, 214);
-            this.lblRunTime.Name = "lblRunTime";
-            this.lblRunTime.Size = new System.Drawing.Size(0, 20);
-            this.lblRunTime.TabIndex = 12;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(286, 214);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 20);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Time in run";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(286, 185);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 20);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Spill Status";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(286, 156);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 20);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Run Name";
-            // 
-            // lblSpillWC
-            // 
-            this.lblSpillWC.AutoSize = true;
-            this.lblSpillWC.Location = new System.Drawing.Point(540, 185);
-            this.lblSpillWC.Name = "lblSpillWC";
-            this.lblSpillWC.Size = new System.Drawing.Size(53, 20);
-            this.lblSpillWC.TabIndex = 8;
-            this.lblSpillWC.Text = "label2";
-            // 
-            // lblSpillFEB2
-            // 
-            this.lblSpillFEB2.AutoSize = true;
-            this.lblSpillFEB2.Location = new System.Drawing.Point(483, 185);
-            this.lblSpillFEB2.Name = "lblSpillFEB2";
-            this.lblSpillFEB2.Size = new System.Drawing.Size(53, 20);
-            this.lblSpillFEB2.TabIndex = 7;
-            this.lblSpillFEB2.Text = "label2";
-            // 
-            // lblSpillFEB1
-            // 
-            this.lblSpillFEB1.AutoSize = true;
-            this.lblSpillFEB1.Location = new System.Drawing.Point(426, 185);
-            this.lblSpillFEB1.Name = "lblSpillFEB1";
-            this.lblSpillFEB1.Size = new System.Drawing.Size(53, 20);
-            this.lblSpillFEB1.TabIndex = 6;
-            this.lblSpillFEB1.Text = "label2";
-            // 
-            // lblRunName
-            // 
-            this.lblRunName.AutoSize = true;
-            this.lblRunName.Location = new System.Drawing.Point(426, 156);
-            this.lblRunName.Name = "lblRunName";
-            this.lblRunName.Size = new System.Drawing.Size(100, 20);
-            this.lblRunName.TabIndex = 5;
-            this.lblRunName.Text = "lblRunName";
-            // 
-            // btnStopRun
-            // 
-            this.btnStopRun.Location = new System.Drawing.Point(6, 302);
-            this.btnStopRun.Name = "btnStopRun";
-            this.btnStopRun.Size = new System.Drawing.Size(260, 100);
-            this.btnStopRun.TabIndex = 4;
-            this.btnStopRun.Tag = "";
-            this.btnStopRun.Text = "STOP RUN";
-            this.btnStopRun.UseVisualStyleBackColor = true;
-            this.btnStopRun.Click += new System.EventHandler(this.btnStopRun_Click);
-            // 
-            // btnStartRun
-            // 
-            this.btnStartRun.Location = new System.Drawing.Point(6, 199);
-            this.btnStartRun.Name = "btnStartRun";
-            this.btnStartRun.Size = new System.Drawing.Size(260, 100);
-            this.btnStartRun.TabIndex = 3;
-            this.btnStartRun.Tag = "";
-            this.btnStartRun.Text = "START RUN";
-            this.btnStartRun.UseVisualStyleBackColor = true;
-            this.btnStartRun.Click += new System.EventHandler(this.btnStartRun_Click);
-            // 
-            // btnPrepare
-            // 
-            this.btnPrepare.Location = new System.Drawing.Point(6, 89);
-            this.btnPrepare.Name = "btnPrepare";
-            this.btnPrepare.Size = new System.Drawing.Size(260, 52);
-            this.btnPrepare.TabIndex = 2;
-            this.btnPrepare.Tag = "";
-            this.btnPrepare.Text = "PREPARE FOR RUN";
-            this.btnPrepare.UseVisualStyleBackColor = true;
-            this.btnPrepare.Click += new System.EventHandler(this.btnPrepare_Click);
-            // 
-            // btnConnectAll
-            // 
-            this.btnConnectAll.Location = new System.Drawing.Point(6, 34);
-            this.btnConnectAll.Name = "btnConnectAll";
-            this.btnConnectAll.Size = new System.Drawing.Size(260, 52);
-            this.btnConnectAll.TabIndex = 1;
-            this.btnConnectAll.Tag = "";
-            this.btnConnectAll.Text = "CONNECT ALL";
-            this.btnConnectAll.UseVisualStyleBackColor = true;
-            this.btnConnectAll.Click += new System.EventHandler(this.btnConnectAll_Click);
-            // 
-            // zg1
-            // 
-            this.zg1.Location = new System.Drawing.Point(620, 8);
-            this.zg1.Margin = new System.Windows.Forms.Padding(6);
-            this.zg1.Name = "zg1";
-            this.zg1.ScrollGrace = 0D;
-            this.zg1.ScrollMaxX = 0D;
-            this.zg1.ScrollMaxY = 0D;
-            this.zg1.ScrollMaxY2 = 0D;
-            this.zg1.ScrollMinX = 0D;
-            this.zg1.ScrollMinY = 0D;
-            this.zg1.ScrollMinY2 = 0D;
-            this.zg1.Size = new System.Drawing.Size(630, 342);
-            this.zg1.TabIndex = 1;
-            this.zg1.Load += new System.EventHandler(this.zg1_Load);
-            // 
-            // tabConsole
-            // 
-            this.tabConsole.Controls.Add(this.dbgWC);
-            this.tabConsole.Controls.Add(this.dbgFEB2);
-            this.tabConsole.Controls.Add(this.dbgFEB1);
-            this.tabConsole.Controls.Add(this.groupBox3);
-            this.tabConsole.Location = new System.Drawing.Point(4, 32);
-            this.tabConsole.Name = "tabConsole";
-            this.tabConsole.Size = new System.Drawing.Size(1255, 665);
-            this.tabConsole.TabIndex = 7;
-            this.tabConsole.Text = "Debug Console";
-            this.tabConsole.UseVisualStyleBackColor = true;
-            // 
-            // dbgWC
-            // 
-            this.dbgWC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dbgWC.Location = new System.Drawing.Point(141, 3);
-            this.dbgWC.Name = "dbgWC";
-            this.dbgWC.Size = new System.Drawing.Size(63, 31);
-            this.dbgWC.TabIndex = 8;
-            this.dbgWC.Text = "WC";
-            this.dbgWC.UseVisualStyleBackColor = true;
-            this.dbgWC.Click += new System.EventHandler(this.dbgFEB_Click);
-            // 
-            // dbgFEB2
-            // 
-            this.dbgFEB2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dbgFEB2.Location = new System.Drawing.Point(72, 3);
-            this.dbgFEB2.Name = "dbgFEB2";
-            this.dbgFEB2.Size = new System.Drawing.Size(63, 31);
-            this.dbgFEB2.TabIndex = 6;
-            this.dbgFEB2.Text = "FEB2";
-            this.dbgFEB2.UseVisualStyleBackColor = true;
-            this.dbgFEB2.Click += new System.EventHandler(this.dbgFEB_Click);
-            // 
-            // dbgFEB1
-            // 
-            this.dbgFEB1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dbgFEB1.Location = new System.Drawing.Point(3, 3);
-            this.dbgFEB1.Name = "dbgFEB1";
-            this.dbgFEB1.Size = new System.Drawing.Size(63, 31);
-            this.dbgFEB1.TabIndex = 5;
-            this.dbgFEB1.Text = "FEB1";
-            this.dbgFEB1.UseVisualStyleBackColor = true;
-            this.dbgFEB1.Click += new System.EventHandler(this.dbgFEB_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.button4);
-            this.groupBox3.Controls.Add(this.btnDebugLogging);
-            this.groupBox3.Controls.Add(this.lblConsole_disp);
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Location = new System.Drawing.Point(3, 40);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1249, 626);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "CONSOLE";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(1066, 580);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(148, 25);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "LOAD";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // btnDebugLogging
-            // 
-            this.btnDebugLogging.Location = new System.Drawing.Point(912, 580);
-            this.btnDebugLogging.Name = "btnDebugLogging";
-            this.btnDebugLogging.Size = new System.Drawing.Size(148, 25);
-            this.btnDebugLogging.TabIndex = 2;
-            this.btnDebugLogging.Text = "START LOG";
-            this.btnDebugLogging.UseVisualStyleBackColor = true;
-            this.btnDebugLogging.Click += new System.EventHandler(this.btnDebugLogging_Click);
-            // 
-            // lblConsole_disp
-            // 
-            this.lblConsole_disp.AutoSize = true;
-            this.lblConsole_disp.BackColor = System.Drawing.SystemColors.Info;
-            this.lblConsole_disp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.150944F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsole_disp.Location = new System.Drawing.Point(0, 20);
-            this.lblConsole_disp.Name = "lblConsole_disp";
-            this.lblConsole_disp.Size = new System.Drawing.Size(151, 17);
-            this.lblConsole_disp.TabIndex = 1;
-            this.lblConsole_disp.Text = "console text goes here";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(-3, 582);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(894, 24);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // tabStart
+            // 
+            this.tabStart.Controls.Add(this.label34);
+            this.tabStart.Controls.Add(this.button10);
+            this.tabStart.Controls.Add(this.txtFEBAddress);
+            this.tabStart.Controls.Add(this.button9);
+            this.tabStart.Controls.Add(this.label33);
+            this.tabStart.Controls.Add(this.txtSN);
+            this.tabStart.Controls.Add(this.btnSnSave);
+            this.tabStart.Location = new System.Drawing.Point(4, 32);
+            this.tabStart.Name = "tabStart";
+            this.tabStart.Size = new System.Drawing.Size(1255, 665);
+            this.tabStart.TabIndex = 12;
+            this.tabStart.Text = "Start";
+            this.tabStart.UseVisualStyleBackColor = true;
+            // 
+            // txtFEBAddress
+            // 
+            this.txtFEBAddress.Location = new System.Drawing.Point(40, 83);
+            this.txtFEBAddress.Name = "txtFEBAddress";
+            this.txtFEBAddress.Size = new System.Drawing.Size(188, 27);
+            this.txtFEBAddress.TabIndex = 12;
+            // 
+            // button9
+            // 
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.Location = new System.Drawing.Point(40, 117);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(269, 64);
+            this.button9.TabIndex = 11;
+            this.button9.Text = "Connect to FEB";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(34, 217);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(365, 32);
+            this.label33.TabIndex = 10;
+            this.label33.Text = "Enter FEB Serial Number:";
+            // 
+            // txtSN
+            // 
+            this.txtSN.Location = new System.Drawing.Point(40, 254);
+            this.txtSN.Name = "txtSN";
+            this.txtSN.Size = new System.Drawing.Size(215, 27);
+            this.txtSN.TabIndex = 5;
+            this.txtSN.TextChanged += new System.EventHandler(this.txtSN_TextChanged);
+            // 
+            // btnSnSave
+            // 
+            this.btnSnSave.Location = new System.Drawing.Point(261, 252);
+            this.btnSnSave.Name = "btnSnSave";
+            this.btnSnSave.Size = new System.Drawing.Size(111, 31);
+            this.btnSnSave.TabIndex = 8;
+            this.btnSnSave.Text = "SAVE";
+            this.btnSnSave.UseVisualStyleBackColor = true;
+            this.btnSnSave.Click += new System.EventHandler(this.btnSnSave_Click);
             // 
             // tabFEB1
             // 
@@ -1955,409 +1353,6 @@ namespace TB_mu2e
             this.btnFEB1.UseVisualStyleBackColor = true;
             this.btnFEB1.Click += new System.EventHandler(this.btnFEB1_Click);
             // 
-            // tabWC
-            // 
-            this.tabWC.Controls.Add(this.groupBox6);
-            this.tabWC.Location = new System.Drawing.Point(4, 32);
-            this.tabWC.Name = "tabWC";
-            this.tabWC.Size = new System.Drawing.Size(1255, 665);
-            this.tabWC.TabIndex = 6;
-            this.tabWC.Text = "WC";
-            this.tabWC.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.lblWCmessage);
-            this.groupBox6.Controls.Add(this.btnWC);
-            this.groupBox6.Location = new System.Drawing.Point(3, 3);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(611, 130);
-            this.groupBox6.TabIndex = 4;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "CONNECTIONS";
-            // 
-            // lblWCmessage
-            // 
-            this.lblWCmessage.AutoSize = true;
-            this.lblWCmessage.Location = new System.Drawing.Point(-1, 87);
-            this.lblWCmessage.Name = "lblWCmessage";
-            this.lblWCmessage.Size = new System.Drawing.Size(53, 40);
-            this.lblWCmessage.TabIndex = 2;
-            this.lblWCmessage.Text = "label1\r\nlabel2";
-            // 
-            // btnWC
-            // 
-            this.btnWC.Location = new System.Drawing.Point(0, 23);
-            this.btnWC.Name = "btnWC";
-            this.btnWC.Size = new System.Drawing.Size(99, 42);
-            this.btnWC.TabIndex = 0;
-            this.btnWC.Tag = "";
-            this.btnWC.Text = "WC";
-            this.btnWC.UseVisualStyleBackColor = true;
-            // 
-            // tabIV
-            // 
-            this.tabIV.Controls.Add(this.label33);
-            this.tabIV.Controls.Add(this.numericUpDown2);
-            this.tabIV.Controls.Add(this.label38);
-            this.tabIV.Controls.Add(this.numericUpDown3);
-            this.tabIV.Controls.Add(this.button18);
-            this.tabIV.Controls.Add(this.labelTempIV);
-            this.tabIV.Controls.Add(this.btnSelHiIV);
-            this.tabIV.Controls.Add(this.btnSelLowIV);
-            this.tabIV.Controls.Add(this.label34);
-            this.tabIV.Controls.Add(this.listBox3);
-            this.tabIV.Controls.Add(this.chkBoxJ19IV);
-            this.tabIV.Controls.Add(this.chkBoxJ20IV);
-            this.tabIV.Controls.Add(this.btnIVScan);
-            this.tabIV.Controls.Add(this.button17);
-            this.tabIV.Controls.Add(this.chkBoxJ21IV);
-            this.tabIV.Controls.Add(this.chkBoxJ22IV);
-            this.tabIV.Controls.Add(this.chkBoxJ23IV);
-            this.tabIV.Controls.Add(this.chkBoxJ24IV);
-            this.tabIV.Controls.Add(this.chkBoxJ25IV);
-            this.tabIV.Controls.Add(this.chkBoxJ26IV);
-            this.tabIV.Controls.Add(this.chkBoxJ15IV);
-            this.tabIV.Controls.Add(this.chkBoxJ16IV);
-            this.tabIV.Controls.Add(this.chkBoxJ17IV);
-            this.tabIV.Controls.Add(this.chkBoxJ18IV);
-            this.tabIV.Controls.Add(this.chkBoxJ13IV);
-            this.tabIV.Controls.Add(this.chkBoxJ14IV);
-            this.tabIV.Controls.Add(this.chkBoxJ12IV);
-            this.tabIV.Controls.Add(this.chkBoxJ11IV);
-            this.tabIV.Controls.Add(this.label35);
-            this.tabIV.Controls.Add(this.zedGraphIV);
-            this.tabIV.Location = new System.Drawing.Point(4, 32);
-            this.tabIV.Name = "tabIV";
-            this.tabIV.Padding = new System.Windows.Forms.Padding(3);
-            this.tabIV.Size = new System.Drawing.Size(1255, 665);
-            this.tabIV.TabIndex = 9;
-            this.tabIV.Text = "IV";
-            this.tabIV.UseVisualStyleBackColor = true;
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(314, 400);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(43, 20);
-            this.label33.TabIndex = 120;
-            this.label33.Text = "Stop";
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(401, 398);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
-            4096,
-            0,
-            0,
-            0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(57, 27);
-            this.numericUpDown2.TabIndex = 119;
-            this.numericUpDown2.Value = new decimal(new int[] {
-            57,
-            0,
-            0,
-            0});
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(314, 367);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(45, 20);
-            this.label38.TabIndex = 118;
-            this.label38.Text = "Start";
-            // 
-            // numericUpDown3
-            // 
-            this.numericUpDown3.Location = new System.Drawing.Point(401, 365);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
-            4095,
-            0,
-            0,
-            0});
-            this.numericUpDown3.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(56, 27);
-            this.numericUpDown3.TabIndex = 117;
-            this.numericUpDown3.Value = new decimal(new int[] {
-            55,
-            0,
-            0,
-            0});
-            // 
-            // button18
-            // 
-            this.button18.Location = new System.Drawing.Point(11, 347);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(219, 35);
-            this.button18.TabIndex = 116;
-            this.button18.Text = "UPDATE TEMPERATURE";
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.button18_Click);
-            // 
-            // labelTempIV
-            // 
-            this.labelTempIV.AutoSize = true;
-            this.labelTempIV.Location = new System.Drawing.Point(7, 12);
-            this.labelTempIV.Name = "labelTempIV";
-            this.labelTempIV.Size = new System.Drawing.Size(101, 20);
-            this.labelTempIV.TabIndex = 115;
-            this.labelTempIV.Text = "labelTempIV";
-            // 
-            // btnSelHiIV
-            // 
-            this.btnSelHiIV.Location = new System.Drawing.Point(318, 320);
-            this.btnSelHiIV.Name = "btnSelHiIV";
-            this.btnSelHiIV.Size = new System.Drawing.Size(139, 39);
-            this.btnSelHiIV.TabIndex = 112;
-            this.btnSelHiIV.Text = "Select J19-J26";
-            this.btnSelHiIV.UseVisualStyleBackColor = true;
-            this.btnSelHiIV.Click += new System.EventHandler(this.btnSelHiIV_Click);
-            // 
-            // btnSelLowIV
-            // 
-            this.btnSelLowIV.Location = new System.Drawing.Point(318, 275);
-            this.btnSelLowIV.Name = "btnSelLowIV";
-            this.btnSelLowIV.Size = new System.Drawing.Size(139, 39);
-            this.btnSelLowIV.TabIndex = 111;
-            this.btnSelLowIV.Text = "Select J11-J18";
-            this.btnSelLowIV.UseVisualStyleBackColor = true;
-            this.btnSelLowIV.Click += new System.EventHandler(this.btnSelLowIV_Click);
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(260, 440);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(140, 20);
-            this.label34.TabIndex = 110;
-            this.label34.Text = "Histogram to Plot";
-            // 
-            // listBox3
-            // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 20;
-            this.listBox3.Location = new System.Drawing.Point(264, 463);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(208, 64);
-            this.listBox3.Sorted = true;
-            this.listBox3.TabIndex = 109;
-            // 
-            // chkBoxJ19IV
-            // 
-            this.chkBoxJ19IV.AutoSize = true;
-            this.chkBoxJ19IV.Location = new System.Drawing.Point(382, 35);
-            this.chkBoxJ19IV.Name = "chkBoxJ19IV";
-            this.chkBoxJ19IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ19IV.TabIndex = 108;
-            this.chkBoxJ19IV.Text = "J19";
-            this.chkBoxJ19IV.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ20IV
-            // 
-            this.chkBoxJ20IV.AutoSize = true;
-            this.chkBoxJ20IV.Location = new System.Drawing.Point(382, 65);
-            this.chkBoxJ20IV.Name = "chkBoxJ20IV";
-            this.chkBoxJ20IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ20IV.TabIndex = 107;
-            this.chkBoxJ20IV.Text = "J20";
-            this.chkBoxJ20IV.UseVisualStyleBackColor = true;
-            // 
-            // btnIVScan
-            // 
-            this.btnIVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIVScan.Location = new System.Drawing.Point(264, 533);
-            this.btnIVScan.Name = "btnIVScan";
-            this.btnIVScan.Size = new System.Drawing.Size(101, 39);
-            this.btnIVScan.TabIndex = 89;
-            this.btnIVScan.Text = "SCAN";
-            this.btnIVScan.UseVisualStyleBackColor = true;
-            this.btnIVScan.Click += new System.EventHandler(this.btnIVScan_Click);
-            // 
-            // button17
-            // 
-            this.button17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button17.Location = new System.Drawing.Point(371, 533);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(101, 39);
-            this.button17.TabIndex = 90;
-            this.button17.Text = "SAVE";
-            this.button17.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ21IV
-            // 
-            this.chkBoxJ21IV.AutoSize = true;
-            this.chkBoxJ21IV.Location = new System.Drawing.Point(382, 95);
-            this.chkBoxJ21IV.Name = "chkBoxJ21IV";
-            this.chkBoxJ21IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ21IV.TabIndex = 106;
-            this.chkBoxJ21IV.Text = "J21";
-            this.chkBoxJ21IV.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ22IV
-            // 
-            this.chkBoxJ22IV.AutoSize = true;
-            this.chkBoxJ22IV.Location = new System.Drawing.Point(382, 125);
-            this.chkBoxJ22IV.Name = "chkBoxJ22IV";
-            this.chkBoxJ22IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ22IV.TabIndex = 105;
-            this.chkBoxJ22IV.Text = "J22";
-            this.chkBoxJ22IV.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ23IV
-            // 
-            this.chkBoxJ23IV.AutoSize = true;
-            this.chkBoxJ23IV.Location = new System.Drawing.Point(382, 155);
-            this.chkBoxJ23IV.Name = "chkBoxJ23IV";
-            this.chkBoxJ23IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ23IV.TabIndex = 104;
-            this.chkBoxJ23IV.Text = "J23";
-            this.chkBoxJ23IV.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ24IV
-            // 
-            this.chkBoxJ24IV.AutoSize = true;
-            this.chkBoxJ24IV.Location = new System.Drawing.Point(382, 185);
-            this.chkBoxJ24IV.Name = "chkBoxJ24IV";
-            this.chkBoxJ24IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ24IV.TabIndex = 103;
-            this.chkBoxJ24IV.Text = "J24";
-            this.chkBoxJ24IV.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ25IV
-            // 
-            this.chkBoxJ25IV.AutoSize = true;
-            this.chkBoxJ25IV.Location = new System.Drawing.Point(382, 215);
-            this.chkBoxJ25IV.Name = "chkBoxJ25IV";
-            this.chkBoxJ25IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ25IV.TabIndex = 102;
-            this.chkBoxJ25IV.Text = "J25";
-            this.chkBoxJ25IV.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ26IV
-            // 
-            this.chkBoxJ26IV.AutoSize = true;
-            this.chkBoxJ26IV.Location = new System.Drawing.Point(382, 245);
-            this.chkBoxJ26IV.Name = "chkBoxJ26IV";
-            this.chkBoxJ26IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ26IV.TabIndex = 101;
-            this.chkBoxJ26IV.Text = "J26";
-            this.chkBoxJ26IV.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ15IV
-            // 
-            this.chkBoxJ15IV.AutoSize = true;
-            this.chkBoxJ15IV.Location = new System.Drawing.Point(318, 155);
-            this.chkBoxJ15IV.Name = "chkBoxJ15IV";
-            this.chkBoxJ15IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ15IV.TabIndex = 100;
-            this.chkBoxJ15IV.Text = "J15";
-            this.chkBoxJ15IV.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ16IV
-            // 
-            this.chkBoxJ16IV.AutoSize = true;
-            this.chkBoxJ16IV.Location = new System.Drawing.Point(318, 185);
-            this.chkBoxJ16IV.Name = "chkBoxJ16IV";
-            this.chkBoxJ16IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ16IV.TabIndex = 99;
-            this.chkBoxJ16IV.Text = "J16";
-            this.chkBoxJ16IV.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ17IV
-            // 
-            this.chkBoxJ17IV.AutoSize = true;
-            this.chkBoxJ17IV.Location = new System.Drawing.Point(318, 215);
-            this.chkBoxJ17IV.Name = "chkBoxJ17IV";
-            this.chkBoxJ17IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ17IV.TabIndex = 98;
-            this.chkBoxJ17IV.Text = "J17";
-            this.chkBoxJ17IV.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ18IV
-            // 
-            this.chkBoxJ18IV.AutoSize = true;
-            this.chkBoxJ18IV.Location = new System.Drawing.Point(318, 245);
-            this.chkBoxJ18IV.Name = "chkBoxJ18IV";
-            this.chkBoxJ18IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ18IV.TabIndex = 97;
-            this.chkBoxJ18IV.Text = "J18";
-            this.chkBoxJ18IV.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ13IV
-            // 
-            this.chkBoxJ13IV.AutoSize = true;
-            this.chkBoxJ13IV.Location = new System.Drawing.Point(318, 95);
-            this.chkBoxJ13IV.Name = "chkBoxJ13IV";
-            this.chkBoxJ13IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ13IV.TabIndex = 96;
-            this.chkBoxJ13IV.Text = "J13";
-            this.chkBoxJ13IV.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ14IV
-            // 
-            this.chkBoxJ14IV.AutoSize = true;
-            this.chkBoxJ14IV.Location = new System.Drawing.Point(318, 125);
-            this.chkBoxJ14IV.Name = "chkBoxJ14IV";
-            this.chkBoxJ14IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ14IV.TabIndex = 95;
-            this.chkBoxJ14IV.Text = "J14";
-            this.chkBoxJ14IV.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ12IV
-            // 
-            this.chkBoxJ12IV.AutoSize = true;
-            this.chkBoxJ12IV.Location = new System.Drawing.Point(318, 65);
-            this.chkBoxJ12IV.Name = "chkBoxJ12IV";
-            this.chkBoxJ12IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ12IV.TabIndex = 94;
-            this.chkBoxJ12IV.Text = "J12";
-            this.chkBoxJ12IV.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ11IV
-            // 
-            this.chkBoxJ11IV.AutoSize = true;
-            this.chkBoxJ11IV.Location = new System.Drawing.Point(318, 35);
-            this.chkBoxJ11IV.Name = "chkBoxJ11IV";
-            this.chkBoxJ11IV.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ11IV.TabIndex = 93;
-            this.chkBoxJ11IV.Text = "J11";
-            this.chkBoxJ11IV.UseVisualStyleBackColor = true;
-            this.chkBoxJ11IV.CheckedChanged += new System.EventHandler(this.checkBox48_CheckedChanged);
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(314, 12);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(158, 20);
-            this.label35.TabIndex = 92;
-            this.label35.Text = "CMB CONNECTED";
-            // 
-            // zedGraphIV
-            // 
-            this.zedGraphIV.Location = new System.Drawing.Point(489, 12);
-            this.zedGraphIV.Margin = new System.Windows.Forms.Padding(14, 12, 14, 12);
-            this.zedGraphIV.Name = "zedGraphIV";
-            this.zedGraphIV.ScrollGrace = 0D;
-            this.zedGraphIV.ScrollMaxX = 0D;
-            this.zedGraphIV.ScrollMaxY = 0D;
-            this.zedGraphIV.ScrollMaxY2 = 0D;
-            this.zedGraphIV.ScrollMinX = 0D;
-            this.zedGraphIV.ScrollMinY = 0D;
-            this.zedGraphIV.ScrollMinY2 = 0D;
-            this.zedGraphIV.Size = new System.Drawing.Size(752, 560);
-            this.zedGraphIV.TabIndex = 61;
-            // 
             // tabHist
             // 
             this.tabHist.Controls.Add(this.button19);
@@ -3041,13 +2036,688 @@ namespace TB_mu2e
             this.MuxCurrent.Text = "Mux Current (nA)";
             this.MuxCurrent.Width = 150;
             // 
+            // tabConsole
+            // 
+            this.tabConsole.Controls.Add(this.dbgWC);
+            this.tabConsole.Controls.Add(this.dbgFEB2);
+            this.tabConsole.Controls.Add(this.dbgFEB1);
+            this.tabConsole.Controls.Add(this.groupBox3);
+            this.tabConsole.Location = new System.Drawing.Point(4, 32);
+            this.tabConsole.Name = "tabConsole";
+            this.tabConsole.Size = new System.Drawing.Size(1255, 665);
+            this.tabConsole.TabIndex = 7;
+            this.tabConsole.Text = "Debug Console";
+            this.tabConsole.UseVisualStyleBackColor = true;
+            // 
+            // dbgWC
+            // 
+            this.dbgWC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dbgWC.Location = new System.Drawing.Point(141, 3);
+            this.dbgWC.Name = "dbgWC";
+            this.dbgWC.Size = new System.Drawing.Size(63, 31);
+            this.dbgWC.TabIndex = 8;
+            this.dbgWC.Text = "WC";
+            this.dbgWC.UseVisualStyleBackColor = true;
+            this.dbgWC.Click += new System.EventHandler(this.dbgFEB_Click);
+            // 
+            // dbgFEB2
+            // 
+            this.dbgFEB2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dbgFEB2.Location = new System.Drawing.Point(72, 3);
+            this.dbgFEB2.Name = "dbgFEB2";
+            this.dbgFEB2.Size = new System.Drawing.Size(63, 31);
+            this.dbgFEB2.TabIndex = 6;
+            this.dbgFEB2.Text = "FEB2";
+            this.dbgFEB2.UseVisualStyleBackColor = true;
+            this.dbgFEB2.Click += new System.EventHandler(this.dbgFEB_Click);
+            // 
+            // dbgFEB1
+            // 
+            this.dbgFEB1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dbgFEB1.Location = new System.Drawing.Point(3, 3);
+            this.dbgFEB1.Name = "dbgFEB1";
+            this.dbgFEB1.Size = new System.Drawing.Size(63, 31);
+            this.dbgFEB1.TabIndex = 5;
+            this.dbgFEB1.Text = "FEB1";
+            this.dbgFEB1.UseVisualStyleBackColor = true;
+            this.dbgFEB1.Click += new System.EventHandler(this.dbgFEB_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button4);
+            this.groupBox3.Controls.Add(this.btnDebugLogging);
+            this.groupBox3.Controls.Add(this.lblConsole_disp);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Location = new System.Drawing.Point(3, 40);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(1249, 626);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "CONSOLE";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(1066, 580);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(148, 25);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "LOAD";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // btnDebugLogging
+            // 
+            this.btnDebugLogging.Location = new System.Drawing.Point(912, 580);
+            this.btnDebugLogging.Name = "btnDebugLogging";
+            this.btnDebugLogging.Size = new System.Drawing.Size(148, 25);
+            this.btnDebugLogging.TabIndex = 2;
+            this.btnDebugLogging.Text = "START LOG";
+            this.btnDebugLogging.UseVisualStyleBackColor = true;
+            this.btnDebugLogging.Click += new System.EventHandler(this.btnDebugLogging_Click);
+            // 
+            // lblConsole_disp
+            // 
+            this.lblConsole_disp.AutoSize = true;
+            this.lblConsole_disp.BackColor = System.Drawing.SystemColors.Info;
+            this.lblConsole_disp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.150944F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsole_disp.Location = new System.Drawing.Point(0, 20);
+            this.lblConsole_disp.Name = "lblConsole_disp";
+            this.lblConsole_disp.Size = new System.Drawing.Size(151, 17);
+            this.lblConsole_disp.TabIndex = 1;
+            this.lblConsole_disp.Text = "console text goes here";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(-3, 582);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(894, 24);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // tabRUN
+            // 
+            this.tabRUN.Controls.Add(this.lblRunLog);
+            this.tabRUN.Controls.Add(this.lblEventCount);
+            this.tabRUN.Controls.Add(this.groupBoxEvDisplay);
+            this.tabRUN.Controls.Add(this.groupBox1);
+            this.tabRUN.Controls.Add(this.zg1);
+            this.tabRUN.Location = new System.Drawing.Point(4, 32);
+            this.tabRUN.Name = "tabRUN";
+            this.tabRUN.Padding = new System.Windows.Forms.Padding(3);
+            this.tabRUN.Size = new System.Drawing.Size(1255, 665);
+            this.tabRUN.TabIndex = 0;
+            this.tabRUN.Text = "RUN";
+            this.tabRUN.UseVisualStyleBackColor = true;
+            // 
+            // lblRunLog
+            // 
+            this.lblRunLog.AutoSize = true;
+            this.lblRunLog.BackColor = System.Drawing.SystemColors.Info;
+            this.lblRunLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.150944F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRunLog.Location = new System.Drawing.Point(3, 459);
+            this.lblRunLog.MinimumSize = new System.Drawing.Size(1240, 180);
+            this.lblRunLog.Name = "lblRunLog";
+            this.lblRunLog.Size = new System.Drawing.Size(1240, 221);
+            this.lblRunLog.TabIndex = 3;
+            this.lblRunLog.Text = "run log text goes here\r\n1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n10\r\n11\r\n12";
+            // 
+            // lblEventCount
+            // 
+            this.lblEventCount.AutoEllipsis = true;
+            this.lblEventCount.AutoSize = true;
+            this.lblEventCount.Location = new System.Drawing.Point(7, 434);
+            this.lblEventCount.MaximumSize = new System.Drawing.Size(620, 20);
+            this.lblEventCount.Name = "lblEventCount";
+            this.lblEventCount.Size = new System.Drawing.Size(125, 20);
+            this.lblEventCount.TabIndex = 39;
+            this.lblEventCount.Text = "Spill xxx, yyy ev";
+            // 
+            // groupBoxEvDisplay
+            // 
+            this.groupBoxEvDisplay.Controls.Add(this.btnDisplaySpill);
+            this.groupBoxEvDisplay.Controls.Add(this.txtEvent);
+            this.groupBoxEvDisplay.Controls.Add(this.btnNextDisp);
+            this.groupBoxEvDisplay.Controls.Add(this.btnPrevDisp);
+            this.groupBoxEvDisplay.Controls.Add(this.ud_VertMin);
+            this.groupBoxEvDisplay.Controls.Add(this.ud_VertMax);
+            this.groupBoxEvDisplay.Location = new System.Drawing.Point(620, 340);
+            this.groupBoxEvDisplay.Name = "groupBoxEvDisplay";
+            this.groupBoxEvDisplay.Size = new System.Drawing.Size(623, 114);
+            this.groupBoxEvDisplay.TabIndex = 35;
+            this.groupBoxEvDisplay.TabStop = false;
+            this.groupBoxEvDisplay.Text = "EventDisplay";
+            // 
+            // btnDisplaySpill
+            // 
+            this.btnDisplaySpill.Location = new System.Drawing.Point(407, 78);
+            this.btnDisplaySpill.Name = "btnDisplaySpill";
+            this.btnDisplaySpill.Size = new System.Drawing.Size(102, 30);
+            this.btnDisplaySpill.TabIndex = 40;
+            this.btnDisplaySpill.Text = "DISPLAY";
+            this.btnDisplaySpill.UseVisualStyleBackColor = true;
+            this.btnDisplaySpill.Click += new System.EventHandler(this.btnDisplaySpill_Click);
+            // 
+            // txtEvent
+            // 
+            this.txtEvent.Location = new System.Drawing.Point(517, 40);
+            this.txtEvent.Name = "txtEvent";
+            this.txtEvent.Size = new System.Drawing.Size(44, 27);
+            this.txtEvent.TabIndex = 38;
+            // 
+            // btnNextDisp
+            // 
+            this.btnNextDisp.Location = new System.Drawing.Point(567, 37);
+            this.btnNextDisp.Name = "btnNextDisp";
+            this.btnNextDisp.Size = new System.Drawing.Size(50, 30);
+            this.btnNextDisp.TabIndex = 37;
+            this.btnNextDisp.Text = ">>>";
+            this.btnNextDisp.UseVisualStyleBackColor = true;
+            this.btnNextDisp.Click += new System.EventHandler(this.btnNextDisp_Click);
+            // 
+            // btnPrevDisp
+            // 
+            this.btnPrevDisp.Location = new System.Drawing.Point(466, 37);
+            this.btnPrevDisp.Name = "btnPrevDisp";
+            this.btnPrevDisp.Size = new System.Drawing.Size(50, 30);
+            this.btnPrevDisp.TabIndex = 36;
+            this.btnPrevDisp.Text = "<<<";
+            this.btnPrevDisp.UseVisualStyleBackColor = true;
+            this.btnPrevDisp.Click += new System.EventHandler(this.btnPrevDisp_Click);
+            // 
+            // ud_VertMin
+            // 
+            this.ud_VertMin.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.ud_VertMin.Location = new System.Drawing.Point(515, 73);
+            this.ud_VertMin.Maximum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ud_VertMin.Minimum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            -2147483648});
+            this.ud_VertMin.Name = "ud_VertMin";
+            this.ud_VertMin.Size = new System.Drawing.Size(66, 27);
+            this.ud_VertMin.TabIndex = 35;
+            this.ud_VertMin.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
+            // 
+            // ud_VertMax
+            // 
+            this.ud_VertMax.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.ud_VertMax.Location = new System.Drawing.Point(515, 7);
+            this.ud_VertMax.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.ud_VertMax.Name = "ud_VertMax";
+            this.ud_VertMax.Size = new System.Drawing.Size(66, 27);
+            this.ud_VertMax.TabIndex = 34;
+            this.ud_VertMax.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.numericUpDown1);
+            this.groupBox1.Controls.Add(this.btnOneSpill);
+            this.groupBox1.Controls.Add(this.btnChangeName);
+            this.groupBox1.Controls.Add(this.chkWC);
+            this.groupBox1.Controls.Add(this.chkFEB2);
+            this.groupBox1.Controls.Add(this.chkFEB1);
+            this.groupBox1.Controls.Add(this.chkFakeIt);
+            this.groupBox1.Controls.Add(this.lblWC_TotTrig);
+            this.groupBox1.Controls.Add(this.lblFEB2_TotTrig);
+            this.groupBox1.Controls.Add(this.lblFEB1_TotTrig);
+            this.groupBox1.Controls.Add(this.lblWCSpill);
+            this.groupBox1.Controls.Add(this.lblFEB2Spill);
+            this.groupBox1.Controls.Add(this.lblSpillTime);
+            this.groupBox1.Controls.Add(this.lblWCTrigNum);
+            this.groupBox1.Controls.Add(this.lblFEB2TrigNum);
+            this.groupBox1.Controls.Add(this.lblFEB1TrigNum);
+            this.groupBox1.Controls.Add(this.lblFEB1Spill);
+            this.groupBox1.Controls.Add(this.lblRunPrep);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.lblRunTime);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblSpillWC);
+            this.groupBox1.Controls.Add(this.lblSpillFEB2);
+            this.groupBox1.Controls.Add(this.lblSpillFEB1);
+            this.groupBox1.Controls.Add(this.lblRunName);
+            this.groupBox1.Controls.Add(this.btnStopRun);
+            this.groupBox1.Controls.Add(this.btnStartRun);
+            this.groupBox1.Controls.Add(this.btnPrepare);
+            this.groupBox1.Controls.Add(this.btnConnectAll);
+            this.groupBox1.Location = new System.Drawing.Point(3, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(611, 418);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "RUN CONTROL";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(397, 94);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(141, 20);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "Fake Spill Len (s)";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(534, 92);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(66, 27);
+            this.numericUpDown1.TabIndex = 33;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // btnOneSpill
+            // 
+            this.btnOneSpill.Location = new System.Drawing.Point(6, 144);
+            this.btnOneSpill.Name = "btnOneSpill";
+            this.btnOneSpill.Size = new System.Drawing.Size(260, 52);
+            this.btnOneSpill.TabIndex = 32;
+            this.btnOneSpill.Tag = "";
+            this.btnOneSpill.Text = "TAKE ONE SPILL";
+            this.btnOneSpill.UseVisualStyleBackColor = true;
+            this.btnOneSpill.Click += new System.EventHandler(this.btnOneSpill_Click);
+            // 
+            // btnChangeName
+            // 
+            this.btnChangeName.Location = new System.Drawing.Point(500, 34);
+            this.btnChangeName.Name = "btnChangeName";
+            this.btnChangeName.Size = new System.Drawing.Size(100, 33);
+            this.btnChangeName.TabIndex = 31;
+            this.btnChangeName.Tag = "";
+            this.btnChangeName.Text = "CHANGE";
+            this.btnChangeName.UseVisualStyleBackColor = true;
+            this.btnChangeName.Click += new System.EventHandler(this.btnChangeName_Click);
+            // 
+            // chkWC
+            // 
+            this.chkWC.AutoSize = true;
+            this.chkWC.Location = new System.Drawing.Point(440, 34);
+            this.chkWC.Name = "chkWC";
+            this.chkWC.Size = new System.Drawing.Size(59, 24);
+            this.chkWC.TabIndex = 30;
+            this.chkWC.Text = "WC";
+            this.chkWC.UseVisualStyleBackColor = true;
+            // 
+            // chkFEB2
+            // 
+            this.chkFEB2.AutoSize = true;
+            this.chkFEB2.Location = new System.Drawing.Point(365, 34);
+            this.chkFEB2.Name = "chkFEB2";
+            this.chkFEB2.Size = new System.Drawing.Size(73, 24);
+            this.chkFEB2.TabIndex = 29;
+            this.chkFEB2.Text = "FEB2";
+            this.chkFEB2.UseVisualStyleBackColor = true;
+            // 
+            // chkFEB1
+            // 
+            this.chkFEB1.AutoSize = true;
+            this.chkFEB1.Checked = true;
+            this.chkFEB1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkFEB1.Location = new System.Drawing.Point(290, 34);
+            this.chkFEB1.Name = "chkFEB1";
+            this.chkFEB1.Size = new System.Drawing.Size(73, 24);
+            this.chkFEB1.TabIndex = 28;
+            this.chkFEB1.Text = "FEB1";
+            this.chkFEB1.UseVisualStyleBackColor = true;
+            // 
+            // chkFakeIt
+            // 
+            this.chkFakeIt.AutoSize = true;
+            this.chkFakeIt.Checked = true;
+            this.chkFakeIt.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkFakeIt.Location = new System.Drawing.Point(290, 92);
+            this.chkFakeIt.Name = "chkFakeIt";
+            this.chkFakeIt.Size = new System.Drawing.Size(76, 24);
+            this.chkFakeIt.TabIndex = 27;
+            this.chkFakeIt.Text = "FakeIt";
+            this.chkFakeIt.UseVisualStyleBackColor = true;
+            this.chkFakeIt.CheckedChanged += new System.EventHandler(this.chkFakeIt_CheckedChanged);
+            // 
+            // lblWC_TotTrig
+            // 
+            this.lblWC_TotTrig.AutoSize = true;
+            this.lblWC_TotTrig.Location = new System.Drawing.Point(540, 305);
+            this.lblWC_TotTrig.Name = "lblWC_TotTrig";
+            this.lblWC_TotTrig.Size = new System.Drawing.Size(62, 20);
+            this.lblWC_TotTrig.TabIndex = 26;
+            this.lblWC_TotTrig.Text = "label14";
+            // 
+            // lblFEB2_TotTrig
+            // 
+            this.lblFEB2_TotTrig.AutoSize = true;
+            this.lblFEB2_TotTrig.Location = new System.Drawing.Point(483, 305);
+            this.lblFEB2_TotTrig.Name = "lblFEB2_TotTrig";
+            this.lblFEB2_TotTrig.Size = new System.Drawing.Size(62, 20);
+            this.lblFEB2_TotTrig.TabIndex = 25;
+            this.lblFEB2_TotTrig.Text = "label14";
+            // 
+            // lblFEB1_TotTrig
+            // 
+            this.lblFEB1_TotTrig.AutoSize = true;
+            this.lblFEB1_TotTrig.Location = new System.Drawing.Point(426, 305);
+            this.lblFEB1_TotTrig.Name = "lblFEB1_TotTrig";
+            this.lblFEB1_TotTrig.Size = new System.Drawing.Size(62, 20);
+            this.lblFEB1_TotTrig.TabIndex = 24;
+            this.lblFEB1_TotTrig.Text = "label14";
+            // 
+            // lblWCSpill
+            // 
+            this.lblWCSpill.AutoSize = true;
+            this.lblWCSpill.Location = new System.Drawing.Point(540, 276);
+            this.lblWCSpill.Name = "lblWCSpill";
+            this.lblWCSpill.Size = new System.Drawing.Size(62, 20);
+            this.lblWCSpill.TabIndex = 23;
+            this.lblWCSpill.Text = "label14";
+            // 
+            // lblFEB2Spill
+            // 
+            this.lblFEB2Spill.AutoSize = true;
+            this.lblFEB2Spill.Location = new System.Drawing.Point(483, 276);
+            this.lblFEB2Spill.Name = "lblFEB2Spill";
+            this.lblFEB2Spill.Size = new System.Drawing.Size(62, 20);
+            this.lblFEB2Spill.TabIndex = 22;
+            this.lblFEB2Spill.Text = "label14";
+            // 
+            // lblSpillTime
+            // 
+            this.lblSpillTime.AutoSize = true;
+            this.lblSpillTime.Location = new System.Drawing.Point(426, 368);
+            this.lblSpillTime.Name = "lblSpillTime";
+            this.lblSpillTime.Size = new System.Drawing.Size(95, 20);
+            this.lblSpillTime.TabIndex = 21;
+            this.lblSpillTime.Text = "lblSpillTime";
+            // 
+            // lblWCTrigNum
+            // 
+            this.lblWCTrigNum.AutoSize = true;
+            this.lblWCTrigNum.Location = new System.Drawing.Point(540, 334);
+            this.lblWCTrigNum.Name = "lblWCTrigNum";
+            this.lblWCTrigNum.Size = new System.Drawing.Size(53, 20);
+            this.lblWCTrigNum.TabIndex = 20;
+            this.lblWCTrigNum.Text = "label2";
+            // 
+            // lblFEB2TrigNum
+            // 
+            this.lblFEB2TrigNum.AutoSize = true;
+            this.lblFEB2TrigNum.Location = new System.Drawing.Point(483, 334);
+            this.lblFEB2TrigNum.Name = "lblFEB2TrigNum";
+            this.lblFEB2TrigNum.Size = new System.Drawing.Size(53, 20);
+            this.lblFEB2TrigNum.TabIndex = 19;
+            this.lblFEB2TrigNum.Text = "label2";
+            // 
+            // lblFEB1TrigNum
+            // 
+            this.lblFEB1TrigNum.AutoSize = true;
+            this.lblFEB1TrigNum.Location = new System.Drawing.Point(426, 334);
+            this.lblFEB1TrigNum.Name = "lblFEB1TrigNum";
+            this.lblFEB1TrigNum.Size = new System.Drawing.Size(53, 20);
+            this.lblFEB1TrigNum.TabIndex = 18;
+            this.lblFEB1TrigNum.Text = "label2";
+            // 
+            // lblFEB1Spill
+            // 
+            this.lblFEB1Spill.AutoSize = true;
+            this.lblFEB1Spill.Location = new System.Drawing.Point(426, 276);
+            this.lblFEB1Spill.Name = "lblFEB1Spill";
+            this.lblFEB1Spill.Size = new System.Drawing.Size(62, 20);
+            this.lblFEB1Spill.TabIndex = 17;
+            this.lblFEB1Spill.Text = "label14";
+            // 
+            // lblRunPrep
+            // 
+            this.lblRunPrep.AutoSize = true;
+            this.lblRunPrep.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.26415F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRunPrep.Location = new System.Drawing.Point(286, 119);
+            this.lblRunPrep.Name = "lblRunPrep";
+            this.lblRunPrep.Size = new System.Drawing.Size(85, 29);
+            this.lblRunPrep.TabIndex = 16;
+            this.lblRunPrep.Text = "Status";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(287, 334);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(113, 20);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Last Spill Trig";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(287, 305);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(120, 20);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Total Num Trig";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(287, 276);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(132, 20);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Total Num Spills";
+            // 
+            // lblRunTime
+            // 
+            this.lblRunTime.AutoSize = true;
+            this.lblRunTime.Location = new System.Drawing.Point(426, 214);
+            this.lblRunTime.Name = "lblRunTime";
+            this.lblRunTime.Size = new System.Drawing.Size(0, 20);
+            this.lblRunTime.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(286, 214);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(93, 20);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Time in run";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(286, 185);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 20);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Spill Status";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(286, 156);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 20);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Run Name";
+            // 
+            // lblSpillWC
+            // 
+            this.lblSpillWC.AutoSize = true;
+            this.lblSpillWC.Location = new System.Drawing.Point(540, 185);
+            this.lblSpillWC.Name = "lblSpillWC";
+            this.lblSpillWC.Size = new System.Drawing.Size(53, 20);
+            this.lblSpillWC.TabIndex = 8;
+            this.lblSpillWC.Text = "label2";
+            // 
+            // lblSpillFEB2
+            // 
+            this.lblSpillFEB2.AutoSize = true;
+            this.lblSpillFEB2.Location = new System.Drawing.Point(483, 185);
+            this.lblSpillFEB2.Name = "lblSpillFEB2";
+            this.lblSpillFEB2.Size = new System.Drawing.Size(53, 20);
+            this.lblSpillFEB2.TabIndex = 7;
+            this.lblSpillFEB2.Text = "label2";
+            // 
+            // lblSpillFEB1
+            // 
+            this.lblSpillFEB1.AutoSize = true;
+            this.lblSpillFEB1.Location = new System.Drawing.Point(426, 185);
+            this.lblSpillFEB1.Name = "lblSpillFEB1";
+            this.lblSpillFEB1.Size = new System.Drawing.Size(53, 20);
+            this.lblSpillFEB1.TabIndex = 6;
+            this.lblSpillFEB1.Text = "label2";
+            // 
+            // lblRunName
+            // 
+            this.lblRunName.AutoSize = true;
+            this.lblRunName.Location = new System.Drawing.Point(426, 156);
+            this.lblRunName.Name = "lblRunName";
+            this.lblRunName.Size = new System.Drawing.Size(100, 20);
+            this.lblRunName.TabIndex = 5;
+            this.lblRunName.Text = "lblRunName";
+            // 
+            // btnStopRun
+            // 
+            this.btnStopRun.Location = new System.Drawing.Point(6, 302);
+            this.btnStopRun.Name = "btnStopRun";
+            this.btnStopRun.Size = new System.Drawing.Size(260, 100);
+            this.btnStopRun.TabIndex = 4;
+            this.btnStopRun.Tag = "";
+            this.btnStopRun.Text = "STOP RUN";
+            this.btnStopRun.UseVisualStyleBackColor = true;
+            this.btnStopRun.Click += new System.EventHandler(this.btnStopRun_Click);
+            // 
+            // btnStartRun
+            // 
+            this.btnStartRun.Location = new System.Drawing.Point(6, 199);
+            this.btnStartRun.Name = "btnStartRun";
+            this.btnStartRun.Size = new System.Drawing.Size(260, 100);
+            this.btnStartRun.TabIndex = 3;
+            this.btnStartRun.Tag = "";
+            this.btnStartRun.Text = "START RUN";
+            this.btnStartRun.UseVisualStyleBackColor = true;
+            this.btnStartRun.Click += new System.EventHandler(this.btnStartRun_Click);
+            // 
+            // btnPrepare
+            // 
+            this.btnPrepare.Location = new System.Drawing.Point(6, 89);
+            this.btnPrepare.Name = "btnPrepare";
+            this.btnPrepare.Size = new System.Drawing.Size(260, 52);
+            this.btnPrepare.TabIndex = 2;
+            this.btnPrepare.Tag = "";
+            this.btnPrepare.Text = "PREPARE FOR RUN";
+            this.btnPrepare.UseVisualStyleBackColor = true;
+            this.btnPrepare.Click += new System.EventHandler(this.btnPrepare_Click);
+            // 
+            // btnConnectAll
+            // 
+            this.btnConnectAll.Location = new System.Drawing.Point(6, 34);
+            this.btnConnectAll.Name = "btnConnectAll";
+            this.btnConnectAll.Size = new System.Drawing.Size(260, 52);
+            this.btnConnectAll.TabIndex = 1;
+            this.btnConnectAll.Tag = "";
+            this.btnConnectAll.Text = "CONNECT ALL";
+            this.btnConnectAll.UseVisualStyleBackColor = true;
+            this.btnConnectAll.Click += new System.EventHandler(this.btnConnectAll_Click);
+            // 
+            // zg1
+            // 
+            this.zg1.Location = new System.Drawing.Point(620, 8);
+            this.zg1.Margin = new System.Windows.Forms.Padding(6);
+            this.zg1.Name = "zg1";
+            this.zg1.ScrollGrace = 0D;
+            this.zg1.ScrollMaxX = 0D;
+            this.zg1.ScrollMaxY = 0D;
+            this.zg1.ScrollMaxY2 = 0D;
+            this.zg1.ScrollMinX = 0D;
+            this.zg1.ScrollMinY = 0D;
+            this.zg1.ScrollMinY2 = 0D;
+            this.zg1.Size = new System.Drawing.Size(630, 342);
+            this.zg1.TabIndex = 1;
+            this.zg1.Load += new System.EventHandler(this.zg1_Load);
+            // 
+            // tabWC
+            // 
+            this.tabWC.Controls.Add(this.groupBox6);
+            this.tabWC.Location = new System.Drawing.Point(4, 32);
+            this.tabWC.Name = "tabWC";
+            this.tabWC.Size = new System.Drawing.Size(1255, 665);
+            this.tabWC.TabIndex = 6;
+            this.tabWC.Text = "WC";
+            this.tabWC.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.lblWCmessage);
+            this.groupBox6.Controls.Add(this.btnWC);
+            this.groupBox6.Location = new System.Drawing.Point(3, 3);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(611, 130);
+            this.groupBox6.TabIndex = 4;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "CONNECTIONS";
+            // 
+            // lblWCmessage
+            // 
+            this.lblWCmessage.AutoSize = true;
+            this.lblWCmessage.Location = new System.Drawing.Point(-1, 87);
+            this.lblWCmessage.Name = "lblWCmessage";
+            this.lblWCmessage.Size = new System.Drawing.Size(53, 40);
+            this.lblWCmessage.TabIndex = 2;
+            this.lblWCmessage.Text = "label1\r\nlabel2";
+            // 
+            // btnWC
+            // 
+            this.btnWC.Location = new System.Drawing.Point(0, 23);
+            this.btnWC.Name = "btnWC";
+            this.btnWC.Size = new System.Drawing.Size(99, 42);
+            this.btnWC.TabIndex = 0;
+            this.btnWC.Tag = "";
+            this.btnWC.Text = "WC";
+            this.btnWC.UseVisualStyleBackColor = true;
+            // 
             // tabFEBtest
             // 
             this.tabFEBtest.Controls.Add(this.button5);
             this.tabFEBtest.Controls.Add(this.label9);
             this.tabFEBtest.Controls.Add(this.btnConnectScope);
-            this.tabFEBtest.Controls.Add(this.btnSnSave);
-            this.tabFEBtest.Controls.Add(this.txtSN);
             this.tabFEBtest.Controls.Add(this.label26);
             this.tabFEBtest.Controls.Add(this.DAC_Voltages);
             this.tabFEBtest.Location = new System.Drawing.Point(4, 32);
@@ -3080,31 +2750,14 @@ namespace TB_mu2e
             // 
             // btnConnectScope
             // 
-            this.btnConnectScope.Location = new System.Drawing.Point(359, 43);
+            this.btnConnectScope.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConnectScope.Location = new System.Drawing.Point(189, 70);
             this.btnConnectScope.Name = "btnConnectScope";
-            this.btnConnectScope.Size = new System.Drawing.Size(183, 37);
+            this.btnConnectScope.Size = new System.Drawing.Size(332, 64);
             this.btnConnectScope.TabIndex = 9;
             this.btnConnectScope.Text = "CONNECT SCOPE";
             this.btnConnectScope.UseVisualStyleBackColor = true;
             this.btnConnectScope.Click += new System.EventHandler(this.btnConnectScope_Click);
-            // 
-            // btnSnSave
-            // 
-            this.btnSnSave.Location = new System.Drawing.Point(431, 6);
-            this.btnSnSave.Name = "btnSnSave";
-            this.btnSnSave.Size = new System.Drawing.Size(111, 31);
-            this.btnSnSave.TabIndex = 8;
-            this.btnSnSave.Text = "SAVE";
-            this.btnSnSave.UseVisualStyleBackColor = true;
-            this.btnSnSave.Click += new System.EventHandler(this.btnSnSave_Click);
-            // 
-            // txtSN
-            // 
-            this.txtSN.Location = new System.Drawing.Point(210, 8);
-            this.txtSN.Name = "txtSN";
-            this.txtSN.Size = new System.Drawing.Size(215, 27);
-            this.txtSN.TabIndex = 5;
-            this.txtSN.TextChanged += new System.EventHandler(this.txtSN_TextChanged);
             // 
             // label26
             // 
@@ -3745,6 +3398,26 @@ namespace TB_mu2e
             this.saveFileDB.InitialDirectory = "\"c:\\\\data\\\\\"";
             this.saveFileDB.RestoreDirectory = true;
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(234, 82);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 29);
+            this.button10.TabIndex = 13;
+            this.button10.Text = "SET";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(34, 48);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(192, 32);
+            this.label34.TabIndex = 14;
+            this.label34.Text = "FEB Address";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -3762,18 +3435,8 @@ namespace TB_mu2e
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.tabControl.ResumeLayout(false);
-            this.tabRUN.ResumeLayout(false);
-            this.tabRUN.PerformLayout();
-            this.groupBoxEvDisplay.ResumeLayout(false);
-            this.groupBoxEvDisplay.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMax)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.tabConsole.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.tabStart.ResumeLayout(false);
+            this.tabStart.PerformLayout();
             this.tabFEB1.ResumeLayout(false);
             this.tabFEB1.PerformLayout();
             this.groupBoxSpillStat.ResumeLayout(false);
@@ -3793,18 +3456,26 @@ namespace TB_mu2e
             this.groupBox7.PerformLayout();
             this.groupBoxConn.ResumeLayout(false);
             this.groupBoxConn.PerformLayout();
-            this.tabWC.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.tabIV.ResumeLayout(false);
-            this.tabIV.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             this.tabHist.ResumeLayout(false);
             this.tabHist.PerformLayout();
             this.CalibPType.ResumeLayout(false);
             this.CalibPType.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpDnSamples)).EndInit();
+            this.tabConsole.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.tabRUN.ResumeLayout(false);
+            this.tabRUN.PerformLayout();
+            this.groupBoxEvDisplay.ResumeLayout(false);
+            this.groupBoxEvDisplay.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMax)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.tabWC.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.tabFEBtest.ResumeLayout(false);
             this.tabFEBtest.PerformLayout();
             this.DAC_Voltages.ResumeLayout(false);
@@ -4032,38 +3703,7 @@ namespace TB_mu2e
         private System.Windows.Forms.TextBox txtBiasSlope;
         private System.Windows.Forms.Button btnLoadCalib;
         public System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.TabPage tabIV;
         private System.Windows.Forms.TabPage tabHist;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Label labelTempIV;
-        private System.Windows.Forms.Button btnSelHiIV;
-        private System.Windows.Forms.Button btnSelLowIV;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.ListBox listBox3;
-        private System.Windows.Forms.CheckBox chkBoxJ19IV;
-        private System.Windows.Forms.CheckBox chkBoxJ20IV;
-        public System.Windows.Forms.Button btnIVScan;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.CheckBox chkBoxJ21IV;
-        private System.Windows.Forms.CheckBox chkBoxJ22IV;
-        private System.Windows.Forms.CheckBox chkBoxJ23IV;
-        private System.Windows.Forms.CheckBox chkBoxJ24IV;
-        private System.Windows.Forms.CheckBox chkBoxJ25IV;
-        private System.Windows.Forms.CheckBox chkBoxJ26IV;
-        private System.Windows.Forms.CheckBox chkBoxJ15IV;
-        private System.Windows.Forms.CheckBox chkBoxJ16IV;
-        private System.Windows.Forms.CheckBox chkBoxJ17IV;
-        private System.Windows.Forms.CheckBox chkBoxJ18IV;
-        private System.Windows.Forms.CheckBox chkBoxJ13IV;
-        private System.Windows.Forms.CheckBox chkBoxJ14IV;
-        private System.Windows.Forms.CheckBox chkBoxJ12IV;
-        private System.Windows.Forms.CheckBox chkBoxJ11IV;
-        private System.Windows.Forms.Label label35;
-        private ZedGraph.ZedGraphControl zedGraphIV;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Label labelTempHist;
         private ZedGraph.ZedGraphControl zedGraphHisto;
@@ -4135,5 +3775,11 @@ namespace TB_mu2e
         private System.Windows.Forms.TextBox txtHVTestComments;
         private System.Windows.Forms.SaveFileDialog saveFileMeasurements;
         private System.Windows.Forms.SaveFileDialog saveFileDB;
+        private System.Windows.Forms.TabPage tabStart;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.TextBox txtFEBAddress;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Button button10;
     }
 }
