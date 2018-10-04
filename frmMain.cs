@@ -1803,7 +1803,16 @@ namespace TB_mu2e
             if (chkFEB2.Checked)
             { button1_Click((object)btnFEB2, e); }
             Application.DoEvents();
-
+            myFEBclient.SendStr("SN");
+            string snStr;
+            string sn;
+            int rt;
+            myFEBclient.ReadStr(out snStr, out rt);
+            sn = snStr.Substring(8);
+            if (sn[sn.Length - 1] == '>')
+                { sn = sn.Substring(0, sn.Length - 1); }
+            txtSN.Text = sn;
+            Application.DoEvents();
         }
 
         private void udChan_ValueChanged(object sender, EventArgs e)
@@ -2462,6 +2471,7 @@ namespace TB_mu2e
         private void btnSnSave_Click(object sender, EventArgs e)
         {
             myFEB.FEBserialNum = txtSN.Text;
+            myFEBclient.SendStr("SN 123 " + txtSN.Text);
         }
 
         private void btnJ11_Click(object sender, EventArgs e)

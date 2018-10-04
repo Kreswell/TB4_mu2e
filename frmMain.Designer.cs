@@ -31,10 +31,10 @@ namespace TB_mu2e
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("FPGA 0", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("FPGA 1", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("FPGA 2", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("FPGA 3", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("FPGA 0", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("FPGA 1", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("FPGA 2", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("FPGA 3", System.Windows.Forms.HorizontalAlignment.Left);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFEB1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -43,6 +43,8 @@ namespace TB_mu2e
             this.lblMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabStart = new System.Windows.Forms.TabPage();
+            this.label34 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
             this.txtFEBAddress = new System.Windows.Forms.TextBox();
             this.button9 = new System.Windows.Forms.Button();
             this.label33 = new System.Windows.Forms.Label();
@@ -317,8 +319,7 @@ namespace TB_mu2e
             this.saveFileCalibrations = new System.Windows.Forms.SaveFileDialog();
             this.saveFileMeasurements = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDB = new System.Windows.Forms.SaveFileDialog();
-            this.button10 = new System.Windows.Forms.Button();
-            this.label34 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabStart.SuspendLayout();
@@ -416,6 +417,7 @@ namespace TB_mu2e
             // 
             // tabStart
             // 
+            this.tabStart.Controls.Add(this.richTextBox1);
             this.tabStart.Controls.Add(this.label34);
             this.tabStart.Controls.Add(this.button10);
             this.tabStart.Controls.Add(this.txtFEBAddress);
@@ -429,6 +431,26 @@ namespace TB_mu2e
             this.tabStart.TabIndex = 12;
             this.tabStart.Text = "Start";
             this.tabStart.UseVisualStyleBackColor = true;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(34, 48);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(192, 32);
+            this.label34.TabIndex = 14;
+            this.label34.Text = "FEB Address";
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(234, 82);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 29);
+            this.button10.TabIndex = 13;
+            this.button10.Text = "SET";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // txtFEBAddress
             // 
@@ -1977,19 +1999,19 @@ namespace TB_mu2e
             this.Gain,
             this.Offset,
             this.MuxCurrent});
-            listViewGroup1.Header = "FPGA 0";
-            listViewGroup1.Name = "fpga0";
-            listViewGroup2.Header = "FPGA 1";
-            listViewGroup2.Name = "fpga1";
-            listViewGroup3.Header = "FPGA 2";
-            listViewGroup3.Name = "fpga2";
-            listViewGroup4.Header = "FPGA 3";
-            listViewGroup4.Name = "fpga3";
+            listViewGroup5.Header = "FPGA 0";
+            listViewGroup5.Name = "fpga0";
+            listViewGroup6.Header = "FPGA 1";
+            listViewGroup6.Name = "fpga1";
+            listViewGroup7.Header = "FPGA 2";
+            listViewGroup7.Name = "fpga2";
+            listViewGroup8.Header = "FPGA 3";
+            listViewGroup8.Name = "fpga3";
             this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3,
-            listViewGroup4});
+            listViewGroup5,
+            listViewGroup6,
+            listViewGroup7,
+            listViewGroup8});
             this.listView1.Location = new System.Drawing.Point(437, 53);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -3398,25 +3420,13 @@ namespace TB_mu2e
             this.saveFileDB.InitialDirectory = "\"c:\\\\data\\\\\"";
             this.saveFileDB.RestoreDirectory = true;
             // 
-            // button10
+            // richTextBox1
             // 
-            this.button10.Location = new System.Drawing.Point(234, 82);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 29);
-            this.button10.TabIndex = 13;
-            this.button10.Text = "SET";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(34, 48);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(192, 32);
-            this.label34.TabIndex = 14;
-            this.label34.Text = "FEB Address";
+            this.richTextBox1.Location = new System.Drawing.Point(568, 19);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(426, 363);
+            this.richTextBox1.TabIndex = 15;
+            this.richTextBox1.Text = "Instructions";
             // 
             // frmMain
             // 
@@ -3781,5 +3791,6 @@ namespace TB_mu2e
         private System.Windows.Forms.TextBox txtFEBAddress;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
