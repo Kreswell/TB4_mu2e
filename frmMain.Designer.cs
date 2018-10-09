@@ -31,10 +31,52 @@ namespace TB_mu2e
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("FPGA 0", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("FPGA 1", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("FPGA 2", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("FPGA 3", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Connect the two ethernet cables.");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Make sure the FEB address is 172.16.10.10.");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Connect the application to the FEB.");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Enter the serial number if it does not already appear.");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Start", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Run the multiplexer (\"mux\") test.");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Connect the HDMI cables from the DMM to the FEB.");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Initialize the voltage readings.");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("(optional) Set the number of samples per channel.");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Run the calibration test.");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Check results, add comments, and save.");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("HV Calibration", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
+            treeNode7,
+            treeNode8,
+            treeNode9,
+            treeNode10,
+            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Change HDMI cables to dark box.");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Check temperature and CMB ID readback.");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Set test voltage.");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("(optional) Select HDMI channels to test.");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Visually inspect all histograms.");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Enter comments and save.");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("SiPM Histograms", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
+            treeNode14,
+            treeNode15,
+            treeNode16,
+            treeNode17,
+            treeNode18});
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Click disconnect button.");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Disconnect all cables.");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Move FEB to the appropriate pile.");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Finish", new System.Windows.Forms.TreeNode[] {
+            treeNode20,
+            treeNode21,
+            treeNode22});
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("FPGA 0", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("FPGA 1", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("FPGA 2", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("FPGA 3", System.Windows.Forms.HorizontalAlignment.Left);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFEB1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -43,8 +85,13 @@ namespace TB_mu2e
             this.lblMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabStart = new System.Windows.Forms.TabPage();
+            this.txtTestType = new System.Windows.Forms.TextBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.txtFEBseries = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.label34 = new System.Windows.Forms.Label();
-            this.button10 = new System.Windows.Forms.Button();
             this.txtFEBAddress = new System.Windows.Forms.TextBox();
             this.button9 = new System.Windows.Forms.Button();
             this.label33 = new System.Windows.Forms.Label();
@@ -319,7 +366,6 @@ namespace TB_mu2e
             this.saveFileCalibrations = new System.Windows.Forms.SaveFileDialog();
             this.saveFileMeasurements = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDB = new System.Windows.Forms.SaveFileDialog();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabStart.SuspendLayout();
@@ -417,9 +463,13 @@ namespace TB_mu2e
             // 
             // tabStart
             // 
-            this.tabStart.Controls.Add(this.richTextBox1);
+            this.tabStart.Controls.Add(this.txtTestType);
+            this.tabStart.Controls.Add(this.label45);
+            this.tabStart.Controls.Add(this.txtFEBseries);
+            this.tabStart.Controls.Add(this.label38);
+            this.tabStart.Controls.Add(this.label35);
+            this.tabStart.Controls.Add(this.treeView1);
             this.tabStart.Controls.Add(this.label34);
-            this.tabStart.Controls.Add(this.button10);
             this.tabStart.Controls.Add(this.txtFEBAddress);
             this.tabStart.Controls.Add(this.button9);
             this.tabStart.Controls.Add(this.label33);
@@ -432,29 +482,124 @@ namespace TB_mu2e
             this.tabStart.Text = "Start";
             this.tabStart.UseVisualStyleBackColor = true;
             // 
+            // txtTestType
+            // 
+            this.txtTestType.Location = new System.Drawing.Point(269, 325);
+            this.txtTestType.Name = "txtTestType";
+            this.txtTestType.Size = new System.Drawing.Size(215, 27);
+            this.txtTestType.TabIndex = 20;
+            this.txtTestType.Text = "KSU Initial Check";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(35, 321);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(195, 29);
+            this.label45.TabIndex = 19;
+            this.label45.Text = "Test Description:";
+            // 
+            // txtFEBseries
+            // 
+            this.txtFEBseries.Location = new System.Drawing.Point(269, 284);
+            this.txtFEBseries.Name = "txtFEBseries";
+            this.txtFEBseries.Size = new System.Drawing.Size(215, 27);
+            this.txtFEBseries.TabIndex = 18;
+            this.txtFEBseries.Text = "preproduction batch 2";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(35, 280);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(142, 29);
+            this.label38.TabIndex = 17;
+            this.label38.Text = "FEB Series:";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Location = new System.Drawing.Point(606, 48);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(172, 32);
+            this.label35.TabIndex = 16;
+            this.label35.Text = "Instructions";
+            // 
+            // treeView1
+            // 
+            this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView1.Location = new System.Drawing.Point(612, 83);
+            this.treeView1.Name = "treeView1";
+            treeNode1.Name = "Node4";
+            treeNode1.Text = "Connect the two ethernet cables.";
+            treeNode2.Name = "Node5";
+            treeNode2.Text = "Make sure the FEB address is 172.16.10.10.";
+            treeNode3.Name = "Node6";
+            treeNode3.Text = "Connect the application to the FEB.";
+            treeNode4.Name = "Node7";
+            treeNode4.Text = "Enter the serial number if it does not already appear.";
+            treeNode5.Name = "Node0";
+            treeNode5.Text = "Start";
+            treeNode6.Name = "Node8";
+            treeNode6.Text = "Run the multiplexer (\"mux\") test.";
+            treeNode7.Name = "Node9";
+            treeNode7.Text = "Connect the HDMI cables from the DMM to the FEB.";
+            treeNode8.Name = "Node12";
+            treeNode8.Text = "Initialize the voltage readings.";
+            treeNode9.Name = "Node10";
+            treeNode9.Text = "(optional) Set the number of samples per channel.";
+            treeNode10.Name = "Node11";
+            treeNode10.Text = "Run the calibration test.";
+            treeNode11.Name = "Node13";
+            treeNode11.Text = "Check results, add comments, and save.";
+            treeNode12.Name = "Node1";
+            treeNode12.Text = "HV Calibration";
+            treeNode13.Name = "Node14";
+            treeNode13.Text = "Change HDMI cables to dark box.";
+            treeNode14.Name = "Node16";
+            treeNode14.Text = "Check temperature and CMB ID readback.";
+            treeNode15.Name = "Node17";
+            treeNode15.Text = "Set test voltage.";
+            treeNode16.Name = "Node18";
+            treeNode16.Text = "(optional) Select HDMI channels to test.";
+            treeNode17.Name = "Node19";
+            treeNode17.Text = "Visually inspect all histograms.";
+            treeNode18.Name = "Node20";
+            treeNode18.Text = "Enter comments and save.";
+            treeNode19.Name = "Node2";
+            treeNode19.Text = "SiPM Histograms";
+            treeNode20.Name = "Node21";
+            treeNode20.Text = "Click disconnect button.";
+            treeNode21.Name = "Node22";
+            treeNode21.Text = "Disconnect all cables.";
+            treeNode22.Name = "Node23";
+            treeNode22.Text = "Move FEB to the appropriate pile.";
+            treeNode23.Name = "Node3";
+            treeNode23.Text = "Finish";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode12,
+            treeNode19,
+            treeNode23});
+            this.treeView1.Size = new System.Drawing.Size(635, 280);
+            this.treeView1.TabIndex = 15;
+            // 
             // label34
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(34, 48);
+            this.label34.Location = new System.Drawing.Point(34, 66);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(192, 32);
+            this.label34.Size = new System.Drawing.Size(201, 32);
             this.label34.TabIndex = 14;
-            this.label34.Text = "FEB Address";
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(234, 82);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 29);
-            this.button10.TabIndex = 13;
-            this.button10.Text = "SET";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.label34.Text = "FEB Address:";
             // 
             // txtFEBAddress
             // 
-            this.txtFEBAddress.Location = new System.Drawing.Point(40, 83);
+            this.txtFEBAddress.Location = new System.Drawing.Point(241, 71);
             this.txtFEBAddress.Name = "txtFEBAddress";
             this.txtFEBAddress.Size = new System.Drawing.Size(188, 27);
             this.txtFEBAddress.TabIndex = 12;
@@ -462,7 +607,7 @@ namespace TB_mu2e
             // button9
             // 
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(40, 117);
+            this.button9.Location = new System.Drawing.Point(40, 106);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(269, 64);
             this.button9.TabIndex = 11;
@@ -473,16 +618,16 @@ namespace TB_mu2e
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(34, 217);
+            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(35, 210);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(365, 32);
+            this.label33.Size = new System.Drawing.Size(228, 29);
             this.label33.TabIndex = 10;
-            this.label33.Text = "Enter FEB Serial Number:";
+            this.label33.Text = "FEB Serial Number:";
             // 
             // txtSN
             // 
-            this.txtSN.Location = new System.Drawing.Point(40, 254);
+            this.txtSN.Location = new System.Drawing.Point(269, 214);
             this.txtSN.Name = "txtSN";
             this.txtSN.Size = new System.Drawing.Size(215, 27);
             this.txtSN.TabIndex = 5;
@@ -490,7 +635,7 @@ namespace TB_mu2e
             // 
             // btnSnSave
             // 
-            this.btnSnSave.Location = new System.Drawing.Point(261, 252);
+            this.btnSnSave.Location = new System.Drawing.Point(269, 247);
             this.btnSnSave.Name = "btnSnSave";
             this.btnSnSave.Size = new System.Drawing.Size(111, 31);
             this.btnSnSave.TabIndex = 8;
@@ -1999,19 +2144,19 @@ namespace TB_mu2e
             this.Gain,
             this.Offset,
             this.MuxCurrent});
-            listViewGroup5.Header = "FPGA 0";
-            listViewGroup5.Name = "fpga0";
-            listViewGroup6.Header = "FPGA 1";
-            listViewGroup6.Name = "fpga1";
-            listViewGroup7.Header = "FPGA 2";
-            listViewGroup7.Name = "fpga2";
-            listViewGroup8.Header = "FPGA 3";
-            listViewGroup8.Name = "fpga3";
+            listViewGroup1.Header = "FPGA 0";
+            listViewGroup1.Name = "fpga0";
+            listViewGroup2.Header = "FPGA 1";
+            listViewGroup2.Name = "fpga1";
+            listViewGroup3.Header = "FPGA 2";
+            listViewGroup3.Name = "fpga2";
+            listViewGroup4.Header = "FPGA 3";
+            listViewGroup4.Name = "fpga3";
             this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup5,
-            listViewGroup6,
-            listViewGroup7,
-            listViewGroup8});
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3,
+            listViewGroup4});
             this.listView1.Location = new System.Drawing.Point(437, 53);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -3415,18 +3560,10 @@ namespace TB_mu2e
             // 
             // saveFileDB
             // 
-            this.saveFileDB.DefaultExt = "\"csv\"";
+            this.saveFileDB.DefaultExt = "csv";
             this.saveFileDB.FilterIndex = 2;
             this.saveFileDB.InitialDirectory = "\"c:\\\\data\\\\\"";
             this.saveFileDB.RestoreDirectory = true;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(568, 19);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(426, 363);
-            this.richTextBox1.TabIndex = 15;
-            this.richTextBox1.Text = "Instructions";
             // 
             // frmMain
             // 
@@ -3790,7 +3927,11 @@ namespace TB_mu2e
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.TextBox txtFEBAddress;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox txtFEBseries;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.TextBox txtTestType;
+        private System.Windows.Forms.Label label45;
     }
 }

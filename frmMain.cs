@@ -1,13 +1,13 @@
 ﻿using mu2e.FEB_Test_Jig;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Media;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
 using ZedGraph;
 
 namespace TB_mu2e
@@ -1793,7 +1793,6 @@ namespace TB_mu2e
 
         private void btnConnectAll_Click(object sender, EventArgs e)
         {
-            Application.DoEvents();
             if (chkWC.Checked)
             { button1_Click((object)btnWC, e); }
             Application.DoEvents();
@@ -3986,7 +3985,6 @@ namespace TB_mu2e
             //measurementsFileName = dirName + measurementsFileName + ".txt";
             saveFileMeasurements.FileName = measurementsFileName;
 
-            saveFileMeasurements.ShowDialog();
             if (saveFileMeasurements.ShowDialog() == DialogResult.OK)
             {
                 using (StreamWriter measurementsStream = new StreamWriter(saveFileMeasurements.FileName))
@@ -4073,18 +4071,8 @@ namespace TB_mu2e
                 int fpga = trimsig.myFPGA_ID;
                 int ch = trimsig.signalIndex;
 
-                myFEBclient.SetMux(fpga);
-
-                if (fpga == 0)
-                {
-                    trimsig.muxCurrent = myFEBclient.ReadMuxI_FPGA0(ch);
-                    trimsig.muxIsTested = true;
-                }
-                else
-                {
-                    trimsig.muxCurrent = myFEBclient.ReadMuxI_not0(ch, fpga);
-                    trimsig.muxIsTested = true;
-                }
+                trimsig.muxCurrent = myFEBclient.ReadMuxI(fpga, ch);
+                trimsig.muxIsTested = true;
 
                 myFEBclient.SendStr("WR 20 0");
                 System.Threading.Thread.Sleep(stime);
@@ -4375,6 +4363,8 @@ namespace TB_mu2e
         private void btnSaveDB_Click(object sender, EventArgs e)
         {
             bool hasBadChannel = false;
+            bool hasUntestedChannel = false;
+            string untestedChannelMessage = "";
             if (txtHVTestComments.Text.Length < 1)
             {
                 DialogResult result = MessageBox.Show("Please enter a comment before saving", "", MessageBoxButtons.OK);
@@ -4384,8 +4374,8 @@ namespace TB_mu2e
             {
                 if (!trim.calibration.isTested)
                 {
-                    DialogResult result = MessageBox.Show(trim.name + " appears to be untested. Save anyway?", "", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.No) { return; }
+                    untestedChannelMessage += "\n" + trim.name;
+                    hasUntestedChannel = true;
                 }
                 if (trim.isBad || trim.muxIsBad) { hasBadChannel = true; }
             }
@@ -4393,10 +4383,26 @@ namespace TB_mu2e
             {
                 if (!bias.calibration.isTested)
                 {
-                    DialogResult result = MessageBox.Show(bias.name + " appears to be untested. Save anyway?", "", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.No) { return; }
+                    untestedChannelMessage += "\n" + bias.name;
+                    hasUntestedChannel = true;
                 }
                 if (bias.Biases[0].isBad || bias.Biases[1].isBad) { hasBadChannel = true; }
+            }
+            foreach (LEDsignal led in myFEB.LEDs)
+            {
+                if (!led.calibration.isTested)
+                {
+                    untestedChannelMessage += "\n" + led.name;
+                    hasUntestedChannel = true;
+                }
+                if (led.isBad) { hasBadChannel = true; }
+            }
+            if (hasUntestedChannel)
+            {
+                DialogResult result = MessageBox.Show(
+                    "The following channels appear to be untested. Save anyway?" 
+                    + untestedChannelMessage,"", MessageBoxButtons.YesNo);
+                if (result == DialogResult.No) { return; }
             }
 
             if (txtHVTestComments.Text == "All HV channels OK." && hasBadChannel)
@@ -4409,19 +4415,90 @@ namespace TB_mu2e
 
             DateTime testDate = DateTime.Now;
 
-            string dbFileName = "";
-            dbFileName += "FEB_Database_";
-            dbFileName += txtSN.Text;
-            dbFileName += "_";
-            dbFileName += testDate.ToString("yyyyMMdd");
+            string sn = myFEB.FEBserialNum.Replace("\r\n\r", "");
+            string dbFileName = 
+                "FEB_" + sn + "_" + 
+                txtTestType.Text.Replace(" ", "") + 
+                "_" + testDate.ToString("yyyyMMdd");
             saveFileDB.FileName = dbFileName;
+            string FEBlocation = "KSU Test Stand";
 
             saveFileDB.ShowDialog();
             if (saveFileDB.ShowDialog() == DialogResult.OK)
             {
                 using (StreamWriter dbStream = new StreamWriter(saveFileDB.FileName))
                 {
-                    dbStream.WriteLine("# Feb Id, FEB Type, Test Date, Test Location, Comments");
+                    int channel = 0;
+
+                    dbStream.WriteLine("# File=" + saveFileDB.FileName);
+                    dbStream.WriteLine("# Feb ID, FEB Type, Test Date, FEB Location, Comments");
+                    dbStream.Write("feb-" + sn);
+                    dbStream.Write(", ");
+                    dbStream.Write(txtFEBseries.Text);
+                    dbStream.Write(", ");
+                    dbStream.Write(testDate.ToShortDateString());
+                    dbStream.Write(", ");
+                    dbStream.Write(FEBlocation);
+                    dbStream.Write("\n");
+                    dbStream.WriteLine("# fpga Channel number, FEB ID, Test Date, Bias 0 Gain, Bias 0 Offset, Bias 1 Gain, Bias 1 Offset, Comments");
+                    for (int fpga = 0; fpga < 4; fpga++)
+                    {
+                        string FpgaErrorComments = "";
+                        BiasSignal Bias0 = myFEB.Biases.Find(x => x.myFPGA_ID == fpga).Biases[0];
+                        BiasSignal Bias1 = myFEB.Biases.Find(x => x.myFPGA_ID == fpga).Biases[1];
+                        //TODO: Make a function or loop to fill the error comments.
+                        dbStream.Write("fpga-" + fpga.ToString());
+                        dbStream.Write(", ");
+                        dbStream.Write(sn);
+                        dbStream.Write(", ");
+                        dbStream.Write(testDate.ToShortDateString());
+                        dbStream.Write(", ");
+                        dbStream.Write(Bias0.calibration.gain.ToString());
+                        dbStream.Write(", ");
+                        dbStream.Write(Bias0.calibration.offset.ToString());
+                        dbStream.Write(", ");
+                        dbStream.Write(Bias1.calibration.gain.ToString());
+                        dbStream.Write(", ");
+                        dbStream.Write(Bias1.calibration.offset.ToString());
+                        dbStream.Write(", ");
+                        dbStream.Write(FpgaErrorComments);
+                        dbStream.Write("\n");
+                    }
+                    dbStream.WriteLine("# channel number, fpga channel, FEB ID, Test Date, Gain, Offset, histogram, Comments");
+                    for (int fpga = 0; fpga < 4; fpga++)
+                    {
+                        for (int index = 0; index < 16; index++)
+                        {
+                            string TrimErrorComments = "";
+                            //TODO: Make a function or loop to fill the error comments.
+                            TrimSignal trimsig = myFEB.Trims.Find(x => (x.myFPGA_ID == fpga && x.signalIndex == index));
+                            List<HISTO_curve> myHistoList = PP.FEB1Histo;
+                            PointPairList histoPoints = new PointPairList();
+                            dbStream.Write(channel.ToString());
+                            dbStream.Write(", ");
+                            dbStream.Write(fpga.ToString());
+                            dbStream.Write(", ");
+                            dbStream.Write(sn);
+                            dbStream.Write(", ");
+                            dbStream.Write(testDate.ToShortDateString());
+                            dbStream.Write(", ");
+                            dbStream.Write(trimsig.calibration.gain.ToString());
+                            dbStream.Write(", ");
+                            dbStream.Write(trimsig.calibration.offset.ToString());
+                            dbStream.Write(", ");
+                            //if (myHistoList.Any(x => x.chan == channel))
+                            //{
+                            //    HISTO_curve thisHisto = myHistoList.Find(x => x.chan == channel);
+                            //    dbStream.Write("\"[");
+                            //    dbStream.Write(string.Join("; ", thisHisto.list.ToString()));
+                            //    dbStream.Write("]\"");
+                            //}
+                            //else { dbStream.Write(""); }
+                            dbStream.Write(", ");
+                            dbStream.Write(TrimErrorComments);
+                            dbStream.Write("\n");
+                        }
+                    }
 
                     dbStream.Close();
                 }
@@ -4440,18 +4517,24 @@ namespace TB_mu2e
 
         private void button9_Click(object sender, EventArgs e)
         {
-            btnConnectAll_Click(sender, e);
+            PP.FEB1.host_name_prop = txtFEBAddress.Text;
             Application.DoEvents();
-            if (myFEBclient == PP.FEB1)
+            button1_Click((object)btnFEB1, e);
+            Application.DoEvents();
+            if (myFEBclient.ClientOpen)
             {
                 myFEBclient.SendStr("SN");
-                string snStr;
-                string sn;
+                string snStr = "";
+                string sn = "";
                 int rt;
                 myFEBclient.ReadStr(out snStr, out rt);
-                sn = snStr.Substring(8);
-                if (sn[sn.Length - 1] == '>')
-                { sn = sn.Substring(0, sn.Length - 1); }
+
+                if (snStr.Length > 8)
+                {
+                    sn = snStr.Substring(8);
+                    if (sn[sn.Length - 1] == '>')
+                    { sn = sn.Substring(0, sn.Length - 1); } 
+                }
                 myFEB.FEBserialNum = sn;
                 txtSN.Text = sn; 
             }
