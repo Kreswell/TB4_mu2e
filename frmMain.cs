@@ -4428,8 +4428,6 @@ namespace TB_mu2e
             {
                 using (StreamWriter dbStream = new StreamWriter(saveFileDB.FileName))
                 {
-                    int channel = 0;
-
                     dbStream.WriteLine("# File=" + saveFileDB.FileName);
                     dbStream.WriteLine("# Feb ID, FEB Type, Test Date, FEB Location, Comments");
                     dbStream.Write("feb-" + sn);
@@ -4439,13 +4437,14 @@ namespace TB_mu2e
                     dbStream.Write(testDate.ToShortDateString());
                     dbStream.Write(", ");
                     dbStream.Write(FEBlocation);
-                    dbStream.Write("\n");
+                    dbStream.WriteLine();
+                    dbStream.Write(txtHVTestComments.Text);
                     dbStream.WriteLine("# fpga Channel number, FEB ID, Test Date, Bias 0 Gain, Bias 0 Offset, Bias 1 Gain, Bias 1 Offset, Comments");
                     for (int fpga = 0; fpga < 4; fpga++)
                     {
                         string FpgaErrorComments = "";
-                        BiasSignal Bias0 = myFEB.Biases.Find(x => x.myFPGA_ID == fpga).Biases[0];
-                        BiasSignal Bias1 = myFEB.Biases.Find(x => x.myFPGA_ID == fpga).Biases[1];
+                        BiasChannel Bias0 = myFEB.Biases.Find(x => x.myAFE_ID == 2 * fpga);
+                        BiasChannel Bias1 = myFEB.Biases.Find(x => x.myAFE_ID == 2 * fpga + 1);
                         //TODO: Make a function or loop to fill the error comments.
                         dbStream.Write("fpga-" + fpga.ToString());
                         dbStream.Write(", ");
@@ -4453,28 +4452,29 @@ namespace TB_mu2e
                         dbStream.Write(", ");
                         dbStream.Write(testDate.ToShortDateString());
                         dbStream.Write(", ");
-                        dbStream.Write(Bias0.calibration.gain.ToString());
+                        dbStream.Write(Bias0.calibration.gainInt.ToString("X"));
                         dbStream.Write(", ");
-                        dbStream.Write(Bias0.calibration.offset.ToString());
+                        dbStream.Write(Bias0.calibration.offsetInt.ToString("X"));
                         dbStream.Write(", ");
-                        dbStream.Write(Bias1.calibration.gain.ToString());
+                        dbStream.Write(Bias1.calibration.gainInt.ToString("X"));
                         dbStream.Write(", ");
-                        dbStream.Write(Bias1.calibration.offset.ToString());
+                        dbStream.Write(Bias1.calibration.offsetInt.ToString("X"));
                         dbStream.Write(", ");
                         dbStream.Write(FpgaErrorComments);
-                        dbStream.Write("\n");
+                        dbStream.WriteLine();
                     }
                     dbStream.WriteLine("# channel number, fpga channel, FEB ID, Test Date, Gain, Offset, histogram, Comments");
                     for (int fpga = 0; fpga < 4; fpga++)
                     {
                         for (int index = 0; index < 16; index++)
                         {
+                            int channel = 16 * fpga + index;
                             string TrimErrorComments = "";
                             //TODO: Make a function or loop to fill the error comments.
                             TrimSignal trimsig = myFEB.Trims.Find(x => (x.myFPGA_ID == fpga && x.signalIndex == index));
                             List<HISTO_curve> myHistoList = PP.FEB1Histo;
                             PointPairList histoPoints = new PointPairList();
-                            dbStream.Write(channel.ToString());
+                            dbStream.Write("channel-" + channel.ToString());
                             dbStream.Write(", ");
                             dbStream.Write(fpga.ToString());
                             dbStream.Write(", ");
@@ -4482,9 +4482,9 @@ namespace TB_mu2e
                             dbStream.Write(", ");
                             dbStream.Write(testDate.ToShortDateString());
                             dbStream.Write(", ");
-                            dbStream.Write(trimsig.calibration.gain.ToString());
+                            dbStream.Write(trimsig.calibration.gainInt.ToString("X"));
                             dbStream.Write(", ");
-                            dbStream.Write(trimsig.calibration.offset.ToString());
+                            dbStream.Write(trimsig.calibration.offsetInt.ToString("X"));
                             dbStream.Write(", ");
                             //if (myHistoList.Any(x => x.chan == channel))
                             //{
@@ -4496,7 +4496,7 @@ namespace TB_mu2e
                             //else { dbStream.Write(""); }
                             dbStream.Write(", ");
                             dbStream.Write(TrimErrorComments);
-                            dbStream.Write("\n");
+                            dbStream.WriteLine();
                         }
                     }
 
@@ -4528,13 +4528,7 @@ namespace TB_mu2e
                 string sn = "";
                 int rt;
                 myFEBclient.ReadStr(out snStr, out rt);
-
-                if (snStr.Length > 8)
-                {
-                    sn = snStr.Substring(8);
-                    if (sn[sn.Length - 1] == '>')
-                    { sn = sn.Substring(0, sn.Length - 1); } 
-                }
+                sn = snStr.Replace("SerNumb=", "").TrimEnd('>');
                 myFEB.FEBserialNum = sn;
                 txtSN.Text = sn; 
             }

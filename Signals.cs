@@ -204,8 +204,6 @@ namespace mu2e.FEB_Test_Jig
                 {
                     offsetInt = (UInt16)(4096 - fitParams.Item1 * 50);
                 }
-                string slope = gainInt.ToString("X");
-                string intercept = offsetInt.ToString("X");
             }
 
             public void Calibrate()
