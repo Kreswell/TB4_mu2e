@@ -105,6 +105,117 @@ namespace TB_mu2e
             this.label33 = new System.Windows.Forms.Label();
             this.txtSN = new System.Windows.Forms.TextBox();
             this.btnSnSave = new System.Windows.Forms.Button();
+            this.CalibPType = new System.Windows.Forms.TabPage();
+            this.txtHVTestComments = new System.Windows.Forms.TextBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.btnSaveDB = new System.Windows.Forms.Button();
+            this.btnCalibrate = new System.Windows.Forms.Button();
+            this.btnBuildListView = new System.Windows.Forms.Button();
+            this.lblMuxTime = new System.Windows.Forms.Label();
+            this.lblScanTime = new System.Windows.Forms.Label();
+            this.lblScanSamples = new System.Windows.Forms.Label();
+            this.UpDnSamples = new System.Windows.Forms.NumericUpDown();
+            this.btnZeroVoltages = new System.Windows.Forms.Button();
+            this.btnUpdateList = new System.Windows.Forms.Button();
+            this.lblSelectedChan = new System.Windows.Forms.Label();
+            this.label95 = new System.Windows.Forms.Label();
+            this.txtVSet = new System.Windows.Forms.TextBox();
+            this.btnMuxTest = new System.Windows.Forms.Button();
+            this.btnSaveVScan = new System.Windows.Forms.Button();
+            this.label47 = new System.Windows.Forms.Label();
+            this.btnFullVScan = new System.Windows.Forms.Button();
+            this.label37 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.Channel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.HDMI = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Setting = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Measurement = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.IsCalibrated = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Gain = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Offset = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MuxCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabHist = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.udHistIntegralTime = new System.Windows.Forms.NumericUpDown();
+            this.chkLogYHist = new System.Windows.Forms.CheckBox();
+            this.labelTempHist = new System.Windows.Forms.Label();
+            this.zedGraphHisto = new ZedGraph.ZedGraphControl();
+            this.label30 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.btnSelHiHist = new System.Windows.Forms.Button();
+            this.btnSelLowHist = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
+            this.listBoxHistos = new System.Windows.Forms.ListBox();
+            this.chkBoxJ19 = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ20 = new System.Windows.Forms.CheckBox();
+            this.btnHistoScan = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.chkBoxJ21 = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ22 = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ23 = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ24 = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ25 = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ26 = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ15 = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ16 = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ17 = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ18 = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ13 = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ14 = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ12 = new System.Windows.Forms.CheckBox();
+            this.chkBoxJ11 = new System.Windows.Forms.CheckBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.tabRUN = new System.Windows.Forms.TabPage();
+            this.lblRunLog = new System.Windows.Forms.Label();
+            this.lblEventCount = new System.Windows.Forms.Label();
+            this.groupBoxEvDisplay = new System.Windows.Forms.GroupBox();
+            this.btnDisplaySpill = new System.Windows.Forms.Button();
+            this.txtEvent = new System.Windows.Forms.TextBox();
+            this.btnNextDisp = new System.Windows.Forms.Button();
+            this.btnPrevDisp = new System.Windows.Forms.Button();
+            this.ud_VertMin = new System.Windows.Forms.NumericUpDown();
+            this.ud_VertMax = new System.Windows.Forms.NumericUpDown();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.btnOneSpill = new System.Windows.Forms.Button();
+            this.btnChangeName = new System.Windows.Forms.Button();
+            this.chkWC = new System.Windows.Forms.CheckBox();
+            this.chkFEB2 = new System.Windows.Forms.CheckBox();
+            this.chkFEB1 = new System.Windows.Forms.CheckBox();
+            this.chkFakeIt = new System.Windows.Forms.CheckBox();
+            this.lblWC_TotTrig = new System.Windows.Forms.Label();
+            this.lblFEB2_TotTrig = new System.Windows.Forms.Label();
+            this.lblFEB1_TotTrig = new System.Windows.Forms.Label();
+            this.lblWCSpill = new System.Windows.Forms.Label();
+            this.lblFEB2Spill = new System.Windows.Forms.Label();
+            this.lblSpillTime = new System.Windows.Forms.Label();
+            this.lblWCTrigNum = new System.Windows.Forms.Label();
+            this.lblFEB2TrigNum = new System.Windows.Forms.Label();
+            this.lblFEB1TrigNum = new System.Windows.Forms.Label();
+            this.lblFEB1Spill = new System.Windows.Forms.Label();
+            this.lblRunPrep = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblRunTime = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblSpillWC = new System.Windows.Forms.Label();
+            this.lblSpillFEB2 = new System.Windows.Forms.Label();
+            this.lblSpillFEB1 = new System.Windows.Forms.Label();
+            this.lblRunName = new System.Windows.Forms.Label();
+            this.btnStopRun = new System.Windows.Forms.Button();
+            this.btnStartRun = new System.Windows.Forms.Button();
+            this.btnPrepare = new System.Windows.Forms.Button();
+            this.btnConnectAll = new System.Windows.Forms.Button();
+            this.zg1 = new ZedGraph.ZedGraphControl();
             this.tabFEB1 = new System.Windows.Forms.TabPage();
             this.label27 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -179,72 +290,10 @@ namespace TB_mu2e
             this.lblActive = new System.Windows.Forms.Label();
             this.btnFEB2 = new System.Windows.Forms.Button();
             this.btnFEB1 = new System.Windows.Forms.Button();
-            this.tabHist = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
-            this.udHistIntegralTime = new System.Windows.Forms.NumericUpDown();
-            this.chkLogYHist = new System.Windows.Forms.CheckBox();
-            this.labelTempHist = new System.Windows.Forms.Label();
-            this.zedGraphHisto = new ZedGraph.ZedGraphControl();
-            this.label30 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.btnSetV = new System.Windows.Forms.Button();
-            this.btnSelHiHist = new System.Windows.Forms.Button();
-            this.btnSelLowHist = new System.Windows.Forms.Button();
-            this.label31 = new System.Windows.Forms.Label();
-            this.listBoxHistos = new System.Windows.Forms.ListBox();
-            this.chkBoxJ19 = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ20 = new System.Windows.Forms.CheckBox();
-            this.btnHistoScan = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.chkBoxJ21 = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ22 = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ23 = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ24 = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ25 = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ26 = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ15 = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ16 = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ17 = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ18 = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ13 = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ14 = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ12 = new System.Windows.Forms.CheckBox();
-            this.chkBoxJ11 = new System.Windows.Forms.CheckBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.CalibPType = new System.Windows.Forms.TabPage();
-            this.txtHVTestComments = new System.Windows.Forms.TextBox();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.btnSaveDB = new System.Windows.Forms.Button();
-            this.btnCalibrate = new System.Windows.Forms.Button();
-            this.btnBuildListView = new System.Windows.Forms.Button();
-            this.lblMuxTime = new System.Windows.Forms.Label();
-            this.lblScanTime = new System.Windows.Forms.Label();
-            this.lblScanSamples = new System.Windows.Forms.Label();
-            this.UpDnSamples = new System.Windows.Forms.NumericUpDown();
-            this.btnZeroVoltages = new System.Windows.Forms.Button();
-            this.btnUpdateList = new System.Windows.Forms.Button();
-            this.lblSelectedChan = new System.Windows.Forms.Label();
-            this.label95 = new System.Windows.Forms.Label();
-            this.txtVSet = new System.Windows.Forms.TextBox();
-            this.btnMuxTest = new System.Windows.Forms.Button();
-            this.btnSaveVScan = new System.Windows.Forms.Button();
-            this.label47 = new System.Windows.Forms.Label();
-            this.btnFullVScan = new System.Windows.Forms.Button();
-            this.label37 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.Channel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.HDMI = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Setting = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Measurement = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.IsCalibrated = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Gain = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Offset = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.MuxCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabWC = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.lblWCmessage = new System.Windows.Forms.Label();
+            this.btnWC = new System.Windows.Forms.Button();
             this.tabConsole = new System.Windows.Forms.TabPage();
             this.dbgWC = new System.Windows.Forms.Button();
             this.dbgFEB2 = new System.Windows.Forms.Button();
@@ -254,56 +303,6 @@ namespace TB_mu2e
             this.btnDebugLogging = new System.Windows.Forms.Button();
             this.lblConsole_disp = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tabRUN = new System.Windows.Forms.TabPage();
-            this.lblRunLog = new System.Windows.Forms.Label();
-            this.lblEventCount = new System.Windows.Forms.Label();
-            this.groupBoxEvDisplay = new System.Windows.Forms.GroupBox();
-            this.btnDisplaySpill = new System.Windows.Forms.Button();
-            this.txtEvent = new System.Windows.Forms.TextBox();
-            this.btnNextDisp = new System.Windows.Forms.Button();
-            this.btnPrevDisp = new System.Windows.Forms.Button();
-            this.ud_VertMin = new System.Windows.Forms.NumericUpDown();
-            this.ud_VertMax = new System.Windows.Forms.NumericUpDown();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.btnOneSpill = new System.Windows.Forms.Button();
-            this.btnChangeName = new System.Windows.Forms.Button();
-            this.chkWC = new System.Windows.Forms.CheckBox();
-            this.chkFEB2 = new System.Windows.Forms.CheckBox();
-            this.chkFEB1 = new System.Windows.Forms.CheckBox();
-            this.chkFakeIt = new System.Windows.Forms.CheckBox();
-            this.lblWC_TotTrig = new System.Windows.Forms.Label();
-            this.lblFEB2_TotTrig = new System.Windows.Forms.Label();
-            this.lblFEB1_TotTrig = new System.Windows.Forms.Label();
-            this.lblWCSpill = new System.Windows.Forms.Label();
-            this.lblFEB2Spill = new System.Windows.Forms.Label();
-            this.lblSpillTime = new System.Windows.Forms.Label();
-            this.lblWCTrigNum = new System.Windows.Forms.Label();
-            this.lblFEB2TrigNum = new System.Windows.Forms.Label();
-            this.lblFEB1TrigNum = new System.Windows.Forms.Label();
-            this.lblFEB1Spill = new System.Windows.Forms.Label();
-            this.lblRunPrep = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblRunTime = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblSpillWC = new System.Windows.Forms.Label();
-            this.lblSpillFEB2 = new System.Windows.Forms.Label();
-            this.lblSpillFEB1 = new System.Windows.Forms.Label();
-            this.lblRunName = new System.Windows.Forms.Label();
-            this.btnStopRun = new System.Windows.Forms.Button();
-            this.btnStartRun = new System.Windows.Forms.Button();
-            this.btnPrepare = new System.Windows.Forms.Button();
-            this.btnConnectAll = new System.Windows.Forms.Button();
-            this.zg1 = new ZedGraph.ZedGraphControl();
-            this.tabWC = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.lblWCmessage = new System.Windows.Forms.Label();
-            this.btnWC = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileCalibrations = new System.Windows.Forms.SaveFileDialog();
@@ -313,6 +312,16 @@ namespace TB_mu2e
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabStart.SuspendLayout();
+            this.CalibPType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UpDnSamples)).BeginInit();
+            this.tabHist.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.udHistIntegralTime)).BeginInit();
+            this.tabRUN.SuspendLayout();
+            this.groupBoxEvDisplay.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMax)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabFEB1.SuspendLayout();
             this.groupBoxSpillStat.SuspendLayout();
             this.groupBoxREG1.SuspendLayout();
@@ -325,20 +334,10 @@ namespace TB_mu2e
             this.panel1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBoxConn.SuspendLayout();
-            this.tabHist.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.udHistIntegralTime)).BeginInit();
-            this.CalibPType.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.UpDnSamples)).BeginInit();
-            this.tabConsole.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.tabRUN.SuspendLayout();
-            this.groupBoxEvDisplay.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMax)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabWC.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.tabConsole.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -682,6 +681,1282 @@ namespace TB_mu2e
             this.btnSnSave.Text = "SAVE";
             this.btnSnSave.UseVisualStyleBackColor = true;
             this.btnSnSave.Click += new System.EventHandler(this.btnSnSave_Click);
+            // 
+            // CalibPType
+            // 
+            this.CalibPType.Controls.Add(this.txtHVTestComments);
+            this.CalibPType.Controls.Add(this.label44);
+            this.CalibPType.Controls.Add(this.label43);
+            this.CalibPType.Controls.Add(this.label42);
+            this.CalibPType.Controls.Add(this.label41);
+            this.CalibPType.Controls.Add(this.label40);
+            this.CalibPType.Controls.Add(this.label39);
+            this.CalibPType.Controls.Add(this.btnSaveDB);
+            this.CalibPType.Controls.Add(this.btnCalibrate);
+            this.CalibPType.Controls.Add(this.btnBuildListView);
+            this.CalibPType.Controls.Add(this.lblMuxTime);
+            this.CalibPType.Controls.Add(this.lblScanTime);
+            this.CalibPType.Controls.Add(this.lblScanSamples);
+            this.CalibPType.Controls.Add(this.UpDnSamples);
+            this.CalibPType.Controls.Add(this.btnZeroVoltages);
+            this.CalibPType.Controls.Add(this.btnUpdateList);
+            this.CalibPType.Controls.Add(this.lblSelectedChan);
+            this.CalibPType.Controls.Add(this.label95);
+            this.CalibPType.Controls.Add(this.txtVSet);
+            this.CalibPType.Controls.Add(this.btnMuxTest);
+            this.CalibPType.Controls.Add(this.btnSaveVScan);
+            this.CalibPType.Controls.Add(this.label47);
+            this.CalibPType.Controls.Add(this.btnFullVScan);
+            this.CalibPType.Controls.Add(this.label37);
+            this.CalibPType.Controls.Add(this.listView1);
+            this.CalibPType.Location = new System.Drawing.Point(4, 32);
+            this.CalibPType.Name = "CalibPType";
+            this.CalibPType.Size = new System.Drawing.Size(1255, 665);
+            this.CalibPType.TabIndex = 11;
+            this.CalibPType.Text = "Calibration";
+            this.CalibPType.UseVisualStyleBackColor = true;
+            // 
+            // txtHVTestComments
+            // 
+            this.txtHVTestComments.Location = new System.Drawing.Point(41, 403);
+            this.txtHVTestComments.Multiline = true;
+            this.txtHVTestComments.Name = "txtHVTestComments";
+            this.txtHVTestComments.Size = new System.Drawing.Size(390, 126);
+            this.txtHVTestComments.TabIndex = 32;
+            this.txtHVTestComments.Text = "All HV channels OK.";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(7, 550);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(28, 25);
+            this.label44.TabIndex = 29;
+            this.label44.Text = "7.";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(7, 350);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(292, 50);
+            this.label43.TabIndex = 28;
+            this.label43.Text = "6.    Check the results.    -------->\r\n       Comments:";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(7, 275);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(28, 25);
+            this.label42.TabIndex = 27;
+            this.label42.Text = "5.";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(7, 225);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(28, 25);
+            this.label41.TabIndex = 26;
+            this.label41.Text = "4.";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(7, 175);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(404, 25);
+            this.label40.TabIndex = 25;
+            this.label40.Text = "3.    Connect the HDMI cables from the DMM.";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(7, 125);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(28, 25);
+            this.label39.TabIndex = 24;
+            this.label39.Text = "2.";
+            // 
+            // btnSaveDB
+            // 
+            this.btnSaveDB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveDB.Location = new System.Drawing.Point(238, 543);
+            this.btnSaveDB.Name = "btnSaveDB";
+            this.btnSaveDB.Size = new System.Drawing.Size(146, 38);
+            this.btnSaveDB.TabIndex = 23;
+            this.btnSaveDB.Text = "Save DB File";
+            this.btnSaveDB.UseVisualStyleBackColor = true;
+            this.btnSaveDB.Click += new System.EventHandler(this.btnSaveDB_Click);
+            // 
+            // btnCalibrate
+            // 
+            this.btnCalibrate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalibrate.Location = new System.Drawing.Point(1020, 7);
+            this.btnCalibrate.Name = "btnCalibrate";
+            this.btnCalibrate.Size = new System.Drawing.Size(227, 40);
+            this.btnCalibrate.TabIndex = 21;
+            this.btnCalibrate.Text = "Load Calibrations";
+            this.btnCalibrate.UseVisualStyleBackColor = true;
+            // 
+            // btnBuildListView
+            // 
+            this.btnBuildListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuildListView.Location = new System.Drawing.Point(41, 218);
+            this.btnBuildListView.Name = "btnBuildListView";
+            this.btnBuildListView.Size = new System.Drawing.Size(219, 38);
+            this.btnBuildListView.TabIndex = 20;
+            this.btnBuildListView.Text = "Initialize Voltage List";
+            this.btnBuildListView.UseVisualStyleBackColor = true;
+            this.btnBuildListView.Click += new System.EventHandler(this.btnBuildListView_Click);
+            // 
+            // lblMuxTime
+            // 
+            this.lblMuxTime.AutoSize = true;
+            this.lblMuxTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMuxTime.Location = new System.Drawing.Point(157, 130);
+            this.lblMuxTime.Name = "lblMuxTime";
+            this.lblMuxTime.Size = new System.Drawing.Size(151, 18);
+            this.lblMuxTime.TabIndex = 19;
+            this.lblMuxTime.Text = "Scan Time: 00:00.000";
+            // 
+            // lblScanTime
+            // 
+            this.lblScanTime.AutoSize = true;
+            this.lblScanTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanTime.Location = new System.Drawing.Point(197, 280);
+            this.lblScanTime.Name = "lblScanTime";
+            this.lblScanTime.Size = new System.Drawing.Size(151, 18);
+            this.lblScanTime.TabIndex = 18;
+            this.lblScanTime.Text = "Scan Time: 00:00.000";
+            // 
+            // lblScanSamples
+            // 
+            this.lblScanSamples.AutoSize = true;
+            this.lblScanSamples.Location = new System.Drawing.Point(37, 309);
+            this.lblScanSamples.Name = "lblScanSamples";
+            this.lblScanSamples.Size = new System.Drawing.Size(174, 20);
+            this.lblScanSamples.TabIndex = 17;
+            this.lblScanSamples.Text = "Samples per Channel:";
+            // 
+            // UpDnSamples
+            // 
+            this.UpDnSamples.Location = new System.Drawing.Point(217, 307);
+            this.UpDnSamples.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.UpDnSamples.Name = "UpDnSamples";
+            this.UpDnSamples.Size = new System.Drawing.Size(54, 27);
+            this.UpDnSamples.TabIndex = 16;
+            this.UpDnSamples.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // btnZeroVoltages
+            // 
+            this.btnZeroVoltages.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZeroVoltages.Location = new System.Drawing.Point(1123, 586);
+            this.btnZeroVoltages.Name = "btnZeroVoltages";
+            this.btnZeroVoltages.Size = new System.Drawing.Size(124, 36);
+            this.btnZeroVoltages.TabIndex = 15;
+            this.btnZeroVoltages.Text = "ZERO ALL";
+            this.btnZeroVoltages.UseVisualStyleBackColor = true;
+            this.btnZeroVoltages.Click += new System.EventHandler(this.btnZeroVoltages_Click);
+            // 
+            // btnUpdateList
+            // 
+            this.btnUpdateList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateList.Location = new System.Drawing.Point(912, 586);
+            this.btnUpdateList.Name = "btnUpdateList";
+            this.btnUpdateList.Size = new System.Drawing.Size(124, 36);
+            this.btnUpdateList.TabIndex = 14;
+            this.btnUpdateList.Text = "UPDATE";
+            this.btnUpdateList.UseVisualStyleBackColor = true;
+            this.btnUpdateList.Click += new System.EventHandler(this.btnUpdateList_Click);
+            // 
+            // lblSelectedChan
+            // 
+            this.lblSelectedChan.AutoSize = true;
+            this.lblSelectedChan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectedChan.Location = new System.Drawing.Point(646, 592);
+            this.lblSelectedChan.Name = "lblSelectedChan";
+            this.lblSelectedChan.Size = new System.Drawing.Size(154, 25);
+            this.lblSelectedChan.TabIndex = 13;
+            this.lblSelectedChan.Text = "None Selected";
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label95.Location = new System.Drawing.Point(432, 592);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(208, 25);
+            this.label95.TabIndex = 12;
+            this.label95.Text = "New Voltage Setting";
+            // 
+            // txtVSet
+            // 
+            this.txtVSet.Location = new System.Drawing.Point(806, 590);
+            this.txtVSet.Name = "txtVSet";
+            this.txtVSet.Size = new System.Drawing.Size(100, 27);
+            this.txtVSet.TabIndex = 11;
+            // 
+            // btnMuxTest
+            // 
+            this.btnMuxTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMuxTest.Location = new System.Drawing.Point(41, 118);
+            this.btnMuxTest.Name = "btnMuxTest";
+            this.btnMuxTest.Size = new System.Drawing.Size(110, 38);
+            this.btnMuxTest.TabIndex = 8;
+            this.btnMuxTest.Text = "Mux Test";
+            this.btnMuxTest.UseVisualStyleBackColor = true;
+            this.btnMuxTest.Click += new System.EventHandler(this.btnMuxTest_Click);
+            // 
+            // btnSaveVScan
+            // 
+            this.btnSaveVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveVScan.Location = new System.Drawing.Point(41, 543);
+            this.btnSaveVScan.Name = "btnSaveVScan";
+            this.btnSaveVScan.Size = new System.Drawing.Size(191, 38);
+            this.btnSaveVScan.TabIndex = 7;
+            this.btnSaveVScan.Text = "Save Calibrations";
+            this.btnSaveVScan.UseVisualStyleBackColor = true;
+            this.btnSaveVScan.Click += new System.EventHandler(this.btnSaveVScan_Click);
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(432, 13);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(204, 29);
+            this.label47.TabIndex = 3;
+            this.label47.Text = "Voltage Settings";
+            // 
+            // btnFullVScan
+            // 
+            this.btnFullVScan.Enabled = false;
+            this.btnFullVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFullVScan.Location = new System.Drawing.Point(41, 268);
+            this.btnFullVScan.Name = "btnFullVScan";
+            this.btnFullVScan.Size = new System.Drawing.Size(150, 38);
+            this.btnFullVScan.TabIndex = 1;
+            this.btnFullVScan.Text = "Voltage Scan";
+            this.btnFullVScan.UseVisualStyleBackColor = true;
+            this.btnFullVScan.Click += new System.EventHandler(this.btnFullVScan_Click);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(7, 50);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(382, 50);
+            this.label37.TabIndex = 22;
+            this.label37.Text = "1.    Make sure the FEB is connected\r\n       but the HDMI cables are disconnected" +
+    ".";
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Channel,
+            this.HDMI,
+            this.Setting,
+            this.Measurement,
+            this.IsCalibrated,
+            this.Gain,
+            this.Offset,
+            this.MuxCurrent});
+            listViewGroup1.Header = "FPGA 0";
+            listViewGroup1.Name = "fpga0";
+            listViewGroup2.Header = "FPGA 1";
+            listViewGroup2.Name = "fpga1";
+            listViewGroup3.Header = "FPGA 2";
+            listViewGroup3.Name = "fpga2";
+            listViewGroup4.Header = "FPGA 3";
+            listViewGroup4.Name = "fpga3";
+            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3,
+            listViewGroup4});
+            this.listView1.Location = new System.Drawing.Point(437, 53);
+            this.listView1.MultiSelect = false;
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(810, 527);
+            this.listView1.TabIndex = 6;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
+            // 
+            // Channel
+            // 
+            this.Channel.Text = "Channel";
+            this.Channel.Width = 100;
+            // 
+            // HDMI
+            // 
+            this.HDMI.Text = "HDMI";
+            // 
+            // Setting
+            // 
+            this.Setting.Text = "Setting";
+            this.Setting.Width = 70;
+            // 
+            // Measurement
+            // 
+            this.Measurement.Text = "Measurement";
+            this.Measurement.Width = 120;
+            // 
+            // IsCalibrated
+            // 
+            this.IsCalibrated.Text = "Calibrations Applied?";
+            this.IsCalibrated.Width = 180;
+            // 
+            // Gain
+            // 
+            this.Gain.Text = "Gain";
+            // 
+            // Offset
+            // 
+            this.Offset.Text = "Offset";
+            // 
+            // MuxCurrent
+            // 
+            this.MuxCurrent.Text = "Mux Current (nA)";
+            this.MuxCurrent.Width = 150;
+            // 
+            // tabHist
+            // 
+            this.tabHist.Controls.Add(this.label9);
+            this.tabHist.Controls.Add(this.udHistIntegralTime);
+            this.tabHist.Controls.Add(this.chkLogYHist);
+            this.tabHist.Controls.Add(this.labelTempHist);
+            this.tabHist.Controls.Add(this.zedGraphHisto);
+            this.tabHist.Controls.Add(this.label30);
+            this.tabHist.Controls.Add(this.textBox3);
+            this.tabHist.Controls.Add(this.btnSelHiHist);
+            this.tabHist.Controls.Add(this.btnSelLowHist);
+            this.tabHist.Controls.Add(this.label31);
+            this.tabHist.Controls.Add(this.listBoxHistos);
+            this.tabHist.Controls.Add(this.chkBoxJ19);
+            this.tabHist.Controls.Add(this.chkBoxJ20);
+            this.tabHist.Controls.Add(this.btnHistoScan);
+            this.tabHist.Controls.Add(this.button12);
+            this.tabHist.Controls.Add(this.chkBoxJ21);
+            this.tabHist.Controls.Add(this.chkBoxJ22);
+            this.tabHist.Controls.Add(this.chkBoxJ23);
+            this.tabHist.Controls.Add(this.chkBoxJ24);
+            this.tabHist.Controls.Add(this.chkBoxJ25);
+            this.tabHist.Controls.Add(this.chkBoxJ26);
+            this.tabHist.Controls.Add(this.chkBoxJ15);
+            this.tabHist.Controls.Add(this.chkBoxJ16);
+            this.tabHist.Controls.Add(this.chkBoxJ17);
+            this.tabHist.Controls.Add(this.chkBoxJ18);
+            this.tabHist.Controls.Add(this.chkBoxJ13);
+            this.tabHist.Controls.Add(this.chkBoxJ14);
+            this.tabHist.Controls.Add(this.chkBoxJ12);
+            this.tabHist.Controls.Add(this.chkBoxJ11);
+            this.tabHist.Controls.Add(this.label32);
+            this.tabHist.Location = new System.Drawing.Point(4, 32);
+            this.tabHist.Name = "tabHist";
+            this.tabHist.Padding = new System.Windows.Forms.Padding(3);
+            this.tabHist.Size = new System.Drawing.Size(1255, 665);
+            this.tabHist.TabIndex = 10;
+            this.tabHist.Text = "Histogram";
+            this.tabHist.UseVisualStyleBackColor = true;
+            this.tabHist.Enter += new System.EventHandler(this.tabHist_Enter);
+            this.tabHist.Leave += new System.EventHandler(this.tabHist_Leave);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(796, 592);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(169, 20);
+            this.label9.TabIndex = 119;
+            this.label9.Text = "Integration Time (ms)";
+            // 
+            // udHistIntegralTime
+            // 
+            this.udHistIntegralTime.Location = new System.Drawing.Point(971, 590);
+            this.udHistIntegralTime.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.udHistIntegralTime.Name = "udHistIntegralTime";
+            this.udHistIntegralTime.Size = new System.Drawing.Size(57, 27);
+            this.udHistIntegralTime.TabIndex = 118;
+            this.udHistIntegralTime.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // chkLogYHist
+            // 
+            this.chkLogYHist.AutoSize = true;
+            this.chkLogYHist.Checked = true;
+            this.chkLogYHist.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkLogYHist.Location = new System.Drawing.Point(1109, 591);
+            this.chkLogYHist.Name = "chkLogYHist";
+            this.chkLogYHist.Size = new System.Drawing.Size(69, 24);
+            this.chkLogYHist.TabIndex = 117;
+            this.chkLogYHist.Text = "LogY";
+            this.chkLogYHist.UseVisualStyleBackColor = true;
+            this.chkLogYHist.CheckStateChanged += new System.EventHandler(this.chkLogYHist_CheckStateChanged);
+            // 
+            // labelTempHist
+            // 
+            this.labelTempHist.AutoSize = true;
+            this.labelTempHist.Location = new System.Drawing.Point(7, 15);
+            this.labelTempHist.Name = "labelTempHist";
+            this.labelTempHist.Size = new System.Drawing.Size(117, 20);
+            this.labelTempHist.TabIndex = 116;
+            this.labelTempHist.Text = "labelTempHist";
+            // 
+            // zedGraphHisto
+            // 
+            this.zedGraphHisto.Location = new System.Drawing.Point(489, 15);
+            this.zedGraphHisto.Margin = new System.Windows.Forms.Padding(14, 12, 14, 12);
+            this.zedGraphHisto.Name = "zedGraphHisto";
+            this.zedGraphHisto.ScrollGrace = 0D;
+            this.zedGraphHisto.ScrollMaxX = 0D;
+            this.zedGraphHisto.ScrollMaxY = 0D;
+            this.zedGraphHisto.ScrollMaxY2 = 0D;
+            this.zedGraphHisto.ScrollMinX = 0D;
+            this.zedGraphHisto.ScrollMinY = 0D;
+            this.zedGraphHisto.ScrollMinY2 = 0D;
+            this.zedGraphHisto.Size = new System.Drawing.Size(752, 560);
+            this.zedGraphHisto.TabIndex = 115;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(314, 371);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(104, 20);
+            this.label30.TabIndex = 114;
+            this.label30.Text = "Bias Voltage";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(424, 368);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(48, 27);
+            this.textBox3.TabIndex = 91;
+            this.textBox3.Text = "56.1";
+            // 
+            // btnSelHiHist
+            // 
+            this.btnSelHiHist.Location = new System.Drawing.Point(318, 323);
+            this.btnSelHiHist.Name = "btnSelHiHist";
+            this.btnSelHiHist.Size = new System.Drawing.Size(139, 39);
+            this.btnSelHiHist.TabIndex = 112;
+            this.btnSelHiHist.Text = "Select J19-J26";
+            this.btnSelHiHist.UseVisualStyleBackColor = true;
+            this.btnSelHiHist.Click += new System.EventHandler(this.btnSelHiHist_Click);
+            // 
+            // btnSelLowHist
+            // 
+            this.btnSelLowHist.Location = new System.Drawing.Point(318, 278);
+            this.btnSelLowHist.Name = "btnSelLowHist";
+            this.btnSelLowHist.Size = new System.Drawing.Size(139, 39);
+            this.btnSelLowHist.TabIndex = 111;
+            this.btnSelLowHist.Text = "Select J11-J18";
+            this.btnSelLowHist.UseVisualStyleBackColor = true;
+            this.btnSelLowHist.Click += new System.EventHandler(this.btnSelLowHist_Click);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(314, 462);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(140, 20);
+            this.label31.TabIndex = 110;
+            this.label31.Text = "Histogram to Plot";
+            // 
+            // listBoxHistos
+            // 
+            this.listBoxHistos.FormattingEnabled = true;
+            this.listBoxHistos.ItemHeight = 20;
+            this.listBoxHistos.Location = new System.Drawing.Point(318, 485);
+            this.listBoxHistos.Name = "listBoxHistos";
+            this.listBoxHistos.Size = new System.Drawing.Size(154, 144);
+            this.listBoxHistos.Sorted = true;
+            this.listBoxHistos.TabIndex = 109;
+            this.listBoxHistos.SelectedIndexChanged += new System.EventHandler(this.listBoxHistos_SelectedIndexChanged);
+            // 
+            // chkBoxJ19
+            // 
+            this.chkBoxJ19.AutoSize = true;
+            this.chkBoxJ19.Checked = true;
+            this.chkBoxJ19.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ19.Location = new System.Drawing.Point(382, 38);
+            this.chkBoxJ19.Name = "chkBoxJ19";
+            this.chkBoxJ19.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ19.TabIndex = 108;
+            this.chkBoxJ19.Text = "J19";
+            this.chkBoxJ19.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ20
+            // 
+            this.chkBoxJ20.AutoSize = true;
+            this.chkBoxJ20.Checked = true;
+            this.chkBoxJ20.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ20.Location = new System.Drawing.Point(382, 68);
+            this.chkBoxJ20.Name = "chkBoxJ20";
+            this.chkBoxJ20.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ20.TabIndex = 107;
+            this.chkBoxJ20.Text = "J20";
+            this.chkBoxJ20.UseVisualStyleBackColor = true;
+            // 
+            // btnHistoScan
+            // 
+            this.btnHistoScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistoScan.Location = new System.Drawing.Point(318, 401);
+            this.btnHistoScan.Name = "btnHistoScan";
+            this.btnHistoScan.Size = new System.Drawing.Size(127, 39);
+            this.btnHistoScan.TabIndex = 89;
+            this.btnHistoScan.Text = "SCAN";
+            this.btnHistoScan.UseVisualStyleBackColor = true;
+            this.btnHistoScan.Click += new System.EventHandler(this.btnHistoScan_Click);
+            // 
+            // button12
+            // 
+            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button12.Location = new System.Drawing.Point(489, 590);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(127, 39);
+            this.button12.TabIndex = 90;
+            this.button12.Text = "SAVE";
+            this.button12.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ21
+            // 
+            this.chkBoxJ21.AutoSize = true;
+            this.chkBoxJ21.Checked = true;
+            this.chkBoxJ21.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ21.Location = new System.Drawing.Point(382, 98);
+            this.chkBoxJ21.Name = "chkBoxJ21";
+            this.chkBoxJ21.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ21.TabIndex = 106;
+            this.chkBoxJ21.Text = "J21";
+            this.chkBoxJ21.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ22
+            // 
+            this.chkBoxJ22.AutoSize = true;
+            this.chkBoxJ22.Checked = true;
+            this.chkBoxJ22.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ22.Location = new System.Drawing.Point(382, 128);
+            this.chkBoxJ22.Name = "chkBoxJ22";
+            this.chkBoxJ22.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ22.TabIndex = 105;
+            this.chkBoxJ22.Text = "J22";
+            this.chkBoxJ22.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ23
+            // 
+            this.chkBoxJ23.AutoSize = true;
+            this.chkBoxJ23.Checked = true;
+            this.chkBoxJ23.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ23.Location = new System.Drawing.Point(382, 158);
+            this.chkBoxJ23.Name = "chkBoxJ23";
+            this.chkBoxJ23.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ23.TabIndex = 104;
+            this.chkBoxJ23.Text = "J23";
+            this.chkBoxJ23.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ24
+            // 
+            this.chkBoxJ24.AutoSize = true;
+            this.chkBoxJ24.Checked = true;
+            this.chkBoxJ24.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ24.Location = new System.Drawing.Point(382, 188);
+            this.chkBoxJ24.Name = "chkBoxJ24";
+            this.chkBoxJ24.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ24.TabIndex = 103;
+            this.chkBoxJ24.Text = "J24";
+            this.chkBoxJ24.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ25
+            // 
+            this.chkBoxJ25.AutoSize = true;
+            this.chkBoxJ25.Checked = true;
+            this.chkBoxJ25.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ25.Location = new System.Drawing.Point(382, 218);
+            this.chkBoxJ25.Name = "chkBoxJ25";
+            this.chkBoxJ25.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ25.TabIndex = 102;
+            this.chkBoxJ25.Text = "J25";
+            this.chkBoxJ25.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ26
+            // 
+            this.chkBoxJ26.AutoSize = true;
+            this.chkBoxJ26.Checked = true;
+            this.chkBoxJ26.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ26.Location = new System.Drawing.Point(382, 248);
+            this.chkBoxJ26.Name = "chkBoxJ26";
+            this.chkBoxJ26.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ26.TabIndex = 101;
+            this.chkBoxJ26.Text = "J26";
+            this.chkBoxJ26.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ15
+            // 
+            this.chkBoxJ15.AutoSize = true;
+            this.chkBoxJ15.Checked = true;
+            this.chkBoxJ15.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ15.Location = new System.Drawing.Point(318, 158);
+            this.chkBoxJ15.Name = "chkBoxJ15";
+            this.chkBoxJ15.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ15.TabIndex = 100;
+            this.chkBoxJ15.Text = "J15";
+            this.chkBoxJ15.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ16
+            // 
+            this.chkBoxJ16.AutoSize = true;
+            this.chkBoxJ16.Checked = true;
+            this.chkBoxJ16.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ16.Location = new System.Drawing.Point(318, 188);
+            this.chkBoxJ16.Name = "chkBoxJ16";
+            this.chkBoxJ16.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ16.TabIndex = 99;
+            this.chkBoxJ16.Text = "J16";
+            this.chkBoxJ16.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ17
+            // 
+            this.chkBoxJ17.AutoSize = true;
+            this.chkBoxJ17.Checked = true;
+            this.chkBoxJ17.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ17.Location = new System.Drawing.Point(318, 218);
+            this.chkBoxJ17.Name = "chkBoxJ17";
+            this.chkBoxJ17.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ17.TabIndex = 98;
+            this.chkBoxJ17.Text = "J17";
+            this.chkBoxJ17.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ18
+            // 
+            this.chkBoxJ18.AutoSize = true;
+            this.chkBoxJ18.Checked = true;
+            this.chkBoxJ18.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ18.Location = new System.Drawing.Point(318, 248);
+            this.chkBoxJ18.Name = "chkBoxJ18";
+            this.chkBoxJ18.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ18.TabIndex = 97;
+            this.chkBoxJ18.Text = "J18";
+            this.chkBoxJ18.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ13
+            // 
+            this.chkBoxJ13.AutoSize = true;
+            this.chkBoxJ13.Checked = true;
+            this.chkBoxJ13.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ13.Location = new System.Drawing.Point(318, 98);
+            this.chkBoxJ13.Name = "chkBoxJ13";
+            this.chkBoxJ13.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ13.TabIndex = 96;
+            this.chkBoxJ13.Text = "J13";
+            this.chkBoxJ13.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ14
+            // 
+            this.chkBoxJ14.AutoSize = true;
+            this.chkBoxJ14.Checked = true;
+            this.chkBoxJ14.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ14.Location = new System.Drawing.Point(318, 128);
+            this.chkBoxJ14.Name = "chkBoxJ14";
+            this.chkBoxJ14.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ14.TabIndex = 95;
+            this.chkBoxJ14.Text = "J14";
+            this.chkBoxJ14.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ12
+            // 
+            this.chkBoxJ12.AutoSize = true;
+            this.chkBoxJ12.Checked = true;
+            this.chkBoxJ12.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ12.Location = new System.Drawing.Point(318, 68);
+            this.chkBoxJ12.Name = "chkBoxJ12";
+            this.chkBoxJ12.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ12.TabIndex = 94;
+            this.chkBoxJ12.Text = "J12";
+            this.chkBoxJ12.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxJ11
+            // 
+            this.chkBoxJ11.AutoSize = true;
+            this.chkBoxJ11.Checked = true;
+            this.chkBoxJ11.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkBoxJ11.Location = new System.Drawing.Point(318, 38);
+            this.chkBoxJ11.Name = "chkBoxJ11";
+            this.chkBoxJ11.Size = new System.Drawing.Size(58, 24);
+            this.chkBoxJ11.TabIndex = 93;
+            this.chkBoxJ11.Text = "J11";
+            this.chkBoxJ11.UseVisualStyleBackColor = true;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(314, 15);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(158, 20);
+            this.label32.TabIndex = 92;
+            this.label32.Text = "CMB CONNECTED";
+            // 
+            // tabRUN
+            // 
+            this.tabRUN.Controls.Add(this.lblRunLog);
+            this.tabRUN.Controls.Add(this.lblEventCount);
+            this.tabRUN.Controls.Add(this.groupBoxEvDisplay);
+            this.tabRUN.Controls.Add(this.groupBox1);
+            this.tabRUN.Controls.Add(this.zg1);
+            this.tabRUN.Location = new System.Drawing.Point(4, 32);
+            this.tabRUN.Name = "tabRUN";
+            this.tabRUN.Padding = new System.Windows.Forms.Padding(3);
+            this.tabRUN.Size = new System.Drawing.Size(1255, 665);
+            this.tabRUN.TabIndex = 0;
+            this.tabRUN.Text = "RUN";
+            this.tabRUN.UseVisualStyleBackColor = true;
+            // 
+            // lblRunLog
+            // 
+            this.lblRunLog.AutoSize = true;
+            this.lblRunLog.BackColor = System.Drawing.SystemColors.Info;
+            this.lblRunLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.150944F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRunLog.Location = new System.Drawing.Point(3, 459);
+            this.lblRunLog.MinimumSize = new System.Drawing.Size(1240, 180);
+            this.lblRunLog.Name = "lblRunLog";
+            this.lblRunLog.Size = new System.Drawing.Size(1240, 221);
+            this.lblRunLog.TabIndex = 3;
+            this.lblRunLog.Text = "run log text goes here\r\n1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n10\r\n11\r\n12";
+            // 
+            // lblEventCount
+            // 
+            this.lblEventCount.AutoEllipsis = true;
+            this.lblEventCount.AutoSize = true;
+            this.lblEventCount.Location = new System.Drawing.Point(7, 434);
+            this.lblEventCount.MaximumSize = new System.Drawing.Size(620, 20);
+            this.lblEventCount.Name = "lblEventCount";
+            this.lblEventCount.Size = new System.Drawing.Size(125, 20);
+            this.lblEventCount.TabIndex = 39;
+            this.lblEventCount.Text = "Spill xxx, yyy ev";
+            // 
+            // groupBoxEvDisplay
+            // 
+            this.groupBoxEvDisplay.Controls.Add(this.btnDisplaySpill);
+            this.groupBoxEvDisplay.Controls.Add(this.txtEvent);
+            this.groupBoxEvDisplay.Controls.Add(this.btnNextDisp);
+            this.groupBoxEvDisplay.Controls.Add(this.btnPrevDisp);
+            this.groupBoxEvDisplay.Controls.Add(this.ud_VertMin);
+            this.groupBoxEvDisplay.Controls.Add(this.ud_VertMax);
+            this.groupBoxEvDisplay.Location = new System.Drawing.Point(620, 340);
+            this.groupBoxEvDisplay.Name = "groupBoxEvDisplay";
+            this.groupBoxEvDisplay.Size = new System.Drawing.Size(623, 114);
+            this.groupBoxEvDisplay.TabIndex = 35;
+            this.groupBoxEvDisplay.TabStop = false;
+            this.groupBoxEvDisplay.Text = "EventDisplay";
+            // 
+            // btnDisplaySpill
+            // 
+            this.btnDisplaySpill.Location = new System.Drawing.Point(407, 78);
+            this.btnDisplaySpill.Name = "btnDisplaySpill";
+            this.btnDisplaySpill.Size = new System.Drawing.Size(102, 30);
+            this.btnDisplaySpill.TabIndex = 40;
+            this.btnDisplaySpill.Text = "DISPLAY";
+            this.btnDisplaySpill.UseVisualStyleBackColor = true;
+            this.btnDisplaySpill.Click += new System.EventHandler(this.btnDisplaySpill_Click);
+            // 
+            // txtEvent
+            // 
+            this.txtEvent.Location = new System.Drawing.Point(517, 40);
+            this.txtEvent.Name = "txtEvent";
+            this.txtEvent.Size = new System.Drawing.Size(44, 27);
+            this.txtEvent.TabIndex = 38;
+            // 
+            // btnNextDisp
+            // 
+            this.btnNextDisp.Location = new System.Drawing.Point(567, 37);
+            this.btnNextDisp.Name = "btnNextDisp";
+            this.btnNextDisp.Size = new System.Drawing.Size(50, 30);
+            this.btnNextDisp.TabIndex = 37;
+            this.btnNextDisp.Text = ">>>";
+            this.btnNextDisp.UseVisualStyleBackColor = true;
+            this.btnNextDisp.Click += new System.EventHandler(this.btnNextDisp_Click);
+            // 
+            // btnPrevDisp
+            // 
+            this.btnPrevDisp.Location = new System.Drawing.Point(466, 37);
+            this.btnPrevDisp.Name = "btnPrevDisp";
+            this.btnPrevDisp.Size = new System.Drawing.Size(50, 30);
+            this.btnPrevDisp.TabIndex = 36;
+            this.btnPrevDisp.Text = "<<<";
+            this.btnPrevDisp.UseVisualStyleBackColor = true;
+            this.btnPrevDisp.Click += new System.EventHandler(this.btnPrevDisp_Click);
+            // 
+            // ud_VertMin
+            // 
+            this.ud_VertMin.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.ud_VertMin.Location = new System.Drawing.Point(515, 73);
+            this.ud_VertMin.Maximum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ud_VertMin.Minimum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            -2147483648});
+            this.ud_VertMin.Name = "ud_VertMin";
+            this.ud_VertMin.Size = new System.Drawing.Size(66, 27);
+            this.ud_VertMin.TabIndex = 35;
+            this.ud_VertMin.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
+            // 
+            // ud_VertMax
+            // 
+            this.ud_VertMax.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.ud_VertMax.Location = new System.Drawing.Point(515, 7);
+            this.ud_VertMax.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            0});
+            this.ud_VertMax.Name = "ud_VertMax";
+            this.ud_VertMax.Size = new System.Drawing.Size(66, 27);
+            this.ud_VertMax.TabIndex = 34;
+            this.ud_VertMax.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.numericUpDown1);
+            this.groupBox1.Controls.Add(this.btnOneSpill);
+            this.groupBox1.Controls.Add(this.btnChangeName);
+            this.groupBox1.Controls.Add(this.chkWC);
+            this.groupBox1.Controls.Add(this.chkFEB2);
+            this.groupBox1.Controls.Add(this.chkFEB1);
+            this.groupBox1.Controls.Add(this.chkFakeIt);
+            this.groupBox1.Controls.Add(this.lblWC_TotTrig);
+            this.groupBox1.Controls.Add(this.lblFEB2_TotTrig);
+            this.groupBox1.Controls.Add(this.lblFEB1_TotTrig);
+            this.groupBox1.Controls.Add(this.lblWCSpill);
+            this.groupBox1.Controls.Add(this.lblFEB2Spill);
+            this.groupBox1.Controls.Add(this.lblSpillTime);
+            this.groupBox1.Controls.Add(this.lblWCTrigNum);
+            this.groupBox1.Controls.Add(this.lblFEB2TrigNum);
+            this.groupBox1.Controls.Add(this.lblFEB1TrigNum);
+            this.groupBox1.Controls.Add(this.lblFEB1Spill);
+            this.groupBox1.Controls.Add(this.lblRunPrep);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.lblRunTime);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblSpillWC);
+            this.groupBox1.Controls.Add(this.lblSpillFEB2);
+            this.groupBox1.Controls.Add(this.lblSpillFEB1);
+            this.groupBox1.Controls.Add(this.lblRunName);
+            this.groupBox1.Controls.Add(this.btnStopRun);
+            this.groupBox1.Controls.Add(this.btnStartRun);
+            this.groupBox1.Controls.Add(this.btnPrepare);
+            this.groupBox1.Controls.Add(this.btnConnectAll);
+            this.groupBox1.Location = new System.Drawing.Point(3, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(611, 418);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "RUN CONTROL";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(397, 94);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(141, 20);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "Fake Spill Len (s)";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(534, 92);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(66, 27);
+            this.numericUpDown1.TabIndex = 33;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // btnOneSpill
+            // 
+            this.btnOneSpill.Location = new System.Drawing.Point(6, 144);
+            this.btnOneSpill.Name = "btnOneSpill";
+            this.btnOneSpill.Size = new System.Drawing.Size(260, 52);
+            this.btnOneSpill.TabIndex = 32;
+            this.btnOneSpill.Tag = "";
+            this.btnOneSpill.Text = "TAKE ONE SPILL";
+            this.btnOneSpill.UseVisualStyleBackColor = true;
+            this.btnOneSpill.Click += new System.EventHandler(this.btnOneSpill_Click);
+            // 
+            // btnChangeName
+            // 
+            this.btnChangeName.Location = new System.Drawing.Point(500, 34);
+            this.btnChangeName.Name = "btnChangeName";
+            this.btnChangeName.Size = new System.Drawing.Size(100, 33);
+            this.btnChangeName.TabIndex = 31;
+            this.btnChangeName.Tag = "";
+            this.btnChangeName.Text = "CHANGE";
+            this.btnChangeName.UseVisualStyleBackColor = true;
+            this.btnChangeName.Click += new System.EventHandler(this.btnChangeName_Click);
+            // 
+            // chkWC
+            // 
+            this.chkWC.AutoSize = true;
+            this.chkWC.Location = new System.Drawing.Point(440, 34);
+            this.chkWC.Name = "chkWC";
+            this.chkWC.Size = new System.Drawing.Size(59, 24);
+            this.chkWC.TabIndex = 30;
+            this.chkWC.Text = "WC";
+            this.chkWC.UseVisualStyleBackColor = true;
+            // 
+            // chkFEB2
+            // 
+            this.chkFEB2.AutoSize = true;
+            this.chkFEB2.Location = new System.Drawing.Point(365, 34);
+            this.chkFEB2.Name = "chkFEB2";
+            this.chkFEB2.Size = new System.Drawing.Size(73, 24);
+            this.chkFEB2.TabIndex = 29;
+            this.chkFEB2.Text = "FEB2";
+            this.chkFEB2.UseVisualStyleBackColor = true;
+            // 
+            // chkFEB1
+            // 
+            this.chkFEB1.AutoSize = true;
+            this.chkFEB1.Checked = true;
+            this.chkFEB1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkFEB1.Location = new System.Drawing.Point(290, 34);
+            this.chkFEB1.Name = "chkFEB1";
+            this.chkFEB1.Size = new System.Drawing.Size(73, 24);
+            this.chkFEB1.TabIndex = 28;
+            this.chkFEB1.Text = "FEB1";
+            this.chkFEB1.UseVisualStyleBackColor = true;
+            // 
+            // chkFakeIt
+            // 
+            this.chkFakeIt.AutoSize = true;
+            this.chkFakeIt.Checked = true;
+            this.chkFakeIt.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkFakeIt.Location = new System.Drawing.Point(290, 92);
+            this.chkFakeIt.Name = "chkFakeIt";
+            this.chkFakeIt.Size = new System.Drawing.Size(76, 24);
+            this.chkFakeIt.TabIndex = 27;
+            this.chkFakeIt.Text = "FakeIt";
+            this.chkFakeIt.UseVisualStyleBackColor = true;
+            this.chkFakeIt.CheckedChanged += new System.EventHandler(this.chkFakeIt_CheckedChanged);
+            // 
+            // lblWC_TotTrig
+            // 
+            this.lblWC_TotTrig.AutoSize = true;
+            this.lblWC_TotTrig.Location = new System.Drawing.Point(540, 305);
+            this.lblWC_TotTrig.Name = "lblWC_TotTrig";
+            this.lblWC_TotTrig.Size = new System.Drawing.Size(62, 20);
+            this.lblWC_TotTrig.TabIndex = 26;
+            this.lblWC_TotTrig.Text = "label14";
+            // 
+            // lblFEB2_TotTrig
+            // 
+            this.lblFEB2_TotTrig.AutoSize = true;
+            this.lblFEB2_TotTrig.Location = new System.Drawing.Point(483, 305);
+            this.lblFEB2_TotTrig.Name = "lblFEB2_TotTrig";
+            this.lblFEB2_TotTrig.Size = new System.Drawing.Size(62, 20);
+            this.lblFEB2_TotTrig.TabIndex = 25;
+            this.lblFEB2_TotTrig.Text = "label14";
+            // 
+            // lblFEB1_TotTrig
+            // 
+            this.lblFEB1_TotTrig.AutoSize = true;
+            this.lblFEB1_TotTrig.Location = new System.Drawing.Point(426, 305);
+            this.lblFEB1_TotTrig.Name = "lblFEB1_TotTrig";
+            this.lblFEB1_TotTrig.Size = new System.Drawing.Size(62, 20);
+            this.lblFEB1_TotTrig.TabIndex = 24;
+            this.lblFEB1_TotTrig.Text = "label14";
+            // 
+            // lblWCSpill
+            // 
+            this.lblWCSpill.AutoSize = true;
+            this.lblWCSpill.Location = new System.Drawing.Point(540, 276);
+            this.lblWCSpill.Name = "lblWCSpill";
+            this.lblWCSpill.Size = new System.Drawing.Size(62, 20);
+            this.lblWCSpill.TabIndex = 23;
+            this.lblWCSpill.Text = "label14";
+            // 
+            // lblFEB2Spill
+            // 
+            this.lblFEB2Spill.AutoSize = true;
+            this.lblFEB2Spill.Location = new System.Drawing.Point(483, 276);
+            this.lblFEB2Spill.Name = "lblFEB2Spill";
+            this.lblFEB2Spill.Size = new System.Drawing.Size(62, 20);
+            this.lblFEB2Spill.TabIndex = 22;
+            this.lblFEB2Spill.Text = "label14";
+            // 
+            // lblSpillTime
+            // 
+            this.lblSpillTime.AutoSize = true;
+            this.lblSpillTime.Location = new System.Drawing.Point(426, 368);
+            this.lblSpillTime.Name = "lblSpillTime";
+            this.lblSpillTime.Size = new System.Drawing.Size(95, 20);
+            this.lblSpillTime.TabIndex = 21;
+            this.lblSpillTime.Text = "lblSpillTime";
+            // 
+            // lblWCTrigNum
+            // 
+            this.lblWCTrigNum.AutoSize = true;
+            this.lblWCTrigNum.Location = new System.Drawing.Point(540, 334);
+            this.lblWCTrigNum.Name = "lblWCTrigNum";
+            this.lblWCTrigNum.Size = new System.Drawing.Size(53, 20);
+            this.lblWCTrigNum.TabIndex = 20;
+            this.lblWCTrigNum.Text = "label2";
+            // 
+            // lblFEB2TrigNum
+            // 
+            this.lblFEB2TrigNum.AutoSize = true;
+            this.lblFEB2TrigNum.Location = new System.Drawing.Point(483, 334);
+            this.lblFEB2TrigNum.Name = "lblFEB2TrigNum";
+            this.lblFEB2TrigNum.Size = new System.Drawing.Size(53, 20);
+            this.lblFEB2TrigNum.TabIndex = 19;
+            this.lblFEB2TrigNum.Text = "label2";
+            // 
+            // lblFEB1TrigNum
+            // 
+            this.lblFEB1TrigNum.AutoSize = true;
+            this.lblFEB1TrigNum.Location = new System.Drawing.Point(426, 334);
+            this.lblFEB1TrigNum.Name = "lblFEB1TrigNum";
+            this.lblFEB1TrigNum.Size = new System.Drawing.Size(53, 20);
+            this.lblFEB1TrigNum.TabIndex = 18;
+            this.lblFEB1TrigNum.Text = "label2";
+            // 
+            // lblFEB1Spill
+            // 
+            this.lblFEB1Spill.AutoSize = true;
+            this.lblFEB1Spill.Location = new System.Drawing.Point(426, 276);
+            this.lblFEB1Spill.Name = "lblFEB1Spill";
+            this.lblFEB1Spill.Size = new System.Drawing.Size(62, 20);
+            this.lblFEB1Spill.TabIndex = 17;
+            this.lblFEB1Spill.Text = "label14";
+            // 
+            // lblRunPrep
+            // 
+            this.lblRunPrep.AutoSize = true;
+            this.lblRunPrep.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.26415F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRunPrep.Location = new System.Drawing.Point(286, 119);
+            this.lblRunPrep.Name = "lblRunPrep";
+            this.lblRunPrep.Size = new System.Drawing.Size(85, 29);
+            this.lblRunPrep.TabIndex = 16;
+            this.lblRunPrep.Text = "Status";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(287, 334);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(113, 20);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Last Spill Trig";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(287, 305);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(120, 20);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Total Num Trig";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(287, 276);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(132, 20);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Total Num Spills";
+            // 
+            // lblRunTime
+            // 
+            this.lblRunTime.AutoSize = true;
+            this.lblRunTime.Location = new System.Drawing.Point(426, 214);
+            this.lblRunTime.Name = "lblRunTime";
+            this.lblRunTime.Size = new System.Drawing.Size(0, 20);
+            this.lblRunTime.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(286, 214);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(93, 20);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Time in run";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(286, 185);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 20);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Spill Status";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(286, 156);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 20);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Run Name";
+            // 
+            // lblSpillWC
+            // 
+            this.lblSpillWC.AutoSize = true;
+            this.lblSpillWC.Location = new System.Drawing.Point(540, 185);
+            this.lblSpillWC.Name = "lblSpillWC";
+            this.lblSpillWC.Size = new System.Drawing.Size(53, 20);
+            this.lblSpillWC.TabIndex = 8;
+            this.lblSpillWC.Text = "label2";
+            // 
+            // lblSpillFEB2
+            // 
+            this.lblSpillFEB2.AutoSize = true;
+            this.lblSpillFEB2.Location = new System.Drawing.Point(483, 185);
+            this.lblSpillFEB2.Name = "lblSpillFEB2";
+            this.lblSpillFEB2.Size = new System.Drawing.Size(53, 20);
+            this.lblSpillFEB2.TabIndex = 7;
+            this.lblSpillFEB2.Text = "label2";
+            // 
+            // lblSpillFEB1
+            // 
+            this.lblSpillFEB1.AutoSize = true;
+            this.lblSpillFEB1.Location = new System.Drawing.Point(426, 185);
+            this.lblSpillFEB1.Name = "lblSpillFEB1";
+            this.lblSpillFEB1.Size = new System.Drawing.Size(53, 20);
+            this.lblSpillFEB1.TabIndex = 6;
+            this.lblSpillFEB1.Text = "label2";
+            // 
+            // lblRunName
+            // 
+            this.lblRunName.AutoSize = true;
+            this.lblRunName.Location = new System.Drawing.Point(426, 156);
+            this.lblRunName.Name = "lblRunName";
+            this.lblRunName.Size = new System.Drawing.Size(100, 20);
+            this.lblRunName.TabIndex = 5;
+            this.lblRunName.Text = "lblRunName";
+            // 
+            // btnStopRun
+            // 
+            this.btnStopRun.Location = new System.Drawing.Point(6, 302);
+            this.btnStopRun.Name = "btnStopRun";
+            this.btnStopRun.Size = new System.Drawing.Size(260, 100);
+            this.btnStopRun.TabIndex = 4;
+            this.btnStopRun.Tag = "";
+            this.btnStopRun.Text = "STOP RUN";
+            this.btnStopRun.UseVisualStyleBackColor = true;
+            this.btnStopRun.Click += new System.EventHandler(this.btnStopRun_Click);
+            // 
+            // btnStartRun
+            // 
+            this.btnStartRun.Location = new System.Drawing.Point(6, 199);
+            this.btnStartRun.Name = "btnStartRun";
+            this.btnStartRun.Size = new System.Drawing.Size(260, 100);
+            this.btnStartRun.TabIndex = 3;
+            this.btnStartRun.Tag = "";
+            this.btnStartRun.Text = "START RUN";
+            this.btnStartRun.UseVisualStyleBackColor = true;
+            this.btnStartRun.Click += new System.EventHandler(this.btnStartRun_Click);
+            // 
+            // btnPrepare
+            // 
+            this.btnPrepare.Location = new System.Drawing.Point(6, 89);
+            this.btnPrepare.Name = "btnPrepare";
+            this.btnPrepare.Size = new System.Drawing.Size(260, 52);
+            this.btnPrepare.TabIndex = 2;
+            this.btnPrepare.Tag = "";
+            this.btnPrepare.Text = "PREPARE FOR RUN";
+            this.btnPrepare.UseVisualStyleBackColor = true;
+            this.btnPrepare.Click += new System.EventHandler(this.btnPrepare_Click);
+            // 
+            // btnConnectAll
+            // 
+            this.btnConnectAll.Location = new System.Drawing.Point(6, 34);
+            this.btnConnectAll.Name = "btnConnectAll";
+            this.btnConnectAll.Size = new System.Drawing.Size(260, 52);
+            this.btnConnectAll.TabIndex = 1;
+            this.btnConnectAll.Tag = "";
+            this.btnConnectAll.Text = "CONNECT ALL";
+            this.btnConnectAll.UseVisualStyleBackColor = true;
+            this.btnConnectAll.Click += new System.EventHandler(this.btnConnectAll_Click);
+            // 
+            // zg1
+            // 
+            this.zg1.Location = new System.Drawing.Point(620, 8);
+            this.zg1.Margin = new System.Windows.Forms.Padding(6);
+            this.zg1.Name = "zg1";
+            this.zg1.ScrollGrace = 0D;
+            this.zg1.ScrollMaxX = 0D;
+            this.zg1.ScrollMaxY = 0D;
+            this.zg1.ScrollMaxY2 = 0D;
+            this.zg1.ScrollMinX = 0D;
+            this.zg1.ScrollMinY = 0D;
+            this.zg1.ScrollMinY2 = 0D;
+            this.zg1.Size = new System.Drawing.Size(630, 342);
+            this.zg1.TabIndex = 1;
             // 
             // tabFEB1
             // 
@@ -1552,755 +2827,45 @@ namespace TB_mu2e
             this.btnFEB1.UseVisualStyleBackColor = true;
             this.btnFEB1.Click += new System.EventHandler(this.btnFEB1_Click);
             // 
-            // tabHist
-            // 
-            this.tabHist.Controls.Add(this.label9);
-            this.tabHist.Controls.Add(this.udHistIntegralTime);
-            this.tabHist.Controls.Add(this.chkLogYHist);
-            this.tabHist.Controls.Add(this.labelTempHist);
-            this.tabHist.Controls.Add(this.zedGraphHisto);
-            this.tabHist.Controls.Add(this.label30);
-            this.tabHist.Controls.Add(this.textBox3);
-            this.tabHist.Controls.Add(this.btnSetV);
-            this.tabHist.Controls.Add(this.btnSelHiHist);
-            this.tabHist.Controls.Add(this.btnSelLowHist);
-            this.tabHist.Controls.Add(this.label31);
-            this.tabHist.Controls.Add(this.listBoxHistos);
-            this.tabHist.Controls.Add(this.chkBoxJ19);
-            this.tabHist.Controls.Add(this.chkBoxJ20);
-            this.tabHist.Controls.Add(this.btnHistoScan);
-            this.tabHist.Controls.Add(this.button12);
-            this.tabHist.Controls.Add(this.chkBoxJ21);
-            this.tabHist.Controls.Add(this.chkBoxJ22);
-            this.tabHist.Controls.Add(this.chkBoxJ23);
-            this.tabHist.Controls.Add(this.chkBoxJ24);
-            this.tabHist.Controls.Add(this.chkBoxJ25);
-            this.tabHist.Controls.Add(this.chkBoxJ26);
-            this.tabHist.Controls.Add(this.chkBoxJ15);
-            this.tabHist.Controls.Add(this.chkBoxJ16);
-            this.tabHist.Controls.Add(this.chkBoxJ17);
-            this.tabHist.Controls.Add(this.chkBoxJ18);
-            this.tabHist.Controls.Add(this.chkBoxJ13);
-            this.tabHist.Controls.Add(this.chkBoxJ14);
-            this.tabHist.Controls.Add(this.chkBoxJ12);
-            this.tabHist.Controls.Add(this.chkBoxJ11);
-            this.tabHist.Controls.Add(this.label32);
-            this.tabHist.Location = new System.Drawing.Point(4, 32);
-            this.tabHist.Name = "tabHist";
-            this.tabHist.Padding = new System.Windows.Forms.Padding(3);
-            this.tabHist.Size = new System.Drawing.Size(1255, 665);
-            this.tabHist.TabIndex = 10;
-            this.tabHist.Text = "Histogram";
-            this.tabHist.UseVisualStyleBackColor = true;
-            this.tabHist.Enter += new System.EventHandler(this.tabHist_Enter);
-            this.tabHist.Leave += new System.EventHandler(this.tabHist_Leave);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(485, 592);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(169, 20);
-            this.label9.TabIndex = 119;
-            this.label9.Text = "Integration Time (ms)";
-            // 
-            // udHistIntegralTime
-            // 
-            this.udHistIntegralTime.Location = new System.Drawing.Point(660, 590);
-            this.udHistIntegralTime.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.udHistIntegralTime.Name = "udHistIntegralTime";
-            this.udHistIntegralTime.Size = new System.Drawing.Size(57, 27);
-            this.udHistIntegralTime.TabIndex = 118;
-            this.udHistIntegralTime.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
-            // chkLogYHist
-            // 
-            this.chkLogYHist.AutoSize = true;
-            this.chkLogYHist.Checked = true;
-            this.chkLogYHist.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkLogYHist.Location = new System.Drawing.Point(1172, 591);
-            this.chkLogYHist.Name = "chkLogYHist";
-            this.chkLogYHist.Size = new System.Drawing.Size(69, 24);
-            this.chkLogYHist.TabIndex = 117;
-            this.chkLogYHist.Text = "LogY";
-            this.chkLogYHist.UseVisualStyleBackColor = true;
-            this.chkLogYHist.CheckStateChanged += new System.EventHandler(this.chkLogYHist_CheckStateChanged);
-            // 
-            // labelTempHist
-            // 
-            this.labelTempHist.AutoSize = true;
-            this.labelTempHist.Location = new System.Drawing.Point(7, 15);
-            this.labelTempHist.Name = "labelTempHist";
-            this.labelTempHist.Size = new System.Drawing.Size(117, 20);
-            this.labelTempHist.TabIndex = 116;
-            this.labelTempHist.Text = "labelTempHist";
-            // 
-            // zedGraphHisto
-            // 
-            this.zedGraphHisto.Location = new System.Drawing.Point(489, 15);
-            this.zedGraphHisto.Margin = new System.Windows.Forms.Padding(14, 12, 14, 12);
-            this.zedGraphHisto.Name = "zedGraphHisto";
-            this.zedGraphHisto.ScrollGrace = 0D;
-            this.zedGraphHisto.ScrollMaxX = 0D;
-            this.zedGraphHisto.ScrollMaxY = 0D;
-            this.zedGraphHisto.ScrollMaxY2 = 0D;
-            this.zedGraphHisto.ScrollMinX = 0D;
-            this.zedGraphHisto.ScrollMinY = 0D;
-            this.zedGraphHisto.ScrollMinY2 = 0D;
-            this.zedGraphHisto.Size = new System.Drawing.Size(752, 560);
-            this.zedGraphHisto.TabIndex = 115;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(314, 365);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(104, 20);
-            this.label30.TabIndex = 114;
-            this.label30.Text = "Bias Voltage";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(318, 388);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(75, 27);
-            this.textBox3.TabIndex = 91;
-            this.textBox3.Text = "56.1";
-            // 
-            // btnSetV
-            // 
-            this.btnSetV.Location = new System.Drawing.Point(397, 388);
-            this.btnSetV.Name = "btnSetV";
-            this.btnSetV.Size = new System.Drawing.Size(75, 27);
-            this.btnSetV.TabIndex = 113;
-            this.btnSetV.Text = "Set All";
-            this.btnSetV.UseVisualStyleBackColor = true;
-            this.btnSetV.Click += new System.EventHandler(this.btnSetV_Click);
-            // 
-            // btnSelHiHist
-            // 
-            this.btnSelHiHist.Location = new System.Drawing.Point(318, 323);
-            this.btnSelHiHist.Name = "btnSelHiHist";
-            this.btnSelHiHist.Size = new System.Drawing.Size(139, 39);
-            this.btnSelHiHist.TabIndex = 112;
-            this.btnSelHiHist.Text = "Select J19-J26";
-            this.btnSelHiHist.UseVisualStyleBackColor = true;
-            this.btnSelHiHist.Click += new System.EventHandler(this.btnSelHiHist_Click);
-            // 
-            // btnSelLowHist
-            // 
-            this.btnSelLowHist.Location = new System.Drawing.Point(318, 278);
-            this.btnSelLowHist.Name = "btnSelLowHist";
-            this.btnSelLowHist.Size = new System.Drawing.Size(139, 39);
-            this.btnSelLowHist.TabIndex = 111;
-            this.btnSelLowHist.Text = "Select J11-J18";
-            this.btnSelLowHist.UseVisualStyleBackColor = true;
-            this.btnSelLowHist.Click += new System.EventHandler(this.btnSelLowHist_Click);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(208, 423);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(140, 20);
-            this.label31.TabIndex = 110;
-            this.label31.Text = "Histogram to Plot";
-            // 
-            // listBoxHistos
-            // 
-            this.listBoxHistos.FormattingEnabled = true;
-            this.listBoxHistos.ItemHeight = 20;
-            this.listBoxHistos.Location = new System.Drawing.Point(212, 446);
-            this.listBoxHistos.Name = "listBoxHistos";
-            this.listBoxHistos.Size = new System.Drawing.Size(260, 84);
-            this.listBoxHistos.Sorted = true;
-            this.listBoxHistos.TabIndex = 109;
-            this.listBoxHistos.SelectedIndexChanged += new System.EventHandler(this.listBoxHistos_SelectedIndexChanged);
-            // 
-            // chkBoxJ19
-            // 
-            this.chkBoxJ19.AutoSize = true;
-            this.chkBoxJ19.Checked = true;
-            this.chkBoxJ19.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ19.Location = new System.Drawing.Point(382, 38);
-            this.chkBoxJ19.Name = "chkBoxJ19";
-            this.chkBoxJ19.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ19.TabIndex = 108;
-            this.chkBoxJ19.Text = "J19";
-            this.chkBoxJ19.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ20
-            // 
-            this.chkBoxJ20.AutoSize = true;
-            this.chkBoxJ20.Checked = true;
-            this.chkBoxJ20.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ20.Location = new System.Drawing.Point(382, 68);
-            this.chkBoxJ20.Name = "chkBoxJ20";
-            this.chkBoxJ20.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ20.TabIndex = 107;
-            this.chkBoxJ20.Text = "J20";
-            this.chkBoxJ20.UseVisualStyleBackColor = true;
-            // 
-            // btnHistoScan
-            // 
-            this.btnHistoScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHistoScan.Location = new System.Drawing.Point(212, 536);
-            this.btnHistoScan.Name = "btnHistoScan";
-            this.btnHistoScan.Size = new System.Drawing.Size(127, 39);
-            this.btnHistoScan.TabIndex = 89;
-            this.btnHistoScan.Text = "SCAN";
-            this.btnHistoScan.UseVisualStyleBackColor = true;
-            this.btnHistoScan.Click += new System.EventHandler(this.btnHistoScan_Click);
-            // 
-            // button12
-            // 
-            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.Location = new System.Drawing.Point(345, 536);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(127, 39);
-            this.button12.TabIndex = 90;
-            this.button12.Text = "SAVE";
-            this.button12.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ21
-            // 
-            this.chkBoxJ21.AutoSize = true;
-            this.chkBoxJ21.Checked = true;
-            this.chkBoxJ21.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ21.Location = new System.Drawing.Point(382, 98);
-            this.chkBoxJ21.Name = "chkBoxJ21";
-            this.chkBoxJ21.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ21.TabIndex = 106;
-            this.chkBoxJ21.Text = "J21";
-            this.chkBoxJ21.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ22
-            // 
-            this.chkBoxJ22.AutoSize = true;
-            this.chkBoxJ22.Checked = true;
-            this.chkBoxJ22.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ22.Location = new System.Drawing.Point(382, 128);
-            this.chkBoxJ22.Name = "chkBoxJ22";
-            this.chkBoxJ22.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ22.TabIndex = 105;
-            this.chkBoxJ22.Text = "J22";
-            this.chkBoxJ22.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ23
-            // 
-            this.chkBoxJ23.AutoSize = true;
-            this.chkBoxJ23.Checked = true;
-            this.chkBoxJ23.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ23.Location = new System.Drawing.Point(382, 158);
-            this.chkBoxJ23.Name = "chkBoxJ23";
-            this.chkBoxJ23.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ23.TabIndex = 104;
-            this.chkBoxJ23.Text = "J23";
-            this.chkBoxJ23.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ24
-            // 
-            this.chkBoxJ24.AutoSize = true;
-            this.chkBoxJ24.Checked = true;
-            this.chkBoxJ24.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ24.Location = new System.Drawing.Point(382, 188);
-            this.chkBoxJ24.Name = "chkBoxJ24";
-            this.chkBoxJ24.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ24.TabIndex = 103;
-            this.chkBoxJ24.Text = "J24";
-            this.chkBoxJ24.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ25
-            // 
-            this.chkBoxJ25.AutoSize = true;
-            this.chkBoxJ25.Checked = true;
-            this.chkBoxJ25.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ25.Location = new System.Drawing.Point(382, 218);
-            this.chkBoxJ25.Name = "chkBoxJ25";
-            this.chkBoxJ25.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ25.TabIndex = 102;
-            this.chkBoxJ25.Text = "J25";
-            this.chkBoxJ25.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ26
-            // 
-            this.chkBoxJ26.AutoSize = true;
-            this.chkBoxJ26.Checked = true;
-            this.chkBoxJ26.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ26.Location = new System.Drawing.Point(382, 248);
-            this.chkBoxJ26.Name = "chkBoxJ26";
-            this.chkBoxJ26.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ26.TabIndex = 101;
-            this.chkBoxJ26.Text = "J26";
-            this.chkBoxJ26.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ15
-            // 
-            this.chkBoxJ15.AutoSize = true;
-            this.chkBoxJ15.Checked = true;
-            this.chkBoxJ15.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ15.Location = new System.Drawing.Point(318, 158);
-            this.chkBoxJ15.Name = "chkBoxJ15";
-            this.chkBoxJ15.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ15.TabIndex = 100;
-            this.chkBoxJ15.Text = "J15";
-            this.chkBoxJ15.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ16
-            // 
-            this.chkBoxJ16.AutoSize = true;
-            this.chkBoxJ16.Checked = true;
-            this.chkBoxJ16.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ16.Location = new System.Drawing.Point(318, 188);
-            this.chkBoxJ16.Name = "chkBoxJ16";
-            this.chkBoxJ16.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ16.TabIndex = 99;
-            this.chkBoxJ16.Text = "J16";
-            this.chkBoxJ16.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ17
-            // 
-            this.chkBoxJ17.AutoSize = true;
-            this.chkBoxJ17.Checked = true;
-            this.chkBoxJ17.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ17.Location = new System.Drawing.Point(318, 218);
-            this.chkBoxJ17.Name = "chkBoxJ17";
-            this.chkBoxJ17.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ17.TabIndex = 98;
-            this.chkBoxJ17.Text = "J17";
-            this.chkBoxJ17.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ18
-            // 
-            this.chkBoxJ18.AutoSize = true;
-            this.chkBoxJ18.Checked = true;
-            this.chkBoxJ18.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ18.Location = new System.Drawing.Point(318, 248);
-            this.chkBoxJ18.Name = "chkBoxJ18";
-            this.chkBoxJ18.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ18.TabIndex = 97;
-            this.chkBoxJ18.Text = "J18";
-            this.chkBoxJ18.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ13
-            // 
-            this.chkBoxJ13.AutoSize = true;
-            this.chkBoxJ13.Checked = true;
-            this.chkBoxJ13.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ13.Location = new System.Drawing.Point(318, 98);
-            this.chkBoxJ13.Name = "chkBoxJ13";
-            this.chkBoxJ13.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ13.TabIndex = 96;
-            this.chkBoxJ13.Text = "J13";
-            this.chkBoxJ13.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ14
-            // 
-            this.chkBoxJ14.AutoSize = true;
-            this.chkBoxJ14.Checked = true;
-            this.chkBoxJ14.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ14.Location = new System.Drawing.Point(318, 128);
-            this.chkBoxJ14.Name = "chkBoxJ14";
-            this.chkBoxJ14.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ14.TabIndex = 95;
-            this.chkBoxJ14.Text = "J14";
-            this.chkBoxJ14.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ12
-            // 
-            this.chkBoxJ12.AutoSize = true;
-            this.chkBoxJ12.Checked = true;
-            this.chkBoxJ12.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ12.Location = new System.Drawing.Point(318, 68);
-            this.chkBoxJ12.Name = "chkBoxJ12";
-            this.chkBoxJ12.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ12.TabIndex = 94;
-            this.chkBoxJ12.Text = "J12";
-            this.chkBoxJ12.UseVisualStyleBackColor = true;
-            // 
-            // chkBoxJ11
-            // 
-            this.chkBoxJ11.AutoSize = true;
-            this.chkBoxJ11.Checked = true;
-            this.chkBoxJ11.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBoxJ11.Location = new System.Drawing.Point(318, 38);
-            this.chkBoxJ11.Name = "chkBoxJ11";
-            this.chkBoxJ11.Size = new System.Drawing.Size(58, 24);
-            this.chkBoxJ11.TabIndex = 93;
-            this.chkBoxJ11.Text = "J11";
-            this.chkBoxJ11.UseVisualStyleBackColor = true;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(314, 15);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(158, 20);
-            this.label32.TabIndex = 92;
-            this.label32.Text = "CMB CONNECTED";
-            // 
-            // CalibPType
-            // 
-            this.CalibPType.Controls.Add(this.txtHVTestComments);
-            this.CalibPType.Controls.Add(this.label44);
-            this.CalibPType.Controls.Add(this.label43);
-            this.CalibPType.Controls.Add(this.label42);
-            this.CalibPType.Controls.Add(this.label41);
-            this.CalibPType.Controls.Add(this.label40);
-            this.CalibPType.Controls.Add(this.label39);
-            this.CalibPType.Controls.Add(this.btnSaveDB);
-            this.CalibPType.Controls.Add(this.btnCalibrate);
-            this.CalibPType.Controls.Add(this.btnBuildListView);
-            this.CalibPType.Controls.Add(this.lblMuxTime);
-            this.CalibPType.Controls.Add(this.lblScanTime);
-            this.CalibPType.Controls.Add(this.lblScanSamples);
-            this.CalibPType.Controls.Add(this.UpDnSamples);
-            this.CalibPType.Controls.Add(this.btnZeroVoltages);
-            this.CalibPType.Controls.Add(this.btnUpdateList);
-            this.CalibPType.Controls.Add(this.lblSelectedChan);
-            this.CalibPType.Controls.Add(this.label95);
-            this.CalibPType.Controls.Add(this.txtVSet);
-            this.CalibPType.Controls.Add(this.btnMuxTest);
-            this.CalibPType.Controls.Add(this.btnSaveVScan);
-            this.CalibPType.Controls.Add(this.label47);
-            this.CalibPType.Controls.Add(this.btnFullVScan);
-            this.CalibPType.Controls.Add(this.label37);
-            this.CalibPType.Controls.Add(this.listView1);
-            this.CalibPType.Location = new System.Drawing.Point(4, 32);
-            this.CalibPType.Name = "CalibPType";
-            this.CalibPType.Size = new System.Drawing.Size(1255, 665);
-            this.CalibPType.TabIndex = 11;
-            this.CalibPType.Text = "Calibration";
-            this.CalibPType.UseVisualStyleBackColor = true;
-            // 
-            // txtHVTestComments
-            // 
-            this.txtHVTestComments.Location = new System.Drawing.Point(41, 403);
-            this.txtHVTestComments.Multiline = true;
-            this.txtHVTestComments.Name = "txtHVTestComments";
-            this.txtHVTestComments.Size = new System.Drawing.Size(390, 126);
-            this.txtHVTestComments.TabIndex = 32;
-            this.txtHVTestComments.Text = "All HV channels OK.";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(7, 550);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(28, 25);
-            this.label44.TabIndex = 29;
-            this.label44.Text = "7.";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(7, 350);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(292, 50);
-            this.label43.TabIndex = 28;
-            this.label43.Text = "6.    Check the results.    -------->\r\n       Comments:";
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(7, 275);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(28, 25);
-            this.label42.TabIndex = 27;
-            this.label42.Text = "5.";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(7, 225);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(28, 25);
-            this.label41.TabIndex = 26;
-            this.label41.Text = "4.";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(7, 175);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(404, 25);
-            this.label40.TabIndex = 25;
-            this.label40.Text = "3.    Connect the HDMI cables from the DMM.";
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(7, 125);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(28, 25);
-            this.label39.TabIndex = 24;
-            this.label39.Text = "2.";
-            // 
-            // btnSaveDB
-            // 
-            this.btnSaveDB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveDB.Location = new System.Drawing.Point(238, 543);
-            this.btnSaveDB.Name = "btnSaveDB";
-            this.btnSaveDB.Size = new System.Drawing.Size(146, 38);
-            this.btnSaveDB.TabIndex = 23;
-            this.btnSaveDB.Text = "Save DB File";
-            this.btnSaveDB.UseVisualStyleBackColor = true;
-            this.btnSaveDB.Click += new System.EventHandler(this.btnSaveDB_Click);
-            // 
-            // btnCalibrate
-            // 
-            this.btnCalibrate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCalibrate.Location = new System.Drawing.Point(1020, 7);
-            this.btnCalibrate.Name = "btnCalibrate";
-            this.btnCalibrate.Size = new System.Drawing.Size(227, 40);
-            this.btnCalibrate.TabIndex = 21;
-            this.btnCalibrate.Text = "Load Calibrations";
-            this.btnCalibrate.UseVisualStyleBackColor = true;
-            // 
-            // btnBuildListView
-            // 
-            this.btnBuildListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuildListView.Location = new System.Drawing.Point(41, 218);
-            this.btnBuildListView.Name = "btnBuildListView";
-            this.btnBuildListView.Size = new System.Drawing.Size(219, 38);
-            this.btnBuildListView.TabIndex = 20;
-            this.btnBuildListView.Text = "Initialize Voltage List";
-            this.btnBuildListView.UseVisualStyleBackColor = true;
-            this.btnBuildListView.Click += new System.EventHandler(this.btnBuildListView_Click);
-            // 
-            // lblMuxTime
-            // 
-            this.lblMuxTime.AutoSize = true;
-            this.lblMuxTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMuxTime.Location = new System.Drawing.Point(157, 130);
-            this.lblMuxTime.Name = "lblMuxTime";
-            this.lblMuxTime.Size = new System.Drawing.Size(151, 18);
-            this.lblMuxTime.TabIndex = 19;
-            this.lblMuxTime.Text = "Scan Time: 00:00.000";
-            // 
-            // lblScanTime
-            // 
-            this.lblScanTime.AutoSize = true;
-            this.lblScanTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScanTime.Location = new System.Drawing.Point(197, 280);
-            this.lblScanTime.Name = "lblScanTime";
-            this.lblScanTime.Size = new System.Drawing.Size(151, 18);
-            this.lblScanTime.TabIndex = 18;
-            this.lblScanTime.Text = "Scan Time: 00:00.000";
-            // 
-            // lblScanSamples
-            // 
-            this.lblScanSamples.AutoSize = true;
-            this.lblScanSamples.Location = new System.Drawing.Point(37, 309);
-            this.lblScanSamples.Name = "lblScanSamples";
-            this.lblScanSamples.Size = new System.Drawing.Size(174, 20);
-            this.lblScanSamples.TabIndex = 17;
-            this.lblScanSamples.Text = "Samples per Channel:";
-            // 
-            // UpDnSamples
-            // 
-            this.UpDnSamples.Location = new System.Drawing.Point(217, 307);
-            this.UpDnSamples.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.UpDnSamples.Name = "UpDnSamples";
-            this.UpDnSamples.Size = new System.Drawing.Size(54, 27);
-            this.UpDnSamples.TabIndex = 16;
-            this.UpDnSamples.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // btnZeroVoltages
-            // 
-            this.btnZeroVoltages.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnZeroVoltages.Location = new System.Drawing.Point(1123, 586);
-            this.btnZeroVoltages.Name = "btnZeroVoltages";
-            this.btnZeroVoltages.Size = new System.Drawing.Size(124, 36);
-            this.btnZeroVoltages.TabIndex = 15;
-            this.btnZeroVoltages.Text = "ZERO ALL";
-            this.btnZeroVoltages.UseVisualStyleBackColor = true;
-            this.btnZeroVoltages.Click += new System.EventHandler(this.btnZeroVoltages_Click);
-            // 
-            // btnUpdateList
-            // 
-            this.btnUpdateList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateList.Location = new System.Drawing.Point(912, 586);
-            this.btnUpdateList.Name = "btnUpdateList";
-            this.btnUpdateList.Size = new System.Drawing.Size(124, 36);
-            this.btnUpdateList.TabIndex = 14;
-            this.btnUpdateList.Text = "UPDATE";
-            this.btnUpdateList.UseVisualStyleBackColor = true;
-            this.btnUpdateList.Click += new System.EventHandler(this.btnUpdateList_Click);
-            // 
-            // lblSelectedChan
-            // 
-            this.lblSelectedChan.AutoSize = true;
-            this.lblSelectedChan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectedChan.Location = new System.Drawing.Point(646, 592);
-            this.lblSelectedChan.Name = "lblSelectedChan";
-            this.lblSelectedChan.Size = new System.Drawing.Size(154, 25);
-            this.lblSelectedChan.TabIndex = 13;
-            this.lblSelectedChan.Text = "None Selected";
-            // 
-            // label95
-            // 
-            this.label95.AutoSize = true;
-            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label95.Location = new System.Drawing.Point(432, 592);
-            this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(208, 25);
-            this.label95.TabIndex = 12;
-            this.label95.Text = "New Voltage Setting";
-            // 
-            // txtVSet
-            // 
-            this.txtVSet.Location = new System.Drawing.Point(806, 590);
-            this.txtVSet.Name = "txtVSet";
-            this.txtVSet.Size = new System.Drawing.Size(100, 27);
-            this.txtVSet.TabIndex = 11;
-            // 
-            // btnMuxTest
-            // 
-            this.btnMuxTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMuxTest.Location = new System.Drawing.Point(41, 118);
-            this.btnMuxTest.Name = "btnMuxTest";
-            this.btnMuxTest.Size = new System.Drawing.Size(110, 38);
-            this.btnMuxTest.TabIndex = 8;
-            this.btnMuxTest.Text = "Mux Test";
-            this.btnMuxTest.UseVisualStyleBackColor = true;
-            this.btnMuxTest.Click += new System.EventHandler(this.btnMuxTest_Click);
-            // 
-            // btnSaveVScan
-            // 
-            this.btnSaveVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveVScan.Location = new System.Drawing.Point(41, 543);
-            this.btnSaveVScan.Name = "btnSaveVScan";
-            this.btnSaveVScan.Size = new System.Drawing.Size(191, 38);
-            this.btnSaveVScan.TabIndex = 7;
-            this.btnSaveVScan.Text = "Save Calibrations";
-            this.btnSaveVScan.UseVisualStyleBackColor = true;
-            this.btnSaveVScan.Click += new System.EventHandler(this.btnSaveVScan_Click);
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(432, 13);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(204, 29);
-            this.label47.TabIndex = 3;
-            this.label47.Text = "Voltage Settings";
-            // 
-            // btnFullVScan
-            // 
-            this.btnFullVScan.Enabled = false;
-            this.btnFullVScan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFullVScan.Location = new System.Drawing.Point(41, 268);
-            this.btnFullVScan.Name = "btnFullVScan";
-            this.btnFullVScan.Size = new System.Drawing.Size(150, 38);
-            this.btnFullVScan.TabIndex = 1;
-            this.btnFullVScan.Text = "Voltage Scan";
-            this.btnFullVScan.UseVisualStyleBackColor = true;
-            this.btnFullVScan.Click += new System.EventHandler(this.btnFullVScan_Click);
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(7, 50);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(382, 50);
-            this.label37.TabIndex = 22;
-            this.label37.Text = "1.    Make sure the FEB is connected\r\n       but the HDMI cables are disconnected" +
-    ".";
-            // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Channel,
-            this.HDMI,
-            this.Setting,
-            this.Measurement,
-            this.IsCalibrated,
-            this.Gain,
-            this.Offset,
-            this.MuxCurrent});
-            listViewGroup1.Header = "FPGA 0";
-            listViewGroup1.Name = "fpga0";
-            listViewGroup2.Header = "FPGA 1";
-            listViewGroup2.Name = "fpga1";
-            listViewGroup3.Header = "FPGA 2";
-            listViewGroup3.Name = "fpga2";
-            listViewGroup4.Header = "FPGA 3";
-            listViewGroup4.Name = "fpga3";
-            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3,
-            listViewGroup4});
-            this.listView1.Location = new System.Drawing.Point(437, 53);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(810, 527);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
-            // 
-            // Channel
-            // 
-            this.Channel.Text = "Channel";
-            this.Channel.Width = 100;
-            // 
-            // HDMI
-            // 
-            this.HDMI.Text = "HDMI";
-            // 
-            // Setting
-            // 
-            this.Setting.Text = "Setting";
-            this.Setting.Width = 70;
-            // 
-            // Measurement
-            // 
-            this.Measurement.Text = "Measurement";
-            this.Measurement.Width = 120;
-            // 
-            // IsCalibrated
-            // 
-            this.IsCalibrated.Text = "Calibrations Applied?";
-            this.IsCalibrated.Width = 180;
-            // 
-            // Gain
-            // 
-            this.Gain.Text = "Gain";
-            // 
-            // Offset
-            // 
-            this.Offset.Text = "Offset";
-            // 
-            // MuxCurrent
-            // 
-            this.MuxCurrent.Text = "Mux Current (nA)";
-            this.MuxCurrent.Width = 150;
+            // tabWC
+            // 
+            this.tabWC.Controls.Add(this.groupBox6);
+            this.tabWC.Location = new System.Drawing.Point(4, 32);
+            this.tabWC.Name = "tabWC";
+            this.tabWC.Size = new System.Drawing.Size(1255, 665);
+            this.tabWC.TabIndex = 6;
+            this.tabWC.Text = "WC";
+            this.tabWC.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.lblWCmessage);
+            this.groupBox6.Controls.Add(this.btnWC);
+            this.groupBox6.Location = new System.Drawing.Point(3, 3);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(611, 130);
+            this.groupBox6.TabIndex = 4;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "CONNECTIONS";
+            // 
+            // lblWCmessage
+            // 
+            this.lblWCmessage.AutoSize = true;
+            this.lblWCmessage.Location = new System.Drawing.Point(-1, 87);
+            this.lblWCmessage.Name = "lblWCmessage";
+            this.lblWCmessage.Size = new System.Drawing.Size(53, 40);
+            this.lblWCmessage.TabIndex = 2;
+            this.lblWCmessage.Text = "label1\r\nlabel2";
+            // 
+            // btnWC
+            // 
+            this.btnWC.Location = new System.Drawing.Point(0, 23);
+            this.btnWC.Name = "btnWC";
+            this.btnWC.Size = new System.Drawing.Size(99, 42);
+            this.btnWC.TabIndex = 0;
+            this.btnWC.Tag = "";
+            this.btnWC.Text = "WC";
+            this.btnWC.UseVisualStyleBackColor = true;
             // 
             // tabConsole
             // 
@@ -2401,583 +2966,6 @@ namespace TB_mu2e
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
-            // tabRUN
-            // 
-            this.tabRUN.Controls.Add(this.lblRunLog);
-            this.tabRUN.Controls.Add(this.lblEventCount);
-            this.tabRUN.Controls.Add(this.groupBoxEvDisplay);
-            this.tabRUN.Controls.Add(this.groupBox1);
-            this.tabRUN.Controls.Add(this.zg1);
-            this.tabRUN.Location = new System.Drawing.Point(4, 32);
-            this.tabRUN.Name = "tabRUN";
-            this.tabRUN.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRUN.Size = new System.Drawing.Size(1255, 665);
-            this.tabRUN.TabIndex = 0;
-            this.tabRUN.Text = "RUN";
-            this.tabRUN.UseVisualStyleBackColor = true;
-            // 
-            // lblRunLog
-            // 
-            this.lblRunLog.AutoSize = true;
-            this.lblRunLog.BackColor = System.Drawing.SystemColors.Info;
-            this.lblRunLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.150944F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRunLog.Location = new System.Drawing.Point(3, 459);
-            this.lblRunLog.MinimumSize = new System.Drawing.Size(1240, 180);
-            this.lblRunLog.Name = "lblRunLog";
-            this.lblRunLog.Size = new System.Drawing.Size(1240, 221);
-            this.lblRunLog.TabIndex = 3;
-            this.lblRunLog.Text = "run log text goes here\r\n1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n10\r\n11\r\n12";
-            // 
-            // lblEventCount
-            // 
-            this.lblEventCount.AutoEllipsis = true;
-            this.lblEventCount.AutoSize = true;
-            this.lblEventCount.Location = new System.Drawing.Point(7, 434);
-            this.lblEventCount.MaximumSize = new System.Drawing.Size(620, 20);
-            this.lblEventCount.Name = "lblEventCount";
-            this.lblEventCount.Size = new System.Drawing.Size(125, 20);
-            this.lblEventCount.TabIndex = 39;
-            this.lblEventCount.Text = "Spill xxx, yyy ev";
-            // 
-            // groupBoxEvDisplay
-            // 
-            this.groupBoxEvDisplay.Controls.Add(this.btnDisplaySpill);
-            this.groupBoxEvDisplay.Controls.Add(this.txtEvent);
-            this.groupBoxEvDisplay.Controls.Add(this.btnNextDisp);
-            this.groupBoxEvDisplay.Controls.Add(this.btnPrevDisp);
-            this.groupBoxEvDisplay.Controls.Add(this.ud_VertMin);
-            this.groupBoxEvDisplay.Controls.Add(this.ud_VertMax);
-            this.groupBoxEvDisplay.Location = new System.Drawing.Point(620, 340);
-            this.groupBoxEvDisplay.Name = "groupBoxEvDisplay";
-            this.groupBoxEvDisplay.Size = new System.Drawing.Size(623, 114);
-            this.groupBoxEvDisplay.TabIndex = 35;
-            this.groupBoxEvDisplay.TabStop = false;
-            this.groupBoxEvDisplay.Text = "EventDisplay";
-            // 
-            // btnDisplaySpill
-            // 
-            this.btnDisplaySpill.Location = new System.Drawing.Point(407, 78);
-            this.btnDisplaySpill.Name = "btnDisplaySpill";
-            this.btnDisplaySpill.Size = new System.Drawing.Size(102, 30);
-            this.btnDisplaySpill.TabIndex = 40;
-            this.btnDisplaySpill.Text = "DISPLAY";
-            this.btnDisplaySpill.UseVisualStyleBackColor = true;
-            this.btnDisplaySpill.Click += new System.EventHandler(this.btnDisplaySpill_Click);
-            // 
-            // txtEvent
-            // 
-            this.txtEvent.Location = new System.Drawing.Point(517, 40);
-            this.txtEvent.Name = "txtEvent";
-            this.txtEvent.Size = new System.Drawing.Size(44, 27);
-            this.txtEvent.TabIndex = 38;
-            // 
-            // btnNextDisp
-            // 
-            this.btnNextDisp.Location = new System.Drawing.Point(567, 37);
-            this.btnNextDisp.Name = "btnNextDisp";
-            this.btnNextDisp.Size = new System.Drawing.Size(50, 30);
-            this.btnNextDisp.TabIndex = 37;
-            this.btnNextDisp.Text = ">>>";
-            this.btnNextDisp.UseVisualStyleBackColor = true;
-            this.btnNextDisp.Click += new System.EventHandler(this.btnNextDisp_Click);
-            // 
-            // btnPrevDisp
-            // 
-            this.btnPrevDisp.Location = new System.Drawing.Point(466, 37);
-            this.btnPrevDisp.Name = "btnPrevDisp";
-            this.btnPrevDisp.Size = new System.Drawing.Size(50, 30);
-            this.btnPrevDisp.TabIndex = 36;
-            this.btnPrevDisp.Text = "<<<";
-            this.btnPrevDisp.UseVisualStyleBackColor = true;
-            this.btnPrevDisp.Click += new System.EventHandler(this.btnPrevDisp_Click);
-            // 
-            // ud_VertMin
-            // 
-            this.ud_VertMin.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.ud_VertMin.Location = new System.Drawing.Point(515, 73);
-            this.ud_VertMin.Maximum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.ud_VertMin.Minimum = new decimal(new int[] {
-            2500,
-            0,
-            0,
-            -2147483648});
-            this.ud_VertMin.Name = "ud_VertMin";
-            this.ud_VertMin.Size = new System.Drawing.Size(66, 27);
-            this.ud_VertMin.TabIndex = 35;
-            this.ud_VertMin.Value = new decimal(new int[] {
-            500,
-            0,
-            0,
-            -2147483648});
-            // 
-            // ud_VertMax
-            // 
-            this.ud_VertMax.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.ud_VertMax.Location = new System.Drawing.Point(515, 7);
-            this.ud_VertMax.Maximum = new decimal(new int[] {
-            2500,
-            0,
-            0,
-            0});
-            this.ud_VertMax.Name = "ud_VertMax";
-            this.ud_VertMax.Size = new System.Drawing.Size(66, 27);
-            this.ud_VertMax.TabIndex = 34;
-            this.ud_VertMax.Value = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.numericUpDown1);
-            this.groupBox1.Controls.Add(this.btnOneSpill);
-            this.groupBox1.Controls.Add(this.btnChangeName);
-            this.groupBox1.Controls.Add(this.chkWC);
-            this.groupBox1.Controls.Add(this.chkFEB2);
-            this.groupBox1.Controls.Add(this.chkFEB1);
-            this.groupBox1.Controls.Add(this.chkFakeIt);
-            this.groupBox1.Controls.Add(this.lblWC_TotTrig);
-            this.groupBox1.Controls.Add(this.lblFEB2_TotTrig);
-            this.groupBox1.Controls.Add(this.lblFEB1_TotTrig);
-            this.groupBox1.Controls.Add(this.lblWCSpill);
-            this.groupBox1.Controls.Add(this.lblFEB2Spill);
-            this.groupBox1.Controls.Add(this.lblSpillTime);
-            this.groupBox1.Controls.Add(this.lblWCTrigNum);
-            this.groupBox1.Controls.Add(this.lblFEB2TrigNum);
-            this.groupBox1.Controls.Add(this.lblFEB1TrigNum);
-            this.groupBox1.Controls.Add(this.lblFEB1Spill);
-            this.groupBox1.Controls.Add(this.lblRunPrep);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.lblRunTime);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.lblSpillWC);
-            this.groupBox1.Controls.Add(this.lblSpillFEB2);
-            this.groupBox1.Controls.Add(this.lblSpillFEB1);
-            this.groupBox1.Controls.Add(this.lblRunName);
-            this.groupBox1.Controls.Add(this.btnStopRun);
-            this.groupBox1.Controls.Add(this.btnStartRun);
-            this.groupBox1.Controls.Add(this.btnPrepare);
-            this.groupBox1.Controls.Add(this.btnConnectAll);
-            this.groupBox1.Location = new System.Drawing.Point(3, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(611, 418);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "RUN CONTROL";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(397, 94);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(141, 20);
-            this.label5.TabIndex = 34;
-            this.label5.Text = "Fake Spill Len (s)";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(534, 92);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(66, 27);
-            this.numericUpDown1.TabIndex = 33;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // btnOneSpill
-            // 
-            this.btnOneSpill.Location = new System.Drawing.Point(6, 144);
-            this.btnOneSpill.Name = "btnOneSpill";
-            this.btnOneSpill.Size = new System.Drawing.Size(260, 52);
-            this.btnOneSpill.TabIndex = 32;
-            this.btnOneSpill.Tag = "";
-            this.btnOneSpill.Text = "TAKE ONE SPILL";
-            this.btnOneSpill.UseVisualStyleBackColor = true;
-            this.btnOneSpill.Click += new System.EventHandler(this.btnOneSpill_Click);
-            // 
-            // btnChangeName
-            // 
-            this.btnChangeName.Location = new System.Drawing.Point(500, 34);
-            this.btnChangeName.Name = "btnChangeName";
-            this.btnChangeName.Size = new System.Drawing.Size(100, 33);
-            this.btnChangeName.TabIndex = 31;
-            this.btnChangeName.Tag = "";
-            this.btnChangeName.Text = "CHANGE";
-            this.btnChangeName.UseVisualStyleBackColor = true;
-            this.btnChangeName.Click += new System.EventHandler(this.btnChangeName_Click);
-            // 
-            // chkWC
-            // 
-            this.chkWC.AutoSize = true;
-            this.chkWC.Location = new System.Drawing.Point(440, 34);
-            this.chkWC.Name = "chkWC";
-            this.chkWC.Size = new System.Drawing.Size(59, 24);
-            this.chkWC.TabIndex = 30;
-            this.chkWC.Text = "WC";
-            this.chkWC.UseVisualStyleBackColor = true;
-            // 
-            // chkFEB2
-            // 
-            this.chkFEB2.AutoSize = true;
-            this.chkFEB2.Location = new System.Drawing.Point(365, 34);
-            this.chkFEB2.Name = "chkFEB2";
-            this.chkFEB2.Size = new System.Drawing.Size(73, 24);
-            this.chkFEB2.TabIndex = 29;
-            this.chkFEB2.Text = "FEB2";
-            this.chkFEB2.UseVisualStyleBackColor = true;
-            // 
-            // chkFEB1
-            // 
-            this.chkFEB1.AutoSize = true;
-            this.chkFEB1.Checked = true;
-            this.chkFEB1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFEB1.Location = new System.Drawing.Point(290, 34);
-            this.chkFEB1.Name = "chkFEB1";
-            this.chkFEB1.Size = new System.Drawing.Size(73, 24);
-            this.chkFEB1.TabIndex = 28;
-            this.chkFEB1.Text = "FEB1";
-            this.chkFEB1.UseVisualStyleBackColor = true;
-            // 
-            // chkFakeIt
-            // 
-            this.chkFakeIt.AutoSize = true;
-            this.chkFakeIt.Checked = true;
-            this.chkFakeIt.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFakeIt.Location = new System.Drawing.Point(290, 92);
-            this.chkFakeIt.Name = "chkFakeIt";
-            this.chkFakeIt.Size = new System.Drawing.Size(76, 24);
-            this.chkFakeIt.TabIndex = 27;
-            this.chkFakeIt.Text = "FakeIt";
-            this.chkFakeIt.UseVisualStyleBackColor = true;
-            this.chkFakeIt.CheckedChanged += new System.EventHandler(this.chkFakeIt_CheckedChanged);
-            // 
-            // lblWC_TotTrig
-            // 
-            this.lblWC_TotTrig.AutoSize = true;
-            this.lblWC_TotTrig.Location = new System.Drawing.Point(540, 305);
-            this.lblWC_TotTrig.Name = "lblWC_TotTrig";
-            this.lblWC_TotTrig.Size = new System.Drawing.Size(62, 20);
-            this.lblWC_TotTrig.TabIndex = 26;
-            this.lblWC_TotTrig.Text = "label14";
-            // 
-            // lblFEB2_TotTrig
-            // 
-            this.lblFEB2_TotTrig.AutoSize = true;
-            this.lblFEB2_TotTrig.Location = new System.Drawing.Point(483, 305);
-            this.lblFEB2_TotTrig.Name = "lblFEB2_TotTrig";
-            this.lblFEB2_TotTrig.Size = new System.Drawing.Size(62, 20);
-            this.lblFEB2_TotTrig.TabIndex = 25;
-            this.lblFEB2_TotTrig.Text = "label14";
-            // 
-            // lblFEB1_TotTrig
-            // 
-            this.lblFEB1_TotTrig.AutoSize = true;
-            this.lblFEB1_TotTrig.Location = new System.Drawing.Point(426, 305);
-            this.lblFEB1_TotTrig.Name = "lblFEB1_TotTrig";
-            this.lblFEB1_TotTrig.Size = new System.Drawing.Size(62, 20);
-            this.lblFEB1_TotTrig.TabIndex = 24;
-            this.lblFEB1_TotTrig.Text = "label14";
-            // 
-            // lblWCSpill
-            // 
-            this.lblWCSpill.AutoSize = true;
-            this.lblWCSpill.Location = new System.Drawing.Point(540, 276);
-            this.lblWCSpill.Name = "lblWCSpill";
-            this.lblWCSpill.Size = new System.Drawing.Size(62, 20);
-            this.lblWCSpill.TabIndex = 23;
-            this.lblWCSpill.Text = "label14";
-            // 
-            // lblFEB2Spill
-            // 
-            this.lblFEB2Spill.AutoSize = true;
-            this.lblFEB2Spill.Location = new System.Drawing.Point(483, 276);
-            this.lblFEB2Spill.Name = "lblFEB2Spill";
-            this.lblFEB2Spill.Size = new System.Drawing.Size(62, 20);
-            this.lblFEB2Spill.TabIndex = 22;
-            this.lblFEB2Spill.Text = "label14";
-            // 
-            // lblSpillTime
-            // 
-            this.lblSpillTime.AutoSize = true;
-            this.lblSpillTime.Location = new System.Drawing.Point(426, 368);
-            this.lblSpillTime.Name = "lblSpillTime";
-            this.lblSpillTime.Size = new System.Drawing.Size(95, 20);
-            this.lblSpillTime.TabIndex = 21;
-            this.lblSpillTime.Text = "lblSpillTime";
-            // 
-            // lblWCTrigNum
-            // 
-            this.lblWCTrigNum.AutoSize = true;
-            this.lblWCTrigNum.Location = new System.Drawing.Point(540, 334);
-            this.lblWCTrigNum.Name = "lblWCTrigNum";
-            this.lblWCTrigNum.Size = new System.Drawing.Size(53, 20);
-            this.lblWCTrigNum.TabIndex = 20;
-            this.lblWCTrigNum.Text = "label2";
-            // 
-            // lblFEB2TrigNum
-            // 
-            this.lblFEB2TrigNum.AutoSize = true;
-            this.lblFEB2TrigNum.Location = new System.Drawing.Point(483, 334);
-            this.lblFEB2TrigNum.Name = "lblFEB2TrigNum";
-            this.lblFEB2TrigNum.Size = new System.Drawing.Size(53, 20);
-            this.lblFEB2TrigNum.TabIndex = 19;
-            this.lblFEB2TrigNum.Text = "label2";
-            // 
-            // lblFEB1TrigNum
-            // 
-            this.lblFEB1TrigNum.AutoSize = true;
-            this.lblFEB1TrigNum.Location = new System.Drawing.Point(426, 334);
-            this.lblFEB1TrigNum.Name = "lblFEB1TrigNum";
-            this.lblFEB1TrigNum.Size = new System.Drawing.Size(53, 20);
-            this.lblFEB1TrigNum.TabIndex = 18;
-            this.lblFEB1TrigNum.Text = "label2";
-            // 
-            // lblFEB1Spill
-            // 
-            this.lblFEB1Spill.AutoSize = true;
-            this.lblFEB1Spill.Location = new System.Drawing.Point(426, 276);
-            this.lblFEB1Spill.Name = "lblFEB1Spill";
-            this.lblFEB1Spill.Size = new System.Drawing.Size(62, 20);
-            this.lblFEB1Spill.TabIndex = 17;
-            this.lblFEB1Spill.Text = "label14";
-            // 
-            // lblRunPrep
-            // 
-            this.lblRunPrep.AutoSize = true;
-            this.lblRunPrep.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.26415F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRunPrep.Location = new System.Drawing.Point(286, 119);
-            this.lblRunPrep.Name = "lblRunPrep";
-            this.lblRunPrep.Size = new System.Drawing.Size(85, 29);
-            this.lblRunPrep.TabIndex = 16;
-            this.lblRunPrep.Text = "Status";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(287, 334);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(113, 20);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Last Spill Trig";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(287, 305);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(120, 20);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Total Num Trig";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(287, 276);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(132, 20);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Total Num Spills";
-            // 
-            // lblRunTime
-            // 
-            this.lblRunTime.AutoSize = true;
-            this.lblRunTime.Location = new System.Drawing.Point(426, 214);
-            this.lblRunTime.Name = "lblRunTime";
-            this.lblRunTime.Size = new System.Drawing.Size(0, 20);
-            this.lblRunTime.TabIndex = 12;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(286, 214);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 20);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Time in run";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(286, 185);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 20);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Spill Status";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(286, 156);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 20);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Run Name";
-            // 
-            // lblSpillWC
-            // 
-            this.lblSpillWC.AutoSize = true;
-            this.lblSpillWC.Location = new System.Drawing.Point(540, 185);
-            this.lblSpillWC.Name = "lblSpillWC";
-            this.lblSpillWC.Size = new System.Drawing.Size(53, 20);
-            this.lblSpillWC.TabIndex = 8;
-            this.lblSpillWC.Text = "label2";
-            // 
-            // lblSpillFEB2
-            // 
-            this.lblSpillFEB2.AutoSize = true;
-            this.lblSpillFEB2.Location = new System.Drawing.Point(483, 185);
-            this.lblSpillFEB2.Name = "lblSpillFEB2";
-            this.lblSpillFEB2.Size = new System.Drawing.Size(53, 20);
-            this.lblSpillFEB2.TabIndex = 7;
-            this.lblSpillFEB2.Text = "label2";
-            // 
-            // lblSpillFEB1
-            // 
-            this.lblSpillFEB1.AutoSize = true;
-            this.lblSpillFEB1.Location = new System.Drawing.Point(426, 185);
-            this.lblSpillFEB1.Name = "lblSpillFEB1";
-            this.lblSpillFEB1.Size = new System.Drawing.Size(53, 20);
-            this.lblSpillFEB1.TabIndex = 6;
-            this.lblSpillFEB1.Text = "label2";
-            // 
-            // lblRunName
-            // 
-            this.lblRunName.AutoSize = true;
-            this.lblRunName.Location = new System.Drawing.Point(426, 156);
-            this.lblRunName.Name = "lblRunName";
-            this.lblRunName.Size = new System.Drawing.Size(100, 20);
-            this.lblRunName.TabIndex = 5;
-            this.lblRunName.Text = "lblRunName";
-            // 
-            // btnStopRun
-            // 
-            this.btnStopRun.Location = new System.Drawing.Point(6, 302);
-            this.btnStopRun.Name = "btnStopRun";
-            this.btnStopRun.Size = new System.Drawing.Size(260, 100);
-            this.btnStopRun.TabIndex = 4;
-            this.btnStopRun.Tag = "";
-            this.btnStopRun.Text = "STOP RUN";
-            this.btnStopRun.UseVisualStyleBackColor = true;
-            this.btnStopRun.Click += new System.EventHandler(this.btnStopRun_Click);
-            // 
-            // btnStartRun
-            // 
-            this.btnStartRun.Location = new System.Drawing.Point(6, 199);
-            this.btnStartRun.Name = "btnStartRun";
-            this.btnStartRun.Size = new System.Drawing.Size(260, 100);
-            this.btnStartRun.TabIndex = 3;
-            this.btnStartRun.Tag = "";
-            this.btnStartRun.Text = "START RUN";
-            this.btnStartRun.UseVisualStyleBackColor = true;
-            this.btnStartRun.Click += new System.EventHandler(this.btnStartRun_Click);
-            // 
-            // btnPrepare
-            // 
-            this.btnPrepare.Location = new System.Drawing.Point(6, 89);
-            this.btnPrepare.Name = "btnPrepare";
-            this.btnPrepare.Size = new System.Drawing.Size(260, 52);
-            this.btnPrepare.TabIndex = 2;
-            this.btnPrepare.Tag = "";
-            this.btnPrepare.Text = "PREPARE FOR RUN";
-            this.btnPrepare.UseVisualStyleBackColor = true;
-            this.btnPrepare.Click += new System.EventHandler(this.btnPrepare_Click);
-            // 
-            // btnConnectAll
-            // 
-            this.btnConnectAll.Location = new System.Drawing.Point(6, 34);
-            this.btnConnectAll.Name = "btnConnectAll";
-            this.btnConnectAll.Size = new System.Drawing.Size(260, 52);
-            this.btnConnectAll.TabIndex = 1;
-            this.btnConnectAll.Tag = "";
-            this.btnConnectAll.Text = "CONNECT ALL";
-            this.btnConnectAll.UseVisualStyleBackColor = true;
-            this.btnConnectAll.Click += new System.EventHandler(this.btnConnectAll_Click);
-            // 
-            // zg1
-            // 
-            this.zg1.Location = new System.Drawing.Point(620, 8);
-            this.zg1.Margin = new System.Windows.Forms.Padding(6);
-            this.zg1.Name = "zg1";
-            this.zg1.ScrollGrace = 0D;
-            this.zg1.ScrollMaxX = 0D;
-            this.zg1.ScrollMaxY = 0D;
-            this.zg1.ScrollMaxY2 = 0D;
-            this.zg1.ScrollMinX = 0D;
-            this.zg1.ScrollMinY = 0D;
-            this.zg1.ScrollMinY2 = 0D;
-            this.zg1.Size = new System.Drawing.Size(630, 342);
-            this.zg1.TabIndex = 1;
-            // 
-            // tabWC
-            // 
-            this.tabWC.Controls.Add(this.groupBox6);
-            this.tabWC.Location = new System.Drawing.Point(4, 32);
-            this.tabWC.Name = "tabWC";
-            this.tabWC.Size = new System.Drawing.Size(1255, 665);
-            this.tabWC.TabIndex = 6;
-            this.tabWC.Text = "WC";
-            this.tabWC.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.lblWCmessage);
-            this.groupBox6.Controls.Add(this.btnWC);
-            this.groupBox6.Location = new System.Drawing.Point(3, 3);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(611, 130);
-            this.groupBox6.TabIndex = 4;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "CONNECTIONS";
-            // 
-            // lblWCmessage
-            // 
-            this.lblWCmessage.AutoSize = true;
-            this.lblWCmessage.Location = new System.Drawing.Point(-1, 87);
-            this.lblWCmessage.Name = "lblWCmessage";
-            this.lblWCmessage.Size = new System.Drawing.Size(53, 40);
-            this.lblWCmessage.TabIndex = 2;
-            this.lblWCmessage.Text = "label1\r\nlabel2";
-            // 
-            // btnWC
-            // 
-            this.btnWC.Location = new System.Drawing.Point(0, 23);
-            this.btnWC.Name = "btnWC";
-            this.btnWC.Size = new System.Drawing.Size(99, 42);
-            this.btnWC.TabIndex = 0;
-            this.btnWC.Tag = "";
-            this.btnWC.Text = "WC";
-            this.btnWC.UseVisualStyleBackColor = true;
-            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -3034,6 +3022,21 @@ namespace TB_mu2e
             this.tabControl.ResumeLayout(false);
             this.tabStart.ResumeLayout(false);
             this.tabStart.PerformLayout();
+            this.CalibPType.ResumeLayout(false);
+            this.CalibPType.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UpDnSamples)).EndInit();
+            this.tabHist.ResumeLayout(false);
+            this.tabHist.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.udHistIntegralTime)).EndInit();
+            this.tabRUN.ResumeLayout(false);
+            this.tabRUN.PerformLayout();
+            this.groupBoxEvDisplay.ResumeLayout(false);
+            this.groupBoxEvDisplay.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMax)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.tabFEB1.ResumeLayout(false);
             this.tabFEB1.PerformLayout();
             this.groupBoxSpillStat.ResumeLayout(false);
@@ -3053,27 +3056,12 @@ namespace TB_mu2e
             this.groupBox7.PerformLayout();
             this.groupBoxConn.ResumeLayout(false);
             this.groupBoxConn.PerformLayout();
-            this.tabHist.ResumeLayout(false);
-            this.tabHist.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.udHistIntegralTime)).EndInit();
-            this.CalibPType.ResumeLayout(false);
-            this.CalibPType.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.UpDnSamples)).EndInit();
-            this.tabConsole.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.tabRUN.ResumeLayout(false);
-            this.tabRUN.PerformLayout();
-            this.groupBoxEvDisplay.ResumeLayout(false);
-            this.groupBoxEvDisplay.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ud_VertMax)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.tabWC.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.tabConsole.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3240,7 +3228,6 @@ namespace TB_mu2e
         private ZedGraph.ZedGraphControl zedGraphHisto;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button btnSetV;
         private System.Windows.Forms.Button btnSelHiHist;
         private System.Windows.Forms.Button btnSelLowHist;
         private System.Windows.Forms.Label label31;

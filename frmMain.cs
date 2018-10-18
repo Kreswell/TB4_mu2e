@@ -3043,9 +3043,14 @@ namespace TB_mu2e
 
         private void btnHistoScan_Click(object sender, EventArgs e)
         {
+            double vSet = Convert.ToDouble(textBox3.Text);
+            for (int fpga = 0; fpga < 4; fpga++)
+            { myFEBclient.SetV(vSet, fpga); }
             btnHistoScan.Text = "Scanning...";
             Application.DoEvents();
             histoScan(sender);
+            for (int fpga = 0; fpga < 4; fpga++)
+            { myFEBclient.SetV(0, fpga); }
             btnHistoScan.Text = "SCAN";
         }
 
@@ -3104,22 +3109,9 @@ namespace TB_mu2e
             btnConnectFEB.BackColor = DefaultBackColor;
         }
 
-        private void btnSetV_Click(object sender, EventArgs e)
-        {
-            double vSet = Convert.ToDouble(textBox3.Text);
-            for (int fpga = 0; fpga < 4; fpga++)
-            {
-                myFEBclient.SetV(vSet, fpga);
-            }
-        }
-
         private void timerTempRB_Tick(object sender, EventArgs e)
         {
             updateTemp();
-            if (myFEBclient.ClientOpen && !textBox3.Focused)
-            {
-                textBox3.Text = myFEBclient.ReadV().ToString();
-            }
             Application.DoEvents();
         }
 
