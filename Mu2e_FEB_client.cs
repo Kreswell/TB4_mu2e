@@ -111,14 +111,15 @@ namespace TB_mu2e
             SendStr("wr " + Convert.ToString(4 * fpga, 16) + "45 " + Convert.ToString(counts, 16));
         }
 
-        public double ReadV(int fpga = 0)
+        // Optional readStr is to allow for "drd" to get calibrated voltage.
+        public double ReadV(int fpga = 0, string readStr = "rd")
         {
             if (fpga > 3) { fpga = 0; }
-            UInt32 counts;
+            //UInt32 counts;
             string a;
             int r;
             double V;
-            SendStr("rd " + Convert.ToString(4 * fpga, 16) + "44");
+            SendStr(readStr + " " + Convert.ToString(4 * fpga, 16) + "44");
             ReadStr(out a, out r);
             if (a.Length > 4)
             { a = a.Substring(0, 4); }
@@ -128,7 +129,6 @@ namespace TB_mu2e
             //double t = V * 5.38 / 256;
             double t = V * 0.02;
             //t = System.Math.Round(t*1000)/1000;
-
             return t;
         }
 
@@ -380,60 +380,46 @@ namespace TB_mu2e
             catch { return false; }
         }
 
-        public uint[] ReadHisto(uint sipm, uint afe, uint fpga)
+        public void ReadHisto(uint chan, int time, out PointPairList linlist, out PointPairList loglist, out double max_count)
         {
-            string writecmd = "";
-            string readcmd = "";
-            string fpgaPrefix = "";
-            uint[] Histo = new uint[512];
+            uint fpga = chan / 16;
+            uint afe = (chan / 8) % 2 + 1;
+            double maxCount = 0;
+            string fpgaPrefix = (fpga * 4).ToString("X");
+            string writecmd = "wr " + fpgaPrefix + Convert.ToString(13 + afe) + " 0";
+            string readcmd = "rdm " + fpgaPrefix + Convert.ToString(15 + afe) + " 400";
+            PointPairList LinList = new PointPairList();
+            PointPairList LogList = new PointPairList();
             if (_ClientOpen)
             {
                 string HistoStr = "";
                 string[] delimiters = new string[] { " ", "\r", "\n", ">" };
-                if (fpga == 0)
-                { fpgaPrefix = "0"; }
-                else if (fpga == 1)
-                { fpgaPrefix = "4"; }
-                else if (fpga == 2)
-                { fpgaPrefix = "8"; }
-                else if (fpga == 3)
-                { fpgaPrefix = "c"; }
-                else { }
-                writecmd = "wr " + fpgaPrefix + Convert.ToString(13 + afe) + " 0";
-                readcmd = "rdm " + fpgaPrefix + Convert.ToString(15 + afe) + " 400";
-                SendStr(writecmd);
-                SendStr(readcmd);
-                System.Threading.Thread.Sleep(100);
-                int rt = 0;
-                ReadStr(out HistoStr, out rt);
-                string[] SplitHistoStr = HistoStr.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+                string[] SplitHistoStr = new string[] { };
+                int tries = 0;
+                //while (SplitHistoStr.Length < 1024 && tries++ < 5)
+                //{
+                    SendStr(writecmd);
+                    Thread.Sleep(time + 1);
+                    SendStr(readcmd);
+                    Thread.Sleep(100);
+                    int rt = 0;
+                    ReadStr(out HistoStr, out rt);
+                    SplitHistoStr = HistoStr.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+                //}
                 int imax = SplitHistoStr.Length > 1024 ? 512 : SplitHistoStr.Length / 2;
                 for (int i = 0; i < imax; i++)
                 {
-                    if (SplitHistoStr[i].StartsWith(">"))
-                    {
-                        SplitHistoStr[i].Remove(0, 1);
-                    }
-                    string UpperStr = "0";
-                    string UpperStrShifted = "0";
-                    string LowerStr = "0";
-                    UpperStr = SplitHistoStr[2 * i];
-                    UpperStrShifted = UpperStr + "0000";
-                    LowerStr = SplitHistoStr[(2 * i) + 1];
-                    uint UpperBits = uint.Parse(UpperStr, System.Globalization.NumberStyles.HexNumber);
-                    uint LowerBits = uint.Parse(LowerStr, System.Globalization.NumberStyles.HexNumber);
-
-                    Histo[i] = UpperBits + LowerBits;
+                    uint UpperBits = uint.Parse(SplitHistoStr[2 * i] + "0000", System.Globalization.NumberStyles.HexNumber);
+                    uint LowerBits = uint.Parse(SplitHistoStr[2 * i + 1], System.Globalization.NumberStyles.HexNumber);
+                    uint count = UpperBits + LowerBits;
+                    LinList.Add(i, count);
+                    LogList.Add(i, Math.Log10(Math.Max(count, 1)));
+                    maxCount = Math.Max(count, maxCount);
                 }
             }
-            else
-            {
-                for (int i = 0; i < 512; i++)
-                {
-                    Histo[i] = 0;
-                }
-            }
-            return Histo;
+            linlist = LinList;
+            loglist = LogList;
+            max_count = maxCount;
         }
 
         //public bool ReadHisto(int channel, out uint[] Histo)
