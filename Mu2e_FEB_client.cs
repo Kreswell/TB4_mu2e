@@ -501,44 +501,60 @@ namespace TB_mu2e
 
         public void SendStr(string t)
         {
-            if (_ClientOpen)
+            try
             {
-                if (TNETSocket.Available > 0)
+                if (_ClientOpen)
                 {
-                    Thread.Sleep(1);
-                    byte[] buf = new byte[TNETSocket.Available];
-                    TNETSocket.Receive(buf);
+                    if (TNETSocket.Available > 0)
+                    {
+                        Thread.Sleep(1);
+                        byte[] buf = new byte[TNETSocket.Available];
+                        TNETSocket.Receive(buf);
+                    }
+                    // ? why does this not work? SW.WriteLine(t);
+                    //byte[] b = PP.GetBytes(t + Convert.ToChar((byte)0x0d));
+                    byte[] b = PP.GetBytes(t + "\r");
+                    TNETSocket.Send(b);
                 }
-                // ? why does this not work? SW.WriteLine(t);
-                //byte[] b = PP.GetBytes(t + Convert.ToChar((byte)0x0d));
-                byte[] b = PP.GetBytes(t + "\r");
-                TNETSocket.Send(b);
+            }
+            catch (SocketException)
+            {
+                return;
             }
         }
 
         public void ReadStr(out string t, out int ret_time, int tmo = 100)
         {
+
             t = "";
             bool tmo_reached = false;
             int this_t = 0;
-            if (_ClientOpen)
+            try
             {
-                DateTime s = DateTime.Now;
-                while (TNETSocket.Available == 0 && !tmo_reached)
+                if (_ClientOpen)
                 {
-                    Thread.Sleep(5);
-                    this_t += 5;
-                    if (this_t > tmo) { tmo_reached = true; }
-                }
-                if (!tmo_reached)
-                {
-                    byte[] rec_buf = new byte[TNETSocket.Available];
-                    Thread.Sleep(10);
-                    int ret_len = TNETSocket.Receive(rec_buf);
-                    t = PP.GetString(rec_buf, ret_len);
+                    DateTime s = DateTime.Now;
+                    while (TNETSocket.Available == 0 && !tmo_reached)
+                    {
+                        Thread.Sleep(5);
+                        this_t += 5;
+                        if (this_t > tmo) { tmo_reached = true; }
+                    }
+                    if (!tmo_reached)
+                    {
+                        byte[] rec_buf = new byte[TNETSocket.Available];
+                        Thread.Sleep(10);
+                        int ret_len = TNETSocket.Receive(rec_buf);
+                        t = PP.GetString(rec_buf, ret_len);
+                    }
                 }
             }
-            ret_time = this_t;
+            catch (SocketException)
+            { return; }
+            finally
+            {
+                ret_time = this_t;
+            }
         }
 
         //public  static int GetStatus(out string[] status)
@@ -680,7 +696,11 @@ namespace TB_mu2e
             {
                 adc = Convert.ToDouble(measurements[Array.IndexOf(measurements, "avg") - 1]);
             }
-            else { throw new Exception($"Failed to read multiplexer current."); }        
+            else
+            {
+                //throw new Exception($"Failed to read multiplexer current.");
+                return 0;
+            }        
             double I = adc / 8 * 250;
             if (fpga != 0)
             {

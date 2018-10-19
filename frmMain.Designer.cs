@@ -154,7 +154,7 @@ namespace TB_mu2e
             this.chkBoxJ19 = new System.Windows.Forms.CheckBox();
             this.chkBoxJ20 = new System.Windows.Forms.CheckBox();
             this.btnHistoScan = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.btnSaveHist = new System.Windows.Forms.Button();
             this.chkBoxJ21 = new System.Windows.Forms.CheckBox();
             this.chkBoxJ22 = new System.Windows.Forms.CheckBox();
             this.chkBoxJ23 = new System.Windows.Forms.CheckBox();
@@ -309,6 +309,7 @@ namespace TB_mu2e
             this.saveFileMeasurements = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDB = new System.Windows.Forms.SaveFileDialog();
             this.timerTempRB = new System.Windows.Forms.Timer(this.components);
+            this.saveFileHist = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabStart.SuspendLayout();
@@ -821,7 +822,7 @@ namespace TB_mu2e
             // 
             this.lblMuxTime.AutoSize = true;
             this.lblMuxTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMuxTime.Location = new System.Drawing.Point(157, 130);
+            this.lblMuxTime.Location = new System.Drawing.Point(186, 130);
             this.lblMuxTime.Name = "lblMuxTime";
             this.lblMuxTime.Size = new System.Drawing.Size(151, 18);
             this.lblMuxTime.TabIndex = 19;
@@ -917,9 +918,9 @@ namespace TB_mu2e
             this.btnMuxTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMuxTest.Location = new System.Drawing.Point(41, 118);
             this.btnMuxTest.Name = "btnMuxTest";
-            this.btnMuxTest.Size = new System.Drawing.Size(110, 38);
+            this.btnMuxTest.Size = new System.Drawing.Size(139, 38);
             this.btnMuxTest.TabIndex = 8;
-            this.btnMuxTest.Text = "Mux Test";
+            this.btnMuxTest.Text = "MUX TEST";
             this.btnMuxTest.UseVisualStyleBackColor = true;
             this.btnMuxTest.Click += new System.EventHandler(this.btnMuxTest_Click);
             // 
@@ -1053,7 +1054,7 @@ namespace TB_mu2e
             this.tabHist.Controls.Add(this.chkBoxJ19);
             this.tabHist.Controls.Add(this.chkBoxJ20);
             this.tabHist.Controls.Add(this.btnHistoScan);
-            this.tabHist.Controls.Add(this.button12);
+            this.tabHist.Controls.Add(this.btnSaveHist);
             this.tabHist.Controls.Add(this.chkBoxJ21);
             this.tabHist.Controls.Add(this.chkBoxJ22);
             this.tabHist.Controls.Add(this.chkBoxJ23);
@@ -1234,15 +1235,16 @@ namespace TB_mu2e
             this.btnHistoScan.UseVisualStyleBackColor = true;
             this.btnHistoScan.Click += new System.EventHandler(this.btnHistoScan_Click);
             // 
-            // button12
+            // btnSaveHist
             // 
-            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.Location = new System.Drawing.Point(489, 590);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(127, 39);
-            this.button12.TabIndex = 90;
-            this.button12.Text = "SAVE";
-            this.button12.UseVisualStyleBackColor = true;
+            this.btnSaveHist.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveHist.Location = new System.Drawing.Point(489, 590);
+            this.btnSaveHist.Name = "btnSaveHist";
+            this.btnSaveHist.Size = new System.Drawing.Size(127, 39);
+            this.btnSaveHist.TabIndex = 90;
+            this.btnSaveHist.Text = "SAVE";
+            this.btnSaveHist.UseVisualStyleBackColor = true;
+            this.btnSaveHist.Click += new System.EventHandler(this.btnSaveHist_Click);
             // 
             // chkBoxJ21
             // 
@@ -2978,7 +2980,7 @@ namespace TB_mu2e
             // 
             // saveFileCalibrations
             // 
-            this.saveFileCalibrations.DefaultExt = "\"dsf\"";
+            this.saveFileCalibrations.DefaultExt = "\"txt\"";
             this.saveFileCalibrations.Filter = "\"FEB calibration files (*.dsf)|*.dsf|All files (*.*)|*.*\"";
             this.saveFileCalibrations.FilterIndex = 2;
             this.saveFileCalibrations.InitialDirectory = "\"c:\\\\data\\\\\"";
@@ -3235,7 +3237,7 @@ namespace TB_mu2e
         private System.Windows.Forms.CheckBox chkBoxJ19;
         private System.Windows.Forms.CheckBox chkBoxJ20;
         public System.Windows.Forms.Button btnHistoScan;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button btnSaveHist;
         private System.Windows.Forms.CheckBox chkBoxJ21;
         private System.Windows.Forms.CheckBox chkBoxJ22;
         private System.Windows.Forms.CheckBox chkBoxJ23;
@@ -3309,5 +3311,6 @@ namespace TB_mu2e
         private System.Windows.Forms.CheckBox chkLogYHist;
         private System.Windows.Forms.NumericUpDown udHistIntegralTime;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.SaveFileDialog saveFileHist;
     }
 }

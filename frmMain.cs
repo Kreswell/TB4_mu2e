@@ -2797,43 +2797,51 @@ namespace TB_mu2e
 
         private void btnSaveVScan_Click(object sender, EventArgs e)
         {
-            foreach (TrimSignal trim in myFEB.Trims)
+            if (myFEB.Trims.Exists(x => !x.calibration.isTested || x.isBad || x.muxIsBad) ||
+                myFEB.Biases.Exists(x => !x.calibration.isTested || x.Biases[0].isBad || x.Biases[1].isBad) ||
+                myFEB.LEDs.Exists(x => !x.calibration.isTested || x.isBad))
             {
-                if (!trim.calibration.isTested)
-                {
-                    DialogResult result = MessageBox.Show(trim.name + " appears to be untested. Save anyway?", "", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.No) { return; }
-                }
-                if (trim.isBad || trim.muxIsBad)
-                {
-                    DialogResult result = MessageBox.Show(trim.name + " appears to be bad. Save anyway?", "", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.No) { return; }
-                }
+                DialogResult result = MessageBox.Show(
+                    "One or more channels is marked as untested or bad. Save anyway?", "", MessageBoxButtons.YesNo);
+                if (result == DialogResult.No) { return; }
             }
-            foreach (BiasChannel bias in myFEB.Biases)
-            {
-                if (!bias.calibration.isTested)
-                {
-                    DialogResult result = MessageBox.Show(bias.name + " appears to be untested. Save anyway?", "", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.No) { return; }
-                }
-                if (bias.Biases[0].isBad || bias.Biases[1].isBad)
-                {
-                    DialogResult result = MessageBox.Show(bias.name + " appears to be bad. Save anyway?", "", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.No) { return; }
-                }
-            }
+            //foreach (TrimSignal trim in myFEB.Trims)
+            //{
+            //    if (!trim.calibration.isTested)
+            //    {
+            //        DialogResult result = MessageBox.Show(trim.name + " appears to be untested. Save anyway?", "", MessageBoxButtons.YesNo);
+            //        if (result == DialogResult.No) { return; }
+            //    }
+            //    if (trim.isBad || trim.muxIsBad)
+            //    {
+            //        DialogResult result = MessageBox.Show(trim.name + " appears to be bad. Save anyway?", "", MessageBoxButtons.YesNo);
+            //        if (result == DialogResult.No) { return; }
+            //    }
+            //}
+            //foreach (BiasChannel bias in myFEB.Biases)
+            //{
+            //    if (!bias.calibration.isTested)
+            //    {
+            //        DialogResult result = MessageBox.Show(bias.name + " appears to be untested. Save anyway?", "", MessageBoxButtons.YesNo);
+            //        if (result == DialogResult.No) { return; }
+            //    }
+            //    if (bias.Biases[0].isBad || bias.Biases[1].isBad)
+            //    {
+            //        DialogResult result = MessageBox.Show(bias.name + " appears to be bad. Save anyway?", "", MessageBoxButtons.YesNo);
+            //        if (result == DialogResult.No) { return; }
+            //    }
+            //}
 
             DateTime testDate = DateTime.Now;
 
             string dsfFileName = "";
             dsfFileName += "FEBdsf_";
-            dsfFileName += txtSN.Text;
+            dsfFileName += myFEBclient.FEBserialNum;
             dsfFileName += "_";
             dsfFileName += testDate.ToString("yyyyMMdd");
             saveFileCalibrations.FileName = dsfFileName;
 
-            saveFileCalibrations.ShowDialog();
+            //saveFileCalibrations.ShowDialog();
             if (saveFileCalibrations.ShowDialog() == DialogResult.OK)
             {
                 using (StreamWriter dsfStream = new StreamWriter(saveFileCalibrations.FileName))
@@ -2895,55 +2903,18 @@ namespace TB_mu2e
 
         private void btnSaveDB_Click(object sender, EventArgs e)
         {
-            bool hasBadChannel = false;
-            bool hasUntestedChannel = false;
-            string untestedChannelMessage = "";
             if (txtHVTestComments.Text.Length < 1)
             {
                 DialogResult result = MessageBox.Show("Please enter a comment before saving", "", MessageBoxButtons.OK);
                 if (result == DialogResult.OK) { return; }
             }
-            foreach (TrimSignal trim in myFEB.Trims)
-            {
-                if (!trim.calibration.isTested)
-                {
-                    untestedChannelMessage += "\r\n" + trim.name;
-                    hasUntestedChannel = true;
-                }
-                if (trim.isBad || trim.muxIsBad) { hasBadChannel = true; }
-            }
-            foreach (BiasChannel bias in myFEB.Biases)
-            {
-                if (!bias.calibration.isTested)
-                {
-                    untestedChannelMessage += "\r\n" + bias.name;
-                    hasUntestedChannel = true;
-                }
-                if (bias.Biases[0].isBad || bias.Biases[1].isBad) { hasBadChannel = true; }
-            }
-            foreach (LEDsignal led in myFEB.LEDs)
-            {
-                if (!led.calibration.isTested)
-                {
-                    untestedChannelMessage += "\r\n" + led.name;
-                    hasUntestedChannel = true;
-                }
-                if (led.isBad) { hasBadChannel = true; }
-            }
-            if (hasUntestedChannel)
+            if (myFEB.Trims.Exists(x => !x.calibration.isTested) ||
+                myFEB.Biases.Exists(x => !x.calibration.isTested) ||
+                myFEB.LEDs.Exists(x => !x.calibration.isTested))
             {
                 DialogResult result = MessageBox.Show(
-                    "The following channels appear to be untested. Save anyway?" 
-                    + untestedChannelMessage,"", MessageBoxButtons.YesNo);
-                if (result == DialogResult.No) { return; }
-            }
-
-            if (txtHVTestComments.Text == "All HV channels OK." && hasBadChannel)
-            {
-                DialogResult result = MessageBox.Show(
-                    "One or more of the HV channels is flagged as bad. Please change the comments to indicate this.",
-                    "", MessageBoxButtons.OK);
-                if (result == DialogResult.OK) { return; }
+                "One or more HV channels is marked as untested. Save anyway?", "", MessageBoxButtons.YesNo);
+                if (result == DialogResult.No) { return;  }
             }
 
             DateTime testDate = DateTime.Now;
@@ -2957,7 +2928,7 @@ namespace TB_mu2e
             saveFileDB.FileName = dbFileName;
             string FEBlocation = "KSU Test Stand";
 
-            saveFileDB.ShowDialog();
+            //saveFileDB.ShowDialog();
             if (saveFileDB.ShowDialog() == DialogResult.OK)
             {
                 using (StreamWriter dbStream = new StreamWriter(saveFileDB.FileName))
@@ -3047,11 +3018,15 @@ namespace TB_mu2e
             for (int fpga = 0; fpga < 4; fpga++)
             { myFEBclient.SetV(vSet, fpga); }
             btnHistoScan.Text = "Scanning...";
+            Application.UseWaitCursor = true;
             Application.DoEvents();
+
             histoScan(sender);
+
             for (int fpga = 0; fpga < 4; fpga++)
             { myFEBclient.SetV(0, fpga); }
             btnHistoScan.Text = "SCAN";
+            Application.UseWaitCursor = false;
         }
 
         private void btnConnectFEB_Click(object sender, EventArgs e)
@@ -3139,6 +3114,49 @@ namespace TB_mu2e
         private void txtFEBAddress_Enter(object sender, EventArgs e)
         {
             if (txtFEBAddress.BackColor != Color.White) { txtFEBAddress.BackColor = Color.White; }
+        }
+
+        private void btnSaveHist_Click(object sender, EventArgs e)
+        {
+            List<HISTO_curve> myHistoList = null;
+            myHistoList = PP.FEB1Histo;
+
+            string hName = "";
+            string dirName = "c://data//";
+            //string preamble = "";
+            //string header = "";
+            DateTime testDate = DateTime.Now;
+
+            hName += "FEB_histo_";
+            hName += txtSN.Text;
+            hName += "_" + testDate.ToString("yyyyMMdd");
+            hName = dirName + hName + ".csv";
+
+            //preamble += "-- serial number: " + txtSN.Text + "\n" + "-- tested on: " + testDate.ToString();
+            //header += "Channel, V, I";
+
+            if (saveFileHist.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter sw = new StreamWriter(hName))
+                {
+                    sw.WriteLine("-- serial number: " + myFEBclient.FEBserialNum + "\n" + "-- tested on: " + testDate.ToString());
+                    string xVals = string.Join(", ", Enumerable.Range(0, 512));
+                    sw.WriteLine("Channel, V, I, " + xVals);
+
+                    foreach (HISTO_curve h1 in myHistoList)
+                    {
+                        string histVals = string.Join(", ", h1.list.Select(p => p.Y));
+                        sw.WriteLine(h1.chan.ToString() + ", " + h1.V.ToString() + ", " + h1.I.ToString(), ", ", histVals);
+                    }
+                    sw.Close();
+                }
+            }
+
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
