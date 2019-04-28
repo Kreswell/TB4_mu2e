@@ -406,6 +406,7 @@ namespace TB_mu2e
                     ReadStr(out HistoStr, out rt);
                     SplitHistoStr = HistoStr.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
                 //}
+
                 int imax = SplitHistoStr.Length > 1024 ? 512 : SplitHistoStr.Length / 2;
                 for (int i = 0; i < imax; i++)
                 {
@@ -485,8 +486,8 @@ namespace TB_mu2e
                 System.Threading.Thread.Sleep(50);
                 if (TNETSocket.Available > 0)
                 {
+                    Thread.Sleep(10); // sleep _before_ allocating recieve buffer
                     byte[] rec_buf = new byte[TNETSocket.Available];
-                    Thread.Sleep(10);
                     int ret_len = TNETSocket.Receive(rec_buf);
                     lout = PP.GetString(rec_buf, ret_len);
                     return lout;

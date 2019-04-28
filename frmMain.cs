@@ -1355,7 +1355,7 @@ namespace TB_mu2e
 
                 hName += "FEB_histo_";
                 hName += txtSN.Text;
-                hName += "_" + testDate.ToString("yyyyMMdd");
+                hName += "_" + testDate.ToString("yyyyMMdd_HHmm");
                 hName = dirName + hName + ".csv";
 
                 preamble += "-- serial number: " + txtSN.Text + "\n" + "-- tested on: " + testDate.ToString();
@@ -2380,6 +2380,7 @@ namespace TB_mu2e
                 //biassig.calibration.Vhi = biassig.SaveMeasurements();
                 SetVoltage(biassig, 65);
                 GetVoltageMeasurement(biassig, numSamples, 3250);
+                biassig.calibration.Vhi = biassig.SaveMeasurements(); // added by GAHS 2019-04-24
                 for (int i = 0; i < 2; i++)
                 {
                     updateListVoltage(biassig.Biases[i]);
@@ -2448,7 +2449,8 @@ namespace TB_mu2e
                 //trimsig.myMeasurements.GetMeasurement(numSamples);
                 SetVoltage(trimsig, 4);
                 GetVoltageMeasurement(trimsig, numSamples, 200);
-                trimsig.calibration.Vlow = trimsig.SaveMeasurements();
+                // trimsig.calibration.Vlow = trimsig.SaveMeasurements();
+                trimsig.calibration.Vhi = trimsig.SaveMeasurements();  // changed Vlow to Vhi here GAHS 2019-04-20
                 updateListVoltage(trimsig);
             }
 
@@ -2506,7 +2508,7 @@ namespace TB_mu2e
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
             string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}",
-                ts.Minutes, ts.Seconds, ts.Milliseconds);
+                (int)(ts.TotalMinutes), ts.Seconds, ts.Milliseconds);
             lblScanTime.Text = "Scan time: " + elapsedTime;
 
             DateTime testDate = DateTime.Now;
@@ -2583,6 +2585,14 @@ namespace TB_mu2e
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
             btnMuxTest.Text = "SCANNING...";
+            void UpdateMyScanTime()  // GAHS 2019-04-24
+            {
+                TimeSpan ts = stopWatch.Elapsed;
+                string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}",
+                    (int)(ts.TotalMinutes), ts.Seconds, ts.Milliseconds);
+                lblMuxTime.Text = "Scan time: " + elapsedTime;
+            }
+            UpdateMyScanTime(); // GAHS 2019-04-24
             Application.DoEvents();
 
             ZeroAllVoltages();
@@ -2598,13 +2608,15 @@ namespace TB_mu2e
 
             foreach (TrimSignal trimsig in myFEB.Trims)
             { SetVoltage(trimsig, -2); }
+            //Wait 100ms to make sure voltages have ramped.
+            System.Threading.Thread.Sleep(100);  // moved to be between loops instead of in next loop by GAHS 2019-04-24
             foreach (TrimSignal trimsig in myFEB.Trims)
             {
-                //Wait 100ms to make sure voltages have ramped.
-                System.Threading.Thread.Sleep(100);
                 int fpga = trimsig.myFPGA_ID;
                 int ch = trimsig.signalIndex;
-
+                btnMuxTest.Text = $"scan {fpga}.{ch}";
+                UpdateMyScanTime();  // GAHS 2019-04-24
+                Application.DoEvents();  // Added by GAHS 2019-04-24
                 trimsig.muxCurrent = myFEBclient.ReadMuxI(fpga, ch);
                 trimsig.muxIsTested = true;
 
@@ -2619,10 +2631,7 @@ namespace TB_mu2e
             btnMuxTest.BackColor = Color.LimeGreen;
             btnMuxTest.Text = "MUX TEST";
             stopWatch.Stop();
-            TimeSpan ts = stopWatch.Elapsed;
-            string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}",
-                ts.Minutes, ts.Seconds, ts.Milliseconds);
-            lblMuxTime.Text = "Scan time: " + elapsedTime;
+            UpdateMyScanTime(); // GAHS 2019-04-24
         }
 
         private void buildListView()
@@ -2838,7 +2847,7 @@ namespace TB_mu2e
             dsfFileName += "FEBdsf_";
             dsfFileName += myFEBclient.FEBserialNum;
             dsfFileName += "_";
-            dsfFileName += testDate.ToString("yyyyMMdd");
+            dsfFileName += testDate.ToString("yyyyMMdd_HHmm");
             saveFileCalibrations.FileName = dsfFileName;
 
             //saveFileCalibrations.ShowDialog();
@@ -2924,7 +2933,7 @@ namespace TB_mu2e
                 "FEB_" + sn + "_" + 
                 txtTestLocation.Text.Replace(" ", "") +
                 txtTestType.Text.Replace(" ", "") + 
-                "_" + testDate.ToString("yyyyMMdd");
+                "_" + testDate.ToString("yyyyMMdd_HHmm");
             saveFileDB.FileName = dbFileName;
             string FEBlocation = "KSU Test Stand";
 
@@ -3073,11 +3082,13 @@ namespace TB_mu2e
             //Controls.Clear();
             //InitializeComponent();
             //if (myFEBclient.ClientOpen) { myFEBclient.Close(); }
+            ZeroAllVoltages();
             Application.Restart();
         }
 
         private void btnDisconnectFEB_Click(object sender, EventArgs e)
         {
+            ZeroAllVoltages();
             if (myFEBclient.ClientOpen) { myFEBclient.Close(); }
             btnDisconnectFEB.Visible = false;
             btnConnectFEB.Enabled = true;
@@ -3129,15 +3140,15 @@ namespace TB_mu2e
 
             hName += "FEB_histo_";
             hName += txtSN.Text;
-            hName += "_" + testDate.ToString("yyyyMMdd");
+            hName += "_" + testDate.ToString("yyyyMMdd_HHmm");
             hName = dirName + hName + ".csv";
 
             //preamble += "-- serial number: " + txtSN.Text + "\n" + "-- tested on: " + testDate.ToString();
             //header += "Channel, V, I";
-
+            saveFileHist.FileName = hName;
             if (saveFileHist.ShowDialog() == DialogResult.OK)
             {
-                using (StreamWriter sw = new StreamWriter(hName))
+                using (StreamWriter sw = new StreamWriter(saveFileHist.FileName))
                 {
                     sw.WriteLine("-- serial number: " + myFEBclient.FEBserialNum + "\n" + "-- tested on: " + testDate.ToString());
                     string xVals = string.Join(", ", Enumerable.Range(0, 512));
