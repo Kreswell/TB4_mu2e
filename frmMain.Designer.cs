@@ -2980,24 +2980,24 @@ namespace TB_mu2e
             // 
             // saveFileCalibrations
             // 
-            this.saveFileCalibrations.DefaultExt = "\"txt\"";
+            this.saveFileCalibrations.DefaultExt = "dsf";
             this.saveFileCalibrations.Filter = "\"FEB calibration files (*.dsf)|*.dsf|All files (*.*)|*.*\"";
             this.saveFileCalibrations.FilterIndex = 2;
-            this.saveFileCalibrations.InitialDirectory = "\"c:\\\\data\\\\\"";
+            this.saveFileCalibrations.InitialDirectory = "c:\\data\\";
             this.saveFileCalibrations.RestoreDirectory = true;
             // 
             // saveFileMeasurements
             // 
-            this.saveFileMeasurements.DefaultExt = "\"txt\"";
+            this.saveFileMeasurements.DefaultExt = "txt";
             this.saveFileMeasurements.FilterIndex = 2;
-            this.saveFileMeasurements.InitialDirectory = "\"c:\\\\data\\\\\"";
+            this.saveFileMeasurements.InitialDirectory = "c:\\data\\";
             this.saveFileMeasurements.RestoreDirectory = true;
             // 
             // saveFileDB
             // 
             this.saveFileDB.DefaultExt = "csv";
             this.saveFileDB.FilterIndex = 2;
-            this.saveFileDB.InitialDirectory = "\"c:\\\\data\\\\\"";
+            this.saveFileDB.InitialDirectory = "c:\\data\\";
             this.saveFileDB.RestoreDirectory = true;
             // 
             // timerTempRB
